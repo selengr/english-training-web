@@ -5,7 +5,7 @@ import React from "react";
 import Link from "next/link";
 import {Formik, Field, ErrorMessage, Form} from "formik";
 import * as Yup from "yup";
-import {Head} from "next/document";
+import Head from "next/head";
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -19,9 +19,9 @@ const Login = () => {
 
     return (
         <>
-            {/*<Head>*/}
-            {/*    <title>Login | Your Website Name</title>*/}
-            {/*</Head>*/}
+            <Head>
+               <title>login</title>
+            </Head>
             <div className="min-h-screen bg-gray-100 flex justify-center items-center" >
                 <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md" >
                     <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
@@ -30,14 +30,15 @@ const Login = () => {
                         validationSchema={LoginSchema}
                         onSubmit={handleSubmit}
                     >
-                        {/*{({ errors, touched }) => {*/}
-                        {/*    const emailClassName = `w-full px-3 py-2 placeholder-gray-400 border rounded-md focus:outline-none focus:border-my-border focus:border-my-border ${*/}
-                        {/*        errors.email && touched.email ? "border-red-500" : "border-gray-300"*/}
-                        {/*    }`;*/}
-                        {/*    const passwordClassName = `w-full px-3 py-2 placeholder-gray-400 border rounded-md focus:outline-none focus:border-my-border focus:border-my-border ${*/}
-                        {/*        errors.password && touched.password ? "border-red-500" : "border-gray-300"*/}
-                        {/*    }`;*/}
-                        {/*    return (*/}
+                        {({ errors, touched }) => {
+                            // const emailClassName = `w-full px-3 py-2 placeholder-gray-400 border rounded-md focus:outline-none focus:border-my-border focus:border-my-border ${
+                            //     errors.email && touched.email ? "border-red-500" : "border-gray-300"
+                            // }`;
+                            // const passwordClassName = `w-full px-3 py-2 placeholder-gray-400 border rounded-md focus:outline-none focus:border-my-border focus:border-my-border ${
+                            //     errors.password && touched.password ? "border-red-500" : "border-gray-300"
+                            // }`;
+
+                            return (
                                 <Form>
                                     <div className="mb-4">
                                         <label
@@ -51,9 +52,12 @@ const Login = () => {
                                             name="email"
                                             type="email"
                                             placeholder="Email"
-                                            className={
-                                                // emailClassName
-                                            }
+                                            className={`
+                                            ${
+                                                errors.email && touched.email
+                                                    ? "border-red-500"
+                                                    : "border-gray-300"
+                                            } w-full px-3 py-2 placeholder-gray-400 border  rounded-md focus:outline-none  focus:border-my-border  `}
                                         />
                                         <ErrorMessage
                                             name="email"
@@ -73,9 +77,13 @@ const Login = () => {
                                             name="password"
                                             type="password"
                                             placeholder="Password"
-                                            className={
-                                                // passwordClassName
+                                            className={`${
+                                                errors.password && touched.password
+                                                    ? "border-red-500"
+                                                    : "border-gray-300"
                                             }
+                                            w-full px-3 py-2 placeholder-gray-400 border  rounded-md focus:outline-none  focus:border-my-border 
+                                            `}
                                         />
                                         <ErrorMessage
                                             name="password"
@@ -90,8 +98,8 @@ const Login = () => {
                                         Login
                                     </button>
                                 </Form>
-                        {/*    );*/}
-                        {/*}}*/}
+                            );
+                        }}
                     </Formik>
                     {/*<p className="mt-4 text-center">*/}
                     {/*    Don't have an account?{" "}*/}
