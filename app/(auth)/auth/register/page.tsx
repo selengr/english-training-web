@@ -7,7 +7,7 @@ import Link from "next/link";
 import {Formik, Field, ErrorMessage, Form} from "formik";
 import * as Yup from "yup";
 import Head from "next/head";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -19,26 +19,25 @@ const LoginSchema = Yup.object().shape({
 // const resend = new Resend('re_123456789');
 
 const Register = () => {
-    // const router = useRouter()
+    const router = useRouter()
     const handleSubmit = async(values) => {
 console.log('values :>> ', values);
         const url = '/api/auth/register';
 
         const data = values
         
-        fetch(url, {
+       await fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            body: JSON.stringify(data)
+            // body: JSON.stringify(data)
           },
           body: JSON.stringify(data)
         })
-        .then(response => response.json())
-        .then(data => console.log('Success:', data))
-        .catch(error => console.error('Error:', error));
-        
-
+        .then(response => response)
+        .then(data => {
+            router.push(" login")
+        })
     };
 
     return (
@@ -179,9 +178,13 @@ console.log('values :>> ', values);
 
                                     
                                      {/*  */}
-                                   <button type="submit">
-                                   register
-                                        </button>
+                                  
+                                      <button
+                                        type="submit"
+                                        className="bg-my-dark  opacity-90 text-white px-4 py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:border-my-border"
+                                    >
+                                        register
+                                    </button>
                                    <div className="mt-2"/>
                                 </Form>
                             );

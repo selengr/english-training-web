@@ -93,7 +93,7 @@ const Login = () => {
                                     </div>
                                     <button
                                         type="submit"
-                                        className="bg-my-dark text-white px-4 py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:border-my-border"
+                                        className="bg-my-dark opacity-90 text-white px-4 py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:border-my-border"
                                     >
                                         Login
                                     </button>
