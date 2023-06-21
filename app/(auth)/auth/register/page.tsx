@@ -20,17 +20,15 @@ const LoginSchema = Yup.object().shape({
 
 const Register = () => {
     const router = useRouter()
+    
     const handleSubmit = async(values) => {
-console.log('values :>> ', values);
         const url = '/api/auth/register';
-
         const data = values
         
        await fetch(url, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            // body: JSON.stringify(data)
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(data)
         })

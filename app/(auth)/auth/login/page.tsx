@@ -6,6 +6,7 @@ import Link from "next/link";
 import {Formik, Field, ErrorMessage, Form} from "formik";
 import * as Yup from "yup";
 import Head from "next/head";
+import { useRouter } from "next/navigation";
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -13,8 +14,26 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = () => {
-    const handleSubmit = (values) => {
-        console.log(values);
+    const router = useRouter()
+
+
+      const handleSubmit = async(values) => {
+        console.log('values :>> ', values);
+        const url = '/api/auth/login';
+        const data = values
+        
+       await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response)
+        .then(data => {
+            console.log('process.env.JWT_SECRET --------------------------2222222222> ', data);
+            // router.push("/")
+        })
     };
 
     return (

@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
-import Note from "@/models/Note";
+import Register from "@/models/auth/Register";
 
 
 
@@ -10,14 +10,7 @@ export async function GET(request,res) {
   
   try {
         dbConnect();
-    //    const user = await Note.find()
-    //    const user = await Note.find({ name: "reza" });
-    const user = await Note.find();
-
-        // if (user.length === 0) {
-        //     return new Response("No notes found.");
-        // }
-        // return new NextResponse.json("myData");
+    const user = await Register.find();
         return new Response(`Welcome to my Next application, user: ${user}`);
 
     } catch (error) {
@@ -34,7 +27,7 @@ export async function POST(request ,  ) {
     dbConnect();
       try {
           const requestData = await request.json();
-          const user = new Note({
+          const user = new Register({
             username : requestData.username,
             email : requestData.email,
             password : requestData.password,
