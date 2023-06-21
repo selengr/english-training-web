@@ -1,0 +1,178 @@
+
+.second-layout {
+    background-color: #0a090a !important;
+    color: #f7f7f7;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.entry-header-whole {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80% !important;
+    flex-direction: column !important;
+}
+.entry-header-whole :first-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.entry-header-whole :nth-child(2){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.entry-header-whole :first-child p{
+    width: 100%;
+    flex-direction: row !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.entry-header-h1 {
+    color: #00ff55;
+    font-size: 42px;
+        /*font-family: "Roboto Mono", monospace !important;*/
+   margin-bottom: 2rem;
+}
+.time-publish {
+    color: #595959;
+    font-family: "Roboto Mono", monospace !important;
+    /*width: 100% !important;*/
+}
+
+.Env--scene {
+    width: 80% !important;
+    height: 500px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*width: 50% !important;*/
+}
+
+.entry-header-span {
+    color: #00ff55;
+    font-size: 16px;
+    font-family: "Roboto Mono", monospace !important;
+    width:fit-content !important;
+    padding-left: 10px;
+}
+.entry-header-btn{
+    background-color: #009635;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 50% !important;
+    margin-top: 1rem;
+}
+.eapps-form-header {
+    color: inherit;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8rem;
+    /*position: fixed;*/
+    /*bottom: 20%;*/
+    display: flex;
+    flex-direction: column;
+}
+.eapps-form-header :first-child {
+    color: inherit;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8rem;
+    display: flex;
+    flex-direction: row;
+}
+
+ .eapps-form-header-picture {
+     width: 60px;
+    background-color: rgb(0, 195, 85);
+    position: relative;
+    flex: auto 0 0;
+    overflow: hidden;
+    height: 60px;
+    margin-right: 20px;
+    border-radius: 50% 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+.eapps-form-header-picture :first-child {
+
+}
+
+.eapps-form-header-title {
+    font-family: "Roboto Mono", monospace !important;
+    font-size: 36px !important;
+    line-height: 1.8rem;
+    color: #595959 !important;
+    overflow: hidden;
+    font-weight: bold !important;
+}
+.eapps-form-header-span {
+    font-family: "Roboto Mono", monospace !important;
+     margin-top: 8px;
+     opacity: .9;
+     font-size: 15px;
+     color: #595959;
+}
+
+.eapps-form-element-label {
+    display: block;
+    justify-content: flex-start !important;
+    font-size: 18px !important;
+    line-height: 1rem;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-family: "Roboto Mono", monospace !important;
+    color: #595959 !important;
+    overflow: hidden;
+    font-weight: 600 !important;
+}
+.eapps-form-element-input-email {
+    all: unset;
+    width: 60%;
+    /*color: #595959;*/
+    color: #666666;
+    border-radius: 26px !important;
+    background: rgba(220,220,220,0.25) !important;
+    padding: 10px 16px !important;
+    font-family: "Roboto Mono", monospace !important;
+    margin-bottom: 12px;
+    border: unset;
+
+}
+.eapps-form-element-textarea {
+     overflow: hidden;
+     overfloWrap: break-word;
+     height: 85px;
+    width: 90%;
+}
+
+.eapps-form-element-btn {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s, visibility;
+    border-radius: 26px;
+    min-width: 120px;
+    text-align: center;
+    background-color: rgb(0, 195, 85);
+    color: #fff;
+    width: 20%;
+    padding: 7px 10px;
+}
+
+.eapps-form-fix {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}

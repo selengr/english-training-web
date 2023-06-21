@@ -9,11 +9,10 @@ export async function GET(request,res) {
 //   dbConnect();
   
   try {
-       await dbConnect();
+        dbConnect();
     //    const user = await Note.find()
     //    const user = await Note.find({ name: "reza" });
-    const user = await Note.findOne({ name: 'reza' });
-       console.log("GET3---GET3--GET2--GET2--GET2--GET2");
+    const user = await Note.find();
 
         // if (user.length === 0) {
         //     return new Response("No notes found.");
@@ -41,7 +40,7 @@ export async function POST(request,res) {
             password : "123456789",
           })
           user.save()
-              .then(res=> new Response(`Welcome to my Next application, user 200 201 202: ${res}`))
+              .then(res=> new Response(`Welcome to my Next application, user 200 201 202: ${res.json()}`))
                .catch(err => new Response(`kolan error baba bekhyal 404 403 402: ${err}`))
   
           // if (user.length === 0) {

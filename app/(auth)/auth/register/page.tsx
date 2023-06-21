@@ -1,6 +1,6 @@
 'use client'
 
-import { Resend } from 'resend';
+// import { Resend } from 'resend';
 import React from "react";
 // import Head from "next/head";
 import Link from "next/link";
@@ -16,7 +16,7 @@ const LoginSchema = Yup.object().shape({
     confirmPassword: Yup.string().required("Required"),
 });
 
-const resend = new Resend('re_123456789');
+// const resend = new Resend('re_123456789');
 
 const Register = () => {
     // const router = useRouter()

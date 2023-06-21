@@ -1,0 +1,74 @@
+
+.docs  {
+    --geist-foreground: #000;
+    --font-mono: "Roboto Mono",Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;
+    --vertical-spacing: 1px;
+
+    --accents-1: #fafafa;
+    --accents-2: #eaeaea;
+    --accents-3: #999;
+    --accents-4: #888;
+    --accents-5: #666;
+    --accents-6: #444;
+    --accents-7: #333;
+    --accents-8: #111;
+}
+
+.docs code {
+    font-size: .9em;
+    --vertical-spacing: 1px;
+    /*color: var(--bg-color) !important;*/
+    font-family: var(--font-mono) !important;
+    white-space: pre-wrap;
+    word-break: break-word;
+    /*padding: var(--vertical-spacing)2px;*/
+    /*margin: -webkit-calc(-1*var(--vertical-spacing))0;*/
+    /*margin: -moz-calc(-1*var(--vertical-spacing));*/
+    /*margin: calc(-1*var(--vertical-spacing));*/
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background: var(--accents-3) !important;
+    /*background-color: rgba(69,75,78,.3);*/
+    border: 1px solid var(--accents-3) !important;
+    -webkit-transition: color.2s ease;
+    -moz-transition: color.2s ease;
+    -o-transition: color.2s ease;
+    transition: color.2s ease;
+    /*margin-top: 4px !important;*/
+
+    margin: 2px;
+    margin-left: .3em ;
+    padding: 0 10px;
+    padding-top: 4px !important;
+}
+
+.docs h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.35;
+    /*margin-top: 0.75rem;*/
+    word-break: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+}
+
+
+/*[data-theme="dark"].docs {*/
+/*    !*background-color: #00ff55 !important;*!*/
+/*    background-color: rgba(69,75,78,.3);*/
+/*}*/
+
+
+
+.docs code :before :after {
+    box-sizing: border-box;
+}
+@media (min-width: 576px) {
+    .docs  h1{
+        display: flex;
+        flex-direction: row;
+    }
+}

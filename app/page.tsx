@@ -13,7 +13,7 @@ const fetcher = (url) => axios.get(url).then(res => res.data);
 
 export default function Home() {
 
-  const { data, error } = useSWR('/api/auth/register', fetcher);
+  // const { data, error } = useSWR('/api/auth/register', fetcher);
 
 
   const handlePost = async () => {
@@ -26,11 +26,7 @@ export default function Home() {
   };
 
   useEffect(()=>{
-    handlePost2()
-    handlePost2()
-    handlePost2()
-    handlePost2()
-    handlePost2()
+ 
   },[])
 
 
@@ -52,7 +48,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
          <button className="w-full h-20" onClick={handlePost2}>Send POST request</button>
-         <pre>{JSON.stringify(data)}</pre>
+         {/* <pre>{JSON.stringify(data)}</pre> */}
  
     </main>
   )
