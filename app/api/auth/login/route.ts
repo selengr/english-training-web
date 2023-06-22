@@ -3,8 +3,8 @@ import LoginedInUsers from "@/models/auth/LoginedInUsers";
 import Login from "@/models/auth/LoginedInUsers";
 import User from "@/models/User";
 import jwt from "jsonwebtoken";
-import { NextApiRequest, NextApiResponse } from "next";
-import { redirect } from 'next/navigation'
+import { redirect } from "next/navigation";
+
 
 
 export async function GET(request,res) {
@@ -28,7 +28,7 @@ export async function POST(request , res ) {
 
             // Check if user is already registered
         const userExists = await User.findOne({email: requestData.email });
-
+console.log('userExists :>> ', userExists);
         const crypto = require('crypto');
         const jwtSecret = crypto.randomBytes(32).toString('hex');
          const token = jwt.sign({ id: requestData.password, username: requestData.email },
@@ -37,6 +37,7 @@ export async function POST(request , res ) {
                  );
        
         if (userExists) {
+            console.log('requestData :>> ', requestData);
            if (requestData.password === userExists.password) {
                 
                  
@@ -53,14 +54,15 @@ export async function POST(request , res ) {
                
               
                  if(!userExists.isActive){
-                     return new Response( redirect('/auth/verify'))
+                    return new Response(JSON.stringify({ token }), { status: 200 });
+                    //  return new Response(redirect("/auth/verify"))
                  }
-
-              
-
-            }
+                 
+                 
+                }
+               
            
-              return new Response(JSON.stringify({ token }), { status: 200 });
+              
         }else {
             return new Response('please first of all look for sign up', { status: 200 });
         }

@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 // import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 // import { selectPhoneVerifyToken, updatePhoneVerifyToken } from '../../../app/store/auth';
 // import { NextPageWithLayout } from '../../_app';
+import Cookies from 'js-cookie';
 
 const PhoneVerify  = () => {
 
@@ -21,10 +22,26 @@ const PhoneVerify  = () => {
   };
 
   const handleSubmit = (event) => {
-    
     event.preventDefault();
-    // TODO: Handle verification logic
-    // router.push('/');
+
+    const url = '/api/auth/verify';
+    
+    const data = {
+      code : code,
+      token : Cookies.get('token')
+    }
+    
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response)
+    .then(data => {
+        // router.push("/")
+    })
   };
 
 // const phoneVerifyFormValidationSchema = yup.object().shape({

@@ -23,19 +23,19 @@ export async function GET(request,res) {
 
 
 export async function POST(request ,  ) {
+
+
         
     dbConnect();
       try {
-        let min = 1000;
-        let max = 9999;
-        let number = Math.floor(Math.random() * (max - min + 1)) + min;
+        
           const requestData = await request.json();
           const user = new User({
             username : requestData.username,
             email : requestData.email,
             password : requestData.password,
             isActive : false,
-            code : number
+            isok_code : Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
           })
          await user.save()
               .then(res=> new Response(`Welcome to my Next application, user 200 201 202: ${res}`))
