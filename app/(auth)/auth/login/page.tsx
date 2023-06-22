@@ -76,7 +76,7 @@ const Login = () => {
                                                 errors.email && touched.email
                                                     ? "border-red-500"
                                                     : "border-gray-300"
-                                            } w-full px-3 py-2 placeholder-gray-400 border  rounded-md focus:outline-none  focus:border-my-border  `}
+                                            } w-full px-3 py-2 text-gray-700 placeholder-gray-400 border  rounded-md focus:outline-none  focus:border-my-border  `}
                                         />
                                         <ErrorMessage
                                             name="email"
@@ -101,7 +101,7 @@ const Login = () => {
                                                     ? "border-red-500"
                                                     : "border-gray-300"
                                             }
-                                            w-full px-3 py-2 placeholder-gray-400 border  rounded-md focus:outline-none  focus:border-my-border 
+                                            w-full px-3 py-2 text-gray-700 placeholder-gray-400 border  rounded-md focus:outline-none  focus:border-my-border 
                                             `}
                                         />
                                         <ErrorMessage

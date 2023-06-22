@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
-import Register from "@/models/auth/Register";
+import User from "@/models/User";
 
 
 
@@ -10,7 +10,7 @@ export async function GET(request,res) {
   
   try {
         dbConnect();
-    const user = await Register.find();
+    const user = await User.find();
         return new Response(`Welcome to my Next application, user: ${user}`);
 
     } catch (error) {
@@ -26,12 +26,16 @@ export async function POST(request ,  ) {
         
     dbConnect();
       try {
+        let min = 1000;
+        let max = 9999;
+        let number = Math.floor(Math.random() * (max - min + 1)) + min;
           const requestData = await request.json();
-          const user = new Register({
+          const user = new User({
             username : requestData.username,
             email : requestData.email,
             password : requestData.password,
-            confirmPassword:  requestData.confirmPassword
+            isActive : false,
+            code : number
           })
          await user.save()
               .then(res=> new Response(`Welcome to my Next application, user 200 201 202: ${res}`))
