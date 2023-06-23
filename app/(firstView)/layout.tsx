@@ -1,14 +1,16 @@
 "use client";
 // 220170000000116190742000
-import Banner from "@/components/banner";
-import Header from "@/components/header";
+// import Banner from "@/components/banner";
+// import Header from "@/components/header";
 import Footer from "../../components/footer";
 // import '../styles/tailwind.css'
 import { useState } from "react";
 import "../../styles/globals.css";
 
-export default function Layout({ children }) {
+
+export default function Layout({ myData , children }) {
   const [darkMode, setDarkMode] = useState(false);
+  console.log("rrrrrrrrrr",myData)
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -28,7 +30,7 @@ export default function Layout({ children }) {
       </head>
       <body className="relative bg-primary text-primary flex flex-col" >
         {!darkMode && (
-          <div onClick={toggleDarkMode} className="fixed right-16 top-4 z-10">
+          <div onClick={toggleDarkMode} className="fixed sm:right-16 right-5 top-4 z-10">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -48,7 +50,7 @@ export default function Layout({ children }) {
         
 
         {darkMode && (
-          <div onClick={toggleDarkMode} className="fixed right-16 top-4 z-10">
+          <div onClick={toggleDarkMode} className="fixed sm:right-16 right-5 top-4 z-10">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
           </svg>
@@ -56,8 +58,10 @@ export default function Layout({ children }) {
           </div>
         )}
 
-        <Header />
-        <Banner />
+
+        {/* <HeroHeader /> */}
+       {/* {myData} */}
+        
         {children}
 
         <Footer />

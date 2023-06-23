@@ -1,3 +1,8 @@
+'use client'
+
+import  { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+
 import styles from "../../../styles/components/environment/environment.module.css"
 import "../../../styles/globals.css";
 import Image from "next/image";
@@ -7,16 +12,18 @@ import Slidein from "../../../components/custom/slidein";
 
 export default function Environment() {
 
-
-    const handleSubmit = (event) => {
-        event.preventDefault(); // prevent the default form submission behavior
-
-        // get the values of the email and problem description fields
-        // const email = event.target.elements["email-address-0"].value;
-        // const problemDescription = event.target.elements["describe-your-problem-1"].value;
-
-        // do something with the form data (e.g., send it to a server)
-    }
+    const form = useRef();
+   
+    const sendEmail = (e) => {
+        e.preventDefault();
+  
+        emailjs.sendForm('service_igrrn4k', 'template_hccjxri', form.current, '9sHE-yxCkYjaixTRw')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+      };
 
     return (
         <>
@@ -149,7 +156,18 @@ export default function Environment() {
                  <hr />
 
 
-                    <form className={styles["eapps-form-header"]} >
+                 {/* <form ref={form} onSubmit={sendEmail}>
+      <label>Name</label>
+      <input type="text" name="user_name" />
+      <label>Email</label>
+      <input type="email" name="user_email" />
+      <label>Message</label>
+      <textarea name="message" />
+      <input type="submit" value="Send" />
+    </form> */}
+
+
+    <form className={styles["eapps-form-header"]} ref={form} onSubmit={sendEmail}>
                        <section>
                            <div className={styles["eapps-form-header-picture"]}>
                                {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
@@ -171,9 +189,11 @@ export default function Environment() {
                                 Email address <span className="text-5xl ml-2">*</span>
                             </label>
 
+
                             <input
+                            type="email" name="user_email"
                                 className={styles["eapps-form-element-input-email"]}
-                                name="email-address-0" type="email"
+                                
                                 // pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
                                 placeholder="example@domain.com"
                                 // required=""
@@ -186,7 +206,7 @@ export default function Environment() {
 
                             <textarea
                                 className={`${styles["eapps-form-element-input-email"]} ${styles["eapps-form-element-textarea"]}`}
-                                      name="describe-your-problem-1" placeholder="Tell us briefly about your needs"
+                                name="message" placeholder="Tell us briefly about your needs"
                                     //   required=""
                             >
                             </textarea>
