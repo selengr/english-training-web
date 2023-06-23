@@ -6,7 +6,7 @@ import User from "@/models/User";
 
 export async function GET(request,res) {
   
-//   dbConnect();
+  dbConnect();
   
   try {
         dbConnect();
@@ -24,8 +24,8 @@ export async function GET(request,res) {
 
 export async function POST(request ,  ) {
 
-
-        
+const num = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
+         console.log('num.toString()================== :>> ', num.toString());
     dbConnect();
       try {
         
@@ -34,11 +34,15 @@ export async function POST(request ,  ) {
             username : requestData.username,
             email : requestData.email,
             password : requestData.password,
+            confirmCode : num.toString(),
             isActive : false,
-            isok_code : Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
           })
          await user.save()
-              .then(res=> new Response(`Welcome to my Next application, user 200 201 202: ${res}`))
+      
+              .then(res=> {
+                console.log('num.toString()================== :>> ', num.toString());
+                console.log('num.toString()================== :>> ', typeof num.toString())
+              })
                .catch(err => new Response(`kolan error baba bekhyal 404 403 402: ${err}`))
            
               //  if (res.statusCode === 200) {

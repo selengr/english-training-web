@@ -4,7 +4,7 @@ import Login from "@/models/auth/LoginedInUsers";
 import User from "@/models/User";
 import jwt from "jsonwebtoken";
 import { redirect } from "next/navigation";
-
+const nodemailer = require("nodemailer");
 
 
 export async function GET(request,res) {
@@ -28,7 +28,7 @@ export async function POST(request , res ) {
 
             // Check if user is already registered
         const userExists = await User.findOne({email: requestData.email });
-console.log('userExists :>> ', userExists);
+// console.log('userExists :>> ', userExists);
         const crypto = require('crypto');
         const jwtSecret = crypto.randomBytes(32).toString('hex');
          const token = jwt.sign({ id: requestData.password, username: requestData.email },
@@ -37,13 +37,13 @@ console.log('userExists :>> ', userExists);
                  );
        
         if (userExists) {
-            console.log('requestData :>> ', requestData);
+            // console.log('requestData :>> ', requestData);
            if (requestData.password === userExists.password) {
                 
-                 
+                 console.log('userExists._id thhhhhhhhhhhhhhhhhhhhhis  is a test just :>> ', userExists._id);
           
                  const user = new LoginedInUsers({
-                   UserId : userExists._id,
+                   userId : userExists._id,
                    token : token,
                  })
 
@@ -54,9 +54,40 @@ console.log('userExists :>> ', userExists);
                
               
                  if(!userExists.isActive){
-                    return new Response(JSON.stringify({ token }), { status: 200 });
+
+                    //   const LoginedIn = await LoginedInUsers.findOne({token: token });
+                    //   const userId = await User.findOne({_id: LoginedIn._id });
+
+
+                    var transporter = nodemailer.createTransport({
+                        host: "sandbox.smtp.mailtrap.io",
+                        port: 2525,
+                        auth: {
+                        user: "a9eb2eb9b8b158",
+                        pass: "222739fffe31e8"
+                        }
+                    });
+                         console.log('userExists.confirmCode---------------------- :>> ', userExists.confirmCode);
+
+                        const code = userExists.confirmCode
+                        const info = await transporter.sendMail({
+                        from: 'reza1997karbakhsh@gmail.com', // sender address
+                        to: "ahad.mirhabibi@gmail.com", // list of receivers
+                        subject: "Hello ✔", // Subject line
+                        // text: userExists.confirmCode, // plain text body
+                        html: `<h1>${code}</h1>`, // html body
+                        })
+
+
+                    return new Response(JSON.stringify({ token , status : 302 }), { status: 302 });
+
+
+
+
                     //  return new Response(redirect("/auth/verify"))
-                 }
+                 }else {
+                    return new Response(JSON.stringify({ token }), { status: 200 });
+                 }  
                  
                  
                 }

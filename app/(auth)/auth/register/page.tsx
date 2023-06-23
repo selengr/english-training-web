@@ -34,7 +34,7 @@ const Register = () => {
         })
         .then(response => response)
         .then(data => {
-            router.push(" login")
+            router.push("login")
         })
     };
 

@@ -4,16 +4,9 @@ import "../../../../styles/globals.css"
 import { useState } from "react";
 
 import {useRouter} from 'next/navigation';
-// import { useEffect } from 'react';
-// import GuestLayout from '../../../app/components/guestLayout';
-// import PhoneVerifyForm from '../../../app/forms/auth/phoneVerifyForm'
-// import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-// import { selectPhoneVerifyToken, updatePhoneVerifyToken } from '../../../app/store/auth';
-// import { NextPageWithLayout } from '../../_app';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'; 
 
 const PhoneVerify  = () => {
-
   const [code, setCode] = useState('');
   const router = useRouter();
 
@@ -22,10 +15,11 @@ const PhoneVerify  = () => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-      const url = '/api/test';
-    
-    const data = {}
+       event.preventDefault()
+       const url = '/api/auth/verify';
+       const data = { code : code,
+       token : Cookies.get('token')
+   }
     
     fetch(url, {
       method: 'POST',
@@ -36,60 +30,18 @@ const PhoneVerify  = () => {
     })
     .then(response => response)
     .then(data => {
+      debugger
+      if (data.status === 200) {
+        router.push('/')
+      } 
     })
 
-
-    // event.preventDefault();
-
-    // const url = '/api/auth/verify';
-    
-    // const data = {
-    //   code : code,
-    //   token : Cookies.get('token')
-    // }
-    
-    // fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(data)
-    // })
-    // .then(response => response)
-    // .then(data => {
-    //     // router.push("/")
-    // })
   };
 
-// const phoneVerifyFormValidationSchema = yup.object().shape({
-//   code : yup.string().required().matches(/^[0-9]+$/,"فقط میتوانید عدد وارد کنید").length(6)
-// })
-
-//     const dispatch = useAppDispatch();
-//     const token = useAppSelector(selectPhoneVerifyToken);
-
-//     const clearPhoneVerifyToken = () => {
-//         dispatch(updatePhoneVerifyToken(undefined))
-//     }
-
-//     useEffect(() => {
-//         Router.beforePopState(({ url, as, options }) => {
-//             clearPhoneVerifyToken();
-//             return true
-//         })
-
-//         if(token === undefined) {
-//             Router.push('/auth/login')
-//         }
-//     },[token]);
 
     return (
         <>
-          
-
-
-            <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-   
+  <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* <img className="mx-auto h-12 w-auto" src="/logo.svg" alt="Workflow" /> */}

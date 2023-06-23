@@ -33,8 +33,15 @@ const Login = () => {
             const data = await response.json();
             
             Cookies.set('token', data.token);
+            
             if(data.token) {
-                router.push("/auth/verify")
+                
+                if (data.status === 302) {
+                    router.push("/auth/verify")
+                }else {
+                    router.push("/")
+                }
+               
             }
           } catch (error) {
             console.error(error);

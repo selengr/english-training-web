@@ -6,7 +6,7 @@ const UserModel = new mongoose.Schema({
     email : {type:String,require:true},
     password : {type:String,require:true},
     isActive : { type:Boolean},
-    isok_code : { type:Boolean},
+    confirmCode : {type:String,require:true},
     },
     { timestamps: true } 
 )
