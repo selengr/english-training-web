@@ -33,7 +33,8 @@ const Login = () => {
             const data = await response.json();
             
             Cookies.set('token', data.token);
-            
+            Cookies.set('username', data.username);
+
             if(data.token) {
                 
                 if (data.status === 302) {
@@ -122,12 +123,18 @@ const Login = () => {
                                             className="text-red-500 mt-1 text-sm"
                                         />
                                     </div>
-                                    <button
+                                  <div className="flex justify-between">
+                                  <button
                                         type="submit"
-                                        className="bg-my-dark opacity-90 text-white px-4 py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:border-my-border"
+                                        className="bg-my-dark opacity-90 text-white px-4 py-2 rounded-md hover:bg-slate-700 focus:outline-none focus:border-my-border"
                                     >
                                         Login
                                     </button>
+
+                                    <Link href="register" className="text-sm bottom-0 hover:border-b-2 border-slate-800  mt-3 " >
+                                         Create Account
+                                    </Link>
+                                  </div>
                                 </Form>
                             );
                         }}

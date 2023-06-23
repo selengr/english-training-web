@@ -40,7 +40,7 @@ export async function POST(request , res ) {
             // console.log('requestData :>> ', requestData);
            if (requestData.password === userExists.password) {
                 
-                 console.log('userExists._id thhhhhhhhhhhhhhhhhhhhhis  is a test just :>> ', userExists._id);
+                 console.log('userExists._id thhhhhhhhhhhhhhhhhhhhhis  is a test just :>> ', userExists);
           
                  const user = new LoginedInUsers({
                    userId : userExists._id,
@@ -67,26 +67,25 @@ export async function POST(request , res ) {
                         pass: "222739fffe31e8"
                         }
                     });
-                         console.log('userExists.confirmCode---------------------- :>> ', userExists.confirmCode);
 
                         const code = userExists.confirmCode
                         const info = await transporter.sendMail({
                         from: 'reza1997karbakhsh@gmail.com', // sender address
-                        to: "ahad.mirhabibi@gmail.com", // list of receivers
+                        to: userExists.email, // list of receivers
                         subject: "Hello ✔", // Subject line
                         // text: userExists.confirmCode, // plain text body
                         html: `<h1>${code}</h1>`, // html body
                         })
 
 
-                    return new Response(JSON.stringify({ token , status : 302 }), { status: 302 });
+                    return new Response(JSON.stringify({ token , username : userExists.username, status : 302 }), { status: 302 });
 
 
 
 
                     //  return new Response(redirect("/auth/verify"))
                  }else {
-                    return new Response(JSON.stringify({ token }), { status: 200 });
+                    return new Response(JSON.stringify({ token , username : userExists.username }), { status: 200 });
                  }  
                  
                  

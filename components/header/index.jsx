@@ -1,8 +1,16 @@
+'use client'
+
 import Image from "next/image";
 import styles from "../../styles/components/header/header.module.css"
 import Link from "next/link";
+import Cookies from 'js-cookie';
 
 const Header = () => {
+
+
+    const token = Cookies.get('token') 
+    const username = Cookies.get('username') 
+
     return (
         <>
             <div className={styles["landing-top"]}>
@@ -13,9 +21,14 @@ const Header = () => {
                <Link href="/about"
                className="overflow-hidden" passHref
                > <label >About</label></Link>
+
+
+               <Link href="/auth/login"
+               className="overflow-hidden" passHref
+               >  <label className="sm:ml-2 ml-0">{`${token ? username : "Login"}`}</label></Link>
                 
 
-                 <label className="sm:ml-2 ml-0">Contact</label>
+                 {/* <label className="sm:ml-2 ml-0">Contact</label> */}
                </div>
 
 
