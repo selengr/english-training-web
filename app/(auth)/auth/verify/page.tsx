@@ -22,14 +22,10 @@ const PhoneVerify  = () => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const url = '/api/auth/verify';
+    event.preventDefault()
+      const url = '/api/test';
     
-    const data = {
-      code : code,
-      token : Cookies.get('token')
-    }
+    const data = {}
     
     fetch(url, {
       method: 'POST',
@@ -40,8 +36,29 @@ const PhoneVerify  = () => {
     })
     .then(response => response)
     .then(data => {
-        // router.push("/")
     })
+
+
+    // event.preventDefault();
+
+    // const url = '/api/auth/verify';
+    
+    // const data = {
+    //   code : code,
+    //   token : Cookies.get('token')
+    // }
+    
+    // fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(data)
+    // })
+    // .then(response => response)
+    // .then(data => {
+    //     // router.push("/")
+    // })
   };
 
 // const phoneVerifyFormValidationSchema = yup.object().shape({

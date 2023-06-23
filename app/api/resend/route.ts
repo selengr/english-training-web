@@ -54,41 +54,41 @@
 //     })
 //   }
 
-import type { NextApiRequest, NextApiResponse } from "next";
-import { WaitlistEmail } from "../../../components/email/waitlist";
-// import { resend } from "../../../lib/resend";
-import nodemailer from "nodemailer"
+// import type { NextApiRequest, NextApiResponse } from "next";
+// import { WaitlistEmail } from "../../../components/email/waitlist";
+// // import { resend } from "../../../lib/resend";
+// import nodemailer from "nodemailer"
 
-import { NextResponse } from 'next/server'
+// import { NextResponse } from 'next/server'
  
 
-const transporter = nodemailer.createTransport({
-    port: 465,
-    host: "smtp.gmail.com",
-    auth: {
-      user: 'reza1997karbakhsh@gmail.com',
-      pass: '$$3080267044Mm'
-    },
-    secure: true,
-  });
+// const transporter = nodemailer.createTransport({
+//     port: 465,
+//     host: "smtp.gmail.com",
+//     auth: {
+//       user: 'reza1997karbakhsh@gmail.com',
+//       pass: '$$3080267044Mm'
+//     },
+//     secure: true,
+//   });
   
-export async function POST(req:any, res:any) {
+// export async function POST(req:any, res:any) {
 
-    const { name, email, message } = req.body;
+//     const { name, email, message } = req.body;
 
-  const mailOptions = {
-    from: 'reza1997karbakhsh@gmail.com',
-    to: `${email}`,
-    subject: `New message from ${name} (${email})`,
-    text: message,
-    html: `<p>${message}</p>`
-  };
+//   const mailOptions = {
+//     from: 'reza1997karbakhsh@gmail.com',
+//     to: `${email}`,
+//     subject: `New message from ${name} (${email})`,
+//     text: message,
+//     html: `<p>${message}</p>`
+//   };
 
-  try {
-    await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'Email sent successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error sending email' });
-  }
-  }
+//   try {
+//     await transporter.sendMail(mailOptions);
+//     res.status(200).json({ message: 'Email sent successfully' });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Error sending email' });
+//   }
+//   }

@@ -4,6 +4,7 @@ import {useEffect} from "react"
 import Image from 'next/image'
 import axios from "axios"
 import useSWR from "swr";
+import { Email } from "@/nodemailer/Email";
 
 
 
@@ -46,9 +47,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-
-         <button className="w-full h-20" onClick={handlePost2}>Send POST request</button>
-         {/* <pre>{JSON.stringify(data)}</pre> */}
+aaaaaaaaaaaaaaa
+            {/* <Email /> */}
  
     </main>
   )
