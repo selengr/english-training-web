@@ -3,7 +3,7 @@
 import "../../styles/globals.css";
 import {useEffect, useState} from "react";
 import styles from "../../styles/components/blog/blog.module.css";
-import { ChevronRightIcon } from '@heroicons/react/outline';
+// import { ChevronRightIcon } from '@heroicons/react/outline';
 import {log} from "next/dist/server/typescript/utils";
 
 const Conclusion = () => {

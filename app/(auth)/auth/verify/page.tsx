@@ -4,13 +4,13 @@ import "../../../../styles/globals.css"
 import { useState } from "react";
 
 import {useRouter} from 'next/navigation';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 // import GuestLayout from '../../../app/components/guestLayout';
 // import PhoneVerifyForm from '../../../app/forms/auth/phoneVerifyForm'
 // import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 // import { selectPhoneVerifyToken, updatePhoneVerifyToken } from '../../../app/store/auth';
 // import { NextPageWithLayout } from '../../_app';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 const PhoneVerify  = () => {
 
@@ -95,7 +95,7 @@ const PhoneVerify  = () => {
         {/* <img className="mx-auto h-12 w-auto" src="/logo.svg" alt="Workflow" /> */}
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Enter Verification Code</h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          We've sent a verification code to your email address. Please enter the code below to continue.
+          We have sent a verification code to your email address. Please enter the code below to continue.
         </p>
       </div>
 

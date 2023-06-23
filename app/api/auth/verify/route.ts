@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User";
-import LoginedInUsers from "@/models/auth/LoginedInUsers";
+// import LoginedInUsers from "@/models/auth/LoginedInUsers";
 import { redirect } from 'next/navigation'
 
 

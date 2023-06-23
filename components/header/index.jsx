@@ -11,7 +11,7 @@ const Header = () => {
                <div className=" fixed sm:right-28 right-10 flex justify-center align-middle items-center overflow-hidden">
                 
                <Link href="/about"
-               className="overflow-hidden"
+               className="overflow-hidden" passHref
                > <label >About</label></Link>
                 
 

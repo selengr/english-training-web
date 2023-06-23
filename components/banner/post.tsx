@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "../../styles/components/banner/banner.module.css";
 import Link from "next/link";
-import { useEffect } from "react";
+
 
 const Post = () => {
   let data = [
@@ -41,6 +41,7 @@ const Post = () => {
                 // as={`/blog/${it.slug}?query=${it.images}&${it.name}`}
                 className={styles["post-blog-each-card"]}
                 key={Math.floor(Math.random()*1000)}
+                passHref
               >
                 <Image
                   src={it.images}
