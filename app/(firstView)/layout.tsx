@@ -8,9 +8,9 @@ import { useState } from "react";
 import "../../styles/globals.css";
 
 
-export default function Layout({ myData , children }) {
+export default function Layout({  children }) {
   const [darkMode, setDarkMode] = useState(false);
-  console.log("rrrrrrrrrr",myData)
+  // console.log("rrrrrrrrrr",myData)
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
