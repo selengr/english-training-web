@@ -1,29 +1,29 @@
-'use client'
+// 'use client'
 
-import {useEffect} from "react"
-import Image from 'next/image'
-import axios from "axios"
-import useSWR from "swr";
-import { Email } from "@/styles/components/nodemailer/Email";
-
-
-
-const fetcher = (url) => axios.get(url).then(res => res.data);
+// import {useEffect} from "react"
+// import Image from 'next/image'
+// import axios from "axios"
+// import useSWR from "swr";
+// import { Email } from "@/styles/components/nodemailer/Email";
 
 
 
-export default function Home() {
-
-  // const { data, error } = useSWR('/api/auth/register', fetcher);
+// const fetcher = (url) => axios.get(url).then(res => res.data);
 
 
-  const handlePost = async () => {
-    try {
-      const response = await axios.post('/api/auth/register');
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+
+// export default function Home() {
+
+//   // const { data, error } = useSWR('/api/auth/register', fetcher);
+
+
+//   const handlePost = async () => {
+//     try {
+//       const response = await axios.post('/api/auth/register');
+//       console.log(response.data);
+//     } catch (error) {
+//       console.error(error);
+//     }
 //   };
 
 //   useEffect(()=>{
@@ -51,5 +51,5 @@ export default function Home() {
 //             {/* <Email /> */}
  
 //     </main>
-  )
-}
+//   )
+// }
