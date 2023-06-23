@@ -9,7 +9,7 @@ import "../../styles/globals.css";
 
 
 export default function Layout({  children }) {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   // console.log("rrrrrrrrrr",myData)
 
   const toggleDarkMode = () => {
@@ -17,14 +17,16 @@ export default function Layout({  children }) {
     const html = document.querySelector("html");
     if (html.getAttribute("data-theme") === "light") {
       html.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme","dark")
     } else {
       html.setAttribute("data-theme", "light");
+      localStorage.setItem("theme","light")
     }
   };
 
 
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" data-theme={localStorage.getItem("theme") ?? "dark"}>
       <head>
         <title>reza karbakhsh</title>
       </head>

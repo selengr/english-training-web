@@ -6,7 +6,7 @@ export default function Layout({  children }) {
 
 
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" >
    
       <body className="relative bg-primary text-primary flex flex-col" >
     
