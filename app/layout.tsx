@@ -9,7 +9,6 @@ export default function Layout({  children }) {
     <html lang="en" >
    
       <body className="relative bg-primary text-primary flex flex-col" >
-    
         
         {children}
 

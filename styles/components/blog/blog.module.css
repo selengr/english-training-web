@@ -11,7 +11,7 @@
         display: flex;
         flex-direction: column;
         width: 72%;
-        align-items: start;
+        align-items: flex-start;
         margin-top: 20px;
     }
     .post-blog {
@@ -108,7 +108,7 @@
         border: 1px solid hsla(44,6%,50%,.15);
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: flex-start;
         line-height: 1.8;
     }
 

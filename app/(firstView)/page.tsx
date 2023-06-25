@@ -10,7 +10,7 @@ import styles from "../../styles/components/banner/banner.module.css"
 // import Layout from "./layout";
 import Header from "@/components/header";
 import Banner from "@/components/banner";
-import axios from "axios"
+// import axios from "axios"
 // import useSWR from "swr";
 
 
