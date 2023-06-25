@@ -3,43 +3,44 @@
 import mongoose from "mongoose"
 
 const PostModel = new mongoose.Schema({
-  title: { type: String, required: false },
-  introduction: { type: String, required: true },
+  title: { type: String, required: true },
+  introduction: { type: String, required: false },
   information: {
     author: { type: String, required: false },
     publicationDate: { type: String, required: false },
     source: { type: String, required: false },
-    content: { type: String, required: true },
+    content: { type: String, required: false },
   },
-  point: { type: String, required: true },
-  tips: { type: String, required: true },
+  point: { type: String, required: false },
+  tips: { type: String, required: false },
   mainIdea: { type: String, required: true },
-  extraInformation: { type: String, required: true },
-  cultureNotes: { type: String, required: true },
-  outline: { type: String, required: true },
+  extraInformation: { type: String, required: false },
+  cultureNotes: { type: String, required: false },
+  outline: { type: String, required: false },
   tags: [{ type: String, required: true }],
-  conclusion: { type: String, required: true },
-  callToAction: { type: String, required: true },
-  slug: { type: String, required: true, unique: true },
+  conclusion: { type: String, required: false },
+  callToAction: { type: String, required: false },
+  slug: { type: String, required: false, unique: false },
   likes: { type: Number, required: false },
   views: { type: Number, required: false },
   status: { type: String, required: false },
   excerpt: { type: String, required: false },
   featuredImage: { type: String, required: false },
   categories: [{ type: String, required: false }],
-  lastUpdateDate: { type: Date, required: true },
-  creation: { type: Date, required: true },
+  lastUpdateDate: { type: Date, required: false },
+  creation: { type: Date, required: false },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
   metadata: { type: mongoose.Schema.Types.Mixed, required: false },
   languageLevel: { type: Number, required: false },
   learningObjective: { type: String, required: false },
   vocabularyFocus: { type: String, required: false },
+  cover: { data: Buffer, contentType: String },
+  banner: { data: Buffer, contentType: String },
+  // cover: { type: mongoose.Types.ObjectId, ref: 'File', required: true},
+  // banner: { type: mongoose.Types.ObjectId, ref: 'File', required: true}
 }, { timestamps: true });
 
 export default mongoose.models.Post || mongoose.model("Post", PostModel);
-
-
-
 
 
 
