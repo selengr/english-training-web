@@ -10,81 +10,92 @@ const CreatePost = () => {
     // const [coverImage, setCoverImage] = useState<File | null>(null);
     const { register, handleSubmit } = useForm();
 
-    // const [title, setTitle] = useState('')
-    // const [introduction, setIntroduction] = useState('')
-    // const [information, setInformation] = useState('')
-    // const [point, setPoint] = useState('')
-    // const [tips, setTips] = useState('')
-    // const [mainIdea, setMainIdea] = useState('');
-    // const [extraInformation, setExtraInformation] = useState('');
-    // const [conclusion, setConclusion] = useState('');
+
 
     const [pictures, setPictures] = useState<File[]>([]);
+    const [tags, setTags] = useState([]);
+
+    function handleAddTag(e) {
+        // e.key === "Enter" && 
+      if (e.key === "Enter" && e.target.value !== "") {
+        setTags([...tags, e.target.value]);
+        e.target.value = "";
+      }
+    }
+  
+    function handleRemoveTag(index) {
+      const newTags = [...tags];
+      newTags.splice(index, 1);
+      setTags(newTags);
+    }
 
 
-    //    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //        setTitle(event.target.value)
-    //    }
-    //    const handleIntroductionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //        setIntroduction(event.target.value)
-    //    }
-    //    const handlePoint = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //        setPoint(event.target.value)
-    //    }
-    //     const handleTips = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //        setTips(event.target.value)
-    //    }
-    //    const handleMainIdea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //        setMainIdea(event.target.value)
-    //    }
-    //    const handleExtraInformation = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //        setExtraInformation(event.target.value)
-    //    }
-    //    const handleConclusion = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //        setConclusion(event.target.value)
-    //    }
-    // const handleInformationChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //        setInformation(event.target.value)
-    //    }
-
-    const onDrop = (pictureFiles: File[]) => {
+    const onDrop = (pictureFiles: File[],field :string) => {
         setPictures([...pictures, ...pictureFiles]);
     };
 
 
     const onSubmit = async (data) => {
-        console.log(data)
         try {
-            let mydata = new FormData();
-            mydata.append('title', data?.title);
-            mydata.append('introduction', data?.introduction);
-            mydata.append('cover', pictures[1] as File);
-            mydata.append('banner', pictures[0] as File);
-            mydata.append('main_idea', data?.mainIdea);
-            mydata.append('extraInformation', data?.extraInformation);
-            mydata.append('conclusion', data?.conclusion);
-            mydata.append('information', data?.information);
+            const formData = new FormData();
+            formData.append('title', data.title);
+            formData.append('introduction', data.introduction);
+            formData.append('introduction', data.body);
+            formData.append('information.author', data.information.author);
+            formData.append('information.publicationDate', data.information.publicationDate);
+            formData.append('information.source', data.information.source);
+            formData.append('information.content', data.information.content);
+            formData.append('point', data.point);
+            formData.append('tips', data.tips);
+            formData.append('mainIdea', data.mainIdea);
+            formData.append('extraInformation', data.extraInformation);
+            formData.append('cultureNotes', data.cultureNotes);
+            formData.append('outline', data.outline);
+            formData.append('tags', data.tags);
+            formData.append('conclusion', data.conclusion);
+            formData.append('callToAction', data.callToAction);
+            formData.append('slug', data.slug);
+            formData.append('metadata', data.metadata);
+            formData.append('languageLevel', data.languageLevel);
+            formData.append('learningObjective', data.learningObjective);
+            formData.append('vocabularyFocus', data.vocabularyFocus);
 
-            const config = {
-                method: 'post',
-                url: 'http://localhost:8000/api/post/create',
-                data: mydata,
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }
-            axios.request(config)
-                .then((res) => {
-                    console.log(res)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-
+            // formData.append('coverImage', coverImage);
+            // formData.append('bannerImage', bannerImage);
+            formData.append('cover', pictures[1] as File);
+            formData.append('banner', pictures[0] as File);
+            debugger
+            const response = await axios.post('http://localhost:8000/api/post/create', formData);
+            console.log(response.data);
+    
         } catch (error) {
             console.error(error);
         }
     };
+    
+
+
+    // const onSubmit = async (data) => {
+     
+    //         mydata.append('cover', pictures[1] as File);
+    //         mydata.append('banner', pictures[0] as File);
+
+    //         const config = {
+    //             method: 'post',
+    //             url: 'http://localhost:8000/api/post/create',
+    //             data: mydata,
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data'
+    //             }
+    //         }
+    //         axios.request(config)
+    //             .then((res) => {
+    //                 console.log(res)
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err)
+    //             })
+    // };
 
 
     return (
@@ -126,20 +137,20 @@ const CreatePost = () => {
                         />
                     </div>
 
-                    <UploadForm onDrop={onDrop} lable={"Cover Image"} />
-                    <UploadForm onDrop={onDrop} lable={"Banner Image"} />
+                    <UploadForm onDrop={(e)=>onDrop(e,'image')} lable={"Cover Image"} />
+                    <UploadForm onDrop={(e)=>onDrop(e,'banner')} lable={"Banner Image"} />
 
 
                     <div>
-                        <label htmlFor="information" className="block text-lg font-semibold mb-2"> information
-                            <span className={"text-rose-600"}>*</span></label>
+                        <label htmlFor="body" className="block text-lg font-semibold mb-2"> body
+                        </label>
                         <input
-                            id="information"
+                            id="body"
                             type="text"
                             className="border border-gray-400 rounded-lg px-4 py-2 w-full"
-                            // value={information}
-                            // onChange={handleInformationChange}
-                            {...register("information")}
+                            // value={body}
+                            // onChange={handlebodyChange}
+                            {...register("body")}
                         />
                     </div>
 
@@ -170,6 +181,7 @@ const CreatePost = () => {
                     <div className={"w-100"}>
                         <label className="block text-gray-700 font-bold mb-2" htmlFor="mainIdea">
                             Main Idea
+                             <span className={"text-rose-600"}>*</span>
                         </label>
 
                         <textarea
@@ -183,6 +195,55 @@ const CreatePost = () => {
                         ></textarea>
 
                     </div>
+
+
+                    <div className={"w-100"}>
+                        <label className="block text-gray-700 font-bold mt-2" htmlFor="tags">
+                            tags
+                             <span className={"text-rose-600"}>*</span>
+                        </label>
+
+                        
+                            <div className="flex flex-wrap">
+                                {tags.map((tag, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="bg-blue-500 hover:bg-blue-700 text-white rounded-full cursor-pointer px-3 py-1 mt-3"
+                                                    onClick={() => handleRemoveTag(index)}
+                                                >
+                                                    {tag}
+                                                </div>
+                                                ))}
+                                            </div>
+
+                                            <div className="flex items-center mb-2">
+                                            <input
+                                                    type="text"
+                                                    id="tags"
+                                                    name="tags"
+                                                    className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    placeholder="Enter a tag and press Enter"
+                                                    onKeyDown={handleAddTag}
+                                                />
+                                                    {/* <input
+                                                        type="text"
+                                                        id="tags"
+                                                        name="tags"
+                                                        className="shadow w[100%] appearance-none border rounded-l-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        placeholder="Enter a tag"
+                                                        onKeyDown={handleAddTag}
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        className="bg-blue-500 hover:bg-blue-700 text-white rounded-r-md px-4 py-2"
+                                                        onClick={handleAddTag}
+                                                    >
+                                                    +
+                                                </button> */}
+                            </div>
+
+                    </div>
+
 
 
                     <div className={"w-100"}>
@@ -222,6 +283,75 @@ const CreatePost = () => {
 
 
 
+
+
+
+
+
+      
+
+
+   
+                    <div className="flex sm:flex-row flex-col mt-6 w-full">
+                         <div className="flex flex-col sm:w-[49%] w-full">
+                            <label htmlFor="author" className="block text-lg font-semibold mb-2">
+                                 author <span className={"text-rose-600"}>*</span>
+                            </label>
+                            <input
+                                id="author"
+                                type="text"
+                                className="border border-gray-400 rounded-lg px-4 py-2 mx-2 "
+                                {...register("information.author")}
+                            />
+                            </div>
+                            <div className="flex flex-col sm:w-[49%] w-full">
+                             <label htmlFor="publicationDate" className="block text-lg font-semibold mb-2">
+                                publicationDate 
+                            </label>
+                            <input
+                                id="publicationDate"
+                                type="text"
+                                className="border border-gray-400 rounded-lg px-4  mx-2 py-2 "
+                                {...register("information.publicationDate")}
+                            />
+
+</div>
+</div>
+<div className="flex sm:flex-row flex-col w-full mt-10">
+    
+<div className="flex flex-col sm:w-[49%] w-full">
+                             <label htmlFor="social" className="block text-lg font-semibold mb-2">
+                                 social media <span className={"text-rose-600"}>*</span>
+                            </label>
+                            <input
+                                id="social"
+                                type="text"
+                                className="border border-gray-400 rounded-lg px-4 py-2  mx-2"
+                                {...register("information.source")}
+                            />
+</div>
+<div className="flex flex-col sm:w-[49%] w-full">
+                              <label htmlFor="social" className="block text-lg font-semibold mb-2">
+                                 your summary  <span className="text-xs">if you wish</span>
+                            </label>
+                            <textarea
+                                id="information"
+                                name="information"
+                                rows={3}
+                                className="shadow w[100%] appearance-none border rounded  mx-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                placeholder="Enter the information of your post"
+                                {...register("information.content", { required: true })}
+                            ></textarea>
+                        </div>
+
+                        </div>
+
+
+
+
+
+
+
                     <div className="flex justify-end mt-10">
                         <button
                             type="submit"
@@ -235,9 +365,9 @@ const CreatePost = () => {
 
 
                     <div className="underline-container">
-  <h1 className="test">READY TO START</h1>
-  <div className="light"></div>
-</div>
+                           <h1 className="test">READY TO START</h1>
+                           <div className="light"></div>
+                </div>
 
 
 
