@@ -2,6 +2,7 @@
 import Image from "next/image";
 import styles from "../../styles/components/banner/banner.module.css"
 import { HeroHeader } from "../custom/hero-header";
+import { Button } from "@mui/material";
 
 
 const Banner = ({data}) => {
@@ -45,7 +46,7 @@ const Banner = ({data}) => {
                
 
                 
-
+             {/* <Button  >commercial web</Button> */}
                 <h1 className={styles["landing-title"]}>commercial web</h1>
 
 

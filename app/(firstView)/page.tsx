@@ -10,6 +10,8 @@ import styles from "../../styles/components/banner/banner.module.css"
 // import Layout from "./layout";
 import Header from "@/components/header";
 import Banner from "@/components/banner";
+import TemporaryDrawer from "@/components/ui/drawer";
+
 // import axios from "axios"
 // import useSWR from "swr";
 
@@ -49,6 +51,8 @@ export default  function Page() {
     </div>
         <Header />
         <Banner data={ "/images/https___s3-us-west-2.avif"} /> 
+
+        <TemporaryDrawer />
 
     <div className="w-100 flex justify-center align-middle">
       <article className={styles["landing-article"]}>

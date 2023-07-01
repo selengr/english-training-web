@@ -4,6 +4,8 @@ import Image from "next/image";
 import styles from "../../styles/components/header/header.module.css"
 import Link from "next/link";
 import Cookies from 'js-cookie';
+import { Avatar } from "@mui/material";
+import AccountMenu from "../ui/profileMenu";
 
 const Header = () => {
 
@@ -25,7 +27,7 @@ const Header = () => {
 
                <Link href="/auth/login"
                className="overflow-hidden" passHref
-               >  <label className="sm:ml-2 ml-0">{`${token ? username : "Login"}`}</label></Link>
+               >  <label className="sm:ml-2 ml-0">{`${token ? "" : "Login"}`}</label></Link>
                 
 
                  {/* <label className="sm:ml-2 ml-0">Contact</label> */}
@@ -33,14 +35,23 @@ const Header = () => {
 
 
                <div className="cover-individuals fixed sm:left-12 left-4 flex justify-center align-middle items-center">
-                <Image
+                {/* <Image
                     src={"/images/loading/Loading-own.gif"}
                     alt="author"
                     width={50}
                     height={50}
                     className="rounded-full"
-                />
-                 <label className="sm:ml-2">reza karbakhsh</label>
+                /> */}
+                
+                {/* <Avatar
+                        alt="auther"
+                        src="/images/loading/Loading-own.gif"
+                        className="rounded-full"
+                        //   sx={{ width: 24, height: 24 }}
+                /> */}
+                
+                <AccountMenu />
+                 {/* <label className="sm:ml-2">reza karbakhsh</label> */}
                </div>
             </div>
 

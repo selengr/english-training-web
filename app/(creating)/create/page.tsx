@@ -103,9 +103,12 @@ const CreatePost = () => {
 
             <div className={"mt-5"} />
 
-            <div className="max-w-3xl mx-auto py-12 px-6">
+            <div className="w-[70%] mx-auto py-12 px-6">
                 <h1 className="text-3xl font-bold mb-8 overflow-hidden">Create a New Post</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
+
+                    <UploadForm onDrop={(e)=>onDrop(e,'image')} lable={"Cover Image ( author picture )"} />
+                    <UploadForm onDrop={(e)=>onDrop(e,'banner')} lable={"Banner Image"} />
 
 
                     <div>
@@ -137,8 +140,77 @@ const CreatePost = () => {
                         />
                     </div>
 
-                    <UploadForm onDrop={(e)=>onDrop(e,'image')} lable={"Cover Image"} />
-                    <UploadForm onDrop={(e)=>onDrop(e,'banner')} lable={"Banner Image"} />
+
+
+
+                    <div className={"w-100"}>
+                        <label className="block text-gray-700 font-bold mb-2" htmlFor="mainIdea">
+                            Main Idea
+                             <span className={"text-rose-600"}>*</span>
+                        </label>
+
+                        <textarea
+                            id="mainIdea"
+                            name="mainIdea"
+                            rows={3}
+                            className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Enter the main idea of your post"
+                            {...register("mainIdea")}
+                        // onChange={handleMainIdea}
+                        ></textarea>
+
+                    </div>
+
+
+                    <div className={"w-100"}>
+                        <label className="block text-gray-700 font-bold mt-2" htmlFor="tags">
+                            tags 
+                             <span className={"text-rose-600"}>*</span>
+                            <span className="text-xs text-gray-400">(these tags will indicate your covered subject,like,html,css,js)</span>
+                        </label>
+
+                        
+                            <div className="flex flex-wrap">
+                                {tags.map((tag, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="bg-gray-600  hover:bg-gray-800  text-white rounded-full cursor-pointer px-4 m-1 py-1 mt-3"
+                                                    onClick={() => handleRemoveTag(index)}
+                                                >
+                                                    {tag}
+                                                </div>
+                                                ))}
+                                            </div>
+
+                                            <div className="flex items-center mb-2">
+                                            <input
+                                                    type="text"
+                                                    id="tags"
+                                                    name="tags"
+                                                    className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    placeholder="Enter a tag and press Enter"
+                                                    onKeyDown={handleAddTag}
+                                                />
+                                                    {/* <input
+                                                        type="text"
+                                                        id="tags"
+                                                        name="tags"
+                                                        className="shadow w[100%] appearance-none border rounded-l-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        placeholder="Enter a tag"
+                                                        onKeyDown={handleAddTag}
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        className="bg-blue-500 hover:bg-blue-700 text-white rounded-r-md px-4 py-2"
+                                                        onClick={handleAddTag}
+                                                    >
+                                                    +
+                                                </button> */}
+                            </div>
+
+                    </div>
+
+                 
 
 
                     <div>
@@ -178,71 +250,7 @@ const CreatePost = () => {
                         />
                     </div>
 
-                    <div className={"w-100"}>
-                        <label className="block text-gray-700 font-bold mb-2" htmlFor="mainIdea">
-                            Main Idea
-                             <span className={"text-rose-600"}>*</span>
-                        </label>
-
-                        <textarea
-                            id="mainIdea"
-                            name="mainIdea"
-                            rows={3}
-                            className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Enter the main idea of your post"
-                            {...register("mainIdea")}
-                        // onChange={handleMainIdea}
-                        ></textarea>
-
-                    </div>
-
-
-                    <div className={"w-100"}>
-                        <label className="block text-gray-700 font-bold mt-2" htmlFor="tags">
-                            tags
-                             <span className={"text-rose-600"}>*</span>
-                        </label>
-
-                        
-                            <div className="flex flex-wrap">
-                                {tags.map((tag, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="bg-blue-500 hover:bg-blue-700 text-white rounded-full cursor-pointer px-3 py-1 mt-3"
-                                                    onClick={() => handleRemoveTag(index)}
-                                                >
-                                                    {tag}
-                                                </div>
-                                                ))}
-                                            </div>
-
-                                            <div className="flex items-center mb-2">
-                                            <input
-                                                    type="text"
-                                                    id="tags"
-                                                    name="tags"
-                                                    className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                    placeholder="Enter a tag and press Enter"
-                                                    onKeyDown={handleAddTag}
-                                                />
-                                                    {/* <input
-                                                        type="text"
-                                                        id="tags"
-                                                        name="tags"
-                                                        className="shadow w[100%] appearance-none border rounded-l-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                        placeholder="Enter a tag"
-                                                        onKeyDown={handleAddTag}
-                                                    />
-                                                    <button
-                                                        type="button"
-                                                        className="bg-blue-500 hover:bg-blue-700 text-white rounded-r-md px-4 py-2"
-                                                        onClick={handleAddTag}
-                                                    >
-                                                    +
-                                                </button> */}
-                            </div>
-
-                    </div>
+                 
 
 
 
@@ -296,6 +304,7 @@ const CreatePost = () => {
                          <div className="flex flex-col sm:w-[49%] w-full">
                             <label htmlFor="author" className="block text-lg font-semibold mb-2">
                                  author <span className={"text-rose-600"}>*</span>
+                                 <span className="text-xs text-gray-400">name</span>
                             </label>
                             <input
                                 id="author"
@@ -304,7 +313,7 @@ const CreatePost = () => {
                                 {...register("information.author")}
                             />
                             </div>
-                            <div className="flex flex-col sm:w-[49%] w-full">
+                            {/* <div className="flex flex-col sm:w-[49%] w-full">
                              <label htmlFor="publicationDate" className="block text-lg font-semibold mb-2">
                                 publicationDate 
                             </label>
@@ -315,7 +324,7 @@ const CreatePost = () => {
                                 {...register("information.publicationDate")}
                             />
 
-</div>
+</div> */}
 </div>
 <div className="flex sm:flex-row flex-col w-full mt-10">
     
