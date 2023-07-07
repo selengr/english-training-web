@@ -3,12 +3,12 @@ import LoginedInUsers from "@/models/auth/LoginedInUsers";
 import Login from "@/models/auth/LoginedInUsers";
 import User from "@/models/User";
 import jwt from "jsonwebtoken";
+import { NextApiRequest } from "next";
 import { redirect } from "next/navigation";
+import { NextRequest } from "next/server";
 const nodemailer = require("nodemailer");
 
-
-export async function GET(request,res) {
-  
+export async function GET(request :NextRequest,res) { 
   try {
         dbConnect();
     const user = await LoginedInUsers.find();

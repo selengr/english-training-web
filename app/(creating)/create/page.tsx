@@ -4,12 +4,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import UploadForm from "../../../components/custom/uploader/page";
+import CustomizedSnackbars from "@/utils/snack-bar";
 
 const CreatePost = () => {
     // const [bannerImage, setBannerImage] = useState<File | null>(null);
     // const [coverImage, setCoverImage] = useState<File | null>(null);
     const { register, handleSubmit } = useForm();
-
+    const [open, setOpen] = useState(false);
 
 
     const [pictures, setPictures] = useState<File[]>([]);
@@ -17,11 +18,18 @@ const CreatePost = () => {
 
     function handleAddTag(e) {
         // e.key === "Enter" && 
-      if (e.key === "Enter" && e.target.value !== "") {
-        setTags([...tags, e.target.value]);
-        e.target.value = "";
-      }
+    //   if (e.key === "Enter" && e.target.value !== "") {
+        // setTags([...tags, e.target.value]);
+        setTimeout(() => {
+            document.querySelector(".c-tags").value = ""
+        }, 500);
+        // e.target.value = "";
+    //   }
     }
+    function handleChangeTag(e) {
+        setTags([...tags, e.target.value]);
+    }
+  
   
     function handleRemoveTag(index) {
       const newTags = [...tags];
@@ -35,16 +43,16 @@ const CreatePost = () => {
     };
 
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data) => {debugger
         try {
             const formData = new FormData();
             formData.append('title', data.title);
             formData.append('introduction', data.introduction);
             formData.append('introduction', data.body);
-            formData.append('information.author', data.information.author);
-            formData.append('information.publicationDate', data.information.publicationDate);
-            formData.append('information.source', data.information.source);
-            formData.append('information.content', data.information.content);
+            formData.append('information.author', data.information?.author);
+            formData.append('information.publicationDate', data.information?.publicationDate);
+            formData.append('information.source', data.information?.source);
+            formData.append('information.content', data.information?.content);
             formData.append('point', data.point);
             formData.append('tips', data.tips);
             formData.append('mainIdea', data.mainIdea);
@@ -97,12 +105,14 @@ const CreatePost = () => {
     //             })
     // };
 
-
     return (
         <>
 
-            <div className={"mt-5"} />
 
+        <CustomizedSnackbars message="hi reza" time={1000} setOpen={()=>console.log("object testtstststst")}  className="" color="success" />
+
+            <div className={"mt-5"} />
+      <button onClick={()=> setOpen(true)}>click here</button>
             <div className="w-[70%] mx-auto py-12 px-6">
                 <h1 className="text-3xl font-bold mb-8 overflow-hidden">Create a New Post</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -121,7 +131,8 @@ const CreatePost = () => {
                             className="border border-gray-400 rounded-lg px-4 py-2 w-full"
                             // value={title}
                             // onChange={handleTitleChange}
-                            {...register("title")}
+                            // {...register("title")}
+                            {...register("title", { required: true })}
                         />
                     </div>
 
@@ -136,7 +147,8 @@ const CreatePost = () => {
                             className="border border-gray-400 rounded-lg px-4 py-2 w-full"
                             // value={introduction}
                             // onChange={handleIntroductionChange}
-                            {...register("introduction")}
+                            {...register("introduction", { required: true })}
+                            // {...register("introduction")}
                         />
                     </div>
 
@@ -155,7 +167,8 @@ const CreatePost = () => {
                             rows={3}
                             className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter the main idea of your post"
-                            {...register("mainIdea")}
+                            // {...register("mainIdea")}
+                            {...register("mainIdea", { required: true })}
                         // onChange={handleMainIdea}
                         ></textarea>
 
@@ -183,29 +196,30 @@ const CreatePost = () => {
                                             </div>
 
                                             <div className="flex items-center mb-2">
-                                            <input
+                                            {/* <input
                                                     type="text"
                                                     id="tags"
                                                     name="tags"
                                                     className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                     placeholder="Enter a tag and press Enter"
-                                                    onKeyDown={handleAddTag}
-                                                />
-                                                    {/* <input
+                                                    onBlur={handleAddTag}
+                                                    {...register("tags")}
+                                                /> */}
+                                                    <input
                                                         type="text"
                                                         id="tags"
                                                         name="tags"
-                                                        className="shadow w[100%] appearance-none border rounded-l-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        className="c-tags shadow w[100%] appearance-none border rounded-l-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                         placeholder="Enter a tag"
-                                                        onKeyDown={handleAddTag}
+                                                        onBlur={handleChangeTag}
                                                     />
                                                     <button
                                                         type="button"
-                                                        className="bg-blue-500 hover:bg-blue-700 text-white rounded-r-md px-4 py-2"
+                                                        className="bg-gray-500 hover:bg-blue-700 text-white rounded-r-md px-4 py-2"
                                                         onClick={handleAddTag}
                                                     >
                                                     +
-                                                </button> */}
+                                                </button>
                             </div>
 
                     </div>
@@ -303,7 +317,8 @@ const CreatePost = () => {
                     <div className="flex sm:flex-row flex-col mt-6 w-full">
                          <div className="flex flex-col sm:w-[49%] w-full">
                             <label htmlFor="author" className="block text-lg font-semibold mb-2">
-                                 author <span className={"text-rose-600"}>*</span>
+                                 author
+                                  {/* <span className={"text-rose-600"}>*</span> */}
                                  <span className="text-xs text-gray-400">name</span>
                             </label>
                             <input
@@ -330,7 +345,8 @@ const CreatePost = () => {
     
 <div className="flex flex-col sm:w-[49%] w-full">
                              <label htmlFor="social" className="block text-lg font-semibold mb-2">
-                                 social media <span className={"text-rose-600"}>*</span>
+                                 social media 
+                                 {/* <span className={"text-rose-600"}>*</span> */}
                             </label>
                             <input
                                 id="social"
@@ -349,7 +365,7 @@ const CreatePost = () => {
                                 rows={3}
                                 className="shadow w[100%] appearance-none border rounded  mx-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 placeholder="Enter the information of your post"
-                                {...register("information.content", { required: true })}
+                                {...register("information.content", { required: false })}
                             ></textarea>
                         </div>
 
