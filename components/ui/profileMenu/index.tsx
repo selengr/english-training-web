@@ -16,6 +16,7 @@ import Logout from '@mui/icons-material/Logout';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import CreateIcon from '@mui/icons-material/Create';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -98,6 +99,14 @@ export default function AccountMenu() {
           </ListItemIcon>
           Create post
         </MenuItem>
+
+        <MenuItem onClick={()=>router.push("/create/dashboard")}>
+        <ListItemIcon>
+            <ManageAccountsOutlinedIcon className='ml-1' fontSize="small" />
+          </ListItemIcon>
+              My account
+        </MenuItem>
+
         <Divider />
         {/* <MenuItem onClick={handleClose}>
           <ListItemIcon>
