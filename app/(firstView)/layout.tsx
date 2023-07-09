@@ -17,22 +17,22 @@ export default function Layout({  children }) {
     const html = document.querySelector("html");
     if (html.getAttribute("data-theme") === "light") {
       html.setAttribute("data-theme", "dark");
-      // localStorage.setItem("theme","dark")
+      localStorage.setItem("theme","dark")
     } else {
       html.setAttribute("data-theme", "light");
-      // localStorage.setItem("theme","light")
+      localStorage.setItem("theme","light")
     }
   };
 
 
   return (
     <html lang="en" data-theme={
-      // ocalStorage.getItem("theme") ?? 
+      localStorage.getItem("theme") ?? 
     "dark"}>
       {/* <head>
         <title>reza karbakhsh</title>
       </head> */}
-      <body className="relative bg-primary text-primary flex flex-col" >
+      <body className="relative bg-primary text-primary h-[100vh] flex flex-col" >
         {!darkMode && (
           <div onClick={toggleDarkMode} className="fixed sm:right-16 right-5 top-4 z-10">
             <svg
