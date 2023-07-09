@@ -117,7 +117,7 @@ export default function RootLayout({
   </svg>
 </div>
 
-<div className="close w-[70%] xs:w-[50%] sm:w-[40%]  lg:w-[30%] text-gray-600 border-r-2 border-gray-100 text-lg flex-col pl-6 mt-00 h-[100vh] hidden md:flex bg-white">
+<div className="close w-[15%]  xs:w-[50%] sm:w-[40%]  lg:w-[30%] text-gray-600 border-r-2 border-gray-100 text-lg flex-col pl-6 mt-00 h-[100vh] hidden md:flex bg-white">
   <div className="mt-10 mr-8">
     <svg
       xmlns="http://www.w3.org/2000/svg"
