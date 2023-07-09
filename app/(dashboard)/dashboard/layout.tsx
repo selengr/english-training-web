@@ -20,16 +20,7 @@ export default function RootLayout({
 
   const router = useRouter()
 
-    const handleOpenClick = (event,URL : string) => {
-        const target = event.currentTarget;
-        router.push(URL ?? "")
-        
-        const menuItems = document.querySelectorAll(".close > div");
-        menuItems.forEach((item) => {
-          item.classList.remove("active");
-        });
-        target.classList.add("active");
-      };
+   
   
 
     const toggleDarkMode = () => {
@@ -40,6 +31,19 @@ export default function RootLayout({
         } else {
             html.setAttribute("data-theme", "light");
         }
+    };
+
+
+    const handleOpenClick = (event,URL : string) => {
+      console.log('event :>> ', event);
+      const target = event.currentTarget;
+      router.push(URL ?? "")
+      // debugger
+      const menuItems = document.querySelectorAll(".menu > li > div ");
+      menuItems.forEach((item) => {
+        item.classList.remove("active");
+      });
+      event.target.classList.add("active");
     };
 
     const openDashboard  = () => {
@@ -228,7 +232,7 @@ export default function RootLayout({
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6 mb-1"
+      className="w-7 h-7 ml-4 mb-1 mt-3"
     >
       <path
         strokeLinecap="round"
@@ -238,8 +242,8 @@ export default function RootLayout({
     </svg>
   </div>
 
-  <li onClick={(event) => handleOpenClick(event,"/dashboard/my-post")} className={` mr-4 mt-6 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}>
-  <div className="w-full ml-0 pl-3 mt-0 active">
+  <li onClick={(event) => handleOpenClick(event,"/dashboard/my-post")} className={` mr-4 mt-10 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}>
+  <div className="w-full ml-0 pl-3 mt-0 ">
      <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -257,7 +261,7 @@ export default function RootLayout({
           My post
           </div>
   </li>
-  <li onClick={(event) => handleOpenClick(event,"/")} className={`mr-4 mt-4 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}>
+  <li onClick={(event) => handleOpenClick(event,"/dashboard/")} className={`mr-4 mt-4 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}>
   <div className="w-full ml-0 pl-3 mt-0 font-normal">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -275,7 +279,7 @@ export default function RootLayout({
     </svg>
     Movies</div>
   </li>
-  <li onClick={(event) => handleOpenClick(event,"/")} className={`mr-4 mt-4 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}
+  <li onClick={(event) => handleOpenClick(event,"/dashboard/")} className={`mr-4 mt-4 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}
   >
    
     <div className="w-full ml-0 pl-3 mt-0">
