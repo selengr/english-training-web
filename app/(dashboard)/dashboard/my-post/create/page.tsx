@@ -3,7 +3,7 @@ import "../../../styles/globals.css";
 import { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import UploadForm from "../../../components/custom/uploader/page";
+import UploadForm from "../../../../../components/custom/uploader/page";
 import CustomizedSnackbars from "@/utils/snack-bar";
 
 const CreatePost = () => {

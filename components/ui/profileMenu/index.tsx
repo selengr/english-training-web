@@ -87,20 +87,20 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={()=>router.push("/dashboard")}>
           <Avatar /> Profile
         </MenuItem>
         {/* <MenuItem onClick={handleClose}>
           <Avatar /> My account
         </MenuItem> */}
-        <MenuItem onClick={()=>router.push("/create")}>
+        <MenuItem onClick={()=>router.push("/dashboard/my-post/create")}>
         <ListItemIcon>
             <CreateIcon className='ml-1' fontSize="small" />
           </ListItemIcon>
           Create post
         </MenuItem>
 
-        <MenuItem onClick={()=>router.push("/create/dashboard")}>
+        <MenuItem onClick={()=>router.push("/dashboard/my-post/create")}>
         <ListItemIcon>
             <ManageAccountsOutlinedIcon className='ml-1' fontSize="small" />
           </ListItemIcon>
