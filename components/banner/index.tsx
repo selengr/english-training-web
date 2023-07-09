@@ -4,8 +4,12 @@ import styles from "../../styles/components/banner/banner.module.css"
 import { HeroHeader } from "../custom/hero-header";
 import { Button } from "@mui/material";
 
+type Props = {
+  data : String,
+  title? : String,
+}
 
-const Banner = ({data}) => {
+const Banner = ({data,title}:Props) => {
   console.log("rr",data)
     return (
         <div className={styles["landing-main"]}>
@@ -47,7 +51,7 @@ const Banner = ({data}) => {
 
                 
              {/* <Button  >commercial web</Button> */}
-                <h1 className={styles["landing-title"]}>commercial web</h1>
+                <h1 className={styles["landing-title"]}>{title ?? "commercial web"}</h1>
 
 
                 

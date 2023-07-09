@@ -32,7 +32,7 @@ export default function Layout({  children }) {
       {/* <head>
         <title>reza karbakhsh</title>
       </head> */}
-      <body className="relative bg-primary text-primary h-[100vh] flex flex-col" >
+      <body className="relative bg-primary text-primary h-full flex flex-col" >
         {!darkMode && (
           <div onClick={toggleDarkMode} className="fixed sm:right-16 right-5 top-4 z-10">
             <svg

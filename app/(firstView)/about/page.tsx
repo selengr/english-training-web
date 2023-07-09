@@ -12,12 +12,38 @@ const About = () => {
         <>
 
             <Header />
-            <Banner data={ "its me"} /> 
+            <Banner data={ "its me"} title={"rezakarbakhsh.ir"} /> 
+ <div className="w-full">
 
-            <div className="flex justify-center items-center flex-col">
+
+            <div className="flex justify-center items-center flex-col max-w-[60%] m-auto">
                      {/* Your page content goes here */}
 
                  {/* <HeroHeader /> */}
+                 {/* <div>
+                 Hello World 👋
+                 </div> */}
+
+<br ></br>  
+<br ></br>  
+
+            <div className="mockup-code">
+                <pre data-prefix=">" className="text-warning"><code>welecom...</code></pre> 
+                <pre data-prefix=">" className="text-success"><code>first thing first; let me introduce myself</code></pre>
+                <pre data-prefix="👋"><code>hi there my name is reza and i am glad to see you</code></pre>
+            </div>
+
+<br ></br>
+<br ></br>
+
+
+                 <div className="flex w-full">
+                            <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">i am in the mid twenties</div>
+                            <div className="divider divider-horizontal"></div>
+                            <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">this web site is for you people</div>
+                     </div>
+
+
                      <h1>hi</h1>
                      <h1>it is me</h1>
                      <h1>very soon...</h1>
@@ -39,7 +65,7 @@ const About = () => {
                 height={1000}
             /> */}
 
-            
+</div>
             </div>
            
         </>
