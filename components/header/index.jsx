@@ -34,7 +34,7 @@ const Header = () => {
                </div>
 
 
-               <div className="cover-individuals fixed sm:left-12 left-4 flex justify-center align-middle items-center">
+               <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
                 {/* <Image
                     src={"/images/loading/Loading-own.gif"}
                     alt="author"

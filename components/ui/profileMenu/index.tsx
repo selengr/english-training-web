@@ -17,6 +17,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import CreateIcon from '@mui/icons-material/Create';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import Image from 'next/image';
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -47,10 +48,20 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar className='bg-slate-600' sx={{ width: 32, height: 32 }}>M</Avatar>
+            {/* <Avatar className='bg-slate-600' sx={{ width: 32, height: 32 }}>M</Avatar> */}
+            {/* <div className="h-12 w-12 flex-none rounded-full bg-gray-50"> */}
+                   
+                 <Image
+                    src={"/images/fikeus-west-2.avif"}
+                    alt="author"
+                    width={50}
+                    height={50}
+                    className="rounded-full"
+                />
+                {/* </div> */}
           </IconButton>
         </Tooltip>
-        <Typography className='space-y-4 space-x-5' sx={{ minWidth: 100 }}>{`${token ? username : "reza karbakhsh"}`}</Typography>
+        <Typography fontSize={14} className='space-y-4 space-x-5' sx={{ minWidth: 100 }}>{`${token ? username : "reza karbakhsh"}`}</Typography>
       </Box>
       <Menu
         anchorEl={anchorEl}
@@ -88,7 +99,8 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={()=>router.push("/dashboard")}>
-          <Avatar /> Profile
+          <Avatar /> 
+          Profile
         </MenuItem>
         {/* <MenuItem onClick={handleClose}>
           <Avatar /> My account

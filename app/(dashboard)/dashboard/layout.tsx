@@ -117,7 +117,7 @@ export default function RootLayout({
   </svg>
 </div>
 
-<div className="close w-[70%] xs:w-[50%] sm:w-[40%] md:w-[28%] lg:[30%] text-gray-600 border-r-2 border-gray-100 text-lg flex-col pl-6 mt-00 h-[100vh] hidden md:flex bg-white">
+<div className="close w-[70%] xs:w-[50%] sm:w-[40%]  lg:w-[30%] text-gray-600 border-r-2 border-gray-100 text-lg flex-col pl-6 mt-00 h-[100vh] hidden md:flex bg-white">
   <div className="mt-10 mr-8">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -152,7 +152,7 @@ export default function RootLayout({
     </svg>
     <div className="m-auto ml-0 pl-3 mt-0">My post</div>
   </div>
-  <div onClick={(event) => handleOpenClick(event)} className={`mr-4 mt-6 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}>
+  <div onClick={(event) => handleOpenClick(event,"/")} className={`mr-4 mt-6 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -169,7 +169,7 @@ export default function RootLayout({
     </svg>
     <div className="m-auto ml-0 pl-3 mt-0 font-normal">Movies</div>
   </div>
-  <div onClick={(event) => handleOpenClick(event)} className={`mr-4 mt-6 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}
+  <div onClick={(event) => handleOpenClick(event,"/")} className={`mr-4 mt-6 flex flex-row font-normal hover:bg-gray-100 p-1 hover:text-indigo-600 w-[94%] rounded-sm`}
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

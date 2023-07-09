@@ -57,7 +57,7 @@ const people = [
   
   export default function Example() {
     return (
-      <div className="w-full px-12 m-8">
+      <div className="w-full sm:px-12 sm:m-8 py-2 m-2 mt-8">
         <ul role="list" className="divide-y divide-gray-100 w-full">
         {people.map((person) => (
           <li key={person.email} className="flex justify-between gap-x-6 py-5">
