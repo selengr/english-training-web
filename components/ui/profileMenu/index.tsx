@@ -63,7 +63,7 @@ export default function AccountMenu() {
         </Tooltip>
         <Typography fontSize={14} className='space-y-4 space-x-5' sx={{ minWidth: 100 }}>{`${token ? username : "reza karbakhsh"}`}</Typography>
       </Box>
-      <Menu
+      <Menu    
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
@@ -79,7 +79,7 @@ export default function AccountMenu() {
               width: 32,
               height: 32,
               ml: -0.5,
-              mr: 1,
+              mr: 1
             },
             '&:before': {
               content: '""',

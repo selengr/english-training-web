@@ -24,10 +24,11 @@ export default function Layout({  children }) {
     }
   };
 
+  let mode =  localStorage.getItem("theme") 
 
   return (
     <html lang="en" data-theme={
-      localStorage.getItem("theme") ?? 
+      mode ?? 
     "dark"}>
       {/* <head>
         <title>reza karbakhsh</title>

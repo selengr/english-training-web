@@ -10,7 +10,6 @@ type Props = {
 }
 
 const Banner = ({data,title}:Props) => {
-  console.log("rr",data)
     return (
         <div className={styles["landing-main"]}>
           {data === "its me" && <div className={`${styles["landing-img"]} `}> <HeroHeader /></div>}

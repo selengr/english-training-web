@@ -15,7 +15,7 @@ const Header = () => {
 
     return (
         <>
-            <div className={styles["landing-top"]}>
+            <div className={`${styles["landing-top"]}`}>
                {/* ddd   */}
 
                <div className=" fixed sm:right-28 right-10 flex justify-center align-middle items-center overflow-hidden">
