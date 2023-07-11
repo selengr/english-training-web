@@ -12,7 +12,7 @@ const UploadForm = (props) => {
 
 
                 <div className="w-full">
-                    <label htmlFor="cover" className="block text-gray-700 font-bold">
+                    <label htmlFor="cover" className="block font-bold">
                         {props.lable}
                         <span className={"text-rose-600"}>*</span>
                     </label>

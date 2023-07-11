@@ -1,9 +1,9 @@
 'use client'
-import "../../../styles/globals.css";
+import "../../../../../styles/globals.css";
 import { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import UploadForm from "../../../../../components/custom/uploader/page";
+import UploadForm from "@/components/custom/uploader/page";
 import CustomizedSnackbars from "@/utils/snack-bar";
 
 const CreatePost = () => {
@@ -156,7 +156,7 @@ const CreatePost = () => {
 
 
                     <div className={"w-100"}>
-                        <label className="block text-gray-700 font-bold mb-2" htmlFor="mainIdea">
+                        <label className="block  font-bold mb-2" htmlFor="mainIdea">
                             Main Idea
                              <span className={"text-rose-600"}>*</span>
                         </label>
@@ -165,7 +165,7 @@ const CreatePost = () => {
                             id="mainIdea"
                             name="mainIdea"
                             rows={3}
-                            className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter the main idea of your post"
                             // {...register("mainIdea")}
                             {...register("mainIdea", { required: true })}
@@ -176,7 +176,7 @@ const CreatePost = () => {
 
 
                     <div className={"w-100"}>
-                        <label className="block text-gray-700 font-bold mt-2" htmlFor="tags">
+                        <label className="block  font-bold mt-2" htmlFor="tags">
                             tags 
                              <span className={"text-rose-600"}>*</span>
                             <span className="text-xs text-gray-400">(these tags will indicate your covered subject,like,html,css,js)</span>
@@ -200,7 +200,7 @@ const CreatePost = () => {
                                                     type="text"
                                                     id="tags"
                                                     name="tags"
-                                                    className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    className="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                                                     placeholder="Enter a tag and press Enter"
                                                     onBlur={handleAddTag}
                                                     {...register("tags")}
@@ -209,7 +209,7 @@ const CreatePost = () => {
                                                         type="text"
                                                         id="tags"
                                                         name="tags"
-                                                        className="c-tags shadow w[100%] appearance-none border rounded-l-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        className="c-tags shadow w[100%] appearance-none border rounded-l-md py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                                                         placeholder="Enter a tag"
                                                         onBlur={handleChangeTag}
                                                     />
@@ -269,7 +269,7 @@ const CreatePost = () => {
 
 
                     <div className={"w-100"}>
-                        <label className="block text-gray-700 font-bold mb-2" htmlFor="more-information">
+                        <label className="block  font-bold mb-2" htmlFor="more-information">
                             More information
                         </label>
 
@@ -277,7 +277,7 @@ const CreatePost = () => {
                             id="extraInformation"
                             name="extraInformation"
                             rows={3}
-                            className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter the main idea of your post"
                             {...register("extraInformation")}
                         // onChange={handleExtraInformation}
@@ -287,7 +287,7 @@ const CreatePost = () => {
 
 
                     <div className={"w-100"}>
-                        <label className="block text-gray-700 font-bold mb-2" htmlFor="conclusion">
+                        <label className="block  font-bold mb-2" htmlFor="conclusion">
                             conclusion
                         </label>
 
@@ -295,7 +295,7 @@ const CreatePost = () => {
                             id="conclusion"
                             name="conclusion"
                             rows={3}
-                            className="shadow w[100%] appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter the main idea of your post"
                             {...register("conclusion")}
                         // onChange={handleConclusion}
@@ -363,7 +363,7 @@ const CreatePost = () => {
                                 id="information"
                                 name="information"
                                 rows={3}
-                                className="shadow w[100%] appearance-none border rounded  mx-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="shadow w[100%] appearance-none border rounded  mx-2 py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                                 placeholder="Enter the information of your post"
                                 {...register("information.content", { required: false })}
                             ></textarea>

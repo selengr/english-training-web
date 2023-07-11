@@ -100,7 +100,7 @@ export default function AccountMenu() {
       >
         <MenuItem onClick={()=>router.push("/dashboard")}>
           <Avatar /> 
-          Profile
+              Profile
         </MenuItem>
         {/* <MenuItem onClick={handleClose}>
           <Avatar /> My account
