@@ -1,6 +1,4 @@
 'use client'
-import Image from "next/image";
-import Layout from "../layout";
 import { HeroHeader } from "@/components/custom/hero-header";
 import Banner from "@/components/banner";
 import Header from "@/components/header";
@@ -10,7 +8,7 @@ const About = () => {
 
     return (
         <>
-
+  
             <Header />
             <Banner data={ "its me"} title={"rezakarbakhsh.ir"} /> 
  <div className="w-full">
