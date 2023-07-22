@@ -53,6 +53,7 @@ const About = () => {
                      <h1>bla bla bla bla</h1>
                      <h1>bla bla bla bla</h1>
                      <h1>bla bla bla bla</h1>
+                     <span>start from tomorow night</span>
             
                {/* ddd   */}
                
