@@ -112,6 +112,9 @@
         line-height: 1.8;
     }
 
+    .costum-blog-span li {
+        border-bottom: none;
+    }
 
 
 
