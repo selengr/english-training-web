@@ -11,6 +11,8 @@ import styles from "../../styles/components/banner/banner.module.css"
 import Header from "@/components/header";
 import Banner from "@/components/banner";
 import TemporaryDrawer from "@/components/ui/drawer";
+import CarouselLogo from "@/components/ui/carousel/CarouselLogo";
+import SwiperSlides from "@/components/ui/carousel/SwiperSlides";
 
 // import axios from "axios"
 // import useSWR from "swr";
@@ -51,7 +53,6 @@ export default  function Page() {
     </div>
         <Header />
         <Banner data={ "/images/https___s3-us-west-2.avif"} /> 
-
         <TemporaryDrawer />
 
     <div className="w-100 flex justify-center align-middle">
@@ -61,6 +62,8 @@ export default  function Page() {
       </article>
     </div>
     {/* </Layout> */}
+    <CarouselLogo />
+         <SwiperSlides />
     </>
   );
 }
