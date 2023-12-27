@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import Glide from "@glidejs/glide"
+import Image from "next/image"
 
 export default function CarouselLogo() {
   useEffect(() => {
@@ -38,33 +39,48 @@ export default function CarouselLogo() {
         <div data-glide-el="track">
           <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
             <li>
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-1.svg"
                 className="m-auto h-20 max-h-full w-auto max-w-full"
+                alt="test"
               />
             </li>
             <li>
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-2.svg"
                 className="m-auto h-20 max-h-full w-auto max-w-full"
+                alt="test"
               />
             </li>
             <li>
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-3.svg"
                 className="m-auto h-20 max-h-full w-auto max-w-full"
+                alt="test"
               />
             </li>
             <li>
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-4.svg"
                 className="m-auto h-20 max-h-full w-auto max-w-full"
+                alt="test"
               />
             </li>
             <li>
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-5.svg"
                 className="m-auto h-20 max-h-full w-auto max-w-full"
+                alt="test"
               />
             </li>
             <li>

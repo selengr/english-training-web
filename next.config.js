@@ -3,6 +3,9 @@ const nextConfig = {
     images: {
         domains: ['images.unsplash.com'],
       },
+      experimental: {
+        // ppr: true,
+      },
 
 }
 

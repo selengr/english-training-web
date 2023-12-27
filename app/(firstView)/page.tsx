@@ -62,8 +62,8 @@ export default  function Page() {
       </article>
     </div>
     {/* </Layout> */}
-    <CarouselLogo />
-         <SwiperSlides />
+    {/* <CarouselLogo />
+         <SwiperSlides /> */}
     </>
   );
 }

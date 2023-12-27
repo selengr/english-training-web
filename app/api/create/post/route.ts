@@ -1,5 +1,6 @@
 
 import dbConnect from "@/lib/dbConnect";
+import User from "@/models/User";
 import Post from "@/models/create/Post";
 const fs = require('fs')
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -7,21 +8,21 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 
 
-// export async function GET(req:NextApiRequest, res:NextApiResponse) {
-//   dbConnect();
+export async function GET(req:NextApiRequest, res:NextApiResponse) {
+  dbConnect();
   
-//   try {
-//         dbConnect();
-//         const user = await User.find();
-//         return new Response(`Welcome to my Next application, user: ${user}`);
+  try {
+        dbConnect();
+        const user = await User.find();
+        return new Response(`Welcome to my Next application, user: ${user}`);
 
-//     } catch (error) {
-//         console.error(error);
-//         return new Response(`Error retrieving notes: ${error.message}`, { status: 500 });
-//         // return new NextResponse.json("myData");
-//     }
-//   return new Response("ok")
-// }
+    } catch (error) {
+        console.error(error);
+        return new Response(`Error retrieving notes: ${error.message}`, { status: 500 });
+        // return new NextResponse.json("myData");
+    }
+  return new Response("ok")
+}
 
 
 

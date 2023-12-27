@@ -24,22 +24,22 @@
     "axios": "^1.4.0",
     "crypto": "^1.0.1",
     "eslint": "8.43.0",
-    "eslint-config-next": "^12.0.4",
+    "eslint-config-next": "^14.0.4",
     "formik": "^2.4.2",
     "fs": "^0.0.1-security",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.3.0",
-    "next": "13.4.6",
+    "next": "^14.0.4",
     "nodemailer": "^6.9.3",
     "postcss": "8.4.24",
     "random": "^4.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-fluid-animation": "^1.0.1",
     "react-hook-form": "^7.45.0",
     "react-images-upload": "^1.2.8",
-    "resend": "^0.15.3",
+    "resend": "^2.0.0",
     "swiper": "^11.0.5",
     "swr": "^2.1.5",
     "tailwindcss": "3.3.2",
@@ -47,6 +47,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@types/react-redux": "^7.1.32",
     "daisyui": "^3.2.1"
   }
 }
