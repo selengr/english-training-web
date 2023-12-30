@@ -3,7 +3,6 @@
 import UICustomizedCombo from "@/components/custom/customized_combo";
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -13,7 +12,6 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Audio from "react-audio-player";
-
 
 type Definition = {
   definition: string;
@@ -29,10 +27,12 @@ type Meaning = {
   antonyms: string[];
 };
 
-type License = {
-  name: string;
-  url: string;
-}|any;
+type License =
+  | {
+      name: string;
+      url: string;
+    }
+  | any;
 
 type Phonetic = {
   text: string;
@@ -41,7 +41,7 @@ type Phonetic = {
   license: License;
 };
 
-type Datum = {
+export type Datum = {
   word: string;
   phonetic: string;
   phonetics: Phonetic[];
@@ -50,11 +50,8 @@ type Datum = {
   sourceUrls: string[];
 };
 
-
-
 export default function Page() {
   const [definition, setDefinition] = useState<Datum>();
-
 
   useEffect(() => {
     async function facilitise() {}
@@ -62,7 +59,6 @@ export default function Page() {
   }, []);
 
   const handleSearch = async (word: string) => {
-
     try {
       // const dynamicData = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/word`, { cache: 'no-store' })
       // console.log("data",dynamicData)
@@ -70,28 +66,23 @@ export default function Page() {
         `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
       );
       setDefinition({
-        license : response.data[0].license,
+        license: response.data[0].license,
         meanings: response.data[0].meanings,
         phonetics: response.data[0].phonetics,
-        phonetic : response.data[0].phonetic,
-        sourceUrls : response.data[0].sourceUrls,
+        phonetic: response.data[0].phonetic,
+        sourceUrls: response.data[0].sourceUrls,
         word: response.data[0].word,
-
-
       });
-      renderDefinitions()
+      renderDefinitions();
     } catch (error) {
       console.error(error);
     }
   };
 
-
-
-
   const renderDefinitions = () => {
-    console.log('definition :>> ', definition);
+    console.log("definition :>> ", definition);
     // console.log('definition.meanings :>> ', definition.meanings);
-    
+
     if (!definition?.word) {
       return (
         <div>
@@ -101,18 +92,38 @@ export default function Page() {
     }
     return definition.meanings.map((meaning, index) => (
       <div key={index} className="mb-2">
-        <Typography variant="subtitle1">{meaning?.partOfSpeech}</Typography>
-        <ul>
+        <Typography variant="body1" className="text-cyan-800 text-xl pt-6 h-16">
+          <span className="text-2xl">synonyms:</span>{" "}
+          {meaning?.synonyms.map((item) => {
+            return (
+              <span
+                key={index}
+                className="h-9
+            px-4 py-2 m-1 bg-blue-950 text-amber-500 rounded-full"
+              >
+                {item}
+              </span>
+            );
+          })}
+        </Typography>
+        <br />
+        <hr />
+        <Typography variant="subtitle1" className="text-cyan-800 text-xl">
+          {meaning?.partOfSpeech}
+        </Typography>
+        <ol>
           {meaning?.definitions.map((definition, i) => (
-            <li key={i}>
+            <li
+              key={i}
+              className="rounded-2xl border-2 border-slate-400 m-2 p-3"
+            >
               {definition.definition}
               {/* {i < meaning.definitions.length - 1 ? ", " : ""} */}
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     ));
-
   };
 
   const renderAudioPlayer = () => {
@@ -126,23 +137,40 @@ export default function Page() {
   };
 
   return (
-    <Box>
-      <h1>test</h1>
+    <Box className="flex justify-center flex-col">
+      <h1 className="px-4 text-center ">search</h1>
+      {/* <UICustomizedCombo
+        //  Words={definition}
+      /> */}
       <Input
+        className="px-4"
         placeholder="Enter the word you want to search for"
         onChange={(event) => handleSearch(event.target.value)}
       />
       {definition?.word && (
-        <Card>
-          <CardHeader>{definition.word}</CardHeader>
-          <CardContent>
-          
-            {renderDefinitions()}
-            {renderAudioPlayer()}
-          </CardContent>
-        </Card>
-      )}
+        <>
+          <Card>
+            <CardHeader className="text-cyan-900 text-xl">
+              {definition.word}
+            </CardHeader>
+            <CardContent>
+              <Typography
+                className="font-bold"
+                sx={{ fontSize: 30 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                {definition.word}{" "}
+                <span className="text-xl">[{definition.phonetic}]</span>
+              </Typography>
 
+              {renderDefinitions()}
+              {renderAudioPlayer()}
+
+            </CardContent>
+          </Card>
+        </>
+      )}
     </Box>
   );
 }

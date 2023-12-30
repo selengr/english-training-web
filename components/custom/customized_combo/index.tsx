@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { autocompleteClasses } from '@mui/material/Autocomplete';
 import { useAutocomplete } from '@mui/material';
+import { Datum } from '@/app/(secondView)/environment/dictionary/page';
 
 
 const Root = styled('div')(
@@ -172,8 +173,9 @@ const Listbox = styled('ul')(
 
 export default function UICustomizedCombo({
   placeholder,
-  label
-}: any) {
+  label,
+  Words
+}: {placeholder:any,label:any,Words:Datum[]}) {
   const {
     getInputLabelProps,
     getListboxProps,
@@ -187,10 +189,10 @@ export default function UICustomizedCombo({
     value
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    defaultValue: [top100Films[1]],
+    defaultValue: [Words[1]],
     multiple: true,
-    options: top100Films,
-    getOptionLabel: (option:any) => option.title
+    options: Words,
+    getOptionLabel: (option:any) => option.word
   });
 
   React.useEffect(() => {
@@ -216,15 +218,15 @@ export default function UICustomizedCombo({
         </div>
         {groupedOptions.length > 0 ? (
           <Listbox {...getListboxProps()}>
-            {(groupedOptions as typeof top100Films).map((option, index) => (
+            {(groupedOptions as typeof Words).map((option, index) => (
               <li
                 key={index}
                 {...getOptionProps({ option, index })}
                 className="flex justify-between w-full"
               >
-                <span>{option.title}</span>
+                <span>{option.word}</span>
                 <div>
-                  <span>{option.year}</span>
+                  <span>{option.word}</span>
                   <CheckIcon fontSize="small" />
                 </div>
               </li>
