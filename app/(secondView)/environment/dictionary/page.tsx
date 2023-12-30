@@ -92,25 +92,42 @@ export default function Page() {
     }
     return definition.meanings.map((meaning, index) => (
       <div key={index} className="mb-2">
-        <Typography variant="body1" className="text-cyan-800 text-xl pt-6 h-16">
+        <Typography variant="body1" className="text-cyan-800 text-lg pt-6 h-16">
           <span className="text-2xl">synonyms:</span>{" "}
           {meaning?.synonyms.map((item) => {
             return (
               <span
                 key={index}
                 className="h-9
-            px-4 py-2 m-1 bg-blue-950 text-amber-500 rounded-full"
+              px-4 py-1 m-1 bg-blue-950 text-amber-500 rounded-full"
               >
                 {item}
               </span>
             );
           })}
         </Typography>
+       {meaning?.antonyms.length > 0 && <Typography variant="body1" className="text-cyan-800 text-lg pt-6 h-16">
+          <span className="text-2xl">antonyms:</span>{" "}
+          {meaning?.antonyms.map((item) => {
+            return (
+              <span
+                key={index}
+                className="h-9
+              px-4 py-1 m-1 bg-amber-500 text-blue-950 rounded-full"
+              >
+                {item}
+              </span>
+            );
+          })}
+        </Typography>
+         }
         <br />
         <hr />
-        <Typography variant="subtitle1" className="text-cyan-800 text-xl">
+        <Typography variant="subtitle1" className="bg-cyan-100 200 w-28 text-sky-900 text-center rounded-2xl text-xl my-1">
           {meaning?.partOfSpeech}
         </Typography>
+   
+        <hr />
         <ol>
           {meaning?.definitions.map((definition, i) => (
             <li
@@ -138,12 +155,12 @@ export default function Page() {
 
   return (
     <Box className="flex justify-center flex-col">
-      <h1 className="px-4 text-center ">search</h1>
+      {/* <h1 className="px-4 text-center ">search</h1> */}
       {/* <UICustomizedCombo
         //  Words={definition}
       /> */}
       <Input
-        className="px-4"
+        className="px-4 m-5 text-xl"
         placeholder="Enter the word you want to search for"
         onChange={(event) => handleSearch(event.target.value)}
       />
