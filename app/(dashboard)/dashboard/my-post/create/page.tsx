@@ -105,8 +105,8 @@ const AddPostForm = ({
     let body = data;
     body.cover = coverPicture;
     body.banner = bannerPicture;
-    body.tags = tags;
-
+    // body.tags = tags;
+    console.log('body :>> ', body);
     try {
       const response: any = await callApi().post(`/api/create/post`, body);
       console.log("response :>> ", response);
@@ -177,8 +177,8 @@ const AddPostForm = ({
           <CustomField
             register={register}
             errors={errors}
-            label="Information"
-            id="information"
+            label="Body"
+            id="body"
             styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
             placeholder=""
             required={false}
@@ -307,7 +307,7 @@ const AddPostForm = ({
             </div>
           </div>
 
-          <div className="flex sm:flex-row flex-col w-full mt-10">
+          <div className="flex sm:flex-row flex-col w-full mt-4 mb-8">
             <div className="flex flex-col sm:w-[49%] w-full">
               <CustomField
                 register={register}
@@ -333,14 +333,14 @@ const AddPostForm = ({
             </div> */}
           </div>
 
-          <button
+          <UiButton
             type="submit"
             // className="w-[50%] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            className="bg-slate-400 m-6 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
+            className="bg-slate-400 m-6 mt-14 hover:bg-slate-400 text-white text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
             // text="create post"
           >
-            tuuuukjljgg
-          </button>
+            ثبت پست
+          </UiButton>
         </form>
       </div>
     </>
