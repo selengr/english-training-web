@@ -27,7 +27,7 @@
 
    
   interface Information {
-    author: string;
-    email: string;
+    author?: string;
+    email?: string;
    }
    export type LanguageLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";

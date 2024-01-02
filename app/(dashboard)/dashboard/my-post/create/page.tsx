@@ -14,40 +14,22 @@ import { CustomField } from "@/components/custom/fields/CustomField";
 import { CustomFieldArea } from "@/components/custom/fields/CustomFieldArea";
 
 const schema = yup.object().shape({
-  title: yup.string(),
-  introduction: yup.string(),
-  information: yup.object({
-    author: yup.string(),
-    publicationDate: yup.string(),
-    source: yup.string(),
-    content: yup.string(),
-  }),
+  cover: yup.string().required(),
+  banner: yup.string().required(),
+  title: yup.string().required(),
+  introduction: yup.string().required(),
+  mainIdea: yup.string().required(),
+  body: yup.string().required(),
   point: yup.string(),
   tips: yup.string(),
-  mainIdea: yup.string(),
   extraInformation: yup.string(),
-  cultureNotes: yup.string(),
-  outline: yup.string(),
-  tags: yup.string(),
-  conclusion: yup.string(),
+  conclusion: yup.string().required(),
+  information: yup.object({
+    author: yup.string(),
+    email: yup.string(),
+  }),
   languageLevel: yup.string(),
-  callToAction: yup.string(),
-  slug: yup.string(),
-  likes: yup.string(),
-  views: yup.string(),
-  status: yup.string(),
-  excerpt: yup.string(),
-  featuredImage: yup.string(),
-  //   categories: yup.array().of(yup.string()),
-  categories: yup.string(),
-  lastUpdateDate: yup.string(),
-  creation: yup.string(),
-  comments: yup.string(),
-  metadata: yup.string(),
-  learningObjective: yup.string(),
-  vocabularyFocus: yup.string(),
-  cover: yup.string(),
-  banner: yup.string(),
+  tags: yup.string(),
 });
 
 const AddPostForm = ({
@@ -106,7 +88,7 @@ const AddPostForm = ({
     body.cover = coverPicture;
     body.banner = bannerPicture;
     // body.tags = tags;
-    console.log('body :>> ', body);
+    console.log("body :>> ", body);
     try {
       const response: any = await callApi().post(`/api/create/post`, body);
       console.log("response :>> ", response);
@@ -138,11 +120,17 @@ const AddPostForm = ({
             onDrop={(e: File[]) => onDrop(e, "cover")}
             label={"Cover Image "}
           />
+          {errors["cover"] && errors["cover"].type && (
+            <p className="text-rose-500 -mt-5">{errors["cover"].message}</p>
+          )}
           <UploadForm
             id={"banner"}
             onDrop={(e: File[]) => onDrop(e, "banner")}
             label={"Banner Image"}
           />
+          {errors["banner"] && errors["banner"].type && (
+            <p className="text-rose-500 -mt-5">{errors["banner"].message}</p>
+          )}
 
           <CustomField
             register={register}
@@ -339,7 +327,7 @@ const AddPostForm = ({
             className="bg-slate-400 m-6 mt-14 hover:bg-slate-400 text-white text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
             // text="create post"
           >
-            ثبت پست
+            save post
           </UiButton>
         </form>
       </div>
