@@ -9,16 +9,16 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 
 export async function GET(req:NextApiRequest, res:NextApiResponse) {
-  dbConnect();
+
   
   try {
-        dbConnect();
-        const user = await User.find();
-        return new Response(`Welcome to my Next application, user: ${user}`);
+
+        const posts = await Post.find({});
+        return new Response(`Welcome to my Next application ok ok: ${posts}`);
 
     } catch (error) {
         console.error(error);
-        return new Response(`Error retrieving notes: ${error.message}`, { status: 500 });
+        return new Response(`Error retrieving notes: ${error}`, { status: 500 });
         // return new NextResponse.json("myData");
     }
   return new Response("ok")
@@ -45,59 +45,6 @@ export async function GET(req:NextApiRequest, res:NextApiResponse) {
 // await post.save();
 
 
-export async function POST(req: Request, res:NextApiResponse) {
-    dbConnect();
-
-    const imagePath = "/path/to/image.jpg";
-    const imageBuffer = fs.readFileSync(imagePath);
-  
-    try {
-    let data = await req.json()
-    const post = new Post({
-      title: data?.title,
-      introduction: data?.introduction,
-      information: {
-        author: data?.information?.author,
-        publicationDate: data?.information?.publicationDate,
-        source: data?.information?.source,
-        content: data?.information?.content,
-      },
-      body: data?.body,
-      point: data?.point,
-      tips: data?.tips,
-      mainIdea: data?.mainIdea,
-      extraInformation: data?.extraInformation,
-      cultureNotes: data?.cultureNotes,
-      outline: data?.outline,
-      tags: data?.tags,
-      conclusion: data?.conclusion,
-      callToAction: data?.callToAction,
-      slug: data?.slug,
-      likes: data?.likes,
-      views: data?.views,
-      status: data?.status,
-      excerpt: data?.excerpt,
-      featuredImage: data?.featuredImage,
-      categories: data?.categories,
-      lastUpdateDate: new Date(),
-      creation: new Date(),
-      comments: [],
-      metadata: data?.metadata,
-      languageLevel: data?.languageLevel,
-      learningObjective: data?.learningObjective,
-      vocabularyFocus: data?.vocabularyFocus,
-    });
-    
-    const savedPost = await post.save();
-    console.log(savedPost);
-        return new Response(`Welcome to my Next application, user: ${savedPost}`);
-
-    } catch (error) {
-        console.error(error);
-        return new Response(`Error retrieving notes: ${error.message}`, { status: 500 });
-        // return new NextResponse.json("myData");
-    }
-}
 
 
 export async function PUT(req:NextApiRequest, res:NextApiResponse) {
@@ -106,4 +53,22 @@ export async function PUT(req:NextApiRequest, res:NextApiResponse) {
 
 export async function DELETE(req:NextApiRequest, res:NextApiResponse) {
   return new Response("ok")
+}
+// export async function POST(req:NextApiRequest, res:NextApiResponse) {
+//   return new Response(req)
+// }
+
+
+export async function POST(req :Request, res:Response) {
+  try {
+        await dbConnect()
+        const data = await req.json()
+        const post = new Post(data);
+        await post.save();
+        return new Response(`Welcome to my Next application, user: ${post}`);
+
+
+  } catch (error) {
+      return new Response(`Error retrieving notes: ${error}`, { status: 500 });
+  }
 }

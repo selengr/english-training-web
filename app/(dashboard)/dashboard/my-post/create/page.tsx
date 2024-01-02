@@ -45,35 +45,12 @@ const CreatePost = () => {
 
     const onSubmit = async (data) => {debugger
         try {
-            const formData = new FormData();
-            formData.append('title', data.title);
-            formData.append('introduction', data.introduction);
-            formData.append('introduction', data.body);
-            formData.append('information.author', data.information?.author);
-            formData.append('information.publicationDate', data.information?.publicationDate);
-            formData.append('information.source', data.information?.source);
-            formData.append('information.content', data.information?.content);
-            formData.append('point', data.point);
-            formData.append('tips', data.tips);
-            formData.append('mainIdea', data.mainIdea);
-            formData.append('extraInformation', data.extraInformation);
-            formData.append('cultureNotes', data.cultureNotes);
-            formData.append('outline', data.outline);
-            formData.append('tags', data.tags);
-            formData.append('conclusion', data.conclusion);
-            formData.append('callToAction', data.callToAction);
-            formData.append('slug', data.slug);
-            formData.append('metadata', data.metadata);
-            formData.append('languageLevel', data.languageLevel);
-            formData.append('learningObjective', data.learningObjective);
-            formData.append('vocabularyFocus', data.vocabularyFocus);
+            const data = data
+            data.cover = pictures[1] as File
+            data.banner = pictures[0] as File
 
-            // formData.append('coverImage', coverImage);
-            // formData.append('bannerImage', bannerImage);
-            formData.append('cover', pictures[1] as File);
-            formData.append('banner', pictures[0] as File);
-            debugger
-            const response = await axios.post('http://localhost:8000/api/post/create', formData);
+            
+            const response = await axios.post('http://localhost:3000/api/create/post', formData);
             console.log(response.data);
     
         } catch (error) {
@@ -163,7 +140,7 @@ const CreatePost = () => {
 
                         <textarea
                             id="mainIdea"
-                            name="mainIdea"
+                            // name="mainIdea"
                             rows={3}
                             className="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter the main idea of your post"
@@ -275,7 +252,7 @@ const CreatePost = () => {
 
                         <textarea
                             id="extraInformation"
-                            name="extraInformation"
+                            // name="extraInformation"
                             rows={3}
                             className="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter the main idea of your post"
@@ -293,7 +270,7 @@ const CreatePost = () => {
 
                         <textarea
                             id="conclusion"
-                            name="conclusion"
+                            // name="conclusion"
                             rows={3}
                             className="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter the main idea of your post"
@@ -361,7 +338,7 @@ const CreatePost = () => {
                             </label>
                             <textarea
                                 id="information"
-                                name="information"
+                                // name="information"
                                 rows={3}
                                 className="shadow w[100%] appearance-none border rounded  mx-2 py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                                 placeholder="Enter the information of your post"
