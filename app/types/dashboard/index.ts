@@ -1,10 +1,3 @@
-
-  interface Information {
-    author: string;
-    publicationDate: string;
-    source: string;
-    content: string;
-   }
    interface Category {
     id: string;
     name: string;
@@ -17,32 +10,24 @@
    }
   //  ==================================================
    export interface IPInputs {
-    title?:any| string;
-    introduction?:any| string;
-    information?:any| Information | string;
-    point?:any| string;
-    tips?:any| string;
-    mainIdea?:any| string;
-    extraInformation?:any| string;
-    cultureNotes?:any| string;
-    outline?:any| string;
-    tags?:any| string;
-    conclusion?:any| string;
-    callToAction?:any| string;
-    slug?:any| string; 
-    likes?:any| string;
-    views?:any| string;
-    status?:any| string;
-    excerpt?:any| string;
-    featuredImage?:any| string;
-    categories?:any| Category[] | string;
-    lastUpdateDate?:any| string;
-    creation?:any| string;
-    comments?:any| Comment[] | string;
-    metadata?:any| Metadata | string;
-    languageLevel?:any| string;
-    learningObjective?:any| string;
-    vocabularyFocus?:any| string;
-    cover?:any| string;
-    banner?:any| string;
+    cover: File[];
+    banner: File[];
+    title: string;
+    introduction: string;
+    mainIdea: string;
+    body: string;
+    point?: string;
+    tips?: string;
+    extraInformation?: string;
+    conclusion: string;
+    information : Information
+    languageLevel?: LanguageLevel;
+    tags?: any;
    }
+
+   
+  interface Information {
+    author: string;
+    email: string;
+   }
+   export type LanguageLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";

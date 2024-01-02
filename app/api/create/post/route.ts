@@ -45,20 +45,6 @@ export async function GET(req:NextApiRequest, res:NextApiResponse) {
 // await post.save();
 
 
-
-
-export async function PUT(req:NextApiRequest, res:NextApiResponse) {
-  return new Response("ok")
-}
-
-export async function DELETE(req:NextApiRequest, res:NextApiResponse) {
-  return new Response("ok")
-}
-// export async function POST(req:NextApiRequest, res:NextApiResponse) {
-//   return new Response(req)
-// }
-
-
 export async function POST(req :Request, res:Response) {
   try {
         await dbConnect()
@@ -72,3 +58,16 @@ export async function POST(req :Request, res:Response) {
       return new Response(`Error retrieving notes: ${error}`, { status: 500 });
   }
 }
+
+
+
+export async function PUT(req:NextApiRequest, res:NextApiResponse) {
+  return new Response("ok")
+}
+
+export async function DELETE(req:NextApiRequest, res:NextApiResponse) {
+  return new Response("ok")
+}
+// export async function POST(req:NextApiRequest, res:NextApiResponse) {
+//   return new Response(req)
+// }

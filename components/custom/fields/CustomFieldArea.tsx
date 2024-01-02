@@ -22,7 +22,7 @@ interface FieldProps {
     return (
       <>
         <div className={"w-100"}>
-          <label className="block  font-bold mb-2" htmlFor={id}>
+          <label className="block  font-bold mt-2" htmlFor={id}>
             {label}
           </label>
           <textarea

@@ -21,7 +21,7 @@ interface FieldProps {
     return (
       <>
         <div>
-          <label htmlFor={id} className="block text-lg font-semibold mb-2">
+          <label htmlFor={id} className="block text-lg font-semibold mt-2">
             {label}
             <span className={"text-rose-600"}>*</span>
           </label>

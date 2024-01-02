@@ -2,57 +2,16 @@
 // opt
 import * as yup from "yup";
 import { useState } from "react";
-import axios from "axios";
+import callApi from "@/services/axios";
 import { useForm } from "react-hook-form";
 import "../../../../../styles/globals.css";
 import UiButton from "@/components/ui/UiButton";
-import { IPInputs } from "@/app/types/dashboard";
+import { IPInputs, LanguageLevel } from "@/app/types/dashboard";
 import CustomizedSnackbars from "@/utils/snack-bar";
-import UploadForm from "@/components/custom/uploader/page";
 import { yupResolver } from "@hookform/resolvers/yup";
+import UploadForm from "@/components/custom/uploader/page";
 import { CustomField } from "@/components/custom/fields/CustomField";
 import { CustomFieldArea } from "@/components/custom/fields/CustomFieldArea";
-
-import ImageUploader from "react-images-upload";
-
-//   const onSubmit = async (data) => {
-//     debugger;
-//     try {
-//       const data = data;
-//       data.cover = pictures[1] as File;
-//       data.banner = pictures[0] as File;
-
-//       const response = await axios.post(
-//         "http://localhost:3000/api/create/post",
-//         formData
-//       );
-//       console.log(response.data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-// const onSubmit = async (data) => {
-
-//         mydata.append('cover', pictures[1] as File);
-//         mydata.append('banner', pictures[0] as File);
-
-//         const config = {
-//             method: 'post',
-//             url: 'http://localhost:8000/api/post/create',
-//             data: mydata,
-//             headers: {
-//                 'Content-Type': 'multipart/form-data'
-//             }
-//         }
-//         axios.request(config)
-//             .then((res) => {
-//                 console.log(res)
-//             })
-//             .catch((err) => {
-//                 console.log(err)
-//             })
-// };
 
 const schema = yup.object().shape({
   title: yup.string(),
@@ -71,6 +30,7 @@ const schema = yup.object().shape({
   outline: yup.string(),
   tags: yup.string(),
   conclusion: yup.string(),
+  languageLevel: yup.string(),
   callToAction: yup.string(),
   slug: yup.string(),
   likes: yup.string(),
@@ -84,7 +44,6 @@ const schema = yup.object().shape({
   creation: yup.string(),
   comments: yup.string(),
   metadata: yup.string(),
-  languageLevel: yup.string(),
   learningObjective: yup.string(),
   vocabularyFocus: yup.string(),
   cover: yup.string(),
@@ -112,9 +71,8 @@ const AddPostForm = ({
     defaultValues: {},
   });
 
-  const [open, setOpen] = useState(false);
-  const [coverPicture, setCoverPicture] = useState<File[]>([]);
   const [bannerPicture, setBannerPicture] = useState<File[]>([]);
+  const [coverPicture, setCoverPicture] = useState<File[]>([]);
   const [tags, setTags] = useState<any>([]);
 
   function handleAddTag(e: any) {
@@ -122,7 +80,7 @@ const AddPostForm = ({
     //   if (e.key === "Enter" && e.target.value !== "") {
     // setTags([...tags, e.target.value]);
     setTimeout(() => {
-      //   document.querySelector(".c-tags").value = "";
+      // document.querySelector(".c-tags").value = "";
     }, 500);
     // e.target.value = "";
     //   }
@@ -139,22 +97,19 @@ const AddPostForm = ({
   }
 
   const onDrop = (pictureFiles: File[], field: "cover" | "banner") => {
-    if(field === "banner") setBannerPicture(pictureFiles)
-    if(field === "cover") setCoverPicture(pictureFiles)
+    if (field === "banner") setBannerPicture(pictureFiles);
+    if (field === "cover") setCoverPicture(pictureFiles);
   };
 
   const onSubmit = async (data: IPInputs) => {
-    let body = data
-    body.cover = coverPicture
-    body.banner = bannerPicture
-    body.tags = tags
-    console.log('body :>> ', body);
+    let body = data;
+    body.cover = coverPicture;
+    body.banner = bannerPicture;
+    body.tags = tags;
+
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/create/post",
-        body
-      );
-      console.log(response.data);
+      const response: any = await callApi().post(`/api/create/post`, body);
+      console.log("response :>> ", response);
     } catch (error) {
       console.error(error);
     }
@@ -171,7 +126,6 @@ const AddPostForm = ({
       />
 
       <div className={"mt-5"} />
-      <button onClick={() => setOpen(true)}>click here</button>
 
       <div className="w-[70%] mx-auto py-12 px-6">
         <h1 className="text-3xl font-bold mb-8 overflow-hidden">
@@ -223,8 +177,8 @@ const AddPostForm = ({
           <CustomField
             register={register}
             errors={errors}
-            label="body"
-            id="body"
+            label="Information"
+            id="information"
             styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
             placeholder=""
             required={false}
@@ -253,7 +207,7 @@ const AddPostForm = ({
           <CustomFieldArea
             register={register}
             errors={errors}
-            label="More information"
+            label="Extra information"
             id="extraInformation"
             styleClass="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter the main idea of your post"
@@ -270,7 +224,33 @@ const AddPostForm = ({
             required={false}
           />
 
-          <>
+          <label htmlFor={"level"} className="block text-lg font-semibold mt-1">
+            {"level"}
+            <span className={"text-rose-600"}>*</span>
+          </label>
+          <select
+            {...register("languageLevel", { required: true })}
+            className={`${
+              errors["languageLevel"] &&
+              "is-invalid bg-ms-white border-ms-crimson border-[1px]"
+            } w-[50%] h-10 text-ms-lg border border-gray-400 rounded-lg px-4 py-2 my-2 focus:outline-gray-500  focus:outline-[1px] mb-0`}
+          >
+            {["A1", "A2", "B1", "B2", "C1", "C2"].map(
+              (item: LanguageLevel | string, index: number) => {
+                return (
+                  <option
+                    key={index}
+                    className="p-4 font-ms-iranSansMobile m-2 text-ms-lg h-10 space-x-2 space-y-20"
+                    value={item}
+                  >
+                    {item}
+                  </option>
+                );
+              }
+            )}
+          </select>
+
+          {/* <>
             <div className={"w-100"}>
               <label className="block  font-bold mt-2" htmlFor="tags">
                 tags
@@ -282,7 +262,7 @@ const AddPostForm = ({
               </label>
 
               <div className="flex flex-wrap">
-                {tags.map((tag, index) => (
+                {tags.map((tag:any, index:number) => (
                   <div
                     key={index}
                     className="bg-gray-600  hover:bg-gray-800  text-white rounded-full cursor-pointer px-4 m-1 py-1 mt-3"
@@ -294,15 +274,6 @@ const AddPostForm = ({
               </div>
 
               <div className="flex items-center mb-2">
-                {/* <input
-                                                    type="text"
-                                                    id="tags"
-                                                    name="tags"
-                                                    className="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-                                                    placeholder="Enter a tag and press Enter"
-                                                    onBlur={handleAddTag}
-                                                    {...register("tags")}
-                                                /> */}
                 <input
                   type="text"
                   id="tags"
@@ -320,7 +291,7 @@ const AddPostForm = ({
                 </button>
               </div>
             </div>
-          </>
+          </> */}
 
           <div className="flex sm:flex-row flex-col mt-6 w-full">
             <div className="flex flex-col sm:w-[49%] w-full">
@@ -341,15 +312,15 @@ const AddPostForm = ({
               <CustomField
                 register={register}
                 errors={errors}
-                label="social media"
-                id="information.source"
+                label="social media or email address"
+                id="information.email"
                 styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
                 placeholder=""
                 required={false}
               />
             </div>
 
-            <div className="flex flex-col sm:w-[49%] w-full">
+            {/* <div className="flex flex-col sm:w-[49%] w-full">
               <CustomFieldArea
                 register={register}
                 errors={errors}
@@ -359,7 +330,7 @@ const AddPostForm = ({
                 placeholder="Enter the main idea of your post"
                 required={false}
               />
-            </div>
+            </div> */}
           </div>
 
           <button
