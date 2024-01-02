@@ -14,8 +14,8 @@ import { CustomField } from "@/components/custom/fields/CustomField";
 import { CustomFieldArea } from "@/components/custom/fields/CustomFieldArea";
 
 const schema = yup.object().shape({
-  cover: yup.string().required(),
-  banner: yup.string().required(),
+  cover: yup.array(),
+  banner: yup.array(),
   title: yup.string().required(),
   introduction: yup.string().required(),
   mainIdea: yup.string().required(),
@@ -120,17 +120,17 @@ const AddPostForm = ({
             onDrop={(e: File[]) => onDrop(e, "cover")}
             label={"Cover Image "}
           />
-          {errors["cover"] && errors["cover"].type && (
+          {/* {errors["cover"] && errors["cover"].type && (
             <p className="text-rose-500 -mt-5">{errors["cover"].message}</p>
-          )}
+          )} */}
           <UploadForm
             id={"banner"}
             onDrop={(e: File[]) => onDrop(e, "banner")}
             label={"Banner Image"}
           />
-          {errors["banner"] && errors["banner"].type && (
+          {/* {errors["banner"] && errors["banner"].type && (
             <p className="text-rose-500 -mt-5">{errors["banner"].message}</p>
-          )}
+          )} */}
 
           <CustomField
             register={register}
