@@ -1,16 +1,28 @@
+// https://reactapp.ir/eact-file-upload-proper-server-side-nodejs-easy/
 
-import dbConnect from "@/lib/dbConnect";
-import User from "@/models/User";
 import Post from "@/models/create/Post";
-const fs = require('fs')
+const fs = require('fs/promises')
 import type { NextApiRequest, NextApiResponse } from "next";
+import dbConnect from '@/lib/dbConnect';
+import { v4 as uuidv4 } from 'uuid';
+import { writeFile } from 'fs/promises'
 
 
+const multer  = require('multer')
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'images/reza')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix)
+  }
+})
+const upload = multer({ storage: storage })
 
 export async function GET(req:NextApiRequest, res:NextApiResponse) {
 
-  
   try {
 
         const posts = await Post.find({});
@@ -25,33 +37,29 @@ export async function GET(req:NextApiRequest, res:NextApiResponse) {
 }
 
 
-
-
-// if (req.files) {
-//   const images = {};
-
-//   if (req.files.mainImage) {
-//     images.mainImage = `/uploads/${req.files.mainImage.name}`;
-//   }
-
-//   if (req.files.additionalImage1) {
-//     images.additionalImage1 = `/uploads/${req.files.additionalImage1.name}`;
-//   }
-//   if (req.files.additionalImage2) {
-//     images.additionalImage2 = `/uploads/${req.files.additionalImage2.name}`;
-//   }
-//   post.images = images;
-// }
-// await post.save();
-
-
 export async function POST(req :Request, res:Response) {
-  try {
-        await dbConnect()
-        const data = await req.json()
-        const post = new Post(data);
-        await post.save();
-        return new Response(`Welcome to my Next application, user: ${post}`);
+
+try {
+  await dbConnect()
+   
+
+
+  
+  const data = await req.formData()
+      // const file: File | null = data.get('cover') as unknown as File
+      const myfile = data.get('cover');
+
+      const upload = multer().single(myfile)
+      const bytes = await myfile.arrayBuffer()
+      const buffer = Buffer.from(bytes)
+      const fileName = uuidv4(); // generate a unique file name
+      const fileExtension = myfile.type.split('/')[1];
+      let path = '/images/'+fileName+'.'+fileExtension
+  await writeFile(path, buffer)
+  console.log(`open ${path} to see the uploaded file`)
+  
+
+        return new Response(`Welcome to my Next application, user: ${"post"}`);
 
 
   } catch (error) {
@@ -68,6 +76,10 @@ export async function PUT(req:NextApiRequest, res:NextApiResponse) {
 export async function DELETE(req:NextApiRequest, res:NextApiResponse) {
   return new Response("ok")
 }
+
+
 // export async function POST(req:NextApiRequest, res:NextApiResponse) {
 //   return new Response(req)
 // }
+
+

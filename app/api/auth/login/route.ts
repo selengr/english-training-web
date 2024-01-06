@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 const nodemailer = require("nodemailer");
 
-export async function GET(request :NextRequest,res) { 
+export async function GET(request :NextRequest,res) {
   try {
         dbConnect();
     const user = await LoginedInUsers.find();
@@ -28,7 +28,6 @@ export async function POST(request , res ) {
 
             // Check if user is already registered
         const userExists = await User.findOne({email: requestData.email });
-// console.log('userExists :>> ', userExists);
         const crypto = require('crypto');
         const jwtSecret = crypto.randomBytes(32).toString('hex');
          const token = jwt.sign({ id: requestData.password, username: requestData.email },
@@ -103,4 +102,5 @@ export async function POST(request , res ) {
           console.error(error);
           return new Response(`Error retrieving notes: ${error.message}`, { status: 500 });
       }
-  }
+}
+

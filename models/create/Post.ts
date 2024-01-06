@@ -3,8 +3,10 @@
 import mongoose from "mongoose"
 
 const PostModel = new mongoose.Schema({
-  cover: { data: Buffer, contentType: String, required: true },
-  banner: { data: Buffer, contentType: String, required: true },
+  // cover: { data: Buffer, contentType: String, required: true },
+  // banner: { data: Buffer, contentType: String, required: true },
+  cover: [],
+  banner: [],
   title: { type: String, required: true },
   introduction: { type: String, required: true },
   mainIdea: { type: String, required: true },

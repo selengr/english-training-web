@@ -16,14 +16,19 @@ import { CustomFieldArea } from "@/components/custom/fields/CustomFieldArea";
 const schema = yup.object().shape({
   cover: yup.array(),
   banner: yup.array(),
-  title: yup.string().required(),
-  introduction: yup.string().required(),
-  mainIdea: yup.string().required(),
-  body: yup.string().required(),
+  title: yup.string(),
+  // title: yup.string().required(),
+  introduction: yup.string(),
+  // introduction: yup.string().required(),
+  mainIdea: yup.string(),
+  // mainIdea: yup.string().required(),
+  body: yup.string(),
+  // body: yup.string().required(),
   point: yup.string(),
   tips: yup.string(),
   extraInformation: yup.string(),
-  conclusion: yup.string().required(),
+  conclusion: yup.string(),
+  // conclusion: yup.string().required(),
   information: yup.object({
     author: yup.string(),
     email: yup.string(),
@@ -53,8 +58,8 @@ const AddPostForm = ({
     defaultValues: {},
   });
 
-  const [bannerPicture, setBannerPicture] = useState<File[]>([]);
-  const [coverPicture, setCoverPicture] = useState<File[]>([]);
+  const [bannerPicture, setBannerPicture] = useState<any>([]);
+  const [coverPicture, setCoverPicture] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
 
   function handleAddTag(e: any) {
@@ -78,20 +83,45 @@ const AddPostForm = ({
     setTags(newTags);
   }
 
-  const onDrop = (pictureFiles: File[], field: "cover" | "banner") => {
+  const onDrop = (pictureFiles: any, field: "cover" | "banner") => {
     if (field === "banner") setBannerPicture(pictureFiles);
     if (field === "cover") setCoverPicture(pictureFiles);
   };
 
   const onSubmit = async (data: IPInputs) => {
-    let body = data;
-    body.cover = coverPicture;
-    body.banner = bannerPicture;
-    // body.tags = tags;
-    console.log("body :>> ", body);
+
+    // const allowedFileTypes = ["image/png", "image/jpeg", "image/gif"];
+    
+
+
+    const coverBlob = new Blob([coverPicture], { type: "image/png" });
+    const bannerBlob = new Blob([bannerPicture], { type: "image/png" });
+
+    let body = new FormData();
+    body.append("cover", coverBlob, "first");
+    body.append("banner", bannerBlob, "second");
+    body.append("body", data.body);
+    body.append("title", data.title);
+    body.append("introduction", data.introduction);
+    body.append("mainIdea", data.mainIdea);
+    body.append("mainIdea", data.mainIdea);
+    body.append("tags", data.tags);
+    body.append("conclusion", data.conclusion);
+    if (data.tips) body.append("tips", data.tips);
+    if (data.information.author)
+      body.append("information", data.information.author);
+    if (data.information.email)
+      body.append("information", data.information.email);
+    if (data.languageLevel) body.append("languageLevel", data.languageLevel);
+    if (data.extraInformation)
+      body.append("extraInformation", data.extraInformation);
+
     try {
-      const response: any = await callApi().post(`/api/create/post`, body);
-      console.log("response :>> ", response);
+      const response: any = await callApi().post(`/api/create/post`, body, {
+        headers: {
+           "Content-Type":"multipart/form-data"
+        },
+      });
     } catch (error) {
       console.error(error);
     }

@@ -25,12 +25,13 @@ interface ApiResponse<T> {
 
 const AUTH_TOKEN = 'your_auth_token';
 
-const callApi = (baseURL?: string, data?: unknown) => {
+const callApi = (baseURL?: string, data?: unknown,ContentType?:string) => {
   const axiosInstance = axios.create({
     baseURL: baseURL || AUTH_API.domain,
     timeout: 12000,
     headers: {
-      Accept: 'application/json',
+      // Accept: 'application/json',
+      'Content-Type': ContentType && 'application/json'
       //  config.headers['Authorization'] = 'Bearer ' + getToken();
       //  Authorization: 'Bearer YOUR_TOKEN' // AUTH_TOKEN
       
