@@ -17,19 +17,14 @@ import UiAccordion from "@/components/ui/accordion/UiAccordion";
 const schema = yup.object().shape({
   cover: yup.array(),
   banner: yup.array(),
-  title: yup.string(),
-  // title: yup.string().required(),
-  introduction: yup.string(),
-  // introduction: yup.string().required(),
-  mainIdea: yup.string(),
-  // mainIdea: yup.string().required(),
-  body: yup.string(),
-  // body: yup.string().required(),
+  title: yup.string().required(),
+  introduction: yup.string().required(),
+  mainIdea: yup.string().required(),
+  body: yup.string().required(),
   point: yup.string(),
   tips: yup.string(),
   extraInformation: yup.string(),
-  conclusion: yup.string(),
-  // conclusion: yup.string().required(),
+  conclusion: yup.string().required(),
   information: yup.object({
     author: yup.string(),
     email: yup.string(),
@@ -334,7 +329,7 @@ const AddPostForm = ({
               <CustomField
                 register={register}
                 errors={errors}
-                label="social media or email address"
+                label="social media or email"
                 id="information.email"
                 styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
                 placeholder=""
@@ -359,7 +354,7 @@ const AddPostForm = ({
           <UiButton
             type="submit"
             // className="w-[50%] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            className="bg-slate-400 m-6 mt-14 hover:bg-slate-400 text-white text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
+            className="bg-amber-900 mt-14 hover:bg-amber-800 text-white text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
             // text="create post"
           >
             save post

@@ -12,7 +12,22 @@ import { isConstructorDeclaration } from "typescript/lib/tsserverlibrary";
 
 
 
+export async function GET(req:NextApiRequest, res:NextApiResponse , postId:number) {
 
+  try {
+
+
+        console.log('postid' , postId);
+        const posts = await Post.find(postId);
+        return new Response(`Welcome to my Next application ok ok: ${posts}`);
+
+    } catch (error) {
+        console.error(error);
+        return new Response(`Error retrieving notes: ${error}`, { status: 500 });
+        // return new NextResponse.json("myData");
+    }
+  return new Response("ok")
+}
 
 
 export async function POST(req :NextRequest, res:Response) {
