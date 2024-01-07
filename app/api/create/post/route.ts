@@ -1,25 +1,15 @@
 // https://reactapp.ir/eact-file-upload-proper-server-side-nodejs-easy/
 
-import Post from "@/models/create/Post";
-const fs = require('fs/promises')
-import type { NextApiRequest, NextApiResponse } from "next";
-import dbConnect from '@/lib/dbConnect';
-import { v4 as uuidv4 } from 'uuid';
+import { join } from "path";
 import { writeFile } from 'fs/promises'
+import dbConnect from '@/lib/dbConnect';
+import Post from "@/models/create/Post";
+import { NextRequest, NextResponse } from "next/server";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 
-const multer  = require('multer')
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'images/reza')
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.fieldname + '-' + uniqueSuffix)
-  }
-})
-const upload = multer({ storage: storage })
+
 
 export async function GET(req:NextApiRequest, res:NextApiResponse) {
 
@@ -37,29 +27,36 @@ export async function GET(req:NextApiRequest, res:NextApiResponse) {
 }
 
 
-export async function POST(req :Request, res:Response) {
+export async function POST(req :NextRequest, res:Response) {
+  try {
+    await dbConnect()
+    const data = await req.formData()
+    console.log('data :>> ', data);
+      const cover: File | null = data.get('cover') as unknown as File
+      const banner: File | null = data.get('banner') as unknown as File
+      let cover_path,banner_path
+      // if(!file) NextResponse.json({success:false})
+      if(cover){
+        const bytes = await cover.arrayBuffer()
+        const buffer = Buffer.from(bytes)
+        const cover_path = join('/images',"/",cover.name )
+        await writeFile(cover_path,buffer)
+      }
+      if(banner){
+        const bytes = await banner.arrayBuffer()
+        const buffer = Buffer.from(bytes)
+        const banner_path = join('/images',"/",banner.name )
+        await writeFile(banner_path,buffer)
+      }
+ 
+      const create = new Post({
+        data,
+        cover:cover_path,
+        banner:banner_path
+      })
+      await create.save()
 
-try {
-  await dbConnect()
-   
-
-
-  
-  const data = await req.formData()
-      // const file: File | null = data.get('cover') as unknown as File
-      const myfile = data.get('cover');
-
-      const upload = multer().single(myfile)
-      const bytes = await myfile.arrayBuffer()
-      const buffer = Buffer.from(bytes)
-      const fileName = uuidv4(); // generate a unique file name
-      const fileExtension = myfile.type.split('/')[1];
-      let path = '/images/'+fileName+'.'+fileExtension
-  await writeFile(path, buffer)
-  console.log(`open ${path} to see the uploaded file`)
-  
-
-        return new Response(`Welcome to my Next application, user: ${"post"}`);
+      return new Response("okkkkkkkkkkk")
 
 
   } catch (error) {

@@ -5,6 +5,7 @@ const nextConfig = {
       },
       experimental: {
         // ppr: true,
+        // serverActions:true
       },
       env: {
         DOMAIN: 'http://localhost:3000'

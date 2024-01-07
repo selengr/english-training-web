@@ -1,5 +1,5 @@
 "use client";
-// opt
+// // opt
 import * as yup from "yup";
 import { useState } from "react";
 import callApi from "@/services/axios";
@@ -89,21 +89,12 @@ const AddPostForm = ({
   };
 
   const onSubmit = async (data: IPInputs) => {
-
-    // const allowedFileTypes = ["image/png", "image/jpeg", "image/gif"];
-    
-
-
-    const coverBlob = new Blob([coverPicture], { type: "image/png" });
-    const bannerBlob = new Blob([bannerPicture], { type: "image/png" });
-
     let body = new FormData();
-    body.append("cover", coverBlob, "first");
-    body.append("banner", bannerBlob, "second");
+    body.append("cover", coverPicture[0]);
+    body.append("banner", bannerPicture[0]);
     body.append("body", data.body);
     body.append("title", data.title);
     body.append("introduction", data.introduction);
-    body.append("mainIdea", data.mainIdea);
     body.append("mainIdea", data.mainIdea);
     body.append("tags", data.tags);
     body.append("conclusion", data.conclusion);
@@ -117,9 +108,17 @@ const AddPostForm = ({
       body.append("extraInformation", data.extraInformation);
 
     try {
+      //   await fetch('/api/create/post', {
+      //     method: 'POST',
+      //     headers: {
+      //         'Content-type': "multipart/form-data",
+      //     },
+      //     body: body,
+      // })
+
       const response: any = await callApi().post(`/api/create/post`, body, {
         headers: {
-           "Content-Type":"multipart/form-data"
+          "Content-Type": "multipart/form-data",
         },
       });
     } catch (error) {

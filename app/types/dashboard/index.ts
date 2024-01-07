@@ -10,17 +10,17 @@
    }
   //  ==================================================
    export interface IPInputs {
-    cover?: any;
-    banner?: any;
-    title?: string;
-    introduction?: string;
-    mainIdea?: string;
-    body?: string;
+    cover: any;
+    banner: any;
+    title: string;
+    introduction: string;
+    mainIdea: string;
+    body: string;
     point?: string;
     tips?: string;
     extraInformation?: string;
-    conclusion?: string;
-    information? : Information
+    conclusion: string;
+    information : Information
     languageLevel?: LanguageLevel;
     tags?: any;
    }
