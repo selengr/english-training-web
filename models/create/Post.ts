@@ -1,12 +1,11 @@
 
 // ok now i want to send my front code and i just made a little input and i want you improve it and put all of these code there " by making beautifull one "
+
 import mongoose from "mongoose"
 
 const PostModel = new mongoose.Schema({
-  // cover: { data: Buffer, contentType: String, required: true },
-  // banner: { data: Buffer, contentType: String, required: true },
-  cover: [],
-  banner: [],
+  cover: { type: String, required: true },
+  banner:  { type: String, required: true },
   title: { type: String, required: true },
   introduction: { type: String, required: true },
   mainIdea: { type: String, required: true },
@@ -19,7 +18,7 @@ const PostModel = new mongoose.Schema({
     author: { type: String, required: false },
     email: { type: String, required: false }
   },
-  languageLevel: { type: String, required: false },
+  languageLevel: { type: String, required: true },
   tags: { type: String, required: false },
 
   // cultureNotes: { type: String, required: false },

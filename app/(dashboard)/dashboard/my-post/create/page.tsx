@@ -12,6 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import UploadForm from "@/components/custom/uploader/page";
 import { CustomField } from "@/components/custom/fields/CustomField";
 import { CustomFieldArea } from "@/components/custom/fields/CustomFieldArea";
+import UiAccordion from "@/components/ui/accordion/UiAccordion";
 
 const schema = yup.object().shape({
   cover: yup.array(),
@@ -231,6 +232,10 @@ const AddPostForm = ({
             required={false}
           />
 
+
+          {/* <UiAccordion /> */}
+
+
           <CustomFieldArea
             register={register}
             errors={errors}
@@ -348,6 +353,7 @@ const AddPostForm = ({
                 required={false}
               />
             </div> */}
+            
           </div>
 
           <UiButton
