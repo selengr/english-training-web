@@ -20,15 +20,15 @@ async function getData() {
 export default async function Post () {
   const data = await getData()
 
-
- 
-
+  
+  
   return (
     <div className={styles["post-header"]}>
       <h2>Blog Posts</h2>
 
       <aside className={styles["post-blog-card"]}>
         {data?.map((it:IPInputs) => {
+          
           return (
             <>
               <Link
@@ -39,7 +39,7 @@ export default async function Post () {
                 passHref
               >
                 <Image
-                  src={"/"+it.banner}
+                  src={'/'+it.banner.toString().replace('public\\' ,'')}
                   alt="Picture of the author"
                   width={0}
                   height={0}

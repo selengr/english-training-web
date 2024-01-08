@@ -40,7 +40,7 @@ const Post = async (props) => {
         <Introduction updatedAt={data.updatedAt} />
         <div className={styles["landing-article"]}>
           <MainIdea data={data} />
-          <Conclusion data={data} />
+          {/* <Conclusion data={data} /> */}
         </div>
 
         <Code />
@@ -51,20 +51,20 @@ const Post = async (props) => {
   );
 };
 
-function getLayout(page, props) {
-  // Check if the current page is the child page
-  const isChildPage = page.name === "Post";
+// function getLayout(page, props) {
+//   // Check if the current page is the child page
+//   const isChildPage = page.name === "Post";
 
-  // Return only the content defined within the child page component if it's the child page
-  if (isChildPage) {
-    return <>{props.children}</>;
-  }
+//   // Return only the content defined within the child page component if it's the child page
+//   if (isChildPage) {
+//     return <>{props.children}</>;
+//   }
 
-  // Otherwise, return the ParentLayout component
-  return <Layout {...props}>{props.children}</Layout>;
-}
+//   // Otherwise, return the ParentLayout component
+//   return <Layout {...props}>{props.children}</Layout>;
+// }
 
-// Attach the getLayout function to the ChildPage component
-Post.getLayout = getLayout;
+// // Attach the getLayout function to the ChildPage component
+// Post.getLayout = getLayout;
 
 export default Post;

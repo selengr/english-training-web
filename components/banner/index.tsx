@@ -12,13 +12,14 @@ type Props = {
 }
 
 const Banner = ({data,title,banner,cover}:Props) => {
+  console.log('cover :>> ', cover);
     return (
         <div className={styles["landing-main"]}>
           {data === "its me" && <div className={`${styles["landing-img"]} `}> <HeroHeader /></div>}
           {data !== "its me" && 
               <Image
               // loader={myLoader}
-              src={"/"+banner}
+              src={'/'+banner.toString().replace('public\\' ,'')}
               alt="Picture of the author"
               width={500}
               height={500}
@@ -39,7 +40,7 @@ const Banner = ({data,title,banner,cover}:Props) => {
 
           {data !== "its me" && 
               <Image
-              src={"/"+cover}
+              src={'/'+cover.toString().replace('public\\' ,'')}
               alt="Picture of the author"
               width={0}
               height={0}

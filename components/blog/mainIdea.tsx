@@ -1,8 +1,7 @@
 import { IPInputs } from "@/app/types/dashboard";
 import styles from "../../styles/components/blog/blog.module.css";
-import Introduction from './introduction';
 
-const MainIdea = ({data}:IPInputs) => {
+const MainIdea = ({data}:{data:IPInputs}) => {
   // if(props?.params?.id === 2 ) return (
   //     <>
   //         {fetch("./FIRST.md")}

@@ -36,14 +36,14 @@ export async function POST(req :NextRequest, res:Response) {
       if(cover){
         const bytes = await cover.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        cover_path = join('./images',"/",uuidv4())
+        cover_path = join('./public/upload',"/",uuidv4())
         cover_path+='.'+cover.name.split(".")[1]
         await writeFile(cover_path,buffer)
       }
       if(banner){
         const bytes = await banner.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        banner_path = join('./images',"/",uuidv4() )
+        banner_path = join('./public/upload',"/",uuidv4() )
         banner_path+='.'+banner.name.split(".")[1]
         await writeFile(banner_path,buffer)
       }

@@ -10,7 +10,7 @@ function Code() {
                 <h1>
                     Experimental
                     <code>
-                        name: category
+                        category
                     </code>
                 </h1>
 
