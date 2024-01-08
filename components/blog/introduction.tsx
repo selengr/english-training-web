@@ -1,6 +1,6 @@
 import styles from "../../styles/components/blog/blog.module.css";
 
-const Introduction = ({param}) => {
+const Introduction = ({updatedAt}:{updatedAt:String}) => {
   return (
 
     <div className={styles["post-blog"]}>
@@ -12,7 +12,11 @@ const Introduction = ({param}) => {
         ))}
       </div>
 
-      <span className={styles["post-blog-property-date"]}>Mar 7, 2018</span>
+      <span className={styles["post-blog-property-date"]}>
+        {/* Mar 7, 2018 */}
+        {updatedAt}
+        {}
+        </span>
       {/*<span className={styles["post-blog-property-name"]}>{param}</span>*/}
 
       <hr className={styles["post-blog-propert-underLine"]} />

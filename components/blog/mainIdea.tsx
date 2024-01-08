@@ -1,7 +1,8 @@
+import { IPInputs } from "@/app/types/dashboard";
 import styles from "../../styles/components/blog/blog.module.css";
 import Introduction from './introduction';
 
-const MainIdea = (props) => {
+const MainIdea = ({data}:IPInputs) => {
   // if(props?.params?.id === 2 ) return (
   //     <>
   //         {fetch("./FIRST.md")}
@@ -114,10 +115,11 @@ const MainIdea = (props) => {
       {Jsondb.map((item, inex) => {
         return (
           <>
-            <span className={styles["costum-blog-span-italy"]}>
+            {/* <span className={styles["costum-blog-span-italy"]}>
               {item.title ??
-                "Everything I wish I,d known before starting Saasify 2 years ago."}
-            </span>
+                "Everything I wish I,d known before starting Saasify 2 years ago."
+                }
+            </span> */}
 
             <div className="h-16" />
 
@@ -125,10 +127,10 @@ const MainIdea = (props) => {
             <div className="h-4" />
 
             <div className={styles["costum-blog-quote"]}>
-              <h3 className="font-light mb-5">{item?.introduction?.title}</h3>
-              {item.introduction?.introduction ?? ""}
+              <h3 className="font-light mb-5">{data?.introduction}</h3>
+              {/* {item.introduction?.introduction ?? ""} */}
 
-              <u>
+              {/* <u>
                 {item.introduction.introductionList.map((item) => {
                   return (
                     <>
@@ -136,7 +138,7 @@ const MainIdea = (props) => {
                     </>
                   );
                 })}
-              </u>
+              </u> */}
             </div>
 
 
@@ -144,13 +146,13 @@ const MainIdea = (props) => {
             <h1 className={styles["costum-blog-h1"]}>Body</h1>
             <div className="h-4" />
 
-            <h3 className="font-light mb-2">{item.body.title ?? ""}</h3>
+            <h3 className="font-light mb-2">{data.body ?? ""}</h3>
    
-            <span className={styles["costum-blog-span border-b-0"]}>
+            {/* <span className={styles["costum-blog-span border-b-0"]}>
               {item.body.body ?? ""}
-            </span>
+            </span> */}
 
-            <u>
+            {/* <u>
               {item?.body?.bodyList.map((item) => {
                 return (
                   <>
@@ -158,21 +160,21 @@ const MainIdea = (props) => {
                   </>
                 );
               })}
-            </u>
+            </u> */}
 
             <div className="h-6 mt-6" />
 
             <span className={styles["costum-blog-span"]}>
-              {item.tips?.title ?? ""}
+              {data.tips ?? ""}
             </span>
 
             <div className="h-4" />
 
             <span className={styles["costum-blog-span"]}>
-              {item.tips?.tips ?? ""}
+              {data.tips ?? ""}
             </span>
 
-            <u>
+            {/* <u>
               {item?.tips.tipsList.map((item) => {
                 return (
                   <>
@@ -180,23 +182,23 @@ const MainIdea = (props) => {
                   </>
                 );
               })}
-            </u>
+            </u> */}
 
             <div className="h-4" />
 
             <span className={styles["costum-blog-span"]}>
-              {item.mainIdea?.title ?? ""}
+              {data.mainIdea ?? ""}
             </span>
 
             <div className="h-4" />
 
-            <span className={styles["costum-blog-span"]}>
+            {/* <span className={styles["costum-blog-span"]}>
               {item.mainIdea?.mainIdea ?? ""}
-            </span>
+            </span> */}
 
             <div className="h-4" />
 
-            <div>
+            {/* <div>
               {item?.mainIdea?.mainIdeaList.map((item) => {
                 return (
                   <>
@@ -204,19 +206,19 @@ const MainIdea = (props) => {
                   </>
                 );
               })}
-            </div>
+            </div> */}
 
             <div className="h-4" />
             <span className={styles["costum-blog-span"]}>
-              {item.extraInformation?.title ?? ""}
+              {data.extraInformation ?? ""}
             </span>
             <div className="h-4" />
-
+{/* 
             <span className={styles["costum-blog-span"]}>
               {item.extraInformation?.extraInformation ?? ""}
-            </span>
+            </span> */}
 
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               {item?.extraInformation?.extraInformationList.map((item) => {
                 return (
                   <>
@@ -224,20 +226,20 @@ const MainIdea = (props) => {
                   </>
                 );
               })}
-            </div>
+            </div> */}
 
 
             <div className="h-4" />
             <span className={styles["costum-blog-span"]}>
-              {item.point?.title ?? ""}
+              {data.point ?? ""}
             </span>
             <div className="h-4" />
 
-            <span className={styles["costum-blog-span"]}>
+            {/* <span className={styles["costum-blog-span"]}>
               {item.point?.point ?? ""}
-            </span>
+            </span> */}
 
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               {item?.point?.pointList.map((item) => {
                 return (
                   <>{" "} 
@@ -245,20 +247,20 @@ const MainIdea = (props) => {
                   </>
                 );
               })}
-            </div>
+            </div> */}
 
 
             <div className="mb-10" />
                <h1 className={styles["costum-blog-h1"]}>Conclusion</h1>
  
             <span className={styles["costum-blog-span"]}>
-              {item.conclusion?.title ?? ""}
+              {data.conclusion ?? ""}
             </span>
 
             <div className="mb-2" />
 
             <div className="h-10" />
-            <div className={styles["blog-main-gray_background"]}>
+            {/* <div className={styles["blog-main-gray_background"]}>
               <span className="font-bold">
                 <em>
                   Im currently working to transition Saasify to a more open,
@@ -269,7 +271,7 @@ const MainIdea = (props) => {
                 If youre interested in contributing to Saasify as an open source
                 platform, please get in touch on our open slack.
               </span>
-            </div>
+            </div> */}
           </>
         );
       })}
