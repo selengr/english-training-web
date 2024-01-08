@@ -1,6 +1,7 @@
 // https://reactapp.ir/eact-file-upload-proper-server-side-nodejs-easy/
 
 import { join } from "path";
+import { v4 as uuidv4 } from 'uuid';
 import { writeFile } from 'fs/promises'
 import dbConnect from '@/lib/dbConnect';
 import Post from "@/models/create/Post";
@@ -11,23 +12,16 @@ import { isConstructorDeclaration } from "typescript/lib/tsserverlibrary";
 
 
 
-
-export async function GET(req:NextApiRequest, res:NextApiResponse , postId:number) {
-
+export async function GET(req:NextApiRequest) {
   try {
-
-
-        console.log('postid' , postId);
-        const posts = await Post.find(postId);
-        return new Response(`Welcome to my Next application ok ok: ${posts}`);
-
+        dbConnect();
+        const posts : any = await Post.find();
+        return new Response(JSON.stringify(posts))
     } catch (error) {
-        console.error(error);
         return new Response(`Error retrieving notes: ${error}`, { status: 500 });
-        // return new NextResponse.json("myData");
     }
-  return new Response("ok")
 }
+
 
 
 export async function POST(req :NextRequest, res:Response) {
@@ -36,18 +30,21 @@ export async function POST(req :NextRequest, res:Response) {
     const data = await req.formData()
       const cover: File | null = data.get('cover') as unknown as File
       const banner: File | null = data.get('banner') as unknown as File
-      let cover_path='',banner_path=''
+      let cover_path=''
+      let banner_path=''
       // if(!file) NextResponse.json({success:false})
       if(cover){
         const bytes = await cover.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        cover_path = join('/images',"/",cover.name )
+        cover_path = join('./images',"/",uuidv4())
+        cover_path+='.'+cover.name.split(".")[1]
         await writeFile(cover_path,buffer)
       }
       if(banner){
         const bytes = await banner.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        banner_path = join('/images',"/",banner.name )
+        banner_path = join('./images',"/",uuidv4() )
+        banner_path+='.'+banner.name.split(".")[1]
         await writeFile(banner_path,buffer)
       }
       const create = new Post({

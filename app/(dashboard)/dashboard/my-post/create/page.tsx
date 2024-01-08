@@ -112,7 +112,7 @@ const AddPostForm = ({
       //     body: body,
       // })
 
-      const response: any = await callApi().post(`/api/create/post`, body, {
+      const response: any = await callApi().post(`/api/post`, body, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

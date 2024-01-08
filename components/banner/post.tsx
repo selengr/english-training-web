@@ -1,50 +1,45 @@
-'use client'
-
+// "use client"
 import Image from "next/image";
 import styles from "../../styles/components/banner/banner.module.css";
 import Link from "next/link";
+import callApi from "@/services/axios";
+import { IPInputs } from "@/app/types/dashboard";
+
+// export const revalidate = 3600 
+
+async function getData() {
+  try {
+    const response = await callApi().get("/api/post")
+    return response
+  } catch (error) {
+    console.log("11111111111111111111111");
+    return error
+  }
+};
+
+export default async function Post () {
+  const data = await getData()
 
 
-const Post = () => {
-  let data = [
-    { images: "/images/fikeus-west-2.avif", slug: 1,name:"1nop" },
-    { images: "/images/fikeus-west-2.avif", slug: 2,name:"2nop" },
-    { images: "/images/fikeus-west-2.avif", slug: 3,name:"3nop" },
-    { images: "/images/fikeus-west-2.avif", slug: 4,name:"4nop" },
-    { images: "/images/fikeus-west-2.avif", slug: 5,name:"5nop" },
-    { images: "/images/fikeus-west-2.avif", slug: 6,name:"6nop" },
-    { images: "/images/fikeus-west-2.avif", slug: 7,name:"6nop" },
-    { images: "/images/fikeus-west-2.avif", slug: 8,name:"6nop" },
-  ];
-
-// useEffect(()=>{
-//   fetch('http://localhost:8000/api/post/all')
-//   .then((res) => res.json())
-//   .then((d) => {
-//     console.log(d)
-//     debugger
-//   })
-
-// },[])
-
+ 
 
   return (
     <div className={styles["post-header"]}>
       <h2>Blog Posts</h2>
 
       <aside className={styles["post-blog-card"]}>
-        {data.map((it) => {
+        {data?.map((it:IPInputs) => {
           return (
             <>
               <Link
-                href={`/blog/${it.slug}?query=${it.images}&${it.name}`}
+                href={`/blog/${it._id}`}
                 // as={`/blog/${it.slug}?query=${it.images}&${it.name}`}
                 className={styles["post-blog-each-card"]}
-                key={Math.floor(Math.random()*1000)}
+                key={Math.floor(Math.random() * 1000)}
                 passHref
               >
                 <Image
-                  src={it.images}
+                  src={"/"+it.banner}
                   alt="Picture of the author"
                   width={0}
                   height={0}
@@ -52,16 +47,19 @@ const Post = () => {
 
                 <section className={styles["post-blog-property"]}>
                   <span className={styles["post-blog-property-title"]}>
-                    Example article
+                    {/* Example article */}
+                    {it.title}
                   </span>
                   <div className={styles["post-blog-property-details"]}>
                     <span className={styles["post-blog-property-description"]}>
-                      The best techniques for sharing code snippets and
+                      {/* The best techniques for sharing code snippets and
                       screencasts that will help propel your open source
-                      projects to success.
+                      projects to success. */}
+                      {it.introduction}
                     </span>
                     <span className={styles["post-blog-property-date"]}>
-                      Mar 7, 2018
+                      {/* Mar 7, 2018 */}
+                      {it.updatedAt.split("-")[1]}
                     </span>
                   </div>
                   <div className={styles["post-blog-property-map-opt"]}>
@@ -80,5 +78,3 @@ const Post = () => {
     </div>
   );
 };
-
-export default Post;

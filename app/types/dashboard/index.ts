@@ -10,6 +10,8 @@
    }
   //  ==================================================
    export interface IPInputs {
+    [x: string]: any;
+    updatedAt: ReactNode;
     cover: any;
     banner: any;
     title: string;

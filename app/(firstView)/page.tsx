@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 // import clientPromise from '../../lib/mongodb'
 import Bio from "@/components/banner/bio";

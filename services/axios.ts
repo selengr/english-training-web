@@ -38,14 +38,14 @@ const callApi = (baseURL?: string, data?: unknown,ContentType?:string) => {
     },
     // transformRequest: [
     //   (data) => {
-    //     return JSON.stringify(data
+    //     return JSON.stringify(data)
     //   },
     // ],
-    transformResponse: [
-      (data) => {
-        return JSON.parse(data);
-      }
-    ]
+    // transformResponse: [
+    //   (data) => {
+    //     return JSON.parse(data);
+    //   }
+    // ]
   });
 
   axiosInstance.interceptors.request.use(

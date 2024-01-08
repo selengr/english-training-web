@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import Introduction from '../../../../components/blog/introduction';
 import styles from "../../../../styles/components/blog/blog.module.css";
@@ -9,24 +9,27 @@ import Conclusion from "../../../../components/blog/conclusion";
 import Code from "../../../../components/custom/code";
 
 
-
-
 import Layout from "../../layout";
 import Header from '@/components/header';
 import Banner from '@/components/banner';
+import callApi from '@/services/axios';
+
+
+async function getData(id:string) {
+  try {
+    const response = await callApi().get(`/api/post/${id}`)
+    return response
+  } catch (error) {
+    console.log("error");
+  }
+};
 
 
 
-const Post = (props) => {
-     console.log("ppppp",props
-     );
-     let {searchParams, params :{id}} = props
+const Post = async (props) => {
+  let { params : {id}} = props
+  const data = await getData(id)
      
- const param = useParams()
- // const userouter = useRouter()
- // const {values,getAll,keys} = useSearchParams()
- // const {concat} = usePathname()
- // console.log('router :>> ', param);
 
 
 
@@ -41,7 +44,7 @@ const Post = (props) => {
          
          <div className={styles["blog-page-master"]}>
 
-                <Introduction param={param}/>
+                <Introduction param={id}/>
            <div className={styles["landing-article"]}>
                 <MainIdea />
                  <Conclusion />
