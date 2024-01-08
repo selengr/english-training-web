@@ -13,6 +13,7 @@ import Layout from "../../layout";
 import Header from '@/components/header';
 import Banner from '@/components/banner';
 import callApi from '@/services/axios';
+import { IPInputs } from '@/app/types/dashboard';
 
 
 async function getData(id:string) {
@@ -27,27 +28,26 @@ async function getData(id:string) {
 
 
 const Post = async (props) => {
-  let { params : {id}} = props
-  const data = await getData(id)
-     
 
+  let { params : {id}} = props
+  const data :  IPInputs = await getData(id)
+     
+console.log('data :>> ', data.banner);
 
 
   return (
     <>
 
-{/* <Layout myData={"/images/https___s3-us-west-2.avif"}> */}
-
 
         <Header />
-        <Banner data={ "/images/https___s3-us-west-2.avif"} /> 
+        <Banner title={data.title} banner={data.banner} cover={data.cover} /> 
          
          <div className={styles["blog-page-master"]}>
 
-                <Introduction param={id}/>
+                <Introduction param={id} data={data}/>
            <div className={styles["landing-article"]}>
-                <MainIdea />
-                 <Conclusion />
+                <MainIdea data={data}/>
+                 <Conclusion data={data}/>
            </div>
 
              <Code/>

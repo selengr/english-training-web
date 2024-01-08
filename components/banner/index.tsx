@@ -5,18 +5,20 @@ import { HeroHeader } from "../custom/hero-header";
 import { Button } from "@mui/material";
 
 type Props = {
-  data : String,
+  data? : String,
   title? : String,
+  banner:String,
+  cover : String
 }
 
-const Banner = ({data,title}:Props) => {
+const Banner = ({data,title,banner,cover}:Props) => {
     return (
         <div className={styles["landing-main"]}>
           {data === "its me" && <div className={`${styles["landing-img"]} `}> <HeroHeader /></div>}
           {data !== "its me" && 
               <Image
               // loader={myLoader}
-              src={"/images/https___s3-us-west-2.avif"}
+              src={"/"+banner}
               alt="Picture of the author"
               width={500}
               height={500}
@@ -37,7 +39,7 @@ const Banner = ({data,title}:Props) => {
 
           {data !== "its me" && 
               <Image
-              src={"/images/fikeus-west-2.avif"}
+              src={"/"+cover}
               alt="Picture of the author"
               width={0}
               height={0}

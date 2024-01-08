@@ -10,7 +10,7 @@ export async function GET(req:NextApiRequest, { params }: { params: { postId: st
     try {
         dbConnect();
           const posts = await Post.findOne({_id : params.postId});
-          return new Response(`Welcome to my Next application ok ok: ${posts}`);
+          return new Response(JSON.stringify(posts));
       } catch (error) {
           console.error(error);
           return new Response(`Error retrieving notes: ${error}`, { status: 500 });
