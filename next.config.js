@@ -7,6 +7,7 @@ const nextConfig = {
         // ppr: true,
         // serverActions:true
       },
+      images: { domains: ['daisyui.com'] },
       env: {
         DOMAIN: 'http://localhost:3000'
       }

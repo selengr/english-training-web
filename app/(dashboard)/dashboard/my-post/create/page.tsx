@@ -6,13 +6,23 @@ import callApi from "@/services/axios";
 import { useForm } from "react-hook-form";
 import "../../../../../styles/globals.css";
 import UiButton from "@/components/ui/UiButton";
-import { IPInputs, LanguageLevel } from "@/app/types/dashboard";
+import {
+  IPInputs,
+  LanguageLevel,
+  SaveExample,
+  tableData,
+} from "@/app/types/dashboard";
 import CustomizedSnackbars from "@/utils/snack-bar";
 import { yupResolver } from "@hookform/resolvers/yup";
 import UploadForm from "@/components/custom/uploader/page";
 import { CustomField } from "@/components/custom/fields/CustomField";
 import { CustomFieldArea } from "@/components/custom/fields/CustomFieldArea";
 import UiAccordion from "@/components/ui/accordion/UiAccordion";
+import Test from "@/components/test/Test";
+import UiCountdown from "@/components/ui/uiCountdown/UiCountdown";
+import Header from "@/components/header";
+import InputWithButtons from "@/components/custom/input-list/InputList";
+import CreateTable from "@/components/custom/input-list/CreateTable";
 
 const schema = yup.object().shape({
   cover: yup.array(),
@@ -31,6 +41,8 @@ const schema = yup.object().shape({
   }),
   languageLevel: yup.string(),
   tags: yup.string(),
+  descriptionLink: yup.string(),
+  link: yup.string(),
 });
 
 const AddPostForm = ({
@@ -54,7 +66,10 @@ const AddPostForm = ({
     defaultValues: {},
   });
 
-  const [bannerPicture, setBannerPicture] = useState<any>([]);
+  const [bannerPicture, setBannerPicture] = useState<tableData[]>();
+  const [saveExample, setSaveExample] = useState<SaveExample>();
+  // const [tableData, settableData] = useState<any>();
+  const [tableData, setTableData] = useState([]);
   const [coverPicture, setCoverPicture] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
 
@@ -86,19 +101,28 @@ const AddPostForm = ({
 
   const onSubmit = async (data: IPInputs) => {
     let body = new FormData();
+    let info = {
+      author: data.information.author,
+      email: data.information.email,
+    };
     body.append("cover", coverPicture[0]);
     body.append("banner", bannerPicture[0]);
     body.append("body", data.body);
+    body.append("saveExample", JSON.stringify(saveExample));
+    body.append("tableData", JSON.stringify(tableData));
     body.append("title", data.title);
     body.append("introduction", data.introduction);
     body.append("mainIdea", data.mainIdea);
     body.append("tags", data.tags);
+    body.append("link", data.link);
+    body.append("descriptionLink", data.descriptionLink);
     body.append("conclusion", data.conclusion);
+    if (data.point) body.append("point", data.point);
     if (data.tips) body.append("tips", data.tips);
-    if (data.information.author)
-      body.append("information", data.information.author);
-    if (data.information.email)
-      body.append("information", data.information.email);
+    // if (data.information.author||data.information.email)
+    body.append("information", JSON.stringify(info));
+    // if (data.information.email)
+    //   body.append("information.email", data.information.email);
     if (data.languageLevel) body.append("languageLevel", data.languageLevel);
     if (data.extraInformation)
       body.append("extraInformation", data.extraInformation);
@@ -121,7 +145,7 @@ const AddPostForm = ({
       console.error(error);
     }
   };
-
+console.log('tableData :>> ', tableData);
   return (
     <>
       <CustomizedSnackbars
@@ -131,6 +155,8 @@ const AddPostForm = ({
         className=""
         color="success"
       />
+
+      <Header />
 
       <div className={"mt-5"} />
 
@@ -162,7 +188,7 @@ const AddPostForm = ({
             errors={errors}
             label="Title"
             id="title"
-            styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
+            styleClass=""
             placeholder=""
             required={false}
           />
@@ -172,7 +198,7 @@ const AddPostForm = ({
             errors={errors}
             label="Introduction"
             id="introduction"
-            styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
+            styleClass=""
             placeholder=""
             required={false}
           />
@@ -182,19 +208,37 @@ const AddPostForm = ({
             errors={errors}
             label="Main Idea"
             id="mainIdea"
-            styleClass="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter the main idea of your post"
             required={false}
           />
 
-          <CustomField
+          {/* <InputListItem
+            id={"tabel"}
+            label={"Tabel"}
+            register={register}
+            errors={errors}
+            tableData={(e)=>console.log('e :>> ', e)}
+          /> */}
+          <CreateTable 
+          setTableData={setTableData}
+          tableData={tableData} />
+
+          <CustomFieldArea
             register={register}
             errors={errors}
             label="Body"
             id="body"
-            styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
-            placeholder=""
+            styleClass=""
+            placeholder="Enter the body of your post"
             required={false}
+          />
+
+          <InputWithButtons
+            id={"example"}
+            label={"Example"}
+            register={register}
+            errors={errors}
+            saveExample={(e) => setSaveExample(e)}
           />
 
           <CustomField
@@ -202,7 +246,7 @@ const AddPostForm = ({
             errors={errors}
             label="point"
             id="point"
-            styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
+            styleClass=""
             placeholder=""
             required={false}
           />
@@ -212,7 +256,7 @@ const AddPostForm = ({
             errors={errors}
             label="tips"
             id="tips"
-            styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
+            styleClass=""
             placeholder=""
             required={false}
           />
@@ -222,22 +266,20 @@ const AddPostForm = ({
             errors={errors}
             label="Extra information"
             id="extraInformation"
-            styleClass="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter the main idea of your post"
+            placeholder="Enter the extra information if necessary"
             required={false}
           />
 
-
           {/* <UiAccordion /> */}
-
+          {/* <Test />
+          <UiCountdown /> */}
 
           <CustomFieldArea
             register={register}
             errors={errors}
             label="conclusion"
             id="conclusion"
-            styleClass="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter the main idea of your post"
+            placeholder="Enter the conclusion of your post"
             required={false}
           />
 
@@ -310,51 +352,66 @@ const AddPostForm = ({
             </div>
           </> */}
 
-          <div className="flex sm:flex-row flex-col mt-6 w-full">
-            <div className="flex flex-col sm:w-[49%] w-full">
+          <CustomField
+            register={register}
+            errors={errors}
+            label="Link Description"
+            id="descriptionLink"
+            placeholder="Description for like blow if it is necessary"
+            required={false}
+          />
+          <CustomField
+            register={register}
+            errors={errors}
+            label="Link URL"
+            id="link"
+            placeholder="any usefull source related to this information"
+            required={false}
+          />
+
+          <div className="flex sm:flex-row flex-col mt-6 mb-6 w-full">
+            <div className="flex flex-col w-full sm:w-[48%] ">
               <CustomField
                 register={register}
                 errors={errors}
                 label="author"
                 id="information.author"
-                styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
-                placeholder=""
-                required={false}
-              />
-            </div>
-          </div>
-
-          <div className="flex sm:flex-row flex-col w-full mt-4 mb-8">
-            <div className="flex flex-col sm:w-[49%] w-full">
-              <CustomField
-                register={register}
-                errors={errors}
-                label="social media or email"
-                id="information.email"
-                styleClass="border border-gray-400 rounded-lg px-4 py-2 w-full"
+                styleClass=""
                 placeholder=""
                 required={false}
               />
             </div>
 
-            {/* <div className="flex flex-col sm:w-[49%] w-full">
+            <div className="flex flex-col w-full sm:w-[49%] mx-1">
+              <div className="flex flex-col">
+                <CustomField
+                  register={register}
+                  errors={errors}
+                  label="social media or email"
+                  id="information.email"
+                  styleClass=""
+                  placeholder=""
+                  required={false}
+                />
+              </div>
+
+              {/* <div className="flex flex-col sm:w-[49%] w-full">
               <CustomFieldArea
                 register={register}
                 errors={errors}
                 label="your summary if you wish"
                 id="information.content"
-                styleClass="shadow w[100%] appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter the main idea of your post"
                 required={false}
               />
             </div> */}
-            
+            </div>
           </div>
 
           <UiButton
             type="submit"
             // className="w-[50%] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            className="bg-amber-900 mt-14 hover:bg-amber-800 text-white text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
+            className="Glass bg-[#3f4257] mt-14 hover:bg-[#3f4240] text-white text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
             // text="create post"
           >
             save post

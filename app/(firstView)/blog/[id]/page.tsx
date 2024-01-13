@@ -29,7 +29,7 @@ const Post = async (props) => {
   } = props;
   const data: IPInputs = await getData(id);
 
-  console.log("data :>> ", data.banner);
+  // console.log("data :>> ", data.banner);
 
   return (
     <>

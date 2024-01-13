@@ -17,7 +17,7 @@ interface FieldProps {
     register,
     errors,
     styleClass,
-    required,
+    required = false,
   }) => {
     return (
       <>
@@ -29,10 +29,11 @@ interface FieldProps {
             id={id}
             rows={3}
             placeholder={placeholder}
-            className={`${styleClass} ${
+            className={`textarea textarea-bordered textarea-md w-[99%] ml-1 mt-1
+            ${styleClass} ${
               errors[id] && " border-rose-500 border-[1px]"
             }`}
-            {...register(id)}
+            {...register(id, { required: required })}
           ></textarea>
           {errors[id] && errors[id].type && (
             <p className="text-rose-500 pr-2">{errors[id].message}</p>

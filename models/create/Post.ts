@@ -3,6 +3,7 @@
 
 import mongoose from "mongoose"
 
+
 const PostModel = new mongoose.Schema({
   cover: { type: String, required: true },
   banner:  { type: String, required: true },
@@ -20,6 +21,10 @@ const PostModel = new mongoose.Schema({
   },
   languageLevel: { type: String, required: true },
   tags: { type: String, required: false },
+   saveExample: [{ input:  String ,input_rank: Number }],
+   tableData: [{column1: String,column2: String,column3: String }],
+    descriptionLink: String,
+    link: String,
 
   // cultureNotes: { type: String, required: false },
   // outline: { type: String, required: false },

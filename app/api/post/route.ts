@@ -5,10 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { writeFile } from 'fs/promises'
 import dbConnect from '@/lib/dbConnect';
 import Post from "@/models/create/Post";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { isConstructorDeclaration } from "typescript/lib/tsserverlibrary";
-
 
 
 
@@ -47,6 +45,16 @@ export async function POST(req :NextRequest, res:Response) {
         banner_path+='.'+banner.name.split(".")[1]
         await writeFile(banner_path,buffer)
       }
+      
+      let exam : any = data.get("saveExample")
+      let table : any = data.get("tableData")
+      let info : any = data.get("information")
+      info = JSON.parse(info)
+      exam = JSON.parse(exam)
+      table = JSON.parse(table)
+      console.log('info :>> ', info);
+console.log('table :>> ', table);
+console.log('exam :>> ', exam);
       const create = new Post({
         cover:cover_path,
         banner:banner_path,
@@ -60,15 +68,15 @@ export async function POST(req :NextRequest, res:Response) {
         conclusion:data.get("conclusion"),
         languageLevel:data.get("languageLevel"),
         tags:data.get("tags"),
-        information : {
-          author:data.get("information.author"),
-          email:data.get("information.email")
-        }
-      })
-      console.log('create :>> ', create);
-      await create.save()
+        information : info,
+        saveExample: exam,
+        tableData: table,
+        descriptionLink:data.get("descriptionLink"),
+        link:data.get("link"),
 
-      return new Response("okkkkkkkkkkk")
+      })
+      await create.save()
+      return new Response(JSON.stringify(create))
 
 
   } catch (error) {

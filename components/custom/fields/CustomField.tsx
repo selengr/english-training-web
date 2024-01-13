@@ -16,23 +16,24 @@ interface FieldProps {
     register,
     errors,
     styleClass,
-    required,
+    required = false,
   }) => {
     return (
       <>
         <div>
           <label htmlFor={id} className="block text-lg font-semibold mt-2">
             {label}
-            <span className={"text-rose-600"}>*</span>
+            <span className={"text-rose-600"}>{required?"*":""}</span>
           </label>
           <input
             id={id}
             type="text"
             placeholder={placeholder}
-            className={`${styleClass} ${
+            className={`input input-bordered input-md w-[99%] ml-1 my-1
+             ${styleClass} ${
               errors[id] && " border-rose-500 border-[1px]"
             }`}
-            {...register(id, { required: true })}
+            {...register(id, { required: required })}
           />
           {errors[id] && errors[id].type && (
             <p className="text-rose-500 pr-2">{errors[id].message}</p>
