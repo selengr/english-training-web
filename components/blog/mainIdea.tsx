@@ -1,5 +1,6 @@
 import { IPInputs } from "@/app/types/dashboard";
 import styles from "../../styles/components/blog/blog.module.css";
+import UITable from "../ui/uiTable/UITable";
 
 const MainIdea = ({data}:{data:IPInputs}) => {
   // if(props?.params?.id === 2 ) return (
@@ -162,6 +163,12 @@ const MainIdea = ({data}:{data:IPInputs}) => {
             </u> */}
 
             <div className="h-6 mt-6" />
+
+            <span className={styles["costum-blog-span"]} style={{width:"100%"}}>
+              {data.tableData ? (
+                  <UITable data={data.tableData}/>
+              ):""}
+            </span>
 
             <span className={styles["costum-blog-span"]}>
               {data.tips ?? ""}
