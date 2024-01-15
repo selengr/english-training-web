@@ -58,7 +58,6 @@ const AddPostForm = () => {
   const [bannerPicture, setBannerPicture] = useState<any[]>();
   const [coverPicture, setCoverPicture] = useState<any>([]);
   const [saveExample, setSaveExample] = useState<SaveExample>();
-  // const [tableData, settableData] = useState<any>();
   const [tableData, setTableData] = useState([]);
   const [tags, setTags] = useState<any>([]);
 
@@ -134,7 +133,7 @@ const AddPostForm = () => {
       console.error(error);
     }
   };
-console.log('tableData :>> ', tableData);
+
   return (
     <>
       <CustomizedSnackbars
@@ -206,7 +205,6 @@ console.log('tableData :>> ', tableData);
             label={"Tabel"}
             register={register}
             errors={errors}
-            tableData={(e)=>console.log('e :>> ', e)}
           /> */}
           <CreateTable 
           setTableData={setTableData}
