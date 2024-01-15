@@ -56,7 +56,7 @@ export default  function Page() {
     <div className="w-100 flex justify-center align-middle">
       <article className={styles["landing-article"]}>
               {/* <Bio /> */}
-              <Post />
+              {/* <Post /> */}
       </article>
     </div>
     {/* </Layout> */}
