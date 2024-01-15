@@ -5,22 +5,20 @@ import Link from "next/link";
 import callApi from "@/services/axios";
 import { IPInputs } from "@/app/types/dashboard";
 
-export const revalidate = 3600 
+export const dynamic = 'force-dynamic'
 
 async function getData() {
   try {
     const response = await callApi().get("/api/post")
     return response
   } catch (error) {
-    console.log("11111111111111111111111");
-    return error
+    console.log("11111111111111111111111")
   }
 };
 
-// export const dynamic = 'force-dynamic'
 
-export default function Post (data) {
-  // const data : [] = await getData()
+export default async function Post () {
+  const data : [] = await getData()
 
   
   return (
