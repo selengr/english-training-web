@@ -12,7 +12,7 @@ export default async function Post () {
   // const data : [] = await getData()
   const res = await fetch(
     `http://localhost:3000/api/post`,
-    { cache: 'no-store' }
+    { cache: 'force-cache' }
   );
   const data = await res.json()
 
