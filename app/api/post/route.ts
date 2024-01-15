@@ -5,12 +5,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { writeFile } from 'fs/promises'
 import dbConnect from '@/lib/dbConnect';
 import Post from "@/models/create/Post";
-import { NextRequest } from "next/server";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function GET(req:NextApiRequest) {
+export async function GET(req:NextRequest) {
   try {
         dbConnect();
         const posts : any = await Post.find();
@@ -86,11 +85,11 @@ console.log('exam :>> ', exam);
 
 
 
-export async function PUT(req:NextApiRequest, res:NextApiResponse) {
+export async function PUT(req:NextRequest, res:NextResponse) {
   return new Response("ok")
 }
 
-export async function DELETE(req:NextApiRequest, res:NextApiResponse) {
+export async function DELETE(req:NextRequest, res:NextResponse) {
   return new Response("ok")
 }
 

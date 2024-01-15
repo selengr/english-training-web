@@ -12,6 +12,7 @@
     --accents-6: #444;
     --accents-7: #333;
     --accents-8: #111;
+    width: 100%;
 }
 
 .docs code {

@@ -1,8 +1,9 @@
 import { IPInputs } from "@/app/types/dashboard";
 import styles from "../../styles/components/blog/blog.module.css";
 import UITable from "../ui/uiTable/UITable";
+import Link from "next/link";
 
-const MainIdea = ({data}:{data:IPInputs}) => {
+const MainIdea = ({ data }: { data: IPInputs }) => {
   // if(props?.params?.id === 2 ) return (
   //     <>
   //         {fetch("./FIRST.md")}
@@ -71,20 +72,18 @@ const MainIdea = ({data}:{data:IPInputs}) => {
           "In addition to the 12 tenses mentioned above, there are also some other less common tenses, such as:",
         extraInformation: "",
         extraInformationList: [
-          
-            "Conditional tenses: Conditional tenses are used to express hypothetical situations. Some common conditional tenses are the 'if' clause, the 'could' clause, and the 'would' clause.",
-            "Modal verbs: Modal verbs are used to express possibility, necessity, permission, and obligation. Some common modal verbs are can, could, may, might, must, should, and would.",
-            "Gerunds: Gerunds are verb forms that end in '-ing' and can be used as nouns, adjectives, or adverbs.",
-            "Infinitives: Infinitives are verb forms that start with 'to' and can be used as nouns, adjectives, or adverbs.",
-          
+          "Conditional tenses: Conditional tenses are used to express hypothetical situations. Some common conditional tenses are the 'if' clause, the 'could' clause, and the 'would' clause.",
+          "Modal verbs: Modal verbs are used to express possibility, necessity, permission, and obligation. Some common modal verbs are can, could, may, might, must, should, and would.",
+          "Gerunds: Gerunds are verb forms that end in '-ing' and can be used as nouns, adjectives, or adverbs.",
+          "Infinitives: Infinitives are verb forms that start with 'to' and can be used as nouns, adjectives, or adverbs.",
         ],
       },
       point: {
         title: "Grammar explanations:",
         point: "",
         pointList: [
-          "The present simple is used to talk about actions or events that happen regularly or habitually."+
-          "It is also used to talk about facts or truths.",
+          "The present simple is used to talk about actions or events that happen regularly or habitually." +
+            "It is also used to talk about facts or truths.",
           "The present continuous is used to talk about actions or events that are happening now or happening at the moment of speaking.",
           "but have a connection to the present. It can also be used to talk about experiences or things that have happened for a period of time.",
           "The present perfect continuous is used to talk about actions or events that have been happening for a period of time and are still happening now.",
@@ -100,9 +99,10 @@ const MainIdea = ({data}:{data:IPInputs}) => {
       },
 
       conclusion: {
-        title: "The conclusion should summarize the main points of the post and provide some final thoughts on the importance of learning the 12 tenses.",
+        title:
+          "The conclusion should summarize the main points of the post and provide some final thoughts on the importance of learning the 12 tenses.",
         Conclusion: "",
-        ConclusionList: [ ],
+        ConclusionList: [],
       },
 
       slug: 1,
@@ -141,13 +141,12 @@ const MainIdea = ({data}:{data:IPInputs}) => {
               </u> */}
             </div>
 
-
             <div className="h-6 mt-6" />
             <h1 className={styles["costum-blog-h1"]}>Body</h1>
             <div className="h-4" />
 
             <h3 className="font-light mb-2">{data.body ?? ""}</h3>
-   
+
             {/* <span className={styles["costum-blog-span border-b-0"]}>
               {item.body.body ?? ""}
             </span> */}
@@ -164,21 +163,46 @@ const MainIdea = ({data}:{data:IPInputs}) => {
 
             <div className="h-6 mt-6" />
 
-            <span className={styles["costum-blog-span"]} style={{width:"100%"}}>
-              {data.tableData ? (
-                  <UITable data={data.tableData}/>
-              ):""}
+            <span
+              className={
+                styles["costum-blog-span border-b-0 flex flex-col bg-red-500"]
+              }
+            >
+              {data.saveExample?.map((item) => {
+                return (
+                  <>
+                    <span className="flex flex-row">{item?.input}</span>
+                  </>
+                );
+              })}
             </span>
 
-            <span className={styles["costum-blog-span"]}>
-              {data.tips ?? ""}
-            </span>
-
+            {/* ==================================================================== */}
+            <div className="h-16" />
+            <h1 className={styles["costum-blog-h1"]}>Example</h1>
             <div className="h-4" />
 
+            <div className={styles["costum-blog-quote"]}>
+              <ul className="flex flex-col my-4">
+                {data?.saveExample?.map((item) => {
+                  return (
+                    <>
+                      <span className="font-light mb-1">{item?.input}</span>
+                    </>
+                  );
+                })}
+              </ul>
+            </div>
+            {/* ==================================================================== */}
+
+            {/* ==================================================================== */}
+            <div className="h-10" />
+            <h1 className={styles["costum-blog-h1"]}>Tips</h1>
+            <div className="h-4" />
             <span className={styles["costum-blog-span"]}>
               {data.tips ?? ""}
             </span>
+            {/* ==================================================================== */}
 
             {/* <u>
               {item?.tips.tipsList.map((item) => {
@@ -190,19 +214,31 @@ const MainIdea = ({data}:{data:IPInputs}) => {
               })}
             </u> */}
 
+            {/* ==================================================================== */}
+            <div className="h-10" />
+            <h1 className={styles["costum-blog-h1"]}>MainIdea</h1>
             <div className="h-4" />
-
             <span className={styles["costum-blog-span"]}>
               {data.mainIdea ?? ""}
             </span>
+            {/* ==================================================================== */}
 
+            {/* ==================================================================== */}
+            <div className="h-10" />
+            <h1 className={styles["costum-blog-h1"]}>Table</h1>
             <div className="h-4" />
+            <span
+              className={styles["costum-blog-span"]}
+              style={{ width: "100%" }}
+            >
+              {data.tableData ? <UITable data={data.tableData} /> : ""}
+            </span>
+
+            {/* ==================================================================== */}
 
             {/* <span className={styles["costum-blog-span"]}>
               {item.mainIdea?.mainIdea ?? ""}
             </span> */}
-
-            <div className="h-4" />
 
             {/* <div>
               {item?.mainIdea?.mainIdeaList.map((item) => {
@@ -214,12 +250,17 @@ const MainIdea = ({data}:{data:IPInputs}) => {
               })}
             </div> */}
 
+            {/* ==================================================================== */}
+            <div className="h-10" />
+            <h1 className={styles["costum-blog-h1"]}>Extra Information</h1>
             <div className="h-4" />
             <span className={styles["costum-blog-span"]}>
               {data.extraInformation ?? ""}
             </span>
-            <div className="h-4" />
-{/* 
+
+            {/* ==================================================================== */}
+
+            {/* 
             <span className={styles["costum-blog-span"]}>
               {item.extraInformation?.extraInformation ?? ""}
             </span> */}
@@ -234,12 +275,15 @@ const MainIdea = ({data}:{data:IPInputs}) => {
               })}
             </div> */}
 
-
+            {/* ==================================================================== */}
+            <div className="h-10" />
+            <h1 className={styles["costum-blog-h1"]}>Point</h1>
             <div className="h-4" />
             <span className={styles["costum-blog-span"]}>
               {data.point ?? ""}
             </span>
-            <div className="h-4" />
+
+            {/* ==================================================================== */}
 
             {/* <span className={styles["costum-blog-span"]}>
               {item.point?.point ?? ""}
@@ -255,17 +299,16 @@ const MainIdea = ({data}:{data:IPInputs}) => {
               })}
             </div> */}
 
-
-            <div className="mb-10" />
-               <h1 className={styles["costum-blog-h1"]}>Conclusion</h1>
- 
+            {/* ==================================================================== */}
+            <div className="h-10" />
+            <h1 className={styles["costum-blog-h1"]}>Conclusion</h1>
+            <div className="h-4" />
             <span className={styles["costum-blog-span"]}>
               {data.conclusion ?? ""}
             </span>
 
-            <div className="mb-2" />
+            {/* ==================================================================== */}
 
-            <div className="h-10" />
             {/* <div className={styles["blog-main-gray_background"]}>
               <span className="font-bold">
                 <em>
@@ -278,6 +321,19 @@ const MainIdea = ({data}:{data:IPInputs}) => {
                 platform, please get in touch on our open slack.
               </span>
             </div> */}
+
+            {/* ==================================================================== */}
+            <div className="h-10" />
+            <h1 className={styles["costum-blog-h1"]}>Link</h1>
+            <div className=" flex flex-col">
+              <span className={styles["costum-blog-span"]}>
+                {data.link ? data.descriptionLink : ""}
+              </span>
+              <Link href={data.link} role="link" className="text-blue-600">
+                {data.link ? data.link : ""}
+              </Link>
+            </div>
+            {/* ==================================================================== */}
           </>
         );
       })}

@@ -41,9 +41,9 @@ const Post = async (props) => {
         <div className={styles["landing-article"]}>
           <MainIdea data={data} />
           {/* <Conclusion data={data} /> */}
+        <Code data={data}/>
         </div>
 
-        <Code />
       </div>
 
       {/* </Layout> */}

@@ -1,10 +1,11 @@
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User";
+import { NextRequest, NextResponse } from "next/server";
 
 
 
 
-export async function GET(request,res) {
+export async function GET(request: NextRequest,res:NextResponse) {
   
   dbConnect();
   
@@ -22,7 +23,7 @@ export async function GET(request,res) {
 
 
 
-export async function POST(request ,  ) {
+export async function POST(request : NextRequest ) {
 
 const num = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
          console.log('num.toString()================== :>> ', num.toString());
@@ -40,8 +41,8 @@ const num = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
          await user.save()
       
               .then(res=> {
-                console.log('num.toString()================== :>> ', num.toString());
-                console.log('num.toString()================== :>> ', typeof num.toString())
+                // console.log('num.toString()================== :>> ', num.toString());
+                // console.log('num.toString()================== :>> ', typeof num.toString())
               })
                .catch(err => new Response(`kolan error baba bekhyal 404 403 402: ${err}`))
            

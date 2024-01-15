@@ -45,32 +45,21 @@ const schema = yup.object().shape({
   link: yup.string(),
 });
 
-const AddPostForm = ({
-  onClose,
-  ageHood,
-  id,
-}: //   edit,
-{
-  onClose: () => void;
-  ageHood: string;
-  id: number;
-  //   edit: Passenger;
-}) => {
+const AddPostForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    reset,
+    formState: { errors }
   } = useForm<any>({
     resolver: yupResolver(schema),
     defaultValues: {},
   });
 
-  const [bannerPicture, setBannerPicture] = useState<tableData[]>();
+  const [bannerPicture, setBannerPicture] = useState<any[]>();
+  const [coverPicture, setCoverPicture] = useState<any>([]);
   const [saveExample, setSaveExample] = useState<SaveExample>();
   // const [tableData, settableData] = useState<any>();
   const [tableData, setTableData] = useState([]);
-  const [coverPicture, setCoverPicture] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
 
   function handleAddTag(e: any) {

@@ -7,12 +7,12 @@ import { Button } from "@mui/material";
 type Props = {
   data? : String,
   title? : String,
-  banner:String,
-  cover : String
+  banner?:String,
+  cover? : String
 }
 
 const Banner = ({data,title,banner,cover}:Props) => {
-  console.log('cover :>> ', cover);
+  
     return (
         <div className={styles["landing-main"]}>
           {data === "its me" && <div className={`${styles["landing-img"]} `}> <HeroHeader /></div>}

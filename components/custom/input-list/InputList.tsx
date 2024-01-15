@@ -48,7 +48,10 @@ const InputWithButtons: React.FC<FieldProps> = ({
         ? setIsDisabled(true)
         : setIsDisabled(false);
     }
-  });
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+  // })
 
   const handleListAdd = () => {
     setInputList([

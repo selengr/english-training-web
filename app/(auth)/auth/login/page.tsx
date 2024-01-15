@@ -18,7 +18,7 @@ const Login = () => {
     const router = useRouter()
 
 
-      const handleSubmit = async(values) => {
+      const handleSubmit = async(values:any) => {
         try {
             const url = '/api/auth/login';
             const options = {
