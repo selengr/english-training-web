@@ -7,14 +7,19 @@ import { IPInputs } from "@/app/types/dashboard";
 
 
 
+async function getData() {
+  try {
+    const response = await callApi().get("/api/post")
+    return response
+  } catch (error) {
+    console.log("11111111111111111111111");
+    return error
+  }
+};
+
 
 export default async function Post () {
-  // const data : [] = await getData()
-  const res = await fetch(
-    `http://localhost:3000/api/post`,
-    { cache: 'force-cache' }
-  );
-  const data = await res.json()
+  const data : [] = await getData()
 
   
   return (
