@@ -11,8 +11,6 @@ import styles from "../../styles/components/banner/banner.module.css"
 import Header from "@/components/header";
 import Banner from "@/components/banner";
 import TemporaryDrawer from "@/components/ui/drawer";
-import CarouselLogo from "@/components/ui/carousel/CarouselLogo";
-import SwiperSlides from "@/components/ui/carousel/SwiperSlides";
 
 // import axios from "axios"
 // import useSWR from "swr";
