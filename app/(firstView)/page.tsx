@@ -14,6 +14,15 @@ import callApi from "@/services/axios";
 
 // export const dynamic = 'force-dynamic'
 
+// async function getData() {
+//   try {
+//     const response = await callApi().get("/api/post")
+//     return response
+//   } catch (error) {
+//     console.log("11111111111111111111111")
+//   }
+// };
+
 
 // const fetcher = (url) => axios.post(url).then(res => res.data);
 // async function getData() {
@@ -27,7 +36,8 @@ import callApi from "@/services/axios";
 // };
 
 
-export default async function Page() {
+export default function Page() {
+  // const data : [] = await getData()
   // const { data, error } = useSWR('/api/auth/register', fetcher);
 
 
@@ -62,6 +72,7 @@ export default async function Page() {
       <article className={styles["landing-article"]}>
               <Bio />
               <Post />
+              {/* <Post data={data}/> */}
       </article>
     </div>
     {/* </Layout> */}
