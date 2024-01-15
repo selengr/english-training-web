@@ -18,7 +18,7 @@ async function getData() {
 
 
 export default async function Post () {
-  const data : [] = await getData()
+  const data : any = await getData()
 
   
   return (
