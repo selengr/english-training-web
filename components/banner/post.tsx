@@ -5,7 +5,7 @@ import Link from "next/link";
 import callApi from "@/services/axios";
 import { IPInputs } from "@/app/types/dashboard";
 
-// export const revalidate = 3600 
+export const revalidate = 3600 
 
 async function getData() {
   try {
@@ -17,17 +17,18 @@ async function getData() {
   }
 };
 
-export default async function Post () {
-  const data = await getData()
+// export const dynamic = 'force-dynamic'
 
-  
+export default function Post (data) {
+  // const data : [] = await getData()
+
   
   return (
     <div className={styles["post-header"]}>
       <h2>Blog Posts</h2>
 
       <aside className={styles["post-blog-card"]}>
-        {data?.map((it:IPInputs) => {
+        {data && data?.map((it:IPInputs) => {
           
           return (
             <>

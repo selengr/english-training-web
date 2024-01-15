@@ -1,28 +1,34 @@
 // 'use client'
 
-// import clientPromise from '../../lib/mongodb'
 import Bio from "@/components/banner/bio";
 import "../../styles/globals.css";
 import Post from "@/components/banner/post";
 import styles from "../../styles/components/banner/banner.module.css"
-// import Image from "next/image";
-// import Link from "next/link";
-// import Layout from "./layout";
 import Header from "@/components/header";
 import Banner from "@/components/banner";
 import TemporaryDrawer from "@/components/ui/drawer";
+import callApi from "@/services/axios";
 
 // import axios from "axios"
 // import useSWR from "swr";
 
+export const dynamic = 'force-dynamic'
 
 
 // const fetcher = (url) => axios.post(url).then(res => res.data);
+async function getData() {
+  try {
+    const response = await callApi().get("/api/post")
+    return response
+  } catch (error) {
+    console.log("11111111111111111111111");
+    return error
+  }
+};
 
 
-
-export default  function Page() {
-
+export default async function Page() {
+  const data : [] = await getData()
   // const { data, error } = useSWR('/api/auth/register', fetcher);
 
 
@@ -55,8 +61,8 @@ export default  function Page() {
 
     <div className="w-100 flex justify-center align-middle">
       <article className={styles["landing-article"]}>
-              {/* <Bio /> */}
-              {/* <Post /> */}
+              <Bio />
+              <Post data={data}/>
       </article>
     </div>
     {/* </Layout> */}
