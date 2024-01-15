@@ -13,7 +13,6 @@ async function getData() {
     return response
   } catch (error) {
     console.log("11111111111111111111111");
-    return error
   }
 };
 

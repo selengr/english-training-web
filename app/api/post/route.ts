@@ -12,11 +12,9 @@ export const dynamic = 'force-dynamic'
 
 export async function GET(req:NextRequest) {
   try {
-        // dbConnect();
-        // const posts : any = await Post.find();
-        // return new Response(JSON.stringify(posts))
-        return new Response("teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-
+        dbConnect();
+        const posts : any = await Post.find();
+        return new Response(JSON.stringify(posts))
     } catch (error) {
         return new Response(`Error retrieving notes: ${error}`, { status: 500 });
     }
