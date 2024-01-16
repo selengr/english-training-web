@@ -40,7 +40,7 @@ const schema = yup.object().shape({
     email: yup.string(),
   }),
   languageLevel: yup.string(),
-  tags: yup.string(),
+  tags: yup.string().required(),
   descriptionLink: yup.string(),
   link: yup.string(),
 });
@@ -296,14 +296,14 @@ const AddPostForm = () => {
             )}
           </select>
 
-          {/* <>
+          <>
             <div className={"w-100"}>
               <label className="block  font-bold mt-2" htmlFor="tags">
-                tags
+              area of use
                 <span className={"text-rose-600"}>*</span>
                 <span className="text-xs text-gray-400">
-                  (these tags will indicate your covered
-                  subject,like,html,css,js)
+                  (these  area of use will indicate where will be covered
+                  or the are of the usage this information)
                 </span>
               </label>
 
@@ -337,7 +337,7 @@ const AddPostForm = () => {
                 </button>
               </div>
             </div>
-          </> */}
+          </>
 
           <CustomField
             register={register}

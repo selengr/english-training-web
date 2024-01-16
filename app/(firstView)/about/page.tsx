@@ -64,7 +64,10 @@ const About = () => {
                 height={1000}
             /> */}
 
+
+<span className="text-left">Cheers 😊</span>
 </div>
+
             </div>
            
         </>

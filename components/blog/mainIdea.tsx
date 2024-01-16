@@ -123,7 +123,7 @@ const MainIdea = ({ data }: { data: IPInputs }) => {
 
             <div className="h-16" />
 
-            <h1 className={styles["costum-blog-h1"]}>Introduction</h1>
+            <h1 className={styles["costum-blog-h1"]}>Intro</h1>
             <div className="h-4" />
 
             <div className={styles["costum-blog-quote"]}>

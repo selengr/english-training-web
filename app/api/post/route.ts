@@ -12,7 +12,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req:NextRequest) {
   try {
-        await dbConnect();
+        dbConnect();
         const posts : any = await Post.find();
         return new Response(JSON.stringify(posts))
     } catch (error) {

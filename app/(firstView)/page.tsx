@@ -65,13 +65,13 @@ export default function Page() {
 
     </div>
         <Header />
-        <Banner banner={"images/https___s3-us-west-2.avif"} cover={"upload/7550f002-8018-4ac2-bf6f-2130e72b5a26.png"} /> 
+        <Banner banner={"images/https___s3-us-west-2.avif"} cover={"images/fikeus-west-2.avif"} /> 
         <TemporaryDrawer />
 
     <div className="w-100 flex justify-center align-middle">
       <article className={styles["landing-article"]}>
-              {/* <Bio /> */}
-              {/* <Post /> */}
+              <Bio />
+              <Post />
               {/* <Post data={data}/> */}
       </article>
     </div>

@@ -75,7 +75,7 @@
     margin-top: 20px;
 }
 .landing-page-content-inner * {
-    line-height: 2.65rem;
+    /* line-height: 2.65rem; */
 }
 .landing-page-content-inner {
     /* line-height: 1rem !important; */
@@ -222,6 +222,7 @@ html[data-theme="light"] .post-blog-each-card:hover {
 .post-blog-property {
     padding: 10px;
     padding-top: 1em;
+    width: 100%;
 }
 .post-blog-property-title {
     font-size: 2em;
@@ -237,6 +238,12 @@ html[data-theme="light"] .post-blog-each-card:hover {
     font-size: 14px;
     white-space: unset;
     padding: 4px 0;
+        display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 50px;
 }
 .post-blog-property-date {
     font-size: 12px;

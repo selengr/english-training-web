@@ -18,7 +18,7 @@ const Header = () => {
             <div className={`${styles["landing-top"]}`}>
                {/* ddd   */}
 
-               <div className=" fixed sm:right-28 right-10 flex justify-center align-middle items-center overflow-hidden">
+               <div className=" fixed sm:right-20 right-10 flex justify-center align-middle items-center overflow-hidden">
                 
                <Link href="/about"
                className="overflow-hidden" passHref

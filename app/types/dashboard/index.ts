@@ -26,7 +26,7 @@
     conclusion: string;
     information : Information
     languageLevel?: LanguageLevel;
-    tags?: any;
+    tags: any;
     saveExample?: SaveExample[];
     tableData?: tableData[];
     descriptionLink: string;

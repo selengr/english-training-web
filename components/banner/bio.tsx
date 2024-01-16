@@ -5,9 +5,10 @@ const Bio = () => {
     return (
         <section className={styles["landing-page-content-inner"]}>
             
-            <div>
+            <div className="flex flex-col">
 
-              <span >testing</span>
+              <span className="mb-5">Hello World👋</span>
+              <span >I'm reza karbakhsh, a software developer who loves open source and AI.</span>
             </div>
 
             <div>

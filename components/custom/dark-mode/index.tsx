@@ -51,7 +51,7 @@ export default function ThemeSettings({ children }: Props) {
           {theme.palette.mode === "dark" && (
             <div
               onClick={colorMode.toggleColorMode}
-              className="fixed sm:right-16 right-5 top-4 z-10"
+              className="fixed sm:right-8 right-2 top-4 z-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export default function ThemeSettings({ children }: Props) {
           {theme.palette.mode === "light" && (
             <div
               onClick={colorMode.toggleColorMode}
-              className="fixed sm:right-16 right-5 top-4 z-10"
+              className="fixed sm:right-8 right-2 top-4 z-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

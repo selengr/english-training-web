@@ -17,6 +17,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import CreateIcon from '@mui/icons-material/Create';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+
 import Image from 'next/image';
 
 export default function AccountMenu() {

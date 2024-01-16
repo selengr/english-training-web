@@ -9,8 +9,8 @@ const nextConfig = {
       },
       images: { domains: ['daisyui.com'] },
       env: {
-        // DOMAIN: 'http://localhost:3000'
-        DOMAIN: 'https://english-training-web.vercel.app/'
+        DOMAIN: 'http://localhost:3000'
+        // DOMAIN: 'https://english-training-web.vercel.app/'
 
       }
 
