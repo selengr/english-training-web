@@ -45,16 +45,16 @@ export async function POST(req :NextRequest, res:Response) {
         banner_path+='.'+banner.name.split(".")[1]
         await writeFile(banner_path,buffer)
       }
-      
+
       let exam : any = data.get("saveExample")
       let table : any = data.get("tableData")
       let info : any = data.get("information")
+      let tag : any = data.get("tags")
       info = JSON.parse(info)
-      exam = JSON.parse(exam)
-      table = JSON.parse(table)
-      console.log('info :>> ', info);
-console.log('table :>> ', table);
-console.log('exam :>> ', exam);
+      // exam = JSON.parse(exam)
+      // table = JSON.parse(table)
+      // tag = JSON.parse(tag)
+
       const create = new Post({
         cover:cover_path,
         banner:banner_path,
@@ -67,7 +67,7 @@ console.log('exam :>> ', exam);
         extraInformation:data.get("extraInformation"),
         conclusion:data.get("conclusion"),
         languageLevel:data.get("languageLevel"),
-        tags:data.get("tags"),
+        tags: tag,
         information : info,
         saveExample: exam,
         tableData: table,
@@ -75,6 +75,7 @@ console.log('exam :>> ', exam);
         link:data.get("link"),
 
       })
+      console.log('create :>> ', create);
       await create.save()
       return new Response(JSON.stringify(create))
 

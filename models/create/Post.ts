@@ -4,6 +4,18 @@
 import mongoose from "mongoose"
 
 
+const ExamSchema = new mongoose.Schema({
+  input: { type: String, required: false },
+  input_rank: { type: Number, required: false },
+});
+
+const TableDataSchema = new mongoose.Schema({
+  column1: { type: String, required: false },
+  column2: { type: String, required: false },
+  column3: { type: String, required: false },
+});
+
+
 const PostModel = new mongoose.Schema({
   cover: { type: String, required: true },
   banner:  { type: String, required: true },
@@ -19,12 +31,14 @@ const PostModel = new mongoose.Schema({
     author: { type: String, required: false },
     email: { type: String, required: false }
   },
-  languageLevel: { type: String, required: true },
-  tags: { type: String, required: false },
-   saveExample: [{ input:  String ,input_rank: Number }],
-   tableData: [{column1: String,column2: String,column3: String }],
-    descriptionLink: String,
-    link: String,
+  languageLevel: { type: String, required: false },
+  // saveExample: { type: Array<any>, required: false },
+  // tableData: { type: Array<any>, required: false },
+  saveExample: ExamSchema,
+  tableData: TableDataSchema,
+  descriptionLink: String,
+  link: String,
+  tags: { type: Array<String>, required: false }
 
   // cultureNotes: { type: String, required: false },
   // outline: { type: String, required: false },

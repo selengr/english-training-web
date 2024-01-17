@@ -40,7 +40,7 @@ const schema = yup.object().shape({
     email: yup.string(),
   }),
   languageLevel: yup.string(),
-  tags: yup.string().required(),
+  tags: yup.string(),
   descriptionLink: yup.string(),
   link: yup.string(),
 });
@@ -58,7 +58,7 @@ const AddPostForm = () => {
   const [bannerPicture, setBannerPicture] = useState<any[]>();
   const [coverPicture, setCoverPicture] = useState<any>([]);
   const [saveExample, setSaveExample] = useState<SaveExample>();
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
 
   function handleAddTag(e: any) {
@@ -93,18 +93,19 @@ const AddPostForm = () => {
       author: data.information.author,
       email: data.information.email,
     };
+
     body.append("cover", coverPicture[0]);
     body.append("banner", bannerPicture[0]);
     body.append("body", data.body);
-    body.append("saveExample", JSON.stringify(saveExample));
-    body.append("tableData", JSON.stringify(tableData));
     body.append("title", data.title);
     body.append("introduction", data.introduction);
     body.append("mainIdea", data.mainIdea);
-    body.append("tags", data.tags);
+    body.append("tags",  JSON.stringify(tags));
     body.append("link", data.link);
     body.append("descriptionLink", data.descriptionLink);
     body.append("conclusion", data.conclusion);
+    if (saveExample) body.append("saveExample", JSON.stringify(saveExample));
+    if (tableData) body.append("tableData", JSON.stringify(tableData));
     if (data.point) body.append("point", data.point);
     if (data.tips) body.append("tips", data.tips);
     // if (data.information.author||data.information.email)
@@ -133,6 +134,8 @@ const AddPostForm = () => {
       console.error(error);
     }
   };
+
+  
 
   return (
     <>

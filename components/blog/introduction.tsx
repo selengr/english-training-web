@@ -1,11 +1,14 @@
+import { IPInputs } from "@/app/types/dashboard";
 import styles from "../../styles/components/blog/blog.module.css";
 
-const Introduction = ({updatedAt}:{updatedAt:String}) => {
+const Introduction = ({ data }: { data: IPInputs }) => {
+  const tag = JSON.parse(data.tags)
+  console.log('data yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy:>> ', tag);
   return (
 
     <div className={styles["post-blog"]}>
       <div className={styles["post-blog-property-map-opt"]}>
-        {[1111, 2222222, 23, 584, 888888885].map((it) => (
+        {tag?.map((it) => (
           <>
             <span>{it}</span>
           </>
@@ -14,7 +17,7 @@ const Introduction = ({updatedAt}:{updatedAt:String}) => {
 
       <span className={styles["post-blog-property-date"]}>
         {/* Mar 7, 2018 */}
-        {updatedAt}
+        {data.updatedAt}
         {}
         </span>
       {/*<span className={styles["post-blog-property-name"]}>{param}</span>*/}

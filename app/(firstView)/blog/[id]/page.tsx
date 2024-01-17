@@ -29,7 +29,7 @@ const Post = async (props) => {
   } = props;
   const data: IPInputs | any = await getData(id);
 
-  // console.log("data :>> ", data.banner);
+  console.log("data -------------------- :>> ", data);
 
   return (
     <>
@@ -37,7 +37,7 @@ const Post = async (props) => {
       <Banner title={data.title} banner={data.banner} cover={data.cover} />
 
       <div className={styles["blog-page-master"]}>
-        <Introduction updatedAt={data.updatedAt} />
+        <Introduction data={data} />
         <div className={styles["landing-article"]}>
           <MainIdea data={data} />
           {/* <Conclusion data={data} /> */}
