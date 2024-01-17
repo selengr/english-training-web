@@ -14,10 +14,13 @@
     border: none;
     margin: auto;
     object-position: center 50%;
-    width: 100vw !important;
+    /* width: 100vw !important; */
+    width: 100%!important;
     max-width: 1200px!important;
     border-radius: 24px;
     height: 30vh !important;
+    object-fit: cover;
+    box-shadow: 2px 2px 8px 4px hsla(0,0%,6%,.1);
 }
 @media (max-width : 1200px) {
     .landing-img {
