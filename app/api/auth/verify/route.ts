@@ -17,7 +17,6 @@ export async function POST(request, response ) {
   dbConnect();
 
   const requestData = await request.json();
-  console.log("1111111111111111111111");
   
       try {
        

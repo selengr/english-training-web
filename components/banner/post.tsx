@@ -5,12 +5,14 @@ import Link from "next/link";
 import callApi from "@/services/axios";
 import { IPInputs } from "@/app/types/dashboard";
 
+export const dynamic = 'force-dynamic' 
+
 async function getData() {
   try {
     const response = await callApi().get("/api/post");
     return response;
   } catch (error) {
-    console.log("11111111111111111111111");
+    console.log("11111111111111111111111")
   }
 }
 
@@ -21,7 +23,7 @@ export default async function Post() {
       <h2>Blog Posts</h2>
 
       <aside className={styles["post-blog-card"]}>
-        {data.length > 0 &&
+        {
           data?.map((it: IPInputs) => {
             let tag = JSON.parse(it.tags)
             return (
