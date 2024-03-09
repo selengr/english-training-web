@@ -51,9 +51,9 @@ export async function POST(req :NextRequest, res:Response) {
       let info : any = data.get("information")
       let tag : any = data.get("tags")
       info = JSON.parse(info)
-      // exam = JSON.parse(exam)
-      // table = JSON.parse(table)
-      // tag = JSON.parse(tag)
+      exam = JSON.parse(exam)
+      table = JSON.parse(table)
+      tag = JSON.parse(tag)
 
       const create = new Post({
         cover:cover_path,
@@ -69,8 +69,8 @@ export async function POST(req :NextRequest, res:Response) {
         languageLevel:data.get("languageLevel"),
         tags: tag,
         information : info,
-        saveExample: exam,
-        tableData: table,
+        // saveExample: exam,
+        // tableData: table,
         descriptionLink:data.get("descriptionLink"),
         link:data.get("link"),
 

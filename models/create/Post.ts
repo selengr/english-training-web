@@ -12,7 +12,7 @@ const ExamSchema = new mongoose.Schema({
 const TableDataSchema = new mongoose.Schema({
   column1: { type: String, required: false },
   column2: { type: String, required: false },
-  column3: { type: String, required: false },
+  column3: { type: String, required: false }
 });
 
 
@@ -34,8 +34,8 @@ const PostModel = new mongoose.Schema({
   languageLevel: { type: String, required: false },
   // saveExample: { type: Array<any>, required: false },
   // tableData: { type: Array<any>, required: false },
-  saveExample: ExamSchema,
-  tableData: TableDataSchema,
+  // saveExample: ExamSchema,
+  // tableData: TableDataSchema,
   descriptionLink: String,
   link: String,
   tags: { type: Array<String>, required: false }

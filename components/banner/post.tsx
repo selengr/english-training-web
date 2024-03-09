@@ -18,6 +18,7 @@ async function getData() {
 
 export default async function Post() {
   const data: any = await getData();
+  console.log('data****************************************************** :>> ', data);
   return (
     <div className={styles["post-header"]}>
       <h2>Blog Posts</h2>
@@ -25,7 +26,7 @@ export default async function Post() {
       <aside className={styles["post-blog-card"]}>
         {
           data?.map((it: IPInputs) => {
-            let tag = JSON.parse(it.tags)
+            let tag = it.tags
             return (
               <>
                 <Link
