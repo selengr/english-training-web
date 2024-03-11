@@ -2,7 +2,8 @@ import { IPInputs } from "@/app/types/dashboard";
 import styles from "../../styles/components/blog/blog.module.css";
 
 const Introduction = ({ data }: { data: IPInputs }) => {
-  const tag = JSON.parse(data.tags)
+  // const tag = JSON.parse(data.tags)
+  const tag = data.tags
   console.log('data yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy:>> ', tag);
   return (
 

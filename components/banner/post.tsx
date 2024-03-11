@@ -18,6 +18,7 @@ async function getData() {
 
 export default async function Post() {
   const data: any = await getData();
+  
   console.log('data****************************************************** :>> ', data);
   return (
     <div className={styles["post-header"]}>
