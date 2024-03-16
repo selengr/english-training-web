@@ -7,7 +7,6 @@ import styles from "../../styles/components/banner/banner.module.css"
 import Header from "@/components/header";
 import Banner from "@/components/banner";
 import TemporaryDrawer from "@/components/ui/drawer";
-import callApi from "@/services/axios";
 
 // import axios from "axios"
 // import useSWR from "swr";
@@ -67,6 +66,8 @@ export default function Page() {
         <Header />
         <Banner banner={"images/https___s3-us-west-2.avif"} cover={"images/fikeus-west-2.avif"} /> 
         <TemporaryDrawer />
+
+
 
     <div className="w-100 flex justify-center align-middle">
       <article className={styles["landing-article"]}>
