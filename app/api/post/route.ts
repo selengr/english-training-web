@@ -12,7 +12,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req:NextRequest) {
   try {
-        dbConnect();
+       await dbConnect();
         const posts : any = await Post.find();
         return new Response(JSON.stringify(posts))
     } catch (error) {
@@ -76,7 +76,7 @@ export async function POST(req :NextRequest, res:Response) {
 
       })
       console.log('create :>> ', create);
-      await create.save()
+      create.save()
       return new Response(JSON.stringify(create))
 
 
