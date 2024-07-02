@@ -15,6 +15,7 @@ datasource db {
 }
 
 
+
 model Post {
   id        String     @default(cuid()) @id
   title     String
