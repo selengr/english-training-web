@@ -17,6 +17,7 @@
     "@hookform/resolvers": "^3.3.3",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.6",
+    "@prisma/client": "^5.16.1",
     "@react-email/render": "^0.0.7",
     "@types/node": "20.3.1",
     "@types/react": "18.2.13",
