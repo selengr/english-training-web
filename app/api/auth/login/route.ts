@@ -10,7 +10,8 @@ const nodemailer = require("nodemailer");
 
 export async function GET(request :NextRequest,res) {
   try {
-        dbConnect();
+       let db =  dbConnect();
+       console.log('db :>> ', db);
     const user = await LoginedInUsers.find();
         return new Response(`Welcome to my Next application, user: ${user}`);
     } catch (error) {
