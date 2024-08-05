@@ -1,6 +1,8 @@
-import LoginForm from '@/components/auth/login-form';
-import Container from '@/components/ui/container';
+// import LoginForm from '@/components/auth/login-form';
+// import Container from '@/components/ui/container';
 import { authOption } from '@/libs/next-auth';
+import LoginForm from '@/section/auth/login-form';
+import Container from '@/section/ui/container';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
