@@ -10,12 +10,16 @@
   },
   "dependencies": {
     "@prisma/client": "^5.17.0",
+    "bcrypt": "^5.1.1",
+    "clsx": "^2.1.1",
     "next": "^15.0.0-rc.0",
     "next-auth": "^4.24.7",
     "react": "^19.0.0-rc-8269d55d-20240802",
-    "react-dom": "^19.0.0-rc-8269d55d-20240802"
+    "react-dom": "^19.0.0-rc-8269d55d-20240802",
+    "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -25,5 +29,10 @@
     "prisma": "^5.17.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
