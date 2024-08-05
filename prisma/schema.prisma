@@ -4,8 +4,6 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -15,6 +13,7 @@ datasource db {
   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
+
 
 enum Role {
   USER
