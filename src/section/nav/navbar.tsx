@@ -1,10 +1,11 @@
 import { getServerSession } from 'next-auth';
 import Container from '../ui/container';
 import { authOption } from '@/libs/next-auth';
-import UserAvatar from './user-avatar/user-avatar';
+// import UserAvatar from './user-avatar/user-avatar';
 import Logo from './logo';
 import NavbarRoutes from './navbar-routes';
 import NavbarMobileMenu from './navbar-mobile-menu';
+import UserAvatar from './user-avatar/user-avatar';
 
 const Navbar = async () => {
   const session = await getServerSession(authOption);

@@ -14,7 +14,7 @@ const LoginForm = () => {
         const res = await CheckUserEmail(formdata);
 
         if (!res?.success) {
-          redirect('/register');
+          redirect('/auth/register');
         } else {
           signIn('credentials', {
             email,

@@ -1,9 +1,9 @@
-import xLogo from '@/public/x.png';
-import youtubeLogo from '@/public/youtube.png';
-import instagramLogo from '@/public/instagram.png';
-import telegramLogo from '@/public/telegram.png';
+import xLogo from '../../../public/x.png';
+import youtubeLogo from '../../../public/youtube.png';
+import instagramLogo from '../../../public/instagram.png';
+import telegramLogo from '../../../public/telegram.png';
 import Container from '@/section/ui/container';
-// import Logo from '../navbar/logo';
+import Logo from '../nav/logo';
 import { cn } from '@/libs/utils';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -42,7 +42,7 @@ const Footer = () => {
         <div className='flex flex-col justify-between gap-y-8 py-8 text-white md:flex-row'>
           <div className='flex flex-col items-center gap-y-4 md:items-start'>
             <div className='flex items-center gap-x-3'>
-              {/* <Logo className='invert' /> */}rrr
+              <Logo className='invert' />
               <h2 className='text-3xl font-bold'>نکست بلاگ</h2>
             </div>
             <p className='w-96 text-balance text-center text-gray-300 md:text-right'>
