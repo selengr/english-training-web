@@ -3,6 +3,7 @@ import { Vazirmatn } from 'next/font/google';
 import './globals.css';
 import Footer from '@/section/footer/footer';
 import Navbar from '@/section/nav/navbar';
+import Providers from '@/components/theme/providers'
 
 const vazir = Vazirmatn({ subsets: ['arabic'] });
 
@@ -17,13 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html dir='rtl' lang='fa-Ir'>
+    <html dir='rtl' lang='fa-Ir' suppressHydrationWarning>
       <body className={vazir.className}>
+      <Providers>
         <Navbar />
         <div className='flex min-h-dvh flex-col justify-between'>
           {children}
           <Footer />
         </div>
+        </Providers>
       </body>
     </html>
   );

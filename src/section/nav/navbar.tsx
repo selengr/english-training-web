@@ -3,6 +3,7 @@ import Container from '../ui/container';
 import { authOption } from '@/libs/next-auth';
 // import UserAvatar from './user-avatar/user-avatar';
 import Logo from './logo';
+import ThemeButton from '@/components/theme/ThemeButton'
 import NavbarRoutes from './navbar-routes';
 import NavbarMobileMenu from './navbar-mobile-menu';
 import UserAvatar from './user-avatar/user-avatar';
@@ -13,6 +14,7 @@ const Navbar = async () => {
     <nav className='border-b py-3'>
       <Container isFullHeight className='flex items-center justify-between'>
         <div className='flex items-center justify-start gap-x-6'>
+        <ThemeButton />
           <div className='hidden md:block'>
             <Logo />
           </div>
