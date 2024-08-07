@@ -2,12 +2,19 @@
   "name": "english-training-web",
   "version": "0.1.0",
   "private": true,
+
+  "engines": {
+    "npm": "Please use pnpm",
+    "yarn": "Please use pnpm"
+  },
+
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "npx prisma generate"
+    "prebuild": "npx prisma generate",
+    "preinstall": "npx only-allow npm"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",

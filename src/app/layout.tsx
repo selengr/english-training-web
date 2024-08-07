@@ -4,6 +4,7 @@ import './globals.css';
 import Footer from '@/section/footer/footer';
 import Navbar from '@/section/nav/navbar';
 import Providers from '@/components/theme/providers'
+import Banner from '@/section/banner';
 
 const vazir = Vazirmatn({ subsets: ['arabic'] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={vazir.className}>
       <Providers>
         <Navbar />
+        <Banner banner={"images/https___s3-us-west-2.avif"} cover={"images/fikeus-west-2.avif"} /> 
         <div className='flex min-h-dvh flex-col justify-between'>
           {children}
           <Footer />
