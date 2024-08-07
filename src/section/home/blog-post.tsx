@@ -46,7 +46,6 @@ export default async function BlogPost() {
                   
                       </span>
                       <span className={styles["post-blog-property-date"]}>
-                        {/* Mar 7, 2018 */}
                         {it?.createdAt?.toString()?.split("T")[0]}
                       </span>
                     </div>

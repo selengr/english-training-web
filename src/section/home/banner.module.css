@@ -167,15 +167,15 @@ html[data-theme="light"] .post-header h2{
     -o-border-radius: 1rem;
 }
 .post-blog-each-card:hover {
-    background-color: rgb(71, 76, 80);
+    background-color: var(--bg-color-1);
     transition: background-color 150ms linear;
     -webkit-transition: background-color 150ms linear;
     -moz-transition: background-color 150ms linear;
     -ms-transition: background-color 150ms linear;
     -o-transition: background-color 150ms linear;
 }
-html[data-theme="light"] .post-blog-each-card:hover {
-    background-color: var(--bg-color-0);
+html[data-theme="dark"] .post-blog-each-card:hover {
+    background-color: var(--bg-color-2);
     transition: background-color 150ms linear;
     -webkit-transition: background-color 150ms linear;
     -moz-transition: background-color 150ms linear;

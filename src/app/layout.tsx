@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import { Vazirmatn } from 'next/font/google';
 import './globals.css';
-import Footer from '@/section/footer/footer';
 import Navbar from '@/section/nav/navbar';
+import { Vazirmatn } from 'next/font/google';
 import Providers from '@/components/theme/providers'
 
 
@@ -19,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html dir='rtl' lang='fa-Ir' suppressHydrationWarning>
-      <body className={vazir.className}>
+    <html lang='fa-Ir' suppressHydrationWarning>
+      <body className={`${vazir.className} bg-[#f8f8f8] dark:text-[hsla(0,0%,100%,.9)]  text-[#37352f] dark:bg-[#2f3437] `}>
       <Providers>
         <Navbar />
     

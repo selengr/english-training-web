@@ -3,7 +3,7 @@ import styles from "./banner.module.css"
 
 const Bio = () => {
     return (
-        <section className={styles["landing-page-content-inner"]}>
+        <section className="w-full flex flex-col">
             
             <div className="flex flex-col">
 
@@ -13,7 +13,7 @@ const Bio = () => {
 
             <div>
                 
-              <span className={styles["landing-hover-highlight"]}>Lorem amet consectetur adipisicing elit. Deleniti voluptate aut eveniet, </span>
+              <span className={styles["landing-hover-highlight"]}>Stay tuned for exciting updates - coming soon! </span>
             </div>
 
       
