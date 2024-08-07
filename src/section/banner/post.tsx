@@ -1,32 +1,61 @@
 // "use client"
 import Image from "next/image";
-import styles from "../../styles/components/banner/banner.module.css";
+import styles from "./banner.module.css";
 import Link from "next/link";
-import callApi from "@/services/axios";
-import { IPInputs } from "@/app/types/dashboard";
+// import callApi from "@/services/axios";
+// import { IPInputs } from "@/app/types/dashboard";
 
-export const dynamic = 'force-dynamic' 
+// export const dynamic = 'force-dynamic' 
 
-async function getData() {
-  try {
-    const response = await callApi().get("/api/post");
-    return response;
-  } catch (error) {
-    console.log("11111111111111111111111")
-  }
-}
+// async function getData() {
+//   try {
+//     const response = await callApi().get("/api/post");
+//     return response;
+//   } catch (error) {
+//     console.log("11111111111111111111111")
+//   }
+// }
 
 export default async function Post() {
-  const data: any = await getData();
+  // const data: any = await getData();
   
-  console.log('data****************************************************** :>> ', data);
+  // console.log('data****************************************************** :>> ', data);
   return (
     <div className={styles["post-header"]}>
       <h2>Blog Posts</h2>
 
       <aside className={styles["post-blog-card"]}>
         {
-          data?.map((it: IPInputs) => {
+          [
+            {
+            id:11,
+            banner : "0bbb814a-0a20-4df4-89cd-d8f4e0e9e7c4.avif",
+            title : "0bbb814a-0a20-4df4-89cd-d8f4e0e9e7 testjwdad",
+            introduction : "",
+            updatedAt : "3768T487",
+            tags : ["3768T487"]},
+            {
+            id:11,
+            banner : "1bccbafe-357a-49a2-a0b0-331177bf2c18.avif",
+            title : "0bbb814a-0a20-4df4-89cd-d8f4e0e9e7 testjwdad",
+            introduction : "",
+            updatedAt : "3768T487",
+            tags : ["3768T487"]},
+            {
+            id:11,
+            banner : "0d763f8a-75eb-41f9-8c10-6e7e65338d64.avif",
+            title : "0bbb814a-0a20-4df4-89cd-d8f4e0e9e7 testjwdad",
+            introduction : "",
+            updatedAt : "3768T487",
+            tags : ["3768T487"]},
+            {
+            id:11,
+            banner : "0b392b84-8b53-41d6-b625-9b3ccf39310b.avif",
+            title : "0bbb814a-0a20-4df4-89cd-d8f4e0e9e7 testjwdad",
+            introduction : "",
+            updatedAt : "3768T487",
+            tags : ["3768T487"]},
+          ]?.map((it: any) => {
             let tag = it.tags
             return (
               <>
@@ -38,10 +67,10 @@ export default async function Post() {
                   passHref
                 >
                   <Image
-                    src={"/" + it.banner.toString().replace("public\\", "")}
+                    src={"/pre/upload/" + it.banner}
                     alt="Picture of the author"
-                    width={0}
-                    height={0}
+                    width={200}
+                    height={200}
                   />
 
                   <section className={styles["post-blog-property"]}>

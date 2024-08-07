@@ -1,8 +1,8 @@
-import { getServerSession } from 'next-auth';
-import Container from '../ui/container';
-import { authOption } from '@/libs/next-auth';
-import styles from "./styles/components/header/header.module.css"
 import Link from 'next/link';
+import styles from "./header.module.css"
+import { getServerSession } from 'next-auth';
+import { authOption } from '@/libs/next-auth';
+import ThemeButton from '@/components/theme/ThemeButton';
 
 const Navbar = async () => {
   const session = await getServerSession(authOption);
@@ -10,7 +10,7 @@ const Navbar = async () => {
     <nav className='border-b py-3'>
         <div className={`${styles["landing-top"]}`}>
                {/* ddd   */}
-
+               <ThemeButton />
                <div className=" fixed sm:right-20 right-10 flex justify-center align-middle items-center overflow-hidden">
                 
                <Link href="/about"

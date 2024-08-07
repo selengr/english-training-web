@@ -1,4 +1,4 @@
-import styles from "../../styles/components/banner/banner.module.css"
+import styles from "./banner.module.css"
 
 
 const Bio = () => {
