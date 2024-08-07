@@ -1,12 +1,8 @@
 
 .landing-main {
-    width: 100vw !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 54px;
+    @apply w-full flex items-center justify-center flex-col mt-14;
 }
+
 .landing-img {
     inset: 0px;
     box-sizing: border-box;

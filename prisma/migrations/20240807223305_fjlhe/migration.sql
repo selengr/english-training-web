@@ -16,11 +16,10 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Post" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
-    "address" TEXT NOT NULL,
     "body" TEXT NOT NULL,
-    "image" TEXT NOT NULL,
+    "banner" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -35,6 +34,3 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Post_id_key" ON "Post"("id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Post_address_key" ON "Post"("address");

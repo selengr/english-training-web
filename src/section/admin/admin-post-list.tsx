@@ -19,7 +19,7 @@ const AdminPostList = async () => {
             <div className='flex flex-1 items-start gap-x-4 rounded-md bg-gray-100 px-3 py-4 shadow-sm'>
               <div className='relative size-20'>
                 <Image
-                  src={post.image}
+                  src={post.banner}
                   alt={post.title}
                   fill
                   sizes='100vw'

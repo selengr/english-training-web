@@ -9,11 +9,10 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
-
 
 enum Role {
   USER
@@ -32,12 +31,13 @@ model User {
 }
 
 model Post {
-  id Int @id @unique @default(autoincrement())
+  // id Int @id @unique @default(autoincrement())
+  id String @id @unique @default(uuid())
 
-  title   String
-  address String @unique
-  body    String
-  image   String
+  title  String
+  // address String @unique
+  body   String
+  banner String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

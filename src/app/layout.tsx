@@ -4,10 +4,7 @@ import './globals.css';
 import Footer from '@/section/footer/footer';
 import Navbar from '@/section/nav/navbar';
 import Providers from '@/components/theme/providers'
-import Banner from '@/section/banner';
-import Bio from '@/section/banner/bio';
-import Post from '@/section/banner/post';
-import styles from "@/section/banner/banner.module.css"
+
 
 const vazir = Vazirmatn({ subsets: ['arabic'] });
 
@@ -26,21 +23,9 @@ export default function RootLayout({
       <body className={vazir.className}>
       <Providers>
         <Navbar />
-        <Banner banner={"images/https___s3-us-west-2.avif"} cover={"images/fikeus-west-2.avif"} /> 
-      
-   
-    <div className="w-100 flex justify-center align-middle">
-      <article className={styles["landing-article"]}>
-              <Bio />
-              <Post />
-              {/* <Post data={data}/> */}
-      </article>
-    </div>
-      
-        <div className='flex min-h-dvh flex-col justify-between'>
+    
           {children}
-          <Footer />
-        </div>
+       
         </Providers>
       </body>
     </html>
