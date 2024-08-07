@@ -31,8 +31,8 @@ const Banner = ({data,title,banner,cover}:Props) => {
               <Image
               src={'/pre/'+cover.toString().replace('public\\' ,'')}
               alt="Picture of the author"
-              width={0}
-              height={0}
+              width={100}
+              height={100}
               className={styles["landing-div-rounded"]}
             />
           

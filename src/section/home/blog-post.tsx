@@ -6,7 +6,7 @@ import prismadb from "@/libs/prismadb";
 
 
 export default async function BlogPost() {
-  const posts = await prismadb.post.findMany();
+  const posts = await prismadb?.post?.findMany();
 
   return (
     <div className={styles["post-header"]}>
@@ -14,7 +14,7 @@ export default async function BlogPost() {
 
       <aside className={styles["post-blog-card"]}>
         {
-          posts.map((it: any) => {
+          posts?.map((it: any) => {
             let tag = it.tags
             return (
               <>
