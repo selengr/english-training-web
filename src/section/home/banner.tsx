@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import styles from "./banner.module.css"
-import { LampDemo } from "@/components/lamp/lamp";
+
 
 
 type Props = {

@@ -14,7 +14,7 @@ const Navbar = async () => {
               
                
 
-               <Link href="/about"
+               <Link href="/about-me"
               passHref
                > <label >About</label></Link>
 
