@@ -3,7 +3,7 @@
 // import { CreateUserAction } from '@/actions/auth-action';
 // import SubmitButton from '../ui/submit-button';
 import { signIn } from 'next-auth/react';
-import { CreateUserAction } from '../../../actions/auth-action';
+import { CreateUserAction } from '../../lib/actions/auth-action';
 import SubmitButton from '../ui/ submit-button';
 
 const RegisterForm = () => {

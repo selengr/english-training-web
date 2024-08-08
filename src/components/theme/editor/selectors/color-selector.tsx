@@ -138,7 +138,7 @@ export const ColorSelector = ({ open, onOpenChange }: ColorSelectorProps) => {
             <EditorBubbleItem
               key={index}
               onSelect={() => {
-                editor.commands.unsetColor()
+                editor?.commands?.unsetColor()
                 name !== 'Default' &&
                   editor
                     .chain()
