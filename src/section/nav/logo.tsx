@@ -1,4 +1,4 @@
-import { cn } from '@/libs/utils';
+import { cn } from '@/lib/utils';
 import logoPng from '../../../public/blog.png';
 import Image from 'next/image';
 

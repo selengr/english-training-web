@@ -1,6 +1,6 @@
 'use server';
 
-import prismadb from '@/libs/prismadb';
+import prismadb from '@/lib/prismadb';
 import { revalidatePath } from 'next/cache';
 
 export const CreatePostAction = async (formdata: FormData) => {

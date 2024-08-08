@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./banner.module.css";
-import prismadb from "@/libs/prismadb";
+import prismadb from "@/lib/prismadb";
 
 
 export default async function BlogPost() {

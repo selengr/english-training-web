@@ -1,6 +1,6 @@
 'use server';
 
-import prismadb from '@/libs/prismadb';
+import prismadb from '@/lib/prismadb';
 import { hash } from 'bcrypt';
 
 export const CreateUserAction = async (formdata: FormData) => {

@@ -4,7 +4,7 @@ import instagramLogo from '../../../public/instagram.png';
 import telegramLogo from '../../../public/telegram.png';
 import Container from '@/section/ui/container';
 import Logo from '../nav/logo';
-import { cn } from '@/libs/utils';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 

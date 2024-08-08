@@ -1,5 +1,5 @@
 
-import prismadb from "@/libs/prismadb";
+import prismadb from "@/lib/prismadb";
 import Code from "@/section/blog/code";
 import { notFound } from "next/navigation";
 import Banner from "@/section/home/banner";

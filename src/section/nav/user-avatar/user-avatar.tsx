@@ -1,4 +1,4 @@
-import prismadb from '@/libs/prismadb';
+import prismadb from '@/lib/prismadb';
 import { Session } from 'next-auth';
 import Link from 'next/link';
 import User from './user';
