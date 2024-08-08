@@ -2,12 +2,10 @@
   "name": "english-training-web",
   "version": "0.1.0",
   "private": true,
-
   "engines": {
     "npm": "Please use pnpm",
     "yarn": "Please use pnpm"
   },
-
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -25,6 +23,7 @@
     "next": "^15.0.0-rc.0",
     "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
+    "novel": "^0.5.0",
     "prettierrc": "^0.0.0-5",
     "react": "^19.0.0-rc-8269d55d-20240802",
     "react-dom": "^19.0.0-rc-8269d55d-20240802",
