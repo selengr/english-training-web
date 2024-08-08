@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import { CheckUserEmail } from '../../../actions/auth-action';
+import { CheckUserEmail } from '../../lib/actions/auth-action';
 import SubmitButton from '../ui/ submit-button';
 
 const LoginForm = () => {

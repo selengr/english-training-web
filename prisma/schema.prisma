@@ -38,6 +38,7 @@ model Post {
   // address String @unique
   body   String
   banner String
+  content   String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

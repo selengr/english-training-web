@@ -1,25 +1,18 @@
 'use client'
 
+import Editor from '@/components/theme/editor'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
-
-// import Editor from '@/components/editor'
-// import { Button } from '@/components/ui/button'
-// import { Input } from '@/components/ui/input'
 // import { createBlogAction } from '@/lib/actions'
-import Editor from '../../../components/theme/editor'
-// import { toast } from 'sonner'
+import { toast } from 'sonner'
 
 export const defaultValue = {
   type: 'doc',
   content: [
     {
       type: 'paragraph',
-      content: [
-        {
-          type: 'text',
-          text: 'Type "/" for commands or start writing...'
-        }
-      ]
+      content: []
     }
   ]
 }
@@ -55,8 +48,8 @@ export default function ContentForm() {
 
   return (
     <div className='mt-6 flex max-w-2xl flex-col gap-4'>
-      {/* <div className='flex gap-4'> */}
-        {/* <Input
+      <div className='flex gap-4'>
+        <Input
           type='text'
           placeholder='Title'
           value={title}
@@ -67,15 +60,13 @@ export default function ContentForm() {
           placeholder='Slug'
           value={slug}
           onChange={e => setSlug(e.target.value)}
-        /> */}
-      {/* </div> */}
+        />
+      </div>
 
       <Editor initialValue={defaultValue} onChange={setContent} />
-      {/* <button onClick={handleSubmit} 
-      disabled={pending}
-      >
+      <Button onClick={handleSubmit} disabled={pending}>
         {pending ? 'Submitting...' : 'Create'}
-      </button> */}
+      </Button>
     </div>
   )
 }

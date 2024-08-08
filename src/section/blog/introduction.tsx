@@ -1,7 +1,7 @@
 import styles from "@/section/blog/blog.module.css";
 
-const Introduction = ({ post }: { post: any }) => {
-console.log('post0000 :>> ', post.createdAt);
+const Introduction = ({ blog }: { blog: any }) => {
+console.log('blog0000 :>> ', blog.createdAt);
   return (
 
     <div className={styles["post-blog"]}>
@@ -14,7 +14,7 @@ console.log('post0000 :>> ', post.createdAt);
       </div>
 
       <span className={styles["post-blog-property-date"]}>
-        {post?.createdAt.toString()}
+        {blog?.createdAt.toString()}
         </span>
       <span className={styles["post-blog-property-name"]}>wwww</span>
 
