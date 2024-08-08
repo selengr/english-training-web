@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from "./header.module.css"
 import { getServerSession } from 'next-auth';
-import { authOption } from '@/libs/next-auth';
+import { authOption } from '@/lib/next-auth';
 import ThemeButton from '@/components/theme/ThemeButton';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
 

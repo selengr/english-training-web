@@ -1,4 +1,4 @@
-import prismadb from '@/lib/prismadb';
+import prisma from '@/lib/prisma';
 import { Session } from 'next-auth';
 import Link from 'next/link';
 import User from './user';
@@ -20,7 +20,7 @@ const UserAvatar = async ({ session }: UserAvatarProps) => {
       </div>
     );
 
-  const user = await prismadb.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
       id: session.user.usreId,
     },

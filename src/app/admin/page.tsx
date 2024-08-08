@@ -1,7 +1,7 @@
 import AdminPostList from '@/section/admin/admin-post-list';
 import NewPostForm from '@/section/admin/new-post-form';
 import Container from '@/section/ui/container';
-import { authOption } from '@/libs/next-auth';
+import { authOption } from '@/lib/next-auth';
 import { getServerSession } from 'next-auth';
 
 const admin = async () => {

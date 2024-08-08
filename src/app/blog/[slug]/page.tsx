@@ -1,5 +1,5 @@
 
-import prismadb from "@/lib/prismadb";
+import prisma from "@/lib/prisma";
 import Code from "@/section/blog/code";
 import { notFound } from "next/navigation";
 import Banner from "@/section/home/banner";
@@ -12,7 +12,7 @@ import Introduction from "@/section/blog/introduction";
 
 
 const Blog = async ({params}:{params: { slug : string }}) => {
-    const blog = await prismadb.post.findUnique({
+    const blog = await prisma.post.findUnique({
     where: {
       id : params.slug,
     },

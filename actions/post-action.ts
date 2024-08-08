@@ -1,6 +1,6 @@
 'use server';
 
-import prismadb from '@/lib/prismadb';
+import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 
 export const CreatePostAction = async (formdata: FormData) => {
@@ -9,7 +9,7 @@ export const CreatePostAction = async (formdata: FormData) => {
 
     const address = String(title).split(' ').join('-');
 
-    const post = await prismadb.post.create({
+    const post = await prisma.post.create({
       data: {
         title: title as string,
         address,
@@ -30,7 +30,7 @@ export const CreatePostAction = async (formdata: FormData) => {
 
 export const DeletePostAction = async (id: number) => {
   try {
-    await prismadb.post.delete({
+    await prisma.post.delete({
       where: {
         id,
       },

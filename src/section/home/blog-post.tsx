@@ -2,11 +2,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./banner.module.css";
-import prismadb from "@/lib/prismadb";
+import prisma from "@/lib/prisma";
 
 
 export default async function BlogPost() {
-  const posts = await prismadb?.post?.findMany();
+  const posts = await prisma?.post?.findMany();
 
   return (
     <div className={styles["post-header"]}>

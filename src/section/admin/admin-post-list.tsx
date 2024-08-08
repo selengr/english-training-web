@@ -1,11 +1,11 @@
-// import prismadb from '@/libs/prismadb';
+// import prisma from '@/libs/prisma';
 // import { ExternalLink } from 'lucide-react';
 // import Image from 'next/image';
 // import Link from 'next/link';
 // import DeletePostButton from './delete-post-button';
 
 // const AdminPostList = async () => {
-//   const posts = await prismadb.post.findMany({
+//   const posts = await prisma.post.findMany({
 //     orderBy: {
 //       id: 'asc',
 //     },

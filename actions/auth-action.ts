@@ -1,6 +1,6 @@
 'use server';
 
-import prismadb from '@/lib/prismadb';
+import prisma from '@/lib/prisma';
 import { hash } from 'bcrypt';
 
 export const CreateUserAction = async (formdata: FormData) => {
@@ -9,7 +9,7 @@ export const CreateUserAction = async (formdata: FormData) => {
 
     const hashedPassword = await hash(password as string, 12);
 
-    const user = await prismadb.user.create({
+    const user = await prisma.user.create({
       data: {
         name: name as string,
         email: email as string,
@@ -29,7 +29,7 @@ export const CheckUserEmail = async (formdata: FormData) => {
   try {
     const { email } = Object.fromEntries(formdata);
 
-    const user = await prismadb.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         email: email as string,
       },

@@ -1,7 +1,7 @@
 
 import RegisterForm from '@/section/auth/register-form';
 import Container from '@/section/ui/container';
-import { authOption } from '@/libs/next-auth';
+import { authOption } from '@/lib/next-auth';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
