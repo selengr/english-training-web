@@ -18,7 +18,7 @@ const Banner = ({data,title,banner,cover}:Props) => {
         
               <Image
               // loader={myLoader}
-              src={'/pre/'+banner.toString().replace('public\\' ,'')}
+              src={'/pre/'+banner.toString()}
               alt="Picture of the author"
               width={500}
               height={500}
@@ -29,7 +29,7 @@ const Banner = ({data,title,banner,cover}:Props) => {
          
 
               <Image
-              src={'/pre/'+cover.toString().replace('public\\' ,'')}
+              src={'/pre/'+cover.toString()}
               alt="Picture of the author"
               width={100}
               height={100}
