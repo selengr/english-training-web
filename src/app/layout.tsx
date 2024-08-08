@@ -4,6 +4,7 @@ import Navbar from '@/section/nav/navbar';
 import { Vazirmatn } from 'next/font/google';
 import Providers from '@/components/theme/providers'
 import { ThemeProvider } from '@/components/theme/theme-provider';
+import { Toaster } from '@/components/ui/toaster';
 
 
 const vazir = Vazirmatn({ subsets: ['arabic'] });
@@ -34,6 +35,7 @@ export default function RootLayout({
           {children}
           </main>
        
+          <Toaster />
           </ThemeProvider>
       </body>
     </html>

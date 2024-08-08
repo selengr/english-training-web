@@ -1,4 +1,5 @@
-import ContentForm from '@/components/content-form'
+import ContentForm from "@/section/blog/create/ content-form";
+
 
 export default function Page() {
   return (
