@@ -3,6 +3,7 @@ import './globals.css';
 import Navbar from '@/section/nav/navbar';
 import { Vazirmatn } from 'next/font/google';
 import Providers from '@/components/theme/providers'
+import { ThemeProvider } from '@/components/theme/theme-provider';
 
 
 const vazir = Vazirmatn({ subsets: ['arabic'] });
@@ -18,14 +19,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='fa-Ir' suppressHydrationWarning>
+    <html lang='fa-Ir' className='scroll-smooth antialiased'
+    suppressHydrationWarning>
       <body className={`${vazir.className} bg-[#f8f8f8] dark:text-[hsla(0,0%,100%,.9)]  text-[#37352f] dark:bg-[#2f3437] `}>
-      <Providers>
+      <ThemeProvider
+          enableSystem
+          attribute='class'
+          defaultTheme='system'
+          disableTransitionOnChange
+        >
         <Navbar />
     
+          <main>
           {children}
+          </main>
        
-        </Providers>
+          </ThemeProvider>
       </body>
     </html>
   );
