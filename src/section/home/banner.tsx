@@ -1,7 +1,7 @@
-// 'use client'
+
 import Image from "next/image";
 import styles from "./banner.module.css"
-// import { HeroHeader } from "../custom/hero-header";
+import { LampDemo } from "@/components/lamp/lamp";
 
 
 type Props = {
@@ -39,8 +39,12 @@ const Banner = ({data,title,banner,cover}:Props) => {
              
 
                
+{/* {!title&& */}
+{/* {!title&& */}
+                <h1 className={styles["landing-title"]}>{title?title:"commercial web"}</h1>
 
-                <h1 className={styles["landing-title"]}>{title ?? "commercial web"}</h1>
+            
+
 
 
                 

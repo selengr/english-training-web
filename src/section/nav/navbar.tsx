@@ -10,23 +10,22 @@ const Navbar = async () => {
   return (
     <nav className='border-b py-3'>
         <div className={`${styles["landing-top"]}`}>
-               {/* ddd   */}
-               <ThemeToggle />
-               <div className=" fixed sm:right-20 right-10 flex justify-center align-middle items-center overflow-hidden">
-                
+               <div className="flex justify-end flex-row align-middle items-center w-full pr-10">
+              
+               
+
                <Link href="/about"
-               className="overflow-hidden" passHref
+              passHref
                > <label >About</label></Link>
 
 
                <Link href="/auth/login"
-               className="overflow-hidden" passHref
-               >  <label className="sm:ml-2 ml-0">{`Login`}</label></Link>
-                
+              passHref
+               >  <label className="mr-4 ml-2">{`Login`}</label></Link>
+                <ThemeToggle />
 
-                 {/* <label className="sm:ml-2 ml-0">Contact</label> */}
+              
                </div>
-
 
                <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
                 {/* <Image
