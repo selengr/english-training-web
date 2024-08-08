@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 // import { createBlogAction } from '@/lib/actions'
 import { toast } from 'sonner'
+import { createBlogAction } from '../../../../actions/blog-action'
 
 export const defaultValue = {
   type: 'doc',
@@ -19,7 +20,7 @@ export const defaultValue = {
 
 export default function ContentForm() {
   const [title, setTitle] = useState('')
-  const [slug, setSlug] = useState('')
+  const [body, setBody] = useState('')
   const [content, setContent] = useState<string>('')
   const [pending, setPending] = useState(false)
 
@@ -29,7 +30,7 @@ export default function ContentForm() {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)+/g, '')
 
-    setSlug(name)
+    setBody(name)
   }, [title])
 
   async function handleSubmit() {
@@ -37,11 +38,11 @@ export default function ContentForm() {
 
     setPending(true)
 
-    // const result = await createBlogAction({ title, slug, content })
+    const result = await createBlogAction({ title, body, content })
 
-    // if (result?.error) {
-    //   toast.error(result.error)
-    // }
+    if (result?.error) {
+      toast.error(result.error)
+    }
 
     setPending(false)
   }
@@ -57,9 +58,9 @@ export default function ContentForm() {
         />
         <Input
           type='text'
-          placeholder='Slug'
-          value={slug}
-          onChange={e => setSlug(e.target.value)}
+          placeholder='Body'
+          value={body}
+          onChange={e => setBody(e.target.value)}
         />
       </div>
 

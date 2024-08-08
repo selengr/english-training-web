@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 
 export async function createBlogAction(data: {
   title: string
-  slug: string
+  body: string
   content: string
 }) {
   // TODO: validate the data
@@ -16,8 +16,9 @@ export async function createBlogAction(data: {
     post = await prisma.post.create({
       data: {
         title: data.title,
-        slug: data?.slug,
-        content: data.content
+        body: data?.body,
+        content: data.content,
+        banner : "17d82226-72fd-4f2f-a340-ab7ce8fb070b.avif"
       }
     })
 
@@ -32,5 +33,5 @@ export async function createBlogAction(data: {
     return { error: error.message || 'Failed to create the blog.' }
   }
 
-  redirect(`/blog/${post.slug}`)
+  redirect(`/blog/${post.id}`)
 }
