@@ -18,7 +18,7 @@ const Register = async () => {
         <div className='mt-8'>
           <Link href='/login' className='hover:text-blue-600'>
             <p className='text-center'>
-              نام نویسی کرده‌اید، برای ورود کلیک کنید
+                  login
             </p>
           </Link>
         </div>

@@ -24,22 +24,22 @@ const RegisterForm = () => {
       }}
       className='mx-auto flex w-96 flex-col gap-y-5'
     >
-      <h2 className='text-3xl font-bold'>نام نویسی</h2>
+      <h2 className='text-3xl font-bold'>register</h2>
       <input
         type='text'
-        placeholder='نام'
+        placeholder='name'
         className='rounded-md border p-2 shadow-sm'
         name='name'
       />
       <input
         type='email'
-        placeholder='ایمیل'
+        placeholder='email'
         className='rounded-md border p-2 shadow-sm'
         name='email'
       />
       <input
         type='password'
-        placeholder='رمز عبور'
+        placeholder='password'
         className='rounded-md border p-2 shadow-sm'
         name='password'
       />
