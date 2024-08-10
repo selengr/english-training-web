@@ -4,6 +4,8 @@ import { getServerSession } from 'next-auth';
 import { authOption } from '@/lib/next-auth';
 import ThemeButton from '@/components/theme/ThemeButton';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
+import { Avatar } from '@radix-ui/react-avatar';
+import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Navbar = async () => {
   const session = await getServerSession(authOption);
@@ -28,24 +30,17 @@ const Navbar = async () => {
                </div>
 
                <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
-                {/* <Image
-                    src={"/images/loading/Loading-own.gif"}
-                    alt="author"
-                    width={50}
-                    height={50}
-                    className="rounded-full"
-                /> */}
-                
-                {/* <Avatar
-                        alt="auther"
-                        src="/images/loading/Loading-own.gif"
-                        className="rounded-full"
-                        //   sx={{ width: 24, height: 24 }}
-                /> */}
-                
-                {/* <AccountMenu /> */}
-                 {/* <label className="sm:ml-2">reza karbakhsh</label> */}
-               </div>
+              
+               <Avatar className='pl-8 pr-4 rounded-full' >
+              <AvatarImage className='rounded-full' src="https://github.com/shadcn.png" />
+              <AvatarFallback  delayMs={600}>CN</AvatarFallback>
+            </Avatar>
+            <span>
+              {session?.user.email}
+            </span>
+            
+
+                </div>
             </div>
     </nav>
   );
