@@ -1,10 +1,8 @@
 
-import RegisterForm from '@/section/auth/register-form';
-import Container from '@/section/ui/container';
+import { redirect } from 'next/navigation';
 import { authOption } from '@/lib/next-auth';
 import { getServerSession } from 'next-auth';
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import RegisterForm from '@/section/auth/register-form';
 
 const Register = async () => {
   const session = await getServerSession(authOption);
@@ -13,16 +11,7 @@ const Register = async () => {
 
   return (
     <div className='mt-20'>
-      <Container>
         <RegisterForm />
-        <div className='mt-8'>
-          <Link href='/login' className='hover:text-blue-600'>
-            <p className='text-center'>
-                  login
-            </p>
-          </Link>
-        </div>
-      </Container>
     </div>
   );
 };

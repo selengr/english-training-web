@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { useFormStatus } from 'react-dom';
 
-const SubmitButton = ({text}:{text?:string}) => {
+const SubmitButton = ({text , ...other}:{text?:string,other?:any}) => {
   const { pending } = useFormStatus();
 
   return (
@@ -11,6 +11,7 @@ const SubmitButton = ({text}:{text?:string}) => {
       type='submit'
       disabled={pending}
       className='rounded-md'
+      {...other}
     >
         {text ?? "enter" }
     </Button>

@@ -34,7 +34,7 @@ const Navbar = async () => {
 
               
                </div>
-
+{session &&
                <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
               
                <Avatar className='pl-8 pr-4 rounded-full' >
@@ -74,6 +74,7 @@ const Navbar = async () => {
             
 
                 </div>
+}
             </div>
     </nav>
   );

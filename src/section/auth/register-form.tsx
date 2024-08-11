@@ -65,7 +65,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export function RegisterForm() {
+const RegisterForm = () => {
   return (
     <form
     action={async (formdata) => {
@@ -81,9 +81,9 @@ export function RegisterForm() {
         });
       }
     }}
-    className='mx-auto flex w-96 flex-col gap-y-5'
+    className='flex w-full'
   >
-    <Card className="mx-auto max-w-sm">
+    <Card className="mx-auto max-w-md">
       <CardHeader>
         <CardTitle className="text-xl">Sign Up</CardTitle>
         <CardDescription>
@@ -91,6 +91,7 @@ export function RegisterForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
+     
         <div className="grid gap-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
@@ -115,17 +116,15 @@ export function RegisterForm() {
             <Label htmlFor="password">Password</Label>
             <Input id="password" type="password" />
           </div>
-          <Button type="submit" className="w-full">
-            Create an account
-          </Button>
-          <SubmitButton />
+          
+          <SubmitButton text='Create an account' />
           <Button variant="outline" className="w-full">
             Sign up with GitHub
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <Link href="#" className="underline">
+          <Link href="/auth/login" className="underline">
             Sign in
           </Link>
         </div>
@@ -134,3 +133,5 @@ export function RegisterForm() {
     </form>
   )
 }
+
+export default RegisterForm;
