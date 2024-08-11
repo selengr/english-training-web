@@ -83,7 +83,7 @@ const RegisterForm = () => {
     }}
     className='flex w-full'
   >
-    <Card className="mx-auto max-w-md">
+    <Card className="mx-auto w-full max-w-md">
       <CardHeader>
         <CardTitle className="text-xl">Sign Up</CardTitle>
         <CardDescription>
