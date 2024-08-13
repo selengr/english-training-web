@@ -12,13 +12,16 @@ import {
 } from "@/components/ui/hover-card"
 import { Button } from '@/components/ui/button';
 import { CalendarDays } from 'lucide-react';
+import { SheetSide } from '@/components/sheet-content/SheetContent';
 
 const Navbar = async () => {
   const session = await getServerSession(authOption);
   return (
     <nav className='border-b py-3'>
         <div className={`${styles["landing-top"]}`}>
-               <div className="flex justify-end flex-row align-middle items-center w-full pr-10">
+
+             
+               <div className="flex justify-end flex-row align-middle items-center w-full pr-4 sm:pr-10">
               
                
 
@@ -29,15 +32,16 @@ const Navbar = async () => {
 
                <Link href="/auth/login"
               passHref
-               >  <label className="mr-4 ml-2">{`Login`}</label></Link>
+               >  <label className="mr-2 sm:mr-4 ml-2">{`Login`}</label></Link>
                 <ThemeToggle />
 
               
                </div>
+              
 {session &&
                <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
-              
-               <Avatar className='pl-8 pr-4 rounded-full' >
+               <SheetSide />
+               <Avatar className='pl-0 pr-0 rounded-full' >
               <AvatarImage className='rounded-full' src="https://github.com/shadcn.png" />
               <AvatarFallback  delayMs={600}>CN</AvatarFallback>
             </Avatar>
@@ -46,7 +50,7 @@ const Navbar = async () => {
 
             <HoverCard>
       <HoverCardTrigger asChild>
-        <Button variant="link">{session?.user.email}</Button>
+        <Button variant="link" className='hidden sm:flex'>{session?.user.email}</Button>
       </HoverCardTrigger>
       <HoverCardContent className="w-80">
         <div className="flex justify-between space-x-4">
@@ -75,6 +79,7 @@ const Navbar = async () => {
 
                 </div>
 }
+
             </div>
     </nav>
   );

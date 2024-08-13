@@ -13,40 +13,78 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { PATH_PAGE } from "@/routes/paths"
+import { AlignJustify, BadgeCheck, Bell, FilePlus2, Home, LineChart, Package, Package2, ShoppingCart, Users } from 'lucide-react';
+import Link from "next/link"
 
-const SHEET_SIDES = ["top", "right", "bottom", "left"] as const
-
-type SheetSide = (typeof SHEET_SIDES)[number]
 
 export function SheetSide() {
   return (
-    <div className="grid grid-cols-2 gap-2">
-      {SHEET_SIDES.map((side) => (
-        <Sheet key={side}>
+    <div className="pr-4 pl-4 sm:pl-7">
+        <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline">{side}</Button>
+            <Button variant="outline" size={"sm"}>
+            <AlignJustify />
+            </Button>
           </SheetTrigger>
-          <SheetContent side={side}>
+          <SheetContent side={"left"}  
+          // className="bg-[#f8f8f8] dark:text-[hsla(0,0%,100%,.9)]  text-[#37352f] dark:bg-[#2f3437]"
+          >
             <SheetHeader>
-              <SheetTitle>Edit profile</SheetTitle>
-              <SheetDescription>
-                Make changes to your profile here. Click save when you're done.
-              </SheetDescription>
+            {/* <div className="flex h-full max-h-screen flex-col gap-2"> */}
+          <div className="flex h-20 items-center border-b pt-8 pb-6">
+            <Link href="/" className="flex items-center gap-2 font-semibold">
+              <Package2 className="h-6 w-6" />
+              <span className="">Acme Inc</span>
+            </Link>
+            <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
+              <Bell className="h-4 w-4" />
+              <span className="sr-only">Toggle notifications</span>
+            </Button>
+          </div>
+          {/* </div> */}
             </SheetHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  Name
-                </Label>
-                <Input id="name" value="Pedro Duarte" className="col-span-3" />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="username" className="text-right">
-                  Username
-                </Label>
-                <Input id="username" value="@peduarte" className="col-span-3" />
-              </div>
-            </div>
+            <nav className="grid gap-2 text-lg font-medium">
+                
+                <Link
+                  href="#"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                >
+                  <Home className="h-5 w-5" />
+                  Dashboard
+                </Link>
+                <Link
+                  href="#"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
+                >
+                  <ShoppingCart className="h-5 w-5" />
+                  Orders
+                  <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                    6
+                  </BadgeCheck>
+                </Link>
+                <Link
+                  href={PATH_PAGE.blogCreate}
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                >
+                     <FilePlus2  className="h-6 w-6" />
+                  Create Post
+                </Link>
+                <Link
+                  href="#"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                >
+                  <Users className="h-5 w-5" />
+                  Customers
+                </Link>
+                <Link
+                  href="#"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                >
+                  <LineChart className="h-5 w-5" />
+                  Analytics
+                </Link>
+              </nav>
             <SheetFooter>
               <SheetClose asChild>
                 <Button type="submit">Save changes</Button>
@@ -54,7 +92,7 @@ export function SheetSide() {
             </SheetFooter>
           </SheetContent>
         </Sheet>
-      ))}
+    
     </div>
   )
 }
