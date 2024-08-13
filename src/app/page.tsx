@@ -6,6 +6,8 @@ import styles from '@/section/home/banner.module.css';
 import { Suspense } from 'react';
 import BlogPost from '@/section/home/blog-post';
 import Banner from '@/section/home/banner';
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { StarsBackground } from "@/components/ui/stars-background";
 
 
 
@@ -26,6 +28,8 @@ const HomePage = () => {
                          </Suspense>
                     </article>
                </div>
+               {/* <ShootingStars />
+      <StarsBackground /> */}
           </div>
      );
 };

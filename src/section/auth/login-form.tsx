@@ -21,7 +21,7 @@ import { Label } from "@/components/ui/label"
 const LoginForm = () => {
   return (
         <form
-      action={async (formdata) => {
+         action={async (formdata) => {
         const email = formdata.get('email');
         const password = formdata.get('password');
         const res = await CheckUserEmail(formdata);
