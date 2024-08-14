@@ -16,6 +16,19 @@ const AboutMe = () => {
 
 <div className={styles["landing-main"]}>
            {/* <div className={`${styles["landing-img"]} `}> <HeroHeader /></div> */}
+  
+
+           <Image
+              // loader={myLoader}
+              src={'/pre/about/about-me.avif'}
+              alt="Picture of the author"
+              width={500}
+              height={500}
+              className={styles["landing-img"]}
+              />
+          
+
+         
          
              <Image
               src={"/pre/images/E52075F8-14EA-496F-A10C-CB4405AFE196_1_105_c.jpeg"}
