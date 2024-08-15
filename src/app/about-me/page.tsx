@@ -19,7 +19,7 @@ const AboutMe = () => {
   
 
            <Image
-              // loader={myLoader}
+              // loader={myLoader}np
               src={'/pre/about/about-me.avif'}
               alt="Picture of the author"
               width={500}

@@ -14,73 +14,78 @@ import { Button } from '@/components/ui/button';
 import { CalendarDays } from 'lucide-react';
 import { SheetSide } from '@/components/sheet-content/SheetContent';
 
+
 const Navbar = async () => {
   const session = await getServerSession(authOption);
+
+
   return (
     <nav className='border-b py-3'>
-        <div className={`${styles["landing-top"]}`}>
-
-             
-               <div className="flex justify-end flex-row align-middle items-center w-full pr-4 sm:pr-10">
-              
-               
-
-               <Link href="/about-me"
-              passHref
-               > <label >About</label></Link>
+      <div className={`${styles["landing-top"]}`}>
 
 
-               <Link href="/auth/login"
-              passHref
-               >  <label className="mr-2 sm:mr-4 ml-2">{`Login`}</label></Link>
-                <ThemeToggle />
+        <div className="flex justify-end flex-row align-middle items-center w-full pr-4 sm:pr-10">
 
-              
-               </div>
-              
-{session &&
-               <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
-               <SheetSide />
-               <Avatar className='pl-0 pr-0 rounded-full' >
+
+
+          <Link href="/about-me"
+            passHref
+          > <label className="mr-2">About</label></Link>
+
+
+
+          {!session && <Link href="/auth/login"
+            passHref
+          >  <label className="mr-2 sm:mr-4 ml-2">{`Login`}</label></Link>
+          }
+          <ThemeToggle />
+
+
+        </div>
+
+        {session &&
+          <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
+            <SheetSide />
+            <Avatar className='pl-0 pr-0 rounded-full' >
               <AvatarImage className='rounded-full' src="https://github.com/shadcn.png" />
-              <AvatarFallback  delayMs={600}>CN</AvatarFallback>
+              <AvatarFallback delayMs={600}>CN</AvatarFallback>
             </Avatar>
-            
+
 
 
             <HoverCard>
-      <HoverCardTrigger asChild>
-        <Button variant="link" className='hidden sm:flex'>{session?.user.email}</Button>
-      </HoverCardTrigger>
-      <HoverCardContent className="w-80">
-        <div className="flex justify-between space-x-4">
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback >VC</AvatarFallback>
-          </Avatar>
-          <div className="space-y-1">
-            <h4 className="text-sm font-semibold">{session?.user.name}</h4>
-            <p className="text-sm">
-            {session?.user.email}
-            </p>
-            <div className="flex items-center pt-2">
-              <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
-              <span className="text-xs text-muted-foreground">
-                 {/* {session?.user.email} */}text
-              </span>
-            </div>
-          </div>
-        </div>
-      </HoverCardContent>
-    </HoverCard>
-
-
-            
-
+              <HoverCardTrigger asChild>
+                <Button variant="link" className='hidden sm:flex'>{session?.user.email}</Button>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                <div className="flex justify-between space-x-4">
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback >VC</AvatarFallback>
+                  </Avatar>
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-semibold">{session?.user.name}</h4>
+                    <p className="text-sm">
+                      {session?.user.email}
+                    </p>
+                    <div className="flex items-center pt-2">
+                      <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
+                      <span className="text-xs text-muted-foreground">
+                        {/* {session?.user.email} */}text
+                      </span>
+                    </div>
+                  </div>
                 </div>
-}
+              </HoverCardContent>
+            </HoverCard>
 
-            </div>
+
+
+
+          </div>
+        }
+
+      </div>
     </nav>
   );
 };
