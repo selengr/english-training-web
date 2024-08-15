@@ -27,7 +27,7 @@ export const CreateUserAction = async (formdata: FormData) => {
 
 export const CheckUserEmail = async (formdata: FormData) => {
   try {
-    const { email } = Object.fromEntries(formdata);
+    const { email, password } = Object.fromEntries(formdata);
 
     const user = await prisma.user.findUnique({
       where: {
