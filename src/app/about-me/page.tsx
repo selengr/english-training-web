@@ -1,6 +1,7 @@
 'use client'
 import { BackgroundGradientAnimation } from "@/components/hero-header/BackgroundGradientAnimation";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import { CardStack } from "@/components/ui/card-stack";
 // import { HeroHeader } from "@/components/hero-header";
 // import { HeroHeader } from "@/components/custom/hero-header";
 // import Banner from "@/components/banner";
@@ -9,6 +10,32 @@ import styles from "@/section/home/banner.module.css"
 import Image from "next/image";
 
 
+const Card = [
+    {
+        id: 1,
+        name: "reza",
+        designation: "dlhvejlhvmdv",
+        content: <h1>djhvasvc,lkh lk lk </h1>
+    },
+    {
+        id: 2,
+        name: "reza text",
+        designation: "fkj4j4kjfb     4fjbf  f4jbj  k4;fhf",
+        content: <h1>kfjh 4kjf4f 4kjfh4kjf,e</h1>
+    },
+    {
+        id: 3,
+        name: "reza another",
+        designation: "jjj  4jf ifho4  f4ihff4f",
+        content: <h1>orjpjrpoj pj po po ,e</h1>
+    },
+    {
+        id: 4,
+        name: "reza hiiiii",
+        designation: "jwefglejffvp2ifv4fv;4kf",
+        content: <h1> lkjjv lkh j jl jlk ,e</h1>
+    },
+]
 
 const AboutMe = () => {
 
@@ -37,7 +64,7 @@ const AboutMe = () => {
                     alt="Picture of the author"
                     width={500}
                     height={500}
-                    className={styles["landing-div-rounded"]}
+                    className={`${styles["landing-div-rounded"]} z-50`}
                 />
 
 
@@ -66,7 +93,8 @@ const AboutMe = () => {
                     <br ></br>
                     <br ></br>
 
-                    <CanvasRevealEffect />
+                    {/* <CanvasRevealEffect /> */}
+                    <CardStack items={Card} />
 
 
                     <div className="flex w-full">
