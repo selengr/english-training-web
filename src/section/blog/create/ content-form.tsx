@@ -48,7 +48,7 @@ export default function ContentForm() {
   }
 
   return (
-    <div className='mt-6 flex max-w-2xl flex-col gap-4'>
+    <div className='mt-6 flex max-w-5xl flex-col gap-4 justify-center'>
       <div className='flex gap-4'>
         <Input
           type='text'

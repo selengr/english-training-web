@@ -1,7 +1,7 @@
 // routes
 import React from 'react';
 import { PATH_PAGE } from '@/routes/paths';
-import { AlignJustify, BadgeCheck, Bell, FilePlus2, Home, ShoppingCart, Users } from 'lucide-react';
+import { AlignJustify, Signpost, UserCog, FilePlus2, Home, ShoppingCart, Users } from 'lucide-react';
 
 
 
@@ -11,28 +11,40 @@ import { AlignJustify, BadgeCheck, Bell, FilePlus2, Home, ShoppingCart, Users } 
 // ----------------------------------------------------------------------
 
 const ICONS = {
-     home : <Home className="h-5 w-5" />,
-     blogCreate: <FilePlus2 className="h-6 w-6" />
+     home: <Home className="h-5 w-5" />,
+     blogCreate: <FilePlus2 className="h-6 w-6" />,
+     profile: <UserCog className="h-6 w-6" />,
+     myPost: <Signpost className="h-6 w-6" />
 
 
 };
 
 const navConfig = [
-  // GENERAL
-  // ----------------------------------------------------------------------
+     // GENERAL
+     // ----------------------------------------------------------------------
 
 
-               {
-                    title: 'create post',
-                    path: PATH_PAGE.blogCreate,
-                    icon: ICONS.blogCreate,
-               },
-               {
-                    title: 'home',
-                    path: PATH_PAGE.root,
-                    icon: ICONS.home,
-               },
-      
+     {
+          title: 'create post',
+          path: PATH_PAGE.blogCreate,
+          icon: ICONS.blogCreate,
+     },
+     {
+          title: 'home',
+          path: PATH_PAGE.root,
+          icon: ICONS.home,
+     },
+     {
+          title: 'profile',
+          path: PATH_PAGE.profile,
+          icon: ICONS.profile,
+     },
+     {
+          title: 'my post',
+          path: PATH_PAGE.myPost,
+          icon: ICONS.myPost,
+     },
+
 ];
 
 export default navConfig;
