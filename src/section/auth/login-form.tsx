@@ -1,9 +1,8 @@
 'use client';
 
-import { redirect } from 'next/navigation';
+
 import { signIn } from 'next-auth/react';
 import { CheckUserEmail } from '../../../actions/auth-action';
-import SubmitButton from '../ui/ submit-button';
 
 import Link from "next/link"
 
@@ -17,17 +16,23 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { toast } from '@/components/ui/use-toast';
+import { useTransition } from 'react';
 
 const LoginForm = () => {
+  const [pending, startTransaction] = useTransition();
+
+
   return (
     <form
       action={async (formdata) => {
         const email = formdata.get('email');
         const password = formdata.get('password');
         const res = await CheckUserEmail(formdata);
-
         if (!res?.success) {
-          redirect('/auth/register');
+          toast({
+            description: res?.error,
+          })
         } else {
           signIn('credentials', {
             email,
@@ -66,7 +71,7 @@ const LoginForm = () => {
               </div>
               <Input id="password" name="password" type="password" required />
             </div>
-            <Button type="submit" className="w-full mt-8">
+            <Button type="submit" className="w-full mt-8" loading={pending}>
               Login
             </Button>
             {/* <Button variant="outline" className="w-full">

@@ -28,7 +28,27 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  //  accounts      Account[]
 }
+
+
+// model Account {
+//   id                Int     @id @default(autoincrement())
+//   userId            Int
+//   provider          String
+//   providerAccountId String
+//   type              String?
+//   refresh_token     String?
+//   access_token      String?
+//   expires_at        Int?
+//   token_type        String?
+//   scope             String?
+//   id_token          String?
+//   session_state     String?
+//   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@unique([provider, providerAccountId])
+// }
 
 model Post {
   // id Int @id @unique @default(autoincrement())
@@ -42,4 +62,21 @@ model Post {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // published: false,
+  //     author: { connect: { email: authorEmail } },
 }
+
+
+// model Post {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   title     String
+//   content   String?
+//   published Boolean  @default(false)
+//   viewCount Int      @default(0)
+//   author    User?    @relation(fields: [authorId], references: [id])
+//   authorId  Int?
+// }
+

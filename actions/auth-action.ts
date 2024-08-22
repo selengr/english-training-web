@@ -1,7 +1,7 @@
 'use server';
 
 import prisma from '@/lib/prisma';
-import { hash } from 'bcrypt';
+import { hash,compare } from 'bcrypt';
 
 export const CreateUserAction = async (formdata: FormData) => {
   try {
@@ -34,10 +34,17 @@ export const CheckUserEmail = async (formdata: FormData) => {
         email: email as string,
       },
     });
+    if (!user) return { success: false, error : "invalid username" };
 
-    if (!user) return { success: false };
+      const match = await compare(password as string, user?.hashedPassword as string);
 
-    return { success: true };
+      if(!match) {
+        return { success: false, error : "invalid password" };
+      }
+      if(match) {
+        return { success: true };
+      }
+
   } catch (error) {
     console.log('CheckUserEmail', error);
   }

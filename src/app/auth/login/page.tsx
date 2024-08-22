@@ -11,7 +11,7 @@ const Login = async () => {
 
   return (
     <div className='mt-20'>
-        <LoginForm />
+      <LoginForm />
     </div>
   );
 };
