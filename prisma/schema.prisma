@@ -19,64 +19,59 @@ enum Role {
   ADMIN
 }
 
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
 model User {
-  id             String @id @unique @default(uuid())
+  id             String  @id @unique @default(uuid())
   name           String
-  email          String @unique
+  email          String  @unique
   hashedPassword String
-  role           Role   @default(USER)
+  image          String?
+
+  role Role @default(USER)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  //  accounts      Account[]
+
+  accounts Account[]
+  posts    Post[]
 }
 
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
-// model Account {
-//   id                Int     @id @default(autoincrement())
-//   userId            Int
-//   provider          String
-//   providerAccountId String
-//   type              String?
-//   refresh_token     String?
-//   access_token      String?
-//   expires_at        Int?
-//   token_type        String?
-//   scope             String?
-//   id_token          String?
-//   session_state     String?
-//   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-//   @@unique([provider, providerAccountId])
-// }
+  @@unique([provider, providerAccountId])
+}
 
 model Post {
-  // id Int @id @unique @default(autoincrement())
-  id String @id @unique @default(uuid())
-
-  title  String
+  id      String     @id @unique @default(uuid())
+  title   String
   // address String @unique
-  body   String
-  banner String
-  content   String
+  body    String
+  banner  String
+  content String
+  status  PostStatus @default(DRAFT)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  // published: false,
-  //     author: { connect: { email: authorEmail } },
+  published Boolean  @default(false)
+  viewCount Int      @default(0)
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
 }
-
-
-// model Post {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   title     String
-//   content   String?
-//   published Boolean  @default(false)
-//   viewCount Int      @default(0)
-//   author    User?    @relation(fields: [authorId], references: [id])
-//   authorId  Int?
-// }
-
