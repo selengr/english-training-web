@@ -4,9 +4,9 @@ import Editor from '@/components/theme/editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
-// import { createBlogAction } from '@/lib/actions'
-import { toast } from 'sonner'
+import { toast } from '@/components/ui/use-toast';
 import { createBlogAction } from '../../../../actions/blog-action'
+import { Textarea } from '@/components/ui/textarea'
 
 export const defaultValue = {
   type: 'doc',
@@ -21,6 +21,7 @@ export const defaultValue = {
 export default function ContentForm() {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
+  const [slug, setSlug] = useState('')
   const [content, setContent] = useState<string>('')
   const [pending, setPending] = useState(false)
 
@@ -30,7 +31,7 @@ export default function ContentForm() {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)+/g, '')
 
-    setBody(name)
+    setSlug(name)
   }, [title])
 
   async function handleSubmit() {
@@ -38,10 +39,12 @@ export default function ContentForm() {
 
     setPending(true)
 
-    const result = await createBlogAction({ title, body, content })
+    const result = await createBlogAction({ title, body, content, slug })
 
     if (result?.error) {
-      toast.error(result.error)
+      toast({
+        description: result.error,
+      })
     }
 
     setPending(false)
@@ -58,11 +61,15 @@ export default function ContentForm() {
         />
         <Input
           type='text'
-          placeholder='Body'
-          value={body}
-          onChange={e => setBody(e.target.value)}
+          placeholder='url name'
+          value={slug}
+          disabled
         />
       </div>
+      <Textarea placeholder="Type your post description here."
+        onChange={e => setBody(e.target.value)}
+        value={body}
+      />
 
       <Editor initialValue={defaultValue} onChange={setContent} />
       <Button onClick={handleSubmit} disabled={pending}>
