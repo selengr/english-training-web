@@ -4,13 +4,15 @@
 import { z } from 'zod'
 import prisma from '../src/lib/prisma'
 import { redirect } from 'next/navigation'
+import { getServerSession } from 'next-auth';
+import { authOption } from '@/lib/next-auth';
 
 
 
 // Define a schema for input validation
 const BlogPostSchema = z.object({
-  title: z.string().min(1, "Title is required").max(100, "Title must be 100 characters or less"),
-  body: z.string().min(1, "Body is required"),
+  title: z.string().min(4, "Title is required").max(20, "Title must be 20 characters or less"),
+  body: z.string().min(20, "Body is required").max(150, "Title must be 150 characters or less"),
   content: z.string().min(1, "Content is required"),
 })
 
@@ -20,9 +22,21 @@ export async function createBlogAction(data: {
   body: string
   content: string
 }) {
+  
+    // Check for session and admin role
+    const session = await getServerSession(authOption);
+
+    // if (session.user.role !== 'admin') {
+    //   return { error: 'Admin access required.' }
+    // }
+
+    if (!session) {
+      return { error: 'Authentication required.' }
+    }
+
   // Validate the input data
   const validationResult = BlogPostSchema.safeParse(data)
-
+ 
   if (!validationResult.success) {
     return { error: validationResult.error.errors.map((e : any) => e.message).join(', ') }
   }
