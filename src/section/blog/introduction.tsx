@@ -1,4 +1,5 @@
 import styles from "@/section/blog/blog.module.css";
+import { fDate, fToNow } from "@/utils/formatTime";
 
 const Introduction = ({ blog, user }: { blog: any, user: any }) => {
   console.log('blog0000 :>> ', blog.createdAt);
@@ -14,9 +15,9 @@ const Introduction = ({ blog, user }: { blog: any, user: any }) => {
       </div>
 
       <span className={styles["post-blog-property-date"]}>
-        {blog?.createdAt.toString()}
+        {fToNow(blog?.createdAt.toString())}
       </span>
-      <span className={styles["post-blog-property-name"]}>{user.name}</span>
+      <span className={styles["post-blog-property-name"]}>{user.name} {user.family}</span>
 
       <hr className={styles["post-blog-propert-underLine"]} />
 

@@ -8,6 +8,7 @@ CREATE TYPE "PostStatus" AS ENUM ('DRAFT', 'PUBLISHED');
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "family" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "hashedPassword" TEXT NOT NULL,
     "image" TEXT,

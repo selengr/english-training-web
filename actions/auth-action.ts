@@ -5,12 +5,13 @@ import { hash,compare } from 'bcrypt';
 
 export const CreateUserAction = async (formdata: FormData) => {
   try {
-    const { name, email, password } = Object.fromEntries(formdata);
+    const { name,family, email, password } = Object.fromEntries(formdata);
 
     const hashedPassword = await hash(password as string, 12);
     const user = await prisma.user.create({
       data: {
         name: name as string,
+        family: family as string,
         email: email as string,
         hashedPassword,
       },
