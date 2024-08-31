@@ -8,7 +8,6 @@ export const CreateUserAction = async (formdata: FormData) => {
     const { name, email, password } = Object.fromEntries(formdata);
 
     const hashedPassword = await hash(password as string, 12);
-
     const user = await prisma.user.create({
       data: {
         name: name as string,

@@ -36,13 +36,16 @@ export async function createBlogAction(data: {
         email: session?.user.email as string,
       },
     });
-
+    console.log('session?.user :>> ', session?.user);
+    console.log('user :>> ', user);
+    
     if (!session) {
       return { error: 'Authentication required.' }
     }
-
-  // Validate the input data
-  const validationResult = BlogPostSchema.safeParse(data)
+    
+    // Validate the input data
+    const validationResult = BlogPostSchema.safeParse(data)
+    console.log('validationResult.data :>> ', validationResult.data);
  
   if (!validationResult.success) {
     return { error: validationResult.error.errors.map((e : any) => e.message).join(', ') }
