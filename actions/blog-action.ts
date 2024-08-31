@@ -1,7 +1,7 @@
 'use server'
 
 
-import { z } from 'zod'
+import { StringValidation, z } from 'zod'
 import prisma from '../src/lib/prisma'
 import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth';
@@ -31,6 +31,11 @@ export async function createBlogAction(data: {
     // if (session.user.role !== 'admin') {
     //   return { error: 'Admin access required.' }
     // }
+    const user = await prisma.user.findUnique({
+      where: {
+        email: session?.user.email as string,
+      },
+    });
 
     if (!session) {
       return { error: 'Authentication required.' }
@@ -52,7 +57,9 @@ export async function createBlogAction(data: {
         body: body,
         content: content,
         slug: slug,
-        banner : "17d82226-72fd-4f2f-a340-ab7ce8fb070b.avif"
+        banner : "17d82226-72fd-4f2f-a340-ab7ce8fb070b.avif",
+        published: false,
+        authorId: user?.id as string,
       }
     })
 

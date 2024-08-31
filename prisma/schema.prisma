@@ -63,7 +63,6 @@ model Post {
   id      String     @id @unique @default(uuid())
   slug    String
   title   String
-  // address String @unique
   body    String
   banner  String
   content String
