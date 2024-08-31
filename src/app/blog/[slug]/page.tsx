@@ -11,37 +11,43 @@ import Introduction from "@/section/blog/introduction";
 
 
 
-const Blog = async ({params}:{params: { slug : string }}) => {
-    const blog = await prisma.post.findUnique({
+const Blog = async ({ params }: { params: { slug: string } }) => {
+  const blog = await prisma.post.findUnique({
     where: {
-      id : params.slug,
+      id: params.slug,
+    },
+  });
+  const user = await prisma.user.findUnique({
+    where: {
+      id: blog?.authorId,
     },
   });
 
   if (!blog) notFound();
 
   console.log("data -------------------- :>> ", blog);
+  console.log("user -------------------- :>> ", user);
 
   return (
     <>
-      
-      <Banner title={blog.title} banner={"upload/"+blog.banner} cover={"upload/"+blog.banner} />
+
+      <Banner title={blog.title} banner={"upload/" + blog.banner} cover={"upload/" + blog.banner} />
 
       <div className={styles["blog-page-master"]}>
-        <Introduction blog={blog} />
+        <Introduction blog={blog} user={user} />
         <div className={styles["landing-article"]}>
 
-        
-        <div
-          className='prose-headings:font-title font-default prose mt-4 dark:prose-invert focus:outline-none'
-          dangerouslySetInnerHTML={{ __html: blog.content }}
-        ></div>
+
+          <div
+            className='prose-headings:font-title font-default prose mt-4 dark:prose-invert focus:outline-none'
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+          ></div>
 
           {/* <MainIdea data={post} /> */}
-      
+
         </div>
       </div>
-       
+
 
 
     </>

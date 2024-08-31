@@ -61,7 +61,7 @@ model Account {
 
 model Post {
   id      String     @id @unique @default(uuid())
-  slug    String
+  slug    String     @unique
   title   String
   body    String
   banner  String
