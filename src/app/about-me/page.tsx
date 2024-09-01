@@ -64,7 +64,7 @@ const AboutMe = () => {
                     alt="Picture of the author"
                     width={500}
                     height={500}
-                    className={`${styles["landing-div-rounded"]} z-50`}
+                    className={`${styles["landing-div-rounded"]}`}
                 />
 
 
