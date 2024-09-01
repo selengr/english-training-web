@@ -1,12 +1,41 @@
-import { CardSpotlight } from "@/components/ui/card-spotlight";
 
-const page = () => {
+import prisma from "@/lib/prisma";
+import { authOption } from '@/lib/next-auth';
+import { getServerSession } from 'next-auth';
+import { notFound } from "next/navigation";
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+
+const page = async () => {
+    const session = await getServerSession(authOption);
+
+    const user = await prisma.user.findUnique({
+        where: {
+            email: session?.user.email as string,
+        },
+    });
+
+    if (!user) notFound();
+
+    console.log('user ------------------- :>> ', user);
+
+
     return (
-        <div>
+        <div className="-z-10">
+            <BackgroundBeamsWithCollision>
+                <h2 className="text-2xl relative md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
+                    What&apos;s cooler than Beams?{" "}
+                    <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
+                        <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-purple-500 via-violet-500 to-pink-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">
+                            <span className="">Exploding beams.</span>
+                        </div>
+                        <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
+                            <span className="">Exploding beams.</span>
+                        </div>
+                    </div>
+                </h2>
+            </BackgroundBeamsWithCollision>
 
-
-
-            <CardSpotlight className="h-96 w-96">
+            {/* <CardSpotlight className="h-96 w-96">
                 <p className="text-xl font-bold relative z-20 mt-2 text-white">
                     Authentication steps
                 </p>
@@ -23,7 +52,7 @@ const page = () => {
                     Ensuring your account is properly secured helps protect your personal
                     information and data.
                 </p>
-            </CardSpotlight>
+            </CardSpotlight> */}
         </div>
     );
 }
