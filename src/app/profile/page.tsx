@@ -7,7 +7,6 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 
 const page = async () => {
     const session = await getServerSession(authOption);
-    console.log('session ------ :>> ', session);
     const user = await prisma.user.findUnique({
         where: {
             email: session?.user?.email as string,
@@ -15,9 +14,6 @@ const page = async () => {
     });
 
     if (!user) notFound();
-
-    console.log('user ------------------- :>> ', user);
-
 
     return (
         <div className="-z-10">
