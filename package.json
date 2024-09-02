@@ -48,10 +48,13 @@
     "react": "^19.0.0-rc-8269d55d-20240802",
     "react-dom": "^19.0.0-rc-8269d55d-20240802",
     "react-fluid-animation": "^1.0.1",
+    "react-hook-form": "^7.53.0",
+    "react-images-upload": "^1.2.8",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.167.1",
+    "yup": "^1.4.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
