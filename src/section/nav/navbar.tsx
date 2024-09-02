@@ -10,13 +10,21 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import { Button } from '@/components/ui/button';
+import prisma from '@/lib/prisma';
 import { CalendarDays } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { SheetSide } from '@/components/sheet-content/SheetContent';
 
 
 const Navbar = async () => {
   const session = await getServerSession(authOption);
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email: session?.user?.email as string,
+    },
+  });
+
 
 
   return (
@@ -47,7 +55,7 @@ const Navbar = async () => {
           <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
             <SheetSide />
             <Avatar className='pl-0 pr-0 rounded-full' >
-              <AvatarImage className='rounded-full' src="https://github.com/shadcn.png" />
+              <AvatarImage className='rounded-full' src={"" + user?.image} />
               <AvatarFallback delayMs={600}>CN</AvatarFallback>
             </Avatar>
 
@@ -60,7 +68,7 @@ const Navbar = async () => {
               <HoverCardContent className="w-80">
                 <div className="flex justify-between space-x-4">
                   <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarImage src={"" + user?.image} />
                     <AvatarFallback >VC</AvatarFallback>
                   </Avatar>
                   <div className="space-y-1">

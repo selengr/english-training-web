@@ -41,7 +41,7 @@ const page = async () => {
 
 
 
-            <CompleteUserInfo />
+            <CompleteUserInfo session={session} />
 
             {/* <CardSpotlight className="h-96 w-96">
                 <p className="text-xl font-bold relative z-20 mt-2 text-white">
