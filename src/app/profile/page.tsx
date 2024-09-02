@@ -1,18 +1,14 @@
-'use client'
 
-import { useState } from "react";
 import prisma from "@/lib/prisma";
-import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
+
 import { notFound } from "next/navigation";
 import { authOption } from '@/lib/next-auth';
 import { getServerSession } from 'next-auth';
-import UploadForm from "@/components/uploader/page";
+// import UploadForm from "@/components/uploader/page";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import CompleteUserInfo from "@/section/profile/CompleteUserInfo";
 
 const page = async () => {
-    const [coverPicture, setCoverPicture] = useState<any>([]);
-
 
     const session = await getServerSession(authOption);
     const user = await prisma.user.findUnique({
@@ -24,29 +20,6 @@ const page = async () => {
     if (!user) notFound();
 
 
-
-    const {
-        handleSubmit,
-        formState: { errors }
-    } = useForm<any>({
-        defaultValues: {},
-    });
-
-
-
-    const onDrop = (pictureFiles: any, field: "cover" | "banner") => {
-        if (field === "cover") setCoverPicture(pictureFiles);
-    };
-
-    const onSubmit = async (data: any) => {
-        let body = new FormData();
-        body.append("cover", coverPicture[0]);
-
-
-    };
-
-
-    console.log('coverPicture ----:>> ', coverPicture);
 
 
     return (
@@ -67,14 +40,9 @@ const page = async () => {
 
 
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <UploadForm
-                    id={"cover"}
-                    onDrop={(e: File[]) => onDrop(e, "cover")}
-                    label={"Cover Image "}
-                />
 
-            </form>
+            <CompleteUserInfo />
+
             {/* <CardSpotlight className="h-96 w-96">
                 <p className="text-xl font-bold relative z-20 mt-2 text-white">
                     Authentication steps

@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import ImageUploader from "react-images-upload";
 
@@ -23,13 +25,13 @@ const UploadForm = ({
           withIcon={true}
           buttonText={`Choose ${label}`}
           onChange={onDrop}
-          imgExtension={[".jpg", ".jpeg", ".gif", ".png",".avif"]}
+          imgExtension={[".jpg", ".jpeg", ".gif", ".png", ".avif"]}
           maxFileSize={5242880}
           withPreview={true}
           singleImage={true}
           name={label}
-        //   withLabel={true}
-          label={label}
+          //   withLabel={true}
+          // label={label}
           buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded focus:outline-none focus:shadow-outline mt-2"
           errorClass="text-red-600"
           fileContainerStyle={{
