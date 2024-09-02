@@ -14,7 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { isActiveLink } from "./isActiveLink"
+import { IsActiveLink } from "./isActiveLink"
 import { AlignJustify, Bell, Package2, BadgeCheck, LogOut } from 'lucide-react';
 
 
@@ -55,12 +55,12 @@ export function SheetSide() {
               return (<>
                 <Link
                   href={"" + item.path}
-                  className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 ${isActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                  className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                 >
                   {item.icon}
                   {item.title}
 
-                  {isActiveLink(item.path) &&
+                  {IsActiveLink(item.path) &&
                     <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
                       6
                     </BadgeCheck>
