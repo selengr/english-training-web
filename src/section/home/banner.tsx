@@ -26,13 +26,13 @@ const Banner = ({ data, title, banner, user }: Props) => {
       />
 
 
-      {/* <Image
-        src={cover?.toString() ?? ""}
+      <Image
+        src={user?.image}
         alt="Picture of the author"
         width={100}
         height={100}
         className={styles["landing-div-rounded"]}
-      /> */}
+      />
 
 
 
