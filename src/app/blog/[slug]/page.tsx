@@ -1,9 +1,7 @@
 
 import prisma from "@/lib/prisma";
-import Code from "@/section/blog/code";
 import { notFound } from "next/navigation";
 import Banner from "@/section/home/banner";
-import MainIdea from "@/section/blog/mainIdea";
 import styles from "@/section/blog/blog.module.css";
 import Introduction from "@/section/blog/introduction";
 
@@ -23,6 +21,8 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
     },
   });
 
+  console.log('user========= :>> ', user);
+
   if (!blog) notFound();
 
   console.log("data -------------------- :>> ", blog);
@@ -31,7 +31,7 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
 
-      <Banner title={blog.title} banner={"upload/" + blog.banner} cover={"upload/" + blog.banner} />
+      <Banner title={blog.title} banner={"upload/" + blog.banner} user={user} />
 
       <div className={styles["blog-page-master"]}>
         <Introduction blog={blog} user={user} />

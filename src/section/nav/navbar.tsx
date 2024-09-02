@@ -55,7 +55,7 @@ const Navbar = async () => {
           <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
             <SheetSide />
             <Avatar className='pl-0 pr-0 rounded-full' >
-              <AvatarImage className='rounded-full' src={"" + user?.image} />
+              <AvatarImage className='rounded-full' src={user?.image?.toString()} />
               <AvatarFallback delayMs={600}>CN</AvatarFallback>
             </Avatar>
 
@@ -68,7 +68,7 @@ const Navbar = async () => {
               <HoverCardContent className="w-80">
                 <div className="flex justify-between space-x-4">
                   <Avatar>
-                    <AvatarImage src={"" + user?.image} />
+                    <AvatarImage src={user?.image?.toString()} />
                     <AvatarFallback >VC</AvatarFallback>
                   </Avatar>
                   <div className="space-y-1">
