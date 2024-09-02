@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UploadForm from "@/components/uploader/page";
+import { onUpload } from "./image-upload";
 // import { yupResolver } from "@hookform/resolvers/yup";
 
 const CompleteUserInfo = () => {
@@ -21,17 +22,7 @@ const CompleteUserInfo = () => {
 
     const onDrop = (pictureFiles: any, field: "cover" | "banner") => {
         if (field === "cover") setCoverPicture(pictureFiles);
-
-        fetch('https://your-edge-function-url', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'image/jpeg',
-                'x-vercel-filename': 'my-image.jpg'
-            },
-            body: pictureFiles
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
+        onUpload(pictureFiles[0])
     };
 
     const onSubmit = async (data: any) => {
