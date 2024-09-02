@@ -7,7 +7,7 @@ import RegisterForm from '@/section/auth/register-form';
 const Register = async () => {
   const session = await getServerSession(authOption);
 
-  if (session?.user.usreId) redirect('/');
+  if (session?.user?.userId) redirect('/');
 
   return (
     <div className='mt-20'>
