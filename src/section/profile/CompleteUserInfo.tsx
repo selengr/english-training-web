@@ -46,12 +46,7 @@ const CompleteUserInfo = () => {
     const onSubmit = async (data: any) => {
         let body = new FormData();
         body.append("cover", coverPicture[0]);
-
-
     };
-
-
-    console.log('coverPicture ----:>> ', coverPicture);
 
 
 
