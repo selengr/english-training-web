@@ -9,7 +9,7 @@ import UploadForm from "@/components/uploader/page";
 
 const CompleteUserInfo = ({ session }: { session: any }) => {
     const { refresh } = useRouter()
-    const [coverPicture, setCoverPicture] = useState<any>([]);
+    // const [coverPicture, setCoverPicture] = useState<any>([]);
 
     const {
         handleSubmit,
@@ -21,7 +21,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
 
     const onDrop = async (pictureFiles: any, field: "cover" | "banner") => {
-        if (field === "cover") setCoverPicture(pictureFiles);
+        // if (field === "cover") setCoverPicture(pictureFiles);
 
         const response = await fetch(
             `/api/avatar/upload?filename=${pictureFiles[0].name}`,
@@ -58,7 +58,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
     const onSubmit = async (data: any) => {
         let body = new FormData();
-        body.append("cover", coverPicture[0]);
+        // body.append("cover", coverPicture[0]);
     };
 
 

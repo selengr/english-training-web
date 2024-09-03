@@ -12,17 +12,18 @@ import { authOption } from '@/lib/next-auth';
 // Define a schema for input validation
 const BlogPostSchema = z.object({
   title: z.string().min(4, "Title must be 4 characters or more").max(50, "Title must be 20 characters or less"),
-  body: z.string().min(40, "Body must be 40 characters or more").max(150, "body must be 150 characters or less"),
+  body: z.string().min(40, "Description must be 40 characters or more").max(150, "description must be 150 characters or less"),
   content: z.string().min(1, "Content is required"),
   slug: z.string().min(1, "slug is required"),
+  banner: z.string().min(1, "banner is required"),
 })
-
 
 export async function createBlogAction(data: {
   title: string
   body: string
   content: string
   slug: string
+  banner: string
 }) {
   
     // Check for session and admin role
@@ -51,7 +52,7 @@ export async function createBlogAction(data: {
     return { error: validationResult.error.errors.map((e : any) => e.message).join(', ') }
   }
 
-  const { title, body, content, slug } = validationResult.data
+  const { title, body, content, slug, banner } = validationResult.data
 
   try {
     const post = await prisma.post.create({
@@ -60,7 +61,7 @@ export async function createBlogAction(data: {
         body: body,
         content: content,
         slug: slug,
-        banner : "17d82226-72fd-4f2f-a340-ab7ce8fb070b.avif",
+        banner : banner,
         published: false,
         authorId: user?.id as string,
       }
@@ -79,7 +80,7 @@ export async function createBlogAction(data: {
     return { error: error.message || 'Failed to create the blog.' }
   }
 
-  redirect(`/blog`)
+  redirect(`/blog/${user?.id}`)
 }
 
 

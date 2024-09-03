@@ -9,16 +9,17 @@ type Props = {
   title?: String,
   banner: String,
   user: any
+  home?: boolean
 }
 
-const Banner = ({ data, title, banner, user }: Props) => {
+const Banner = ({ data, title, banner, user, home }: Props) => {
   console.log("user --------------------**** :>> ", user);
   return (
     <div className={styles["landing-main"]}>
 
       <Image
         // loader={myLoader}
-        src={'/pre/' + banner.toString()}
+        src={home ? "/pre/" + banner : banner.toString()}
         alt="Picture of the author"
         width={500}
         height={500}

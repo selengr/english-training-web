@@ -11,7 +11,7 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 1g:px-8 bg-gray-900">
+    <main className="grid min-h-full place-items-center px-6 my-16 py-32 1g:px-8 bg-gray-400">
       <div className="text-center">
         <p className="text-base font-semibold text-emerald-700 text-emerald-500">
           There was a problem{' '}
@@ -33,7 +33,7 @@ export default function Error({
           <Link
             href="/"
             className="text-gray-50"
-            // className=
+          // className=
           >
             Go back home
           </Link>

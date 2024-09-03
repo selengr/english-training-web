@@ -13,6 +13,7 @@ const HomePage = () => {
                <Banner
                     banner={'images/https___s3-us-west-2.avif'}
                     user={'images/fikeus-west-2.avif'}
+                    home
                />
 
                <div className="w-full h-full flex justify-center align-middle">

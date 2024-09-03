@@ -9,10 +9,8 @@ import Introduction from "@/section/blog/introduction";
 
 
 
-
-
 const Blog = async ({ params }: { params: { slug: string } }) => {
-  const session = await getServerSession(authOption);
+  // const session = await getServerSession(authOption);
   const blog = await prisma.post.findUnique({
     where: {
       id: params.slug,
@@ -37,7 +35,7 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
 
-      <Banner title={blog.title} banner={"upload/" + blog.banner} user={user} />
+      <Banner title={blog.title} banner={blog.banner} user={user} />
 
       <div className={styles["blog-page-master"]}>
         <Introduction blog={blog} user={user} />
