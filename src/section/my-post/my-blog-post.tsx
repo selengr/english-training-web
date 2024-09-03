@@ -2,25 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import prisma from "@/lib/prisma";
-import { authOption } from '@/lib/next-auth';
-import { getServerSession } from 'next-auth';
+
 import { fToNow } from "@/utils/formatTime";
 import styles from "../home/banner.module.css";
 
 
-export default async function MyBlogPost() {
-  const session = await getServerSession(authOption);
-  console.log('session------------------------- :>> ', session);
-  const user = await prisma.user.findUnique({
-    where: {
-      email: session?.user?.email as string,
-    },
-    include: {
-      posts: true,
-      // accounts: true,
-    },
-  });
+export default async function MyBlogPost({ user }: { user: any }) {
 
 
   return (
@@ -28,7 +15,7 @@ export default async function MyBlogPost() {
       <h2>My Posts</h2>
 
       <aside className={styles["post-blog-card"]}>
-        {
+        {user?.posts.length > 0 &&
           user?.posts?.map((it: any) => {
             let tag = it.tags
             return (
@@ -76,6 +63,12 @@ export default async function MyBlogPost() {
               </>
             );
           })}
+
+        {user?.posts.length === 0 &&
+          <h1>
+            0 post
+          </h1>
+        }
       </aside>
     </div>
   );

@@ -9,7 +9,7 @@ import { BlogPostRequestSkeleton } from '@/section/home/blog-post';
 
 const HomePage = () => {
      return (
-          <div className='h-full'>
+          <div className='h-full pb-14'>
                <Banner
                     banner={'images/https___s3-us-west-2.avif'}
                     user={'images/fikeus-west-2.avif'}

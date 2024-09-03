@@ -50,10 +50,11 @@ export async function createBlogAction(data: {
     return { error: validationResult.error.errors.map((e : any) => e.message).join(', ') }
   }
 
+  let post
   const { title, body, content, slug, banner } = validationResult.data
 
   try {
-    const post = await prisma.post.create({
+     post = await prisma.post.create({
       data: {
         title: title,
         body: body,
@@ -78,7 +79,7 @@ export async function createBlogAction(data: {
     return { error: error.message || 'Failed to create the blog.' }
   }
 
-  redirect(`/blog/${user?.id}`)
+  redirect(`/blog/${post?.id}`)
 }
 
 

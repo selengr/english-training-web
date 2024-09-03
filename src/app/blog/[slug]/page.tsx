@@ -8,9 +8,10 @@ import Introduction from "@/section/blog/introduction";
 
 
 const Blog = async ({ params }: { params: { slug: string } }) => {
+
   const blog = await prisma.post.findUnique({
     where: {
-      id: params.slug,
+      id: params.slug as string
     },
   });
 
@@ -19,7 +20,6 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
       id: blog?.authorId as string,
     },
   });
-
 
   if (!user) notFound();
   if (!blog) notFound();
