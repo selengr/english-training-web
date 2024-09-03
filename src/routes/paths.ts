@@ -19,7 +19,7 @@ export const PATH_AUTH = {
 export const PATH_PAGE = {
   root: ROOTS_PAGE,
   profile: path(ROOTS_PAGE, 'profile'),
-  myPost: path(ROOTS_PAGE, 'my_post'),
+  myPost: path(ROOTS_PAGE, 'my-post'),
   blogCreate: path(ROOTS_PAGE, 'blog/create'),
   
 };
