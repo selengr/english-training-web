@@ -67,6 +67,9 @@ CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provi
 -- CreateIndex
 CREATE UNIQUE INDEX "Post_id_key" ON "Post"("id");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Post_slug_key" ON "Post"("slug");
+
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
