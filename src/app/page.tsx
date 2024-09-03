@@ -1,11 +1,10 @@
 
-import Bio from '@/section/home/bio';
-import { BlogPostRequestSkeleton } from '@/section/home/blog-post';
-import styles from '@/section/home/banner.module.css';
-
 import { Suspense } from 'react';
-import BlogPost from '@/section/home/blog-post';
+import Bio from '@/section/home/bio';
 import Banner from '@/section/home/banner';
+import BlogPost from '@/section/home/blog-post';
+import styles from '@/section/home/banner.module.css';
+import { BlogPostRequestSkeleton } from '@/section/home/blog-post';
 
 
 const HomePage = () => {

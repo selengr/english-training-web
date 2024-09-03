@@ -21,7 +21,7 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
 
   const user = await prisma.user.findUnique({
     where: {
-      email: session?.user?.email as string,
+      id: blog?.authorId as string,
     },
   });
 

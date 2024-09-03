@@ -1,8 +1,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import styles from "./banner.module.css";
 import prisma from "@/lib/prisma";
+import styles from "./banner.module.css";
 
 
 export default async function BlogPost() {
