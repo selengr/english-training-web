@@ -14,8 +14,7 @@ const page = async () => {
             email: session?.user?.email as string,
         },
         include: {
-            posts: true,
-            // accounts: true,
+            posts: true
         },
     });
 
