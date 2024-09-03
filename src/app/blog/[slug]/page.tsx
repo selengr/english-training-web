@@ -45,7 +45,7 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
         </div>
       </div>
 
-      <Conclusion viewCount={blog.viewCount} />
+      <Conclusion blog={blog} />
 
     </div>
   );

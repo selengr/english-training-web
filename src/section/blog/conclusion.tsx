@@ -1,12 +1,21 @@
+import prisma from "@/lib/prisma";
 
 
-const Conclusion = ({ viewCount }: { viewCount: number }) => {
+const Conclusion = async ({ blog }: { blog: any }): Promise<JSX.Element> => {
+    console.log('blog----------- :>> ', blog);
+    await prisma.post.update({
+        where: { id: blog?.id },
+        data: {
+            viewCount: blog.viewCount + 1
+        }
+    })
+
 
     return (
         <>
             <hr className="w-full mt-8 " />
             <h1 className="pb-10 pl-10">
-                view : {viewCount}
+                view : {blog?.viewCount}
             </h1>
         </>
     );
