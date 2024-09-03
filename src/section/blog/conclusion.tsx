@@ -2,7 +2,6 @@ import prisma from "@/lib/prisma";
 
 
 const Conclusion = async ({ blog }: { blog: any }): Promise<JSX.Element> => {
-    console.log('blog----------- :>> ', blog);
     await prisma.post.update({
         where: { id: blog?.id },
         data: {

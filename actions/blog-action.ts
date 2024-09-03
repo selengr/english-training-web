@@ -37,8 +37,6 @@ export async function createBlogAction(data: {
         email: session?.user.email as string,
       },
     });
-    console.log('session?.user :>> ', session?.user);
-    console.log('user :>> ', user);
     
     if (!session) {
       return { error: 'Authentication required.' }

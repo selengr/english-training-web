@@ -42,13 +42,13 @@ const Navbar = async () => {
 
           <Link href="/about-me"
             passHref
-          > <label className="mr-2">About</label></Link>
+          > <label className="mr-2 cursor-pointer">About</label></Link>
 
 
 
           {!session && <Link href="/auth/login"
             passHref
-          >  <label className="mr-2 sm:mr-4 ml-2">{`Login`}</label></Link>
+          >  <label className="mr-2 sm:mr-4 ml-2 cursor-pointer">{`Login`}</label></Link>
           }
           <ThemeToggle />
 
@@ -83,7 +83,7 @@ const Navbar = async () => {
                     <div className="flex items-center pt-2">
                       <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
                       <span className="text-xs text-muted-foreground">
-                        {/* {session?.user.email} */}text
+                        role : {user ? user.role : ""}
                       </span>
                     </div>
                   </div>

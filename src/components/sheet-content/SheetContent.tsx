@@ -2,36 +2,36 @@
 "use client"
 
 import Link from "next/link"
+import { useState } from "react";
 import { signOut } from 'next-auth/react';
 import navConfig from "./config-navigation"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { IsActiveLink } from "./isActiveLink"
+import { usePathname } from "next/navigation";
 import { AlignJustify, Bell, Package2, BadgeCheck, LogOut } from 'lucide-react';
 
 
 
 
-
-
 export function SheetSide() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState<boolean | null>(null)
   return (
-    <div className="pr-4 pl-4 sm:pl-7">
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="outline" size={"sm"}>
+    <div className="pr-4 pl-4 sm:pl-7 cursor-pointer">
+      <Sheet open={open ?? false}>
+        <SheetTrigger asChild >
+          <Button variant="outline" size={"sm"} onClick={() => setOpen(true)}>
             <AlignJustify />
           </Button>
         </SheetTrigger>
-        <SheetContent side={"left"}>
+        <SheetContent side={"left"} className="bg-[#2f3437]">
           <SheetHeader>
             {/* <div className="flex h-full max-h-screen flex-col gap-2"> */}
             <div className="flex h-20 items-center border-b pt-8 pb-6">
@@ -49,13 +49,13 @@ export function SheetSide() {
 
           <nav className="grid gap-2 text-lg font-medium">
 
-
             {navConfig?.map((item: any) => {
 
               return (<>
                 <Link
+                  onClick={() => setOpen(false)}
                   href={"" + item.path}
-                  className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                  className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                 >
                   {item.icon}
                   {item.title}
@@ -75,8 +75,11 @@ export function SheetSide() {
 
           <SheetFooter className="absolute bottom-8">
             <div
-              onClick={() => signOut()}
-              className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground`}
+              onClick={() => {
+                signOut()
+                setOpen(false)
+              }}
+              className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground`}
             >
               <LogOut />
               logout
@@ -84,6 +87,6 @@ export function SheetSide() {
           </SheetFooter>
         </SheetContent>
       </Sheet>
-    </div>
+    </div >
   );
 }
