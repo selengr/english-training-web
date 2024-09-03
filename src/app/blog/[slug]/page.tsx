@@ -2,15 +2,12 @@
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import Banner from "@/section/home/banner";
-import { authOption } from '@/lib/next-auth';
-import { getServerSession } from 'next-auth';
+import Conclusion from "@/section/blog/conclusion";
 import styles from "@/section/blog/blog.module.css";
 import Introduction from "@/section/blog/introduction";
 
 
-
 const Blog = async ({ params }: { params: { slug: string } }) => {
-  // const session = await getServerSession(authOption);
   const blog = await prisma.post.findUnique({
     where: {
       id: params.slug,
@@ -24,16 +21,11 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
   });
 
 
-  console.log('user========= :>> ', user);
-
   if (!user) notFound();
   if (!blog) notFound();
 
-  console.log("data -------------------- :>> ", blog);
-  console.log("user -------------------- :>> ", user);
-
   return (
-    <>
+    <div className="">
 
       <Banner title={blog.title} banner={blog.banner} user={user} />
 
@@ -41,20 +33,21 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
         <Introduction blog={blog} user={user} />
         <div className={styles["landing-article"]}>
 
+          <h1>
+            {blog.body}
+          </h1>
 
           <div
             className='prose-headings:font-title font-default prose mt-4 dark:prose-invert focus:outline-none'
             dangerouslySetInnerHTML={{ __html: blog.content }}
           ></div>
 
-          {/* <MainIdea data={post} /> */}
-
         </div>
       </div>
 
+      <Conclusion viewCount={blog.viewCount} />
 
-
-    </>
+    </div>
   );
 };
 

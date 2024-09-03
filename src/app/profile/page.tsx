@@ -4,9 +4,8 @@ import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { authOption } from '@/lib/next-auth';
 import { getServerSession } from 'next-auth';
-// import UploadForm from "@/components/uploader/page";
-import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import CompleteUserInfo from "@/section/profile/CompleteUserInfo";
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
 const page = async () => {
 
@@ -18,8 +17,6 @@ const page = async () => {
     });
 
     if (!user) notFound();
-
-
 
 
     return (

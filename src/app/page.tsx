@@ -25,8 +25,6 @@ const HomePage = () => {
                          </Suspense>
                     </article>
                </div>
-               {/* <ShootingStars />
-      <StarsBackground /> */}
           </div>
      );
 };

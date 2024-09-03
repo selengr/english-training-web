@@ -13,7 +13,7 @@ type Props = {
 }
 
 const Banner = ({ data, title, banner, user, home }: Props) => {
-  console.log("user --------------------**** :>> ", user);
+
   return (
     <div className={styles["landing-main"]}>
 
@@ -35,17 +35,7 @@ const Banner = ({ data, title, banner, user, home }: Props) => {
         className={styles["landing-div-rounded"]}
       />
 
-
-
-
-      {/* {!title&& */}
-      {/* {!title&& */}
       <h1 className={styles["landing-title"]}>{title ? title : "commercial web"}</h1>
-
-
-
-
-
 
 
     </div>

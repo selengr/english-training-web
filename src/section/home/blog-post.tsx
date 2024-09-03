@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import prisma from "@/lib/prisma";
 import styles from "./banner.module.css";
+import { fToNow } from "@/utils/formatTime";
 
 
 export default async function BlogPost() {
@@ -47,7 +48,7 @@ export default async function BlogPost() {
 
                       </span>
                       <span className={styles["post-blog-property-date"]}>
-                        {it?.createdAt?.toString()?.split("T")[0]}
+                        {fToNow(it?.createdAt?.toString())}
                       </span>
                     </div>
                     <div className={styles["post-blog-property-map-opt"]}>
