@@ -16,13 +16,15 @@ import {
 } from "@/components/ui/sheet"
 import { useState, useEffect } from 'react'
 import { IsActiveLink } from "./isActiveLink"
-import { AlignJustify, Bell, Package2, BadgeCheck, LogOut } from 'lucide-react';
-import { toast } from "../ui/use-toast";
+import { AlignJustify, BadgeCheck, LogOut } from 'lucide-react';
+import { useRouter } from "next/navigation";
 
 
 
 
 export function SheetSide() {
+  // const [open, setOpen] = useState<boolean>(false)
+  const { refresh } = useRouter()
   const [userData, setUserData] = useState<string>("")
 
 
@@ -44,30 +46,33 @@ export function SheetSide() {
     }
   }
 
+  const reNav = async () => {
+    refresh()
+  }
 
-  const [open, setOpen] = useState<boolean>(false)
+
+
   return (
     <div className="pr-4 pl-4 sm:pl-7 cursor-pointer">
-      <Sheet open={open}>
-        <SheetTrigger asChild onClick={() => setOpen(false)}>
-          <Button variant="ghost" size={"sm"} onClick={() => setOpen(true)}>
+      <Sheet modal>
+        <SheetTrigger >
+          <Button variant="ghost" size={"icon"} >
             <AlignJustify />
           </Button>
         </SheetTrigger>
         <SheetContent side={"left"} className="bg-[#2f3437]">
           <SheetHeader>
-            {/* <div className="flex h-full max-h-screen flex-col gap-2"> */}
-            <div className="flex h-20 items-center border-b pt-8 pb-6">
-              <Link href="/" className="flex items-center gap-2 font-semibold">
+            <div className="flex h-20 items-center border-b pt-2 pb-6">
+              {/* <Link href="/" className="flex items-center gap-2 font-semibold">
                 <Package2 className="h-6 w-6" />
                 <span className="">Acme Inc</span>
               </Link>
               <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
                 <Bell className="h-4 w-4" />
                 <span className="sr-only">Toggle notifications</span>
-              </Button>
+              </Button> */}
             </div>
-            {/* </div> */}
+
           </SheetHeader>
 
           <nav className="grid gap-2 text-lg font-medium">
@@ -77,7 +82,7 @@ export function SheetSide() {
               if (item.role === "USER") {
                 return (<>
                   <Link
-                    onClick={() => setOpen(false)}
+                    onClick={() => reNav()}
                     href={"" + item.path}
                     className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                   >
@@ -98,7 +103,7 @@ export function SheetSide() {
               if (item.role === "ADMIN" && userData === "ADMIN") {
                 return (<>
                   <Link
-                    onClick={() => setOpen(false)}
+                    onClick={() => reNav()}
                     href={"" + item.path}
                     className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                   >
@@ -126,7 +131,7 @@ export function SheetSide() {
             <div
               onClick={() => {
                 signOut()
-                setOpen(false)
+                reNav()
               }}
               className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground`}
             >

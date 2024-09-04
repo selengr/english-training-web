@@ -21,5 +21,6 @@ export const PATH_PAGE = {
   profile: path(ROOTS_PAGE, 'profile'),
   myPost: path(ROOTS_PAGE, 'my-post'),
   blogCreate: path(ROOTS_PAGE, 'blog/create'),
+  wordOfTheDay: path(ROOTS_PAGE, 'word-of-the-day'),
   
 };

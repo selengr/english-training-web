@@ -51,6 +51,12 @@ const navConfig = [
           icon: ICONS.myPost,
           role: Role.ADMIN
      },
+     {
+          title: 'word of the day',
+          path: PATH_PAGE.wordOfTheDay,
+          icon: ICONS.myPost,
+          role: Role.USER
+     },
 
 ];
 
