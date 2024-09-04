@@ -1,6 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import styles from "@/section/home/banner.module.css"
 
 let interval: any;
 
@@ -55,9 +57,21 @@ export const CardStack = ({
               zIndex: cards.length - index, //  decrease z-index for the cards that are behind
             }}
           >
-            <div className="font-normal text-neutral-700 dark:text-neutral-200">
+            <div className="font-normal text-neutral-700 dark:text-neutral-200 w-full">
               {card.content}
             </div>
+
+
+            <div className="w-full flex justify-center items-center">
+              <Image
+                src={"/pre/images/E52075F8-14EA-496F-A10C-CB4405AFE196_1_105_c.jpeg"}
+                alt="Picture of the author"
+                width={120}
+                height={80}
+                className={`${styles["landing-div-rounded"]} mt-0`}
+              />
+            </div>
+
             <div>
               <p className="text-neutral-500 font-medium dark:text-white">
                 {card.name}

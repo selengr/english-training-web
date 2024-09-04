@@ -45,12 +45,12 @@ export function SheetSide() {
   }
 
 
-  const [open, setOpen] = useState<boolean | null>(null)
+  const [open, setOpen] = useState<boolean>(false)
   return (
     <div className="pr-4 pl-4 sm:pl-7 cursor-pointer">
-      <Sheet open={open ?? false}>
-        <SheetTrigger asChild >
-          <Button variant="outline" size={"sm"} onClick={() => setOpen(true)}>
+      <Sheet open={open}>
+        <SheetTrigger asChild onClick={() => setOpen(false)}>
+          <Button variant="ghost" size={"sm"} onClick={() => setOpen(true)}>
             <AlignJustify />
           </Button>
         </SheetTrigger>

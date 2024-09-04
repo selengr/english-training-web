@@ -28,7 +28,7 @@ const Navbar = async () => {
       },
     });
   }
- 
+
   return (
     <nav className='border-b py-3'>
       <div className={`${styles["landing-top"]}`}>

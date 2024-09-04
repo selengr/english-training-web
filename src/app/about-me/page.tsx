@@ -13,28 +13,17 @@ import Image from "next/image";
 const Card = [
     {
         id: 1,
-        name: "reza",
+        name: "reza karbakhsh",
         designation: "dlhvejlhvmdv",
         content: <h1>djhvasvc,lkh lk lk </h1>
     },
     {
         id: 2,
-        name: "reza text",
+        name: "ehsan ghanbarpoor",
         designation: "fkj4j4kjfb     4fjbf  f4jbj  k4;fhf",
         content: <h1>kfjh 4kjf4f 4kjfh4kjf,e</h1>
     },
-    {
-        id: 3,
-        name: "reza another",
-        designation: "jjj  4jf ifho4  f4ihff4f",
-        content: <h1>orjpjrpoj pj po po ,e</h1>
-    },
-    {
-        id: 4,
-        name: "reza hiiiii",
-        designation: "jwefglejffvp2ifv4fv;4kf",
-        content: <h1> lkjjv lkh j jl jlk ,e</h1>
-    },
+
 ]
 
 const AboutMe = () => {
