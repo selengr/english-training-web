@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image";
 import { useState } from "react";
 import ImageUploader from "react-images-upload";
 
@@ -7,12 +8,15 @@ const UploadForm = ({
   id,
   label,
   onDrop,
+  defaultImage
 }: {
   id: string;
   label: string;
   onDrop: any;
+  defaultImage?: any;
 }) => {
   const [pictures, setPictures] = useState<File[]>([]);
+  console.log('defaultImage :>> ', defaultImage);
 
   return (
     <div className="flex w-full flex-col py-2">
@@ -32,6 +36,7 @@ const UploadForm = ({
           name={label}
           //   withLabel={true}
           // label={label}
+          defaultImage={defaultImage}
           buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded focus:outline-none focus:shadow-outline mt-2"
           errorClass="text-red-600"
           fileContainerStyle={{
@@ -41,6 +46,15 @@ const UploadForm = ({
           fileSizeError="File size is too big. Max 5MB."
           fileTypeError="This file type is not supported."
         />
+        {defaultImage &&
+          <Image
+            src={defaultImage}
+            width={800}
+            height={200}
+            alt="ee"
+            className="h-48 w-full"
+          />
+        }
       </div>
     </div>
   );

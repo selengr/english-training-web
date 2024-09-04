@@ -55,7 +55,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
 
       setId(blog.id)
       setSlug(blog.slug)
-      setSlug(blog.slug)
+      setBody(blog.body)
       setTitle(blog.title)
       setBanner(blog.banner)
       setContent(blog.content)
@@ -111,6 +111,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
           id={"banner"}
           onDrop={(e: File[]) => onDrop(e, "banner")}
           label={"Banner Image "}
+          defaultImage={banner}
         />
 
       </div>
@@ -154,7 +155,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
         <p >
           content <span className='text-xs'> (Press "/" for commands)</span>
         </p>
-        <Editor initialValue={initialContent} onChange={(e) => console.log(e)}
+        <Editor initialValue={initialContent} onChange={setContent}
         />
       </div>
       <Button onClick={handleSubmit} disabled={pending}>

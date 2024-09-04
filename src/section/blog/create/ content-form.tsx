@@ -79,6 +79,7 @@ export default function ContentForm() {
           id={"banner"}
           onDrop={(e: File[]) => onDrop(e, "banner")}
           label={"Banner Image "}
+          defaultImage={banner}
         />
 
       </div>
