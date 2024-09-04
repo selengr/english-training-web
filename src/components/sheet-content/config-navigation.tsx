@@ -6,7 +6,10 @@ import { AlignJustify, Signpost, UserCog, FilePlus2, Home, ShoppingCart, Users }
 
 
 // components
-
+enum Role {
+     USER = "USER",
+     ADMIN = "ADMIN"
+}
 
 // ----------------------------------------------------------------------
 
@@ -28,21 +31,25 @@ const navConfig = [
           title: 'create post',
           path: PATH_PAGE.blogCreate,
           icon: ICONS.blogCreate,
+          role: Role.ADMIN
      },
      {
           title: 'home',
           path: PATH_PAGE.root,
           icon: ICONS.home,
+          role: Role.USER
      },
      {
           title: 'profile',
           path: PATH_PAGE.profile,
           icon: ICONS.profile,
+          role: Role.USER
      },
      {
           title: 'my post',
           path: PATH_PAGE.myPost,
           icon: ICONS.myPost,
+          role: Role.ADMIN
      },
 
 ];

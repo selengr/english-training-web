@@ -28,22 +28,16 @@ const Navbar = async () => {
       },
     });
   }
-
-
-
+ 
   return (
     <nav className='border-b py-3'>
       <div className={`${styles["landing-top"]}`}>
 
-
         <div className="flex justify-end flex-row align-middle items-center w-full pr-4 sm:pr-10">
-
-
 
           <Link href="/about-me"
             passHref
           > <label className="mr-2 cursor-pointer">About</label></Link>
-
 
 
           {!session && <Link href="/auth/login"
@@ -51,7 +45,6 @@ const Navbar = async () => {
           >  <label className="mr-2 sm:mr-4 ml-2 cursor-pointer">{`Login`}</label></Link>
           }
           <ThemeToggle />
-
 
         </div>
 
@@ -62,7 +55,6 @@ const Navbar = async () => {
               <AvatarImage className='rounded-full' src={user ? user?.image?.toString() : ""} />
               <AvatarFallback delayMs={600}>CN</AvatarFallback>
             </Avatar>
-
 
 
             <HoverCard>
