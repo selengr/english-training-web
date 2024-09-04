@@ -87,14 +87,6 @@ const AboutMe = () => {
                     <CardStack items={Card} />
 
 
-                    <WavyBackground className="max-w-4xl mx-auto pb-40">
-                        <p className="text-2xl md:text-4xl lg:text-7xl text-white font-bold inter-var text-center">
-                            Hero waves are cool
-                        </p>
-                        <p className="text-base md:text-lg mt-4 text-white font-normal inter-var text-center">
-                            Leverage the power of canvas to create a beautiful hero section
-                        </p>
-                    </WavyBackground>
 
                     <div className="flex w-full">
                         <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">i am in the mid twenties</div>

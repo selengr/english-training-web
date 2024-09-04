@@ -48,46 +48,48 @@ const Navbar = async () => {
 
         </div>
 
-        {session &&
-          <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
-            <SheetSide />
-            <Avatar className='pl-0 pr-0 rounded-full' >
-              <AvatarImage className='rounded-full' src={user ? user?.image?.toString() : ""} />
-              <AvatarFallback delayMs={600}>CN</AvatarFallback>
-            </Avatar>
+        <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
+          <SheetSide />
+          {session &&
+            <>
+              <Avatar className='pl-0 pr-0 rounded-full' >
+                <AvatarImage className='rounded-full' src={user ? user?.image?.toString() : ""} />
+                <AvatarFallback delayMs={600}>CN</AvatarFallback>
+              </Avatar>
 
 
-            <HoverCard>
-              <HoverCardTrigger asChild>
-                <Button variant="link" className='hidden sm:flex'>{session?.user.email}</Button>
-              </HoverCardTrigger>
-              <HoverCardContent className="w-80">
-                <div className="flex justify-between space-x-4">
-                  <Avatar>
-                    <AvatarImage src={user ? user?.image?.toString() : ""} />
-                    <AvatarFallback >VC</AvatarFallback>
-                  </Avatar>
-                  <div className="space-y-1">
-                    <h4 className="text-sm font-semibold">{session?.user.name}</h4>
-                    <p className="text-sm">
-                      {session?.user.email}
-                    </p>
-                    <div className="flex items-center pt-2">
-                      <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
-                      <span className="text-xs text-muted-foreground">
-                        role : {user ? user.role : ""}
-                      </span>
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <Button variant="link" className='hidden sm:flex'>{session?.user.email}</Button>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80">
+                  <div className="flex justify-between space-x-4">
+                    <Avatar>
+                      <AvatarImage src={user ? user?.image?.toString() : ""} />
+                      <AvatarFallback >VC</AvatarFallback>
+                    </Avatar>
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-semibold">{session?.user.name}</h4>
+                      <p className="text-sm">
+                        {session?.user.email}
+                      </p>
+                      <div className="flex items-center pt-2">
+                        <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
+                        <span className="text-xs text-muted-foreground">
+                          role : {user ? user.role : ""}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
+                </HoverCardContent>
+              </HoverCard>
+
+            </>
 
 
 
-
-          </div>
-        }
+          }
+        </div>
 
       </div>
     </nav>
