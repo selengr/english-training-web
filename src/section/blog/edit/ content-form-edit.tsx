@@ -20,13 +20,14 @@ export const defaultValue = {
   ]
 }
 
-export default function ContentForm() {
-  const [title, setTitle] = useState('')
+export default function ContentFormEdit({ params }: { params: { slug: string } }) {
+
   const [body, setBody] = useState('')
   const [slug, setSlug] = useState('')
-  const [content, setContent] = useState<string>('')
-  const [banner, setBanner] = useState<string>('')
+  const [title, setTitle] = useState('')
   const [pending, setPending] = useState(false)
+  const [banner, setBanner] = useState<string>('')
+  const [content, setContent] = useState<string>('')
 
   useEffect(() => {
     const name = title
@@ -36,6 +37,25 @@ export default function ContentForm() {
 
     setSlug(name)
   }, [title])
+
+
+
+  useEffect(() => {
+    const getBlogData = async () => {
+
+      const response = await fetch(
+        `/api/blog/edit?params=${params.slug}`
+      );
+
+      const post = (await response.json());
+
+
+      console.log('post--------------------------- :>> ', post);
+      // setBanner(newBlob.url)
+    };
+
+    getBlogData()
+  }, [])
 
   async function handleSubmit() {
     // TODO: validate the data

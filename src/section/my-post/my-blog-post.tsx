@@ -21,7 +21,7 @@ export default async function MyBlogPost({ user }: { user: any }) {
             return (
               <>
                 <Link
-                  href={`/blog/${it.id}`}
+                  href={`/blog/edit/${it.id}`}
                   className={styles["post-blog-each-card"]}
                   key={it.id}
                 >
