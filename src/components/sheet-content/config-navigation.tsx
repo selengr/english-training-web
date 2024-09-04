@@ -1,7 +1,7 @@
 // routes
 import React from 'react';
 import { PATH_PAGE } from '@/routes/paths';
-import { AlignJustify, Signpost, UserCog, FilePlus2, Home, ShoppingCart, Users } from 'lucide-react';
+import { CalendarClock, Signpost, UserCog, FilePlus2, Home, ShoppingCart, Users } from 'lucide-react';
 
 
 
@@ -17,7 +17,8 @@ const ICONS = {
      home: <Home className="h-5 w-5" />,
      blogCreate: <FilePlus2 className="h-6 w-6" />,
      profile: <UserCog className="h-6 w-6" />,
-     myPost: <Signpost className="h-6 w-6" />
+     myPost: <Signpost className="h-6 w-6" />,
+     wordOfTheDay: <CalendarClock className="h-6 w-6" />
 
 
 };
@@ -54,7 +55,7 @@ const navConfig = [
      {
           title: 'word of the day',
           path: PATH_PAGE.wordOfTheDay,
-          icon: ICONS.myPost,
+          icon: ICONS.wordOfTheDay,
           role: Role.USER
      },
 
