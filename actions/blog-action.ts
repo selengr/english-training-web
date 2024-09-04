@@ -28,15 +28,16 @@ export async function createBlogAction(data: {
   
     // Check for session and admin role
     const session = await getServerSession(authOption);
-
-    // if (session.user.role !== 'admin') {
-    //   return { error: 'Admin access required.' }
-    // }
+    
     const user = await prisma.user.findUnique({
       where: {
         email: session?.user.email as string,
       },
     });
+
+    if (user?.role !== 'ADMIN') {
+      return { error: 'Admin access required.' }
+    }
     
     if (!session) {
       return { error: 'Authentication required.' }
@@ -44,7 +45,6 @@ export async function createBlogAction(data: {
     
     // Validate the input data
     const validationResult = BlogPostSchema.safeParse(data)
-    console.log('validationResult.data :>> ', validationResult.data);
  
   if (!validationResult.success) {
     return { error: validationResult.error.errors.map((e : any) => e.message).join(', ') }
@@ -89,9 +89,11 @@ export async function createBlogAction(data: {
 // Define a schema for input validation
 const UpdateBlogPostSchema = z.object({
   id: z.string().uuid("Invalid post ID"),
-  title: z.string().min(4, "Title is required").max(20, "Title must be 20 characters or less"),
-  body: z.string().min(20, "Body is required").max(150, "Body must be 150 characters or less"),
+  title: z.string().min(4, "Title must be 4 characters or more").max(50, "Title must be 20 characters or less"),
+  body: z.string().min(40, "Description must be 40 characters or more").max(150, "description must be 150 characters or less"),
   content: z.string().min(1, "Content is required"),
+  slug: z.string().min(1, "slug is required"),
+  banner: z.string().min(1, "banner is required"),
 })
 
 export async function updateBlogAction(data: {
@@ -99,48 +101,48 @@ export async function updateBlogAction(data: {
   title: string
   body: string
   content: string
+  slug: string
+  banner: string
 }) {
-  // Check for session and admin role
-  const session = await getServerSession(authOption);
+  
+    // Check for session and admin role
+    const session = await getServerSession(authOption);
 
-  if (!session) {
-    return { error: 'Authentication required.' }
-  }
 
-  // Assuming the user object in the session has a role property
-  // if (session.user.role !== 'admin') {
-  //   return { error: 'Admin access required.' }
-  // }
-
-  // Validate the input data
-  const validationResult = UpdateBlogPostSchema.safeParse(data)
-
-  if (!validationResult.success) {
-    return { error: validationResult.error.errors.map((e: any) => e.message).join(', ') }
-  }
-
-  const { id, title, body, content } = validationResult.data
-
-  try {
-    // Check if the post exists
-    const existingPost = await prisma.post.findUnique({
-      where: { id: id }
-    })
-
-    if (!existingPost) {
-      return { error: 'Post not found.' }
+    const user = await prisma.user.findUnique({
+      where: {
+        email: session?.user.email as string,
+      },
+    });
+    if (user?.role !== 'ADMIN') {
+      return { error: 'Admin access required.' }
     }
+    if (!session) {
+      return { error: 'Authentication required.' }
+    }
+    
+    // Validate the input data
+    const validationResult = UpdateBlogPostSchema.safeParse(data)
+ 
+  if (!validationResult.success) {
+    return { error: validationResult.error.errors.map((e : any) => e.message).join(', ') }
+  }
 
+  let post
+  const { title, body, content, slug, banner, id } = validationResult.data
+  try {
     // Update the post
     const updatedPost = await prisma.post.update({
       where: { id: id },
-      data: {
-        title: title,
-        body: body,
-        content: content,
-        banner : "17d82226-72fd-4f2f-a340-ab7ce8fb070b.avif"
-        // banner: newBannerValue
-      }
+        data: {
+          title: title,
+          body: body,
+          content: content,
+          slug: slug,
+          banner : banner,
+          published: false,
+          authorId: user?.id as string,
+        }
     })
 
     if (!updatedPost) {

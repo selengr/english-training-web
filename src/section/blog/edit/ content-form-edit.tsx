@@ -1,11 +1,13 @@
 'use client'
 
+import { generateJSON } from "@tiptap/html";
+
 import Editor from '@/components/theme/editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 import { toast } from '@/components/ui/use-toast';
-import { createBlogAction } from '../../../../actions/blog-action'
+import { createBlogAction, updateBlogAction } from '../../../../actions/blog-action'
 import { Textarea } from '@/components/ui/textarea'
 import UploadForm from '@/components/uploader/page'
 import { PutBlobResult } from '@vercel/blob'
@@ -22,12 +24,14 @@ export const defaultValue = {
 
 export default function ContentFormEdit({ params }: { params: { slug: string } }) {
 
+  const [id, setId] = useState('')
   const [body, setBody] = useState('')
   const [slug, setSlug] = useState('')
   const [title, setTitle] = useState('')
   const [pending, setPending] = useState(false)
   const [banner, setBanner] = useState<string>('')
-  const [content, setContent] = useState<string>('')
+  const [content, setContent] = useState<any>("")
+  const [initialContent, setInitialContent] = useState<any>(defaultValue)
 
   useEffect(() => {
     const name = title
@@ -47,11 +51,16 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
         `/api/blog/post?params=${params.slug}`
       );
 
-      // const post = (await response.json());
+      const { blog } = (await response.json());
 
-
-      console.log('post---------------------------response :>> ', response);
-      // setBanner(newBlob.url)
+      setId(blog.id)
+      setSlug(blog.slug)
+      setSlug(blog.slug)
+      setTitle(blog.title)
+      setBanner(blog.banner)
+      setContent(blog.content)
+      // setInitialContent(generateJSON(blog.content));
+      console.log('post---------------------------blog :>> ', blog);
     };
 
     getBlogData()
@@ -61,7 +70,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
     // TODO: validate the data
     setPending(true)
 
-    const result = await createBlogAction({ title, body, content, slug, banner })
+    const result = await updateBlogAction({ title, body, content, slug, banner, id })
 
     if (result?.error) {
       toast({
@@ -87,6 +96,9 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
 
     setBanner(newBlob.url)
   };
+
+
+  console.log('initialContent:', initialContent)
 
 
   return (
@@ -142,7 +154,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
         <p >
           content <span className='text-xs'> (Press "/" for commands)</span>
         </p>
-        <Editor initialValue={defaultValue} onChange={setContent}
+        <Editor initialValue={initialContent} onChange={(e) => console.log(e)}
         />
       </div>
       <Button onClick={handleSubmit} disabled={pending}>
