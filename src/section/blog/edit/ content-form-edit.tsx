@@ -47,10 +47,10 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
         `/api/blog/post?params=${params.slug}`
       );
 
-      const post = (await response.json());
+      // const post = (await response.json());
 
 
-      console.log('post--------------------------- :>> ', post);
+      console.log('post---------------------------response :>> ', response);
       // setBanner(newBlob.url)
     };
 

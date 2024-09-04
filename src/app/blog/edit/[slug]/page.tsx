@@ -3,7 +3,7 @@
 import ContentFormEdit from "@/section/blog/edit/ content-form-edit";
 
 
-export default function Page({ params }: { params: { slug: string } }) {
+export default function Page({ params }: { params: {slug :string} }) {
 
 
   return (
