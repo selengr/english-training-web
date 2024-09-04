@@ -44,7 +44,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
     const getBlogData = async () => {
 
       const response = await fetch(
-        `/api/blog/edit?params=${params.slug}`
+        `/api/blog/post?params=${params.slug}`
       );
 
       const post = (await response.json());

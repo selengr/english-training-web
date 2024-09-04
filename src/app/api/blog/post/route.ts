@@ -7,6 +7,10 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
     
+    const { params } = await request.json()
+
+    console.log('params--------------------------- :>> ', params);
+
     try {
         const session = await getServerSession(authOption)
         
@@ -14,10 +18,6 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
         }
 
-        const { params } = await request.json()
-
-        console.log('params--------------------------- :>> ', params);
-    
         if (!params) {
             return NextResponse.json({ message: 'blog name is required' }, { status: 400 })
         }
