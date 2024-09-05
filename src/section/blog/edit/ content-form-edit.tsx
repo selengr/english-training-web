@@ -29,6 +29,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
   const [pending, setPending] = useState(false)
   const [banner, setBanner] = useState<string>('')
   const [content, setContent] = useState<any>("")
+  const [tag, setTag] = useState([{ name: "" }]);
   const [initialContent, setInitialContent] = useState<any>(defaultValue)
 
   useEffect(() => {
@@ -68,12 +69,18 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
     // TODO: validate the data
     setPending(true)
 
-    const result = await updateBlogAction({ title, body, content, slug, banner, id })
-
-    if (result?.error) {
+    if (tag[0].name.length > 0) {
       toast({
-        description: result.error,
+        description: "area of coverage  at least write one"
       })
+    } else {
+
+      const result = await updateBlogAction({ title, body, content, slug, banner, id, tag })
+      if (result?.error) {
+        toast({
+          description: result.error,
+        })
+      }
     }
 
     setPending(false)
@@ -96,7 +103,46 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
   };
 
 
-  console.log('initialContent:', initialContent)
+
+
+  //------------------------------------------------------------------------
+
+  const handleChange = (i: any, e: any) => {
+    const newFormValues: any = [...tag];
+    if (e.target.value.length > 21) {
+      toast({
+        description: "max character is 20",
+      })
+    } else {
+      newFormValues[i][e?.target?.name] = e.target.value;
+      setTag(newFormValues);
+    }
+  };
+
+  const addFormFields = () => {
+    if (tag.length < 7) {
+      setTag([...tag, { name: "" }]);
+    } else {
+      toast({
+        description: "max size is six",
+      })
+    }
+  };
+
+  const removeFormFields = (i: any) => {
+    const newFormValues = [...tag];
+    if (i !== 0) {
+      newFormValues.splice(i, 1);
+      setTag(newFormValues);
+    } else if (i === 0 && newFormValues.length === 1) {
+      setTag([{ name: "" }]);
+    } else if (i === 0 && newFormValues.length > 1) {
+      newFormValues.shift();
+      setTag(newFormValues);
+    }
+  };
+  //------------------------------------------------------------------------
+
 
 
   return (
@@ -148,6 +194,42 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
           value={body}
         />
       </div>
+
+
+
+      <div className='flex flex-col'>
+        <p>
+          area of coverage
+        </p>
+        {tag.map((element, index) => (
+          <div className="form-inline flex flex-row gap-2 my-2" key={index}>
+            <Input
+              type='text'
+              name="name"
+              placeholder="name"
+              value={element.name || ""}
+              onChange={(e) => handleChange(index, e)}
+            />
+
+            <Button
+              type="button"
+              variant={"outline"}
+              className="bg-red-500 text-white"
+              onClick={() => removeFormFields(index)}
+            >
+              x
+            </Button>
+            <Button
+              type="button"
+              onClick={addFormFields}
+            >
+              Add More
+            </Button>
+          </div>
+        ))}
+
+      </div>
+
 
       <div className='flex flex-col'>
         <p >

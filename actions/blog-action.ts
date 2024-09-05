@@ -16,15 +16,13 @@ const BlogPostSchema = z.object({
   content: z.string().min(1, "Content is required"),
   slug: z.string().min(1, "slug is required"),
   banner: z.string().min(1, "banner is required"),
+  tag: z.array(z.object({ name: z.string() })).length(1, "area of coverage  at least write one"),
 })
 
-export async function createBlogAction(data: {
-  title: string
-  body: string
-  content: string
-  slug: string
-  banner: string
-}) {
+type BlogPost = z.infer<typeof BlogPostSchema>;
+
+
+export async function createBlogAction(data: BlogPost) {
   
     // Check for session and admin role
     const session = await getServerSession(authOption);
@@ -51,11 +49,12 @@ export async function createBlogAction(data: {
   }
 
   let post
-  const { title, body, content, slug, banner } = validationResult.data
+  const { title, body, content, slug, banner, tag } = validationResult.data
 
   try {
      post = await prisma.post.create({
       data: {
+        tag: tag,
         title: title,
         body: body,
         content: content,
@@ -94,16 +93,12 @@ const UpdateBlogPostSchema = z.object({
   content: z.string().min(1, "Content is required"),
   slug: z.string().min(1, "slug is required"),
   banner: z.string().min(1, "banner is required"),
+  tag: z.array(z.object({ name: z.string() })).length(1, "area of coverage  at least write one"),
 })
 
-export async function updateBlogAction(data: {
-  id: string
-  title: string
-  body: string
-  content: string
-  slug: string
-  banner: string
-}) {
+type UpdateBlogPost = z.infer<typeof UpdateBlogPostSchema>;
+
+export async function updateBlogAction(data: UpdateBlogPost) {
   
     // Check for session and admin role
     const session = await getServerSession(authOption);
@@ -129,12 +124,13 @@ export async function updateBlogAction(data: {
   }
 
   let post
-  const { title, body, content, slug, banner, id } = validationResult.data
+  const { title, body, content, slug, banner, id, tag } = validationResult.data
   try {
     // Update the post
     const updatedPost = await prisma.post.update({
       where: { id: id },
         data: {
+          tag: tag,
           title: title,
           body: body,
           content: content,

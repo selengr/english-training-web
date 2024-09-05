@@ -1,5 +1,6 @@
 'use client'
 
+import { z } from 'zod'
 import Editor from '@/components/theme/editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,6 +10,22 @@ import { createBlogAction } from '../../../../actions/blog-action'
 import { Textarea } from '@/components/ui/textarea'
 import UploadForm from '@/components/uploader/page'
 import { PutBlobResult } from '@vercel/blob'
+
+
+
+
+// Define a schema for input validation
+const BlogPostSchema = z.object({
+  title: z.string().min(4, "Title must be 4 characters or more").max(50, "Title must be 20 characters or less"),
+  body: z.string().min(40, "Description must be 40 characters or more").max(150, "description must be 150 characters or less"),
+  content: z.string().min(1, "Content is required"),
+  slug: z.string().min(1, "slug is required"),
+  banner: z.string().min(1, "banner is required"),
+  tag: z.array(z.object({ name: z.string() })).length(1, "area of coverage  at least write one"),
+})
+
+type BlogPost = z.infer<typeof BlogPostSchema>;
+
 
 export const defaultValue = {
   type: 'doc',
@@ -27,6 +44,7 @@ export default function ContentForm() {
   const [content, setContent] = useState<string>('')
   const [banner, setBanner] = useState<string>('')
   const [pending, setPending] = useState(false)
+  const [tag, setTag] = useState([{ name: "" }]);
 
   useEffect(() => {
     const name = title
@@ -41,13 +59,21 @@ export default function ContentForm() {
     // TODO: validate the data
     setPending(true)
 
-    const result = await createBlogAction({ title, body, content, slug, banner })
-
-    if (result?.error) {
+    if (tag[0].name.length > 0) {
       toast({
-        description: result.error,
+        description: "area of coverage  at least write one"
       })
+    } else {
+
+      const result = await createBlogAction({ title, body, content, slug, banner, tag })
+      if (result?.error) {
+        toast({
+          description: result.error,
+        })
+      }
     }
+
+
 
     setPending(false)
   }
@@ -67,6 +93,46 @@ export default function ContentForm() {
 
     setBanner(newBlob.url)
   };
+
+
+
+  //------------------------------------------------------------------------
+
+  const handleChange = (i: any, e: any) => {
+    const newFormValues: any = [...tag];
+    if (e.target.value.length > 21) {
+      toast({
+        description: "max character is 20",
+      })
+    } else {
+      newFormValues[i][e?.target?.name] = e.target.value;
+      setTag(newFormValues);
+    }
+  };
+
+  const addFormFields = () => {
+    if (tag.length < 7) {
+      setTag([...tag, { name: "" }]);
+    } else {
+      toast({
+        description: "max size is six",
+      })
+    }
+  };
+
+  const removeFormFields = (i: any) => {
+    const newFormValues = [...tag];
+    if (i !== 0) {
+      newFormValues.splice(i, 1);
+      setTag(newFormValues);
+    } else if (i === 0 && newFormValues.length === 1) {
+      setTag([{ name: "" }]);
+    } else if (i === 0 && newFormValues.length > 1) {
+      newFormValues.shift();
+      setTag(newFormValues);
+    }
+  };
+  //------------------------------------------------------------------------
 
 
   return (
@@ -117,6 +183,39 @@ export default function ContentForm() {
           onChange={e => setBody(e.target.value)}
           value={body}
         />
+      </div>
+
+      <div className='flex flex-col'>
+        <p>
+          area of coverage
+        </p>
+        {tag.map((element, index) => (
+          <div className="form-inline flex flex-row gap-2 my-2" key={index}>
+            <Input
+              type='text'
+              name="name"
+              placeholder="name"
+              value={element.name || ""}
+              onChange={(e) => handleChange(index, e)}
+            />
+
+            <Button
+              type="button"
+              variant={"outline"}
+              className="bg-red-500 text-white"
+              onClick={() => removeFormFields(index)}
+            >
+              x
+            </Button>
+            <Button
+              type="button"
+              onClick={addFormFields}
+            >
+              Add More
+            </Button>
+          </div>
+        ))}
+
       </div>
 
       <div className='flex flex-col'>
