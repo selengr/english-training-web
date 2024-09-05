@@ -58,19 +58,18 @@ export default function ContentForm() {
   async function handleSubmit() {
     // TODO: validate the data
     setPending(true)
-
+    debugger
     if (tag[0].name.length > 0) {
-      toast({
-        description: "area of coverage  at least write one"
-      })
-    } else {
-
       const result = await createBlogAction({ title, body, content, slug, banner, tag })
       if (result?.error) {
         toast({
           description: result.error,
         })
       }
+    } else {
+      toast({
+        description: "area of coverage is required"
+      })
     }
 
 

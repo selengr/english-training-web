@@ -16,7 +16,8 @@ const BlogPostSchema = z.object({
   content: z.string().min(1, "Content is required"),
   slug: z.string().min(1, "slug is required"),
   banner: z.string().min(1, "banner is required"),
-  tag: z.array(z.object({ name: z.string() })).length(1, "area of coverage  at least write one"),
+  tag: z.array(z.object({ name: z.string() }))
+  // .min(1, "area of coverage  at least write one"),
 })
 
 type BlogPost = z.infer<typeof BlogPostSchema>;
@@ -54,14 +55,14 @@ export async function createBlogAction(data: BlogPost) {
   try {
      post = await prisma.post.create({
       data: {
-        tag: tag,
+        tag: tag as any,
         title: title,
         body: body,
         content: content,
         slug: slug,
         banner : banner,
         published: false,
-        authorId: user?.id as string,
+        authorId: user?.id,
       }
     })
 
@@ -93,7 +94,7 @@ const UpdateBlogPostSchema = z.object({
   content: z.string().min(1, "Content is required"),
   slug: z.string().min(1, "slug is required"),
   banner: z.string().min(1, "banner is required"),
-  tag: z.array(z.object({ name: z.string() })).length(1, "area of coverage  at least write one"),
+  tag: z.array(z.object({ name: z.string() })),
 })
 
 type UpdateBlogPost = z.infer<typeof UpdateBlogPostSchema>;
@@ -130,14 +131,14 @@ export async function updateBlogAction(data: UpdateBlogPost) {
     const updatedPost = await prisma.post.update({
       where: { id: id },
         data: {
-          tag: tag,
+          tag: tag as any,
           title: title,
           body: body,
           content: content,
           slug: slug,
           banner : banner,
           published: false,
-          authorId: user?.id as string,
+          authorId: user?.id,
         }
     })
 
