@@ -16,7 +16,7 @@ const BlogPostSchema = z.object({
   content: z.string().min(1, "Content is required"),
   slug: z.string().min(1, "slug is required"),
   banner: z.string().min(1, "banner is required"),
-  tag: z.array(z.object({ name: z.string() }))
+  tag: z.array(z.string())
   // .min(1, "area of coverage  at least write one"),
 })
 
@@ -94,7 +94,7 @@ const UpdateBlogPostSchema = z.object({
   content: z.string().min(1, "Content is required"),
   slug: z.string().min(1, "slug is required"),
   banner: z.string().min(1, "banner is required"),
-  tag: z.array(z.object({ name: z.string() })),
+  tag: z.array(z.string()),
 })
 
 type UpdateBlogPost = z.infer<typeof UpdateBlogPostSchema>;

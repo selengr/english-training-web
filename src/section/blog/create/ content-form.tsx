@@ -12,21 +12,6 @@ import UploadForm from '@/components/uploader/page'
 import { PutBlobResult } from '@vercel/blob'
 
 
-
-
-// Define a schema for input validation
-const BlogPostSchema = z.object({
-  title: z.string().min(4, "Title must be 4 characters or more").max(50, "Title must be 20 characters or less"),
-  body: z.string().min(40, "Description must be 40 characters or more").max(150, "description must be 150 characters or less"),
-  content: z.string().min(1, "Content is required"),
-  slug: z.string().min(1, "slug is required"),
-  banner: z.string().min(1, "banner is required"),
-  tag: z.array(z.object({ name: z.string() })).length(1, "area of coverage  at least write one"),
-})
-
-type BlogPost = z.infer<typeof BlogPostSchema>;
-
-
 export const defaultValue = {
   type: 'doc',
   content: [
@@ -44,7 +29,7 @@ export default function ContentForm() {
   const [content, setContent] = useState<string>('')
   const [banner, setBanner] = useState<string>('')
   const [pending, setPending] = useState(false)
-  const [tag, setTag] = useState([{ name: "" }]);
+  const [tag, setTag] = useState([""]);
 
   useEffect(() => {
     const name = title
@@ -59,7 +44,7 @@ export default function ContentForm() {
     // TODO: validate the data
     setPending(true)
     debugger
-    if (tag[0].name.length > 0) {
+    if (tag[0].length > 0) {
       const result = await createBlogAction({ title, body, content, slug, banner, tag })
       if (result?.error) {
         toast({
@@ -104,14 +89,14 @@ export default function ContentForm() {
         description: "max character is 20",
       })
     } else {
-      newFormValues[i][e?.target?.name] = e.target.value;
+      newFormValues[i] = e.target.value;
       setTag(newFormValues);
     }
   };
 
   const addFormFields = () => {
-    if (tag.length < 7) {
-      setTag([...tag, { name: "" }]);
+    if (tag.length < 6) {
+      setTag([...tag, ""]);
     } else {
       toast({
         description: "max size is six",
@@ -125,7 +110,7 @@ export default function ContentForm() {
       newFormValues.splice(i, 1);
       setTag(newFormValues);
     } else if (i === 0 && newFormValues.length === 1) {
-      setTag([{ name: "" }]);
+      setTag([""]);
     } else if (i === 0 && newFormValues.length > 1) {
       newFormValues.shift();
       setTag(newFormValues);
@@ -194,7 +179,7 @@ export default function ContentForm() {
               type='text'
               name="name"
               placeholder="name"
-              value={element.name || ""}
+              value={element || ""}
               onChange={(e) => handleChange(index, e)}
             />
 

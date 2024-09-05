@@ -29,7 +29,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
   const [pending, setPending] = useState(false)
   const [banner, setBanner] = useState<string>('')
   const [content, setContent] = useState<any>("")
-  const [tag, setTag] = useState([{ name: "" }]);
+  const [tag, setTag] = useState([""]);
   const [initialContent, setInitialContent] = useState<any>(defaultValue)
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
     // TODO: validate the data
     setPending(true)
 
-    if (tag[0].name.length > 0) {
+    if (tag[0].length > 0) {
       toast({
         description: "area of coverage  at least write one"
       })
@@ -104,7 +104,6 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
 
 
 
-
   //------------------------------------------------------------------------
 
   const handleChange = (i: any, e: any) => {
@@ -114,14 +113,14 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
         description: "max character is 20",
       })
     } else {
-      newFormValues[i][e?.target?.name] = e.target.value;
+      newFormValues[i] = e.target.value;
       setTag(newFormValues);
     }
   };
 
   const addFormFields = () => {
-    if (tag.length < 7) {
-      setTag([...tag, { name: "" }]);
+    if (tag.length < 6) {
+      setTag([...tag, ""]);
     } else {
       toast({
         description: "max size is six",
@@ -135,7 +134,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
       newFormValues.splice(i, 1);
       setTag(newFormValues);
     } else if (i === 0 && newFormValues.length === 1) {
-      setTag([{ name: "" }]);
+      setTag([""]);
     } else if (i === 0 && newFormValues.length > 1) {
       newFormValues.shift();
       setTag(newFormValues);
@@ -207,7 +206,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
               type='text'
               name="name"
               placeholder="name"
-              value={element.name || ""}
+              value={element || ""}
               onChange={(e) => handleChange(index, e)}
             />
 

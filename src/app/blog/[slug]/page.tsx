@@ -17,7 +17,7 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
 
   const user = await prisma.user.findUnique({
     where: {
-      id: blog?.authorId as string,
+      id: blog?.authorId,
     },
   });
 

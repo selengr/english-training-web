@@ -7,7 +7,7 @@ const Introduction = ({ blog, user }: { blog: any, user: any }) => {
 
     <div className={styles["post-blog"]}>
       <div className={styles["post-blog-property-map-opt"]}>
-        {[1, 2, 3, 4, 5, 6, 7]?.map((it: any) => (
+        {blog?.tag?.map((it: any) => (
           <>
             <span>{it}</span>
           </>

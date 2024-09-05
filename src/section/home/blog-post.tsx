@@ -52,9 +52,9 @@ export default async function BlogPost() {
                       </span>
                     </div>
                     <div className={styles["post-blog-property-map-opt"]}>
-                      {[1, 2, 3, 4].map((it: any) => (
+                      {it.tag.map((tag: any) => (
                         <>
-                          <span>{it}</span>
+                          <span>{tag}</span>
                         </>
                       ))}
                     </div>
