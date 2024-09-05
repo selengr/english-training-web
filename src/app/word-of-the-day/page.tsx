@@ -42,20 +42,36 @@ const testimonials = [
 
 const page = () => {
     return (
-        <div className="-z-10">
+        <div className="-z-10 py-14">
             <BackgroundBeamsWithCollision>
                 <h2 className="text-2xl relative md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
-                    hi name {" "}
+                    word- {" "}
                     <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
                         <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-purple-500 via-violet-500 to-pink-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">
-                            <span className="">hi</span>
+                            <span className="">of-the-day</span>
                         </div>
                         <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
-                            <span className="">reza</span>
+                            <span className="">of-the-day</span>
                         </div>
                     </div>
                 </h2>
 
+
+
+                <div className="h-[20rem] rounded-md flex flex-col antialiased  items-center justify-center relative overflow-hidden">
+                    <InfiniteMovingCards
+                        items={testimonials}
+                        direction="right"
+                        speed="slow"
+                    />
+                </div>
+
+
+
+            </BackgroundBeamsWithCollision>
+
+
+            <div className="gap-x-4 gap-y-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 justify-content items-center">
                 <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
                     <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
                     <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
@@ -72,18 +88,121 @@ const page = () => {
                         Watch me hover
                     </p>
                 </div>
+                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
+                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
 
-                <div className="h-[20rem] rounded-md flex flex-col antialiased  items-center justify-center relative overflow-hidden">
-                    <InfiniteMovingCards
-                        items={testimonials}
-                        direction="right"
-                        speed="slow"
-                    />
+                    <EvervaultCard text="hover" />
+
+                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
+                        Hover over this card to reveal an awesome effect. Running out of copy
+                        here.
+                    </h2>
+                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
+                        Watch me hover
+                    </p>
                 </div>
+                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
+                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
+
+                    <EvervaultCard text="hover" />
+
+                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
+                        Hover over this card to reveal an awesome effect. Running out of copy
+                        here.
+                    </h2>
+                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
+                        Watch me hover
+                    </p>
+                </div>
+                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
+                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
+
+                    <EvervaultCard text="hover" />
+
+                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
+                        Hover over this card to reveal an awesome effect. Running out of copy
+                        here.
+                    </h2>
+                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
+                        Watch me hover
+                    </p>
+                </div>
+                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
+                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
+
+                    <EvervaultCard text="hover" />
+
+                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
+                        Hover over this card to reveal an awesome effect. Running out of copy
+                        here.
+                    </h2>
+                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
+                        Watch me hover
+                    </p>
+                </div>
+                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
+                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
+
+                    <EvervaultCard text="hover" />
+
+                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
+                        Hover over this card to reveal an awesome effect. Running out of copy
+                        here.
+                    </h2>
+                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
+                        Watch me hover
+                    </p>
+                </div>
+                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
+                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
+
+                    <EvervaultCard text="hover" />
+
+                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
+                        Hover over this card to reveal an awesome effect. Running out of copy
+                        here.
+                    </h2>
+                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
+                        Watch me hover
+                    </p>
+                </div>
+                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
+                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
+                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
+
+                    <EvervaultCard text="hover" />
+
+                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
+                        Hover over this card to reveal an awesome effect. Running out of copy
+                        here.
+                    </h2>
+                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
+                        Watch me hover
+                    </p>
+                </div>
+            </div>
 
 
-
-            </BackgroundBeamsWithCollision>
         </div>
     );
 }
