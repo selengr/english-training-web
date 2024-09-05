@@ -14,13 +14,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { useFormStatus } from 'react-dom';
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from '@/components/ui/use-toast';
-import { useTransition } from 'react';
+import SubmitButton from '../ui/ submit-button';
+// import { useTransition } from 'react';
 
 const LoginForm = () => {
-  const [pending, startTransaction] = useTransition();
 
 
   return (
@@ -71,9 +72,8 @@ const LoginForm = () => {
               </div>
               <Input id="password" name="password" type="password" required />
             </div>
-            <Button type="submit" className="w-full mt-8" loading={pending}>
-              Login
-            </Button>
+
+            <SubmitButton text='Login' />
             {/* <Button variant="outline" className="w-full">
               Login with Google
             </Button> */}
