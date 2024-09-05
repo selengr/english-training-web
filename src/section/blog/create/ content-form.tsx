@@ -121,7 +121,7 @@ export default function ContentForm() {
 
       <div className='flex flex-col'>
         <p >
-          content <span className='text-xs'> (Press "/" for commands)</span>
+          content <span className='text-xs'> (Press &prime;/&prime; for commands)</span>
         </p>
         <Editor initialValue={defaultValue} onChange={setContent}
         />

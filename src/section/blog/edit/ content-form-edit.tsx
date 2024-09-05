@@ -1,7 +1,5 @@
 'use client'
 
-import { generateJSON } from "@tiptap/html";
-
 import Editor from '@/components/theme/editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -153,7 +151,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
 
       <div className='flex flex-col'>
         <p >
-          content <span className='text-xs'> (Press "/" for commands)</span>
+          content <span className='text-xs'> (Press &prime;/&prime; for commands)</span>
         </p>
         <Editor initialValue={initialContent} onChange={setContent}
         />

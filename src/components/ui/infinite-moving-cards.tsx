@@ -78,7 +78,7 @@ export const InfiniteMovingCards = ({
         ,
         className
       )}
-    >s
+    >
       <ul
         ref={scrollerRef}
         className={cn(

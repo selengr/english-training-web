@@ -2,10 +2,10 @@
 "use client"
 
 import Link from "next/link"
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import navConfig from "./config-navigation"
-import { getServerSession } from 'next-auth';
-import { authOption } from '@/lib/next-auth';
+import { useState, useEffect } from 'react'
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -14,10 +14,8 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { useState, useEffect } from 'react'
 import { IsActiveLink } from "./isActiveLink"
 import { AlignJustify, BadgeCheck, LogOut } from 'lucide-react';
-import { useRouter } from "next/navigation";
 
 
 
