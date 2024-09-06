@@ -48,9 +48,27 @@ const AboutUs = async () => {
             <div className="w-full">
 
 
+
+
                 <div className="flex justify-center items-start flex-col max-w-[60%] m-auto">
 
+                    <br ></br>
+                    <br ></br>
 
+                    <div className="mockup-code w-full">
+                        <p data-prefix="👋">Hey hey 👋</p>
+                        <br ></br>
+                        <p data-prefix="👋">My name is Reza Karbakhsh.</p>
+                        <br ></br>
+                        <p data-prefix="👋">I'm a software developer who loves exploring AI by building and learning in public.</p>
+                        <br ></br>
+                        <p data-prefix="👋">In my spare time, I work on products, games, websites, tech demos — I love using my technical skills to build cool & interesting things.</p>
+                        <br ></br>
+                        <p data-prefix="👋">You can find me on <a className="font-bold" href="mailto:reza1997karbakhsh@gmail.com">Gmail</a> and <a href="https://github.com/selengr" className="font-bold">GitHub</a> and  <a className="font-bold" href="instagram://media?id=rezakarbakhsh76">Instagram</a></p>
+                    </div>
+
+
+                    <br ></br>
                     <br ></br>
                     <br ></br>
 
