@@ -35,7 +35,7 @@ const Banner = ({ data, title, banner, user, home }: Props) => {
         className={styles["landing-div-rounded"]}
       />
 
-      <h1 className={styles["landing-title"]}>{title ? title : "commercial web"}</h1>
+      <h1 className={styles["landing-title"]}>{title ? title : "LearningLab.ir"}</h1>
 
 
     </div>

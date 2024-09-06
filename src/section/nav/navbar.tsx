@@ -35,7 +35,7 @@ const Navbar = async () => {
 
         <div className="flex justify-end flex-row align-middle items-center w-full pr-4 sm:pr-10">
 
-          <Link href="/about-me"
+          <Link href="/about-us"
             passHref
           > <label className="mr-2 cursor-pointer">About</label></Link>
 

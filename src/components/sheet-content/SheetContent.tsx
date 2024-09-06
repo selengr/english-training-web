@@ -16,12 +16,13 @@ import {
 } from "@/components/ui/sheet"
 import { IsActiveLink } from "./isActiveLink"
 import { AlignJustify, BadgeCheck, LogOut } from 'lucide-react';
+import useMounted from "@/hooks/use-mounted";
 
 
 
 
 export function SheetSide() {
-  // const [open, setOpen] = useState<boolean>(false)
+  const mounted = useMounted()
   const { refresh } = useRouter()
   const [userData, setUserData] = useState<string>("")
 
@@ -48,7 +49,9 @@ export function SheetSide() {
     refresh()
   }
 
-
+  if (!mounted) {
+    return null
+  }
 
   return (
     <div className="pr-4 pl-4 sm:pl-7 cursor-pointer">
@@ -125,18 +128,22 @@ export function SheetSide() {
 
           </nav>
 
-          <SheetFooter className="absolute bottom-8">
-            <div
-              onClick={() => {
-                signOut()
-                reNav()
-              }}
-              className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground`}
-            >
-              <LogOut />
-              logout
-            </div>
-          </SheetFooter>
+          {userData &&
+            <SheetFooter className="absolute bottom-8">
+              <div
+                onClick={() => {
+                  signOut({
+                    callbackUrl: '/',
+                  });
+                  reNav()
+                }}
+                className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground`}
+              >
+                <LogOut />
+                logout
+              </div>
+            </SheetFooter>
+          }
         </SheetContent>
       </Sheet>
     </div >

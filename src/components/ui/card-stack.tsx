@@ -9,7 +9,10 @@ let interval: any;
 type Card = {
   id: number;
   name: string;
-  designation: string;
+  image: string;
+  email: string;
+  family: string;
+  role: string;
   content: React.ReactNode;
 };
 
@@ -18,7 +21,7 @@ export const CardStack = ({
   offset,
   scaleFactor,
 }: {
-  items: Card[];
+  items: any[];
   offset?: number;
   scaleFactor?: number;
 }) => {
@@ -42,46 +45,52 @@ export const CardStack = ({
   };
 
   return (
-    <div className="relative  h-60 w-60 md:h-60 md:w-96">
-      {cards.map((card, index) => {
-        return (
-          <motion.div
-            key={card.id}
-            className="absolute dark:bg-[#2f3437] bg-[#f8f8f8] h-60 w-60 md:h-60 md:w-96 rounded-3xl p-4 shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between"
-            style={{
-              transformOrigin: "top center",
-            }}
-            animate={{
-              top: index * -CARD_OFFSET,
-              scale: 1 - index * SCALE_FACTOR, // decrease scale for cards that are behind
-              zIndex: cards.length - index, //  decrease z-index for the cards that are behind
-            }}
-          >
-            <div className="font-normal text-neutral-700 dark:text-neutral-200 w-full">
-              {card.content}
-            </div>
+    <div className="relative h-72 w-60 md:h-72 md:w-96 place-items-center">
+      {cards?.map((card, index) => {
+        if (card.role === "ADMIN") {
+          return (
+            <motion.div
+              key={card.id}
+              className="absolute dark:bg-[#2f3437] bg-[#f8f8f8] h-72 w-7h-72 md:h-60 md:w-96 rounded-3xl p-4 shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between"
+              style={{
+                transformOrigin: "top center",
+              }}
+              animate={{
+                top: index * -CARD_OFFSET,
+                scale: 1 - index * SCALE_FACTOR, // decrease scale for cards that are behind
+                zIndex: cards.length - index, //  decrease z-index for the cards that are behind
+              }}
+            >
+              <div className="font-normal text-neutral-700 dark:text-neutral-200 w-full">
+                {card.name}  {card?.family}
+              </div>
 
 
-            <div className="w-full flex justify-center items-center">
-              <Image
-                src={"/pre/images/E52075F8-14EA-496F-A10C-CB4405AFE196_1_105_c.jpeg"}
-                alt="Picture of the author"
-                width={120}
-                height={80}
-                className={`${styles["landing-div-rounded"]} mt-0`}
-              />
-            </div>
+              <div className="w-full flex justify-center items-center">
+                {card?.image && <Image
+                  src={card?.image}
+                  alt="Picture of the author"
+                  width={120}
+                  height={80}
+                  className={`${styles["landing-div-rounded"]}`}
+                  style={{
+                    marginTop: '12px'
+                  }}
+                />
+                }
+              </div>
 
-            <div>
-              <p className="text-neutral-500 font-medium dark:text-white">
-                {card.name}
-              </p>
-              <p className="text-neutral-400 font-normal dark:text-neutral-200">
-                {card.designation}
-              </p>
-            </div>
-          </motion.div>
-        );
+              <div>
+                <p className="text-neutral-500 font-medium dark:text-white">
+                  role : {card.role}
+                </p>
+                <p className="text-neutral-400 font-normal dark:text-neutral-200">
+                  expert : {card.email}
+                </p>
+              </div>
+            </motion.div>
+          );
+        }
       })}
     </div>
   );

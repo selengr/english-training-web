@@ -43,13 +43,13 @@ export const authOption: NextAuthOptions = {
 
         if (!isPasswordValid) return null;
 
-        return user;
+        return user as any;
       },
     }),
   ],
   callbacks: {
     jwt: ({ token, user }) => {
-      const u = user as unknown as User;
+      const u = user as unknown as User as any;
       if (user) {
         return {
           ...token,
