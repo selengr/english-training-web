@@ -38,7 +38,7 @@ const AboutUs = async () => {
                 />
 
 
-                <h1 className={styles["landing-title"]}>Learning lab</h1>
+                <h1 className={styles["landing-title"]}>Learning labs</h1>
 
 
 
