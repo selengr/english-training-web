@@ -21,7 +21,7 @@ const page = async () => {
 
     return (
         <div>
-            <div className='h-full'>
+            <div className='h-full pb-10'>
                 <Banner
                     banner={'images/https___s3-us-west-2.avif'}
                     user={user}
@@ -31,7 +31,6 @@ const page = async () => {
 
                 <div className="w-full h-full flex justify-center align-middle">
                     <article className={styles['landing-article']}>
-                        {/* <Bio /> */}
 
                         <Suspense fallback={<MyBlogPostRequestSkeleton />}>
                             <MyBlogPost user={user} />

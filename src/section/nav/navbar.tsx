@@ -19,15 +19,15 @@ import { SheetSide } from '@/components/sheet-content/SheetContent';
 const Navbar = async () => {
   const session = await getServerSession(authOption);
 
-  let user
-  if (session) {
+  let user: any
+  // if (session) {
 
-    user = await prisma.user.findUnique({
-      where: {
-        email: session?.user?.email as string,
-      },
-    });
-  }
+  //   user = await prisma.user.findUnique({
+  //     where: {
+  //       email: session?.user?.email as string,
+  //     },
+  //   });
+  // }
 
   return (
     <nav className='border-b py-3'>
@@ -53,14 +53,14 @@ const Navbar = async () => {
           {session &&
             <>
               <Avatar className='pl-0 pr-0 rounded-full' >
-                <AvatarImage className='rounded-full' src={user ? user?.image?.toString() : ""} />
+                <AvatarImage className='rounded-full' src={user ? user?.image?.toString() : "https://github.com/shadcn.png"} />
                 <AvatarFallback delayMs={600}>CN</AvatarFallback>
               </Avatar>
 
 
               <HoverCard>
                 <HoverCardTrigger asChild>
-                  <Button variant="link" className='hidden sm:flex'>{session?.user.email}</Button>
+                  <Button variant="link" className='hidden sm:flex'>{session?.user?.email}</Button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-80">
                   <div className="flex justify-between space-x-4">
@@ -76,7 +76,7 @@ const Navbar = async () => {
                       <div className="flex items-center pt-2">
                         <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
                         <span className="text-xs text-muted-foreground">
-                          role : {user ? user.role : ""}
+                          role : {user ? user?.role : ""}
                         </span>
                       </div>
                     </div>

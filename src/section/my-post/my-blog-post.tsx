@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { Trash } from 'lucide-react';
 import { fToNow } from "@/utils/formatTime";
 import styles from "../home/banner.module.css";
 
@@ -15,9 +16,8 @@ export default async function MyBlogPost({ user }: { user: any }) {
       <h2>My Posts</h2>
 
       <aside className={styles["post-blog-card"]}>
-        {user?.posts.length > 0 &&
+        {user?.posts?.length > 0 &&
           user?.posts?.map((it: any) => {
-            let tag = it.tags
             return (
               <>
                 <Link
@@ -25,6 +25,7 @@ export default async function MyBlogPost({ user }: { user: any }) {
                   className={styles["post-blog-each-card"]}
                   key={it.id}
                 >
+
                   <Image
                     src={it.banner.toString()}
                     alt="Picture of the author"
@@ -32,7 +33,7 @@ export default async function MyBlogPost({ user }: { user: any }) {
                     height={200}
                   />
 
-                  <section className={styles["post-blog-property"]}>
+                  <section className={styles["post-blog-property"]} style={{ position: "relative" }}>
                     <span className={styles["post-blog-property-title"]}>
 
                       <p className="truncate">
@@ -52,13 +53,15 @@ export default async function MyBlogPost({ user }: { user: any }) {
                       </span>
                     </div>
                     <div className={styles["post-blog-property-map-opt"]}>
-                      {it?.blog.map((tag: any) => (
+                      {it?.tag?.map((tag: any) => (
                         <>
                           <span>{tag}</span>
                         </>
                       ))}
                     </div>
+                    <Trash className="absolute right-0" />
                   </section>
+
                 </Link>
               </>
             );

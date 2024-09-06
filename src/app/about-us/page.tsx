@@ -64,7 +64,10 @@ const AboutUs = async () => {
                         <br ></br>
                         <p data-prefix="👋">In my spare time, I work on products, games, websites, tech demos — I love using my technical skills to build cool & interesting things.</p>
                         <br ></br>
-                        <p data-prefix="👋">You can find me on <a className="font-bold" href="mailto:reza1997karbakhsh@gmail.com">Gmail</a> and <a href="https://github.com/selengr" className="font-bold">GitHub</a> and  <a className="font-bold" href="instagram://media?id=rezakarbakhsh76">Instagram</a></p>
+                        <p data-prefix="👋">You can find me on <a className="font-bold" href="mailto:reza1997karbakhsh@gmail.com">Gmail</a> and <a href="https://github.com/selengr" className="font-bold">GitHub</a> and
+                            <a className="font-bold" href="instagram://media?id=rezakarbakhsh76">Instagram</a>
+                            <a className="font-bold" href="https://instagram.com/rezakarbakhsh76">Instagram2</a>
+                        </p>
                     </div>
 
 
