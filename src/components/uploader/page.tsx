@@ -15,8 +15,6 @@ const UploadForm = ({
   onDrop: any;
   defaultImage?: any;
 }) => {
-  const [pictures, setPictures] = useState<File[]>([]);
-  console.log('defaultImage :>> ', defaultImage);
 
   return (
     <div className="flex w-full flex-col py-2">

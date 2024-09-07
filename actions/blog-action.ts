@@ -156,3 +156,21 @@ export async function updateBlogAction(data: UpdateBlogPost) {
 
   redirect(`/blog/${id}`) // Redirect to the updated post
 }
+
+
+
+export async function deletePost(postId: string) {
+  try {
+    await prisma.post.delete({
+      where: {
+        id: postId,
+      },
+    })
+    return { success: true, message: 'Post deleted successfully' }
+  } catch (error) {
+    console.error('Error deleting post:', error)
+    return { success: false, message: 'Failed to delete post' }
+  } finally {
+    await prisma.$disconnect()
+  }
+}

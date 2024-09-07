@@ -1,15 +1,45 @@
+"use client"
 
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
-import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-import { Trash } from 'lucide-react';
+import { Trash, Pencil } from 'lucide-react';
 import { fToNow } from "@/utils/formatTime";
 import styles from "../home/banner.module.css";
+import { Button } from "@/components/ui/button";
+import { deletePost } from "../../../actions/blog-action";
+import { toast } from "@/components/ui/use-toast";
+import Link from "next/link";
 
 
 export default async function MyBlogPost({ user }: { user: any }) {
+  const [isDeleting, setIsDeleting] = useState(false);
+  const router = useRouter();
 
+  const handleDeletePost = async (postId: string) => {
+    setIsDeleting(true);
+    const result = await deletePost(postId);
+    setIsDeleting(false);
+    if (result.success) {
+      router.refresh();
+    } else {
+      toast({
+        description: result.message
+      })
+    }
+  };
 
   return (
     <div className={styles["post-header"]}>
@@ -20,9 +50,10 @@ export default async function MyBlogPost({ user }: { user: any }) {
           user?.posts?.map((it: any) => {
             return (
               <>
-                <Link
-                  href={`/blog/edit/${it.id}`}
+                <div
+                  // href={`/blog/edit/${it.id}`}
                   className={styles["post-blog-each-card"]}
+                  style={{ cursor: "auto" }}
                   key={it.id}
                 >
 
@@ -59,10 +90,51 @@ export default async function MyBlogPost({ user }: { user: any }) {
                         </>
                       ))}
                     </div>
-                    <Trash className="absolute right-0" />
+
                   </section>
 
-                </Link>
+                  <div className="gap-2 h-14 rounded-xl flex justify-end p-1">
+
+
+                    <Link href={`/blog/edit/${it.id}`} className=" dark:bg-[hsla(44,6%,50%,.15)] bg-[hsla(44,6%,50%,.15)] w-14 h-full flex justify-center items-center cursor-pointer rounded-xl">
+                      <Pencil className="" />
+                    </Link>
+
+                    <div className="bg-[#E10C33] w-14 p-1 h-full flex justify-center items-center cursor-pointer rounded-xl">
+
+                      <Dialog>
+                        <DialogTrigger>
+                          <Trash className="text-white" />
+
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Are you absolutely sure?</DialogTitle>
+                            <DialogDescription>
+                              Are you sure want to delete <strong> {it.title} </strong> {" "} post
+                            </DialogDescription>
+                          </DialogHeader>
+
+                          <DialogFooter>
+                            <DialogClose asChild>
+                              <Button type="button" variant="secondary">
+                                Close
+                              </Button>
+                            </DialogClose>
+                            <Button
+                              onClick={() => handleDeletePost(it.id)}
+                              disabled={isDeleting}
+                            >
+                              {isDeleting ? 'Deleting...' : 'Delete'}
+                            </Button>
+                          </DialogFooter>
+                        </DialogContent>
+                      </Dialog>
+
+
+                    </div>
+                  </div>
+                </div>
               </>
             );
           })}
@@ -73,6 +145,10 @@ export default async function MyBlogPost({ user }: { user: any }) {
           </h1>
         }
       </aside>
+
+
+
+
     </div>
   );
 }

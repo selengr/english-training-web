@@ -20,14 +20,14 @@ const Navbar = async () => {
   const session = await getServerSession(authOption);
 
   let user: any
-  // if (session) {
+  if (session) {
 
-  //   user = await prisma.user.findUnique({
-  //     where: {
-  //       email: session?.user?.email as string,
-  //     },
-  //   });
-  // }
+    user = await prisma.user.findUnique({
+      where: {
+        email: session?.user?.email as string,
+      },
+    });
+  }
 
   return (
     <nav className='border-b py-3'>
@@ -60,7 +60,7 @@ const Navbar = async () => {
 
               <HoverCard>
                 <HoverCardTrigger asChild>
-                  <Button variant="link" className='hidden sm:flex'>{session?.user?.email}</Button>
+                  <Button variant="link" className='hidden sm:flex'>{user?.email}</Button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-80">
                   <div className="flex justify-between space-x-4">
@@ -69,9 +69,9 @@ const Navbar = async () => {
                       <AvatarFallback >VC</AvatarFallback>
                     </Avatar>
                     <div className="space-y-1">
-                      <h4 className="text-sm font-semibold">{session?.user.name}</h4>
+                      <h4 className="text-sm font-semibold">{user?.name}</h4>
                       <p className="text-sm">
-                        {session?.user.email}
+                        {user?.email}
                       </p>
                       <div className="flex items-center pt-2">
                         <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}

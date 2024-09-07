@@ -9,6 +9,7 @@ import { createBlogAction, updateBlogAction } from '../../../../actions/blog-act
 import { Textarea } from '@/components/ui/textarea'
 import UploadForm from '@/components/uploader/page'
 import { PutBlobResult } from '@vercel/blob'
+import { htmlToNovelJson } from '@/utils/htmlToNovelJson'
 
 export const defaultValue = {
   type: 'doc',
@@ -27,8 +28,9 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
   const [slug, setSlug] = useState('')
   const [title, setTitle] = useState('')
   const [pending, setPending] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [banner, setBanner] = useState<string>('')
-  const [content, setContent] = useState<any>("")
+  const [content, setContent] = useState<any>(defaultValue)
   const [tag, setTag] = useState([""]);
   const [initialContent, setInitialContent] = useState<any>(defaultValue)
 
@@ -57,9 +59,9 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
       setBody(blog.body)
       setTitle(blog.title)
       setBanner(blog.banner)
-      setContent(blog.content)
-      // setInitialContent(generateJSON(blog.content));
-      console.log('post---------------------------blog :>> ', blog);
+      setContent(htmlToNovelJson(blog.content))
+
+      setLoading(false)
     };
 
     getBlogData()
@@ -69,25 +71,26 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
     // TODO: validate the data
     setPending(true)
 
-    if (tag[0].length > 0) {
-      toast({
-        description: "area of coverage  at least write one"
-      })
-    } else {
 
+    if (tag[0].length > 0) {
       const result = await updateBlogAction({ title, body, content, slug, banner, id, tag })
       if (result?.error) {
         toast({
           description: result.error,
         })
       }
+    } else {
+      toast({
+        description: "area of coverage is required"
+      })
     }
+
 
     setPending(false)
   }
 
 
-  const onDrop = async (pictureFiles: any, field: "cover" | "banner") => {
+  const onDrop = async (pictureFiles: any) => {
 
     const response = await fetch(
       `/api/avatar/upload?filename=${pictureFiles[0].name}`,
@@ -99,7 +102,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
 
     const newBlob = (await response.json()) as PutBlobResult;
 
-    setBanner(newBlob.url)
+    setBanner(newBlob?.url)
   };
 
 
@@ -143,6 +146,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
   //------------------------------------------------------------------------
 
 
+  if (loading) return null
 
   return (
     <div className='mt-6 flex max-w-5xl flex-col gap-4 justify-center'>
@@ -152,7 +156,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
 
         <UploadForm
           id={"banner"}
-          onDrop={(e: File[]) => onDrop(e, "banner")}
+          onDrop={(e: File[]) => onDrop(e)}
           label={"Banner Image "}
           defaultImage={banner}
         />
@@ -234,7 +238,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
         <p >
           content <span className='text-xs'> (Press &prime;/&prime; for commands)</span>
         </p>
-        <Editor initialValue={initialContent} onChange={setContent}
+        <Editor initialValue={content} onChange={setContent}
         />
       </div>
       <Button onClick={handleSubmit} disabled={pending}>
