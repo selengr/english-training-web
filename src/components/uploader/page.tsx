@@ -34,7 +34,7 @@ const UploadForm = ({
           name={label}
           //   withLabel={true}
           // label={label}
-          defaultImage={defaultImage}
+          // defaultImage={defaultImage}
           buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded focus:outline-none focus:shadow-outline mt-2"
           errorClass="text-red-600"
           fileContainerStyle={{
@@ -46,7 +46,7 @@ const UploadForm = ({
         />
         {defaultImage &&
           <Image
-            src={defaultImage}
+            src={`/api/images/${defaultImage}`}
             width={800}
             height={200}
             alt="ee"

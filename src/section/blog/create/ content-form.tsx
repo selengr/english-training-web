@@ -58,8 +58,6 @@ export default function ContentForm() {
       })
     }
 
-
-
     setPending(false)
   }
 
@@ -163,7 +161,7 @@ export default function ContentForm() {
 
         <UploadForm
           id={"banner"}
-          onDrop={(e: File[]) => onDrop(e, "banner")}
+          onDrop={(e: File[]) => onDrop(e)}
           label={"Banner Image "}
           defaultImage={banner}
         />
