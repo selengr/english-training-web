@@ -79,3 +79,13 @@ model Post {
   authorId  Int
   author    User     @relation(fields: [authorId], references: [id])
 }
+
+
+
+model Image {
+  id        Int      @id @default(autoincrement())
+  filename  String
+  contentType String
+  fileUrl   String
+  createdAt DateTime @default(now())
+}

@@ -16,7 +16,10 @@ export const defaultValue = {
   content: [
     {
       type: 'paragraph',
-      content: []
+      content: [{
+        text: "Press ′/′ for commands",
+        type: "text"
+      }]
     }
   ]
 }
@@ -32,7 +35,7 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
   const [banner, setBanner] = useState<string>('')
   const [content, setContent] = useState<any>(defaultValue)
   const [tag, setTag] = useState([""]);
-  const [initialContent, setInitialContent] = useState<any>(defaultValue)
+
 
   useEffect(() => {
     const name = title
@@ -145,6 +148,8 @@ export default function ContentFormEdit({ params }: { params: { slug: string } }
   };
   //------------------------------------------------------------------------
 
+
+  console.log('content------- :>> ', content);
 
   if (loading) return null
 
