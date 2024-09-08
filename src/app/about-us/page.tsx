@@ -6,6 +6,7 @@ import { CardStack } from "@/components/ui/card-stack";
 import { BackgroundGradientAnimation } from "@/components/hero-header/BackgroundGradientAnimation";
 
 
+
 const AboutUs = async () => {
     const user = await prisma?.user?.findMany();
 
@@ -28,14 +29,15 @@ const AboutUs = async () => {
 
 
 
-
-                <Image
-                    src={"/pre/images/E52075F8-14EA-496F-A10C-CB4405AFE196_1_105_c.jpeg"}
-                    alt="Picture of the author"
-                    width={500}
-                    height={500}
-                    className={`${styles["landing-div-rounded"]}`}
-                />
+                {/* <div className={`${styles["landing-div-rounded"]} bg-[#f7f6f3] dark:bg-[#2f3437] `} >
+                    <Image
+                        src={`${theme === "dark" ? "/LOGO/learning-logo-dark.svg" : "/LOGO/learning-logo-dark.svg"}`}
+                        alt="Picture of the author"
+                        width={90}
+                        height={90}
+                        className={styles["landing-div-rounded-home"]}
+                    />
+                </div> */}
 
 
                 <h1 className={styles["landing-title"]}>Learning labs</h1>
@@ -43,7 +45,7 @@ const AboutUs = async () => {
 
 
 
-            </div>
+            </div >
 
             <div className="w-full">
 

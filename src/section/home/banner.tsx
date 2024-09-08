@@ -27,13 +27,29 @@ const Banner = ({ data, title, banner, user, home }: Props) => {
       />
 
 
-      <Image
-        src={user?.image}
-        alt="Picture of the author"
-        width={100}
-        height={100}
-        className={styles["landing-div-rounded"]}
-      />
+
+
+
+      {!home &&
+        <Image
+          src={user?.image}
+          alt="Picture of the author"
+          width={100}
+          height={100}
+          className={styles["landing-div-rounded"]}
+        />
+      }
+      {home &&
+        <div className={styles["landing-div-rounded"]}>
+          <Image
+            src={"/LOGO/learning-logo-dark.svg"}
+            alt="Picture of the author"
+            width={90}
+            height={90}
+            className={styles["landing-div-rounded-home"]}
+          />
+        </div>
+      }
 
       <h1 className={styles["landing-title"]}>{title ? title : "learninglabs.ir"}</h1>
 

@@ -81,11 +81,10 @@ model Post {
 }
 
 
-
 model Image {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   filename  String
-  contentType String
-  fileUrl   String
+  mimetype  String
+  data      Bytes
   createdAt DateTime @default(now())
 }

@@ -20,67 +20,100 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
 
 
-    const onDrop = async (pictureFiles: any, field: "cover" | "banner") => {
-        // if (field === "cover") setCoverPicture(pictureFiles);
+    const onDrop = async (file: any, field: "cover" | "banner") => {
+        if (!file) return
 
-        const response = await fetch(
-            `/api/avatar/upload?filename=${pictureFiles[0].name}`,
-            {
+
+
+
+        const formData = new FormData()
+        formData.append('image', file)
+
+        try {
+            const response = await fetch('/api/upload', {
                 method: 'POST',
-                body: pictureFiles[0],
-            },
-        );
-
-        const newBlob = (await response.json()) as PutBlobResult;
-
-
-        async function updateUserImage(newImageUrl: string) {
-            const response = await fetch('/api/profile', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ newImageUrl }),
+                body: formData,
             })
 
-            if (!response.ok) {
-                const error = await response.json()
-                toast({
-                    description: error.message
-                })
+            if (response.ok) {
+                debugger
+                const data = await response.json()
+                console.log('Image uploaded successfully:', data.id)
+                // You can add further logic here, like updating the UI or notifying the user
+            } else {
+                debugger
+                console.error('Failed to upload image')
             }
-
-            refresh()
-            return response.json()
+        } catch (error) {
+            debugger
+            console.error('Error uploading image:', error)
         }
-        await updateUserImage(newBlob.url)
-    };
+    }
 
-    const onSubmit = async (data: any) => {
-        let body = new FormData();
-        // body.append("cover", coverPicture[0]);
-    };
+};
 
 
+// const onDrop = async (pictureFiles: any, field: "cover" | "banner") => {
+//     // if (field === "cover") setCoverPicture(pictureFiles);
 
-    return (
-        <div className="w-full flex flex-col justify-start items-center px-8">
+//     const response = await fetch(
+//         `/api/avatar/upload?filename=${pictureFiles[0].name}`,
+//         {
+//             method: 'POST',
+//             body: pictureFiles[0],
+//         },
+//     );
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="max-w-lg">
+//     const newBlob = (await response.json()) as PutBlobResult;
 
 
-                    <UploadForm
-                        id={"cover"}
-                        onDrop={(e: File[]) => onDrop(e, "cover")}
-                        label={"Profile Image "}
-                    />
+//     async function updateUserImage(newImageUrl: string) {
+//         const response = await fetch('/api/profile', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({ newImageUrl }),
+//         })
 
-                </div>
+//         if (!response.ok) {
+//             const error = await response.json()
+//             toast({
+//                 description: error.message
+//             })
+//         }
 
-            </form>
-        </div>
-    );
+//         refresh()
+//         return response.json()
+//     }
+//     await updateUserImage(newBlob.url)
+// };
+
+const onSubmit = async (data: any) => {
+    let body = new FormData();
+    // body.append("cover", coverPicture[0]);
+};
+
+
+
+return (
+    <div className="w-full flex flex-col justify-start items-center px-8">
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="max-w-lg">
+
+
+                <UploadForm
+                    id={"cover"}
+                    onDrop={(e: File[]) => onDrop(e, "cover")}
+                    label={"Profile Image "}
+                />
+
+            </div>
+
+        </form>
+    </div>
+);
 }
 
 export default CompleteUserInfo;
