@@ -1,10 +1,19 @@
 
+import { Metadata } from 'next';
 import { Suspense } from 'react';
 import Bio from '@/section/home/bio';
 import Banner from '@/section/home/banner';
 import BlogPost from '@/section/home/blog-post';
 import styles from '@/section/home/banner.module.css';
 import { BlogPostRequestSkeleton } from '@/section/home/blog-post';
+
+
+
+export const metadata: Metadata = {
+     applicationName: "learning labs",
+     description: "learning laboratories",
+     icons: ['/favicon.ico'],
+};
 
 
 const HomePage = () => {
