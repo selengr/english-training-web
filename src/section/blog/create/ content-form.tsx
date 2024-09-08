@@ -31,6 +31,8 @@ export default function ContentForm() {
   const [pending, setPending] = useState(false)
   const [tag, setTag] = useState([""]);
 
+  const [uploading, setUploading] = useState(false)
+
   useEffect(() => {
     const name = title
       .toLowerCase()
@@ -62,20 +64,55 @@ export default function ContentForm() {
   }
 
 
-  const onDrop = async (pictureFiles: any, field: "cover" | "banner") => {
 
-    const response = await fetch(
-      `/api/avatar/upload?filename=${pictureFiles[0].name}`,
-      {
+
+  const onDrop = async (file: any) => {
+    if (!file) return
+
+    const formData = new FormData()
+    formData.append('image', file[0])
+
+    try {
+      const response = await fetch('/api/upload', {
         method: 'POST',
-        body: pictureFiles[0],
-      },
-    );
+        body: formData,
+      })
 
-    const newBlob = (await response.json()) as PutBlobResult;
+      if (response.ok) {
+        const data = await response.json()
+        setBanner(data.id)
+      } else {
+        console.error('Failed to upload image')
+      }
+    } catch (error: any) {
+      toast({
+        description: error.message
+      })
+    }
+    finally {
+      setUploading(false)
 
-    setBanner(newBlob.url)
-  };
+    }
+
+
+
+  }
+
+
+  // const onDrop = async (pictureFiles: any, field: "cover" | "banner") => {
+
+  //   const response = await fetch(
+  //     `/api/avatar/upload?filename=${pictureFiles[0].name}`,
+  //     {
+  //       method: 'POST',
+  //       body: pictureFiles[0],
+  //     },
+  //   );
+
+  //   const newBlob = (await response.json()) as PutBlobResult;
+
+  //   setBanner(newBlob.url)
+  // };
 
 
 
