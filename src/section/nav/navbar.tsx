@@ -33,7 +33,6 @@ const Navbar = async () => {
         id: user?.image as string,
       },
     });
-
   }
 
   return (
