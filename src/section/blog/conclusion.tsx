@@ -13,8 +13,8 @@ const Conclusion = async ({ blog }: { blog: any }): Promise<JSX.Element> => {
     return (
         <>
             <hr className="w-full mt-8 " />
-            <h1 className="pb-10 pl-10">
-                view : {blog?.viewCount}
+            <h1 className="pb-10 pl-10 pt-4 flex items-center justify-start">
+                {blog?.viewCount} views
             </h1>
         </>
     );
