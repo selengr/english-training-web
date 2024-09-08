@@ -14,6 +14,7 @@
     -webkit-backdrop-filter: saturate(180%) blur(8px);
     backdrop-filter: saturate(180%) blur(8px);
     font-size: 14px;
+    z-index: 99999;
 }
 
 .landing-top img {
