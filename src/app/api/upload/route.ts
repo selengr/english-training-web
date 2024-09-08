@@ -38,8 +38,8 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
-import { writeFile } from 'fs/promises'
-import { join } from 'path'
+// import { writeFile } from 'fs/promises'
+// import { join } from 'path'
 
 const prisma = new PrismaClient()
 
@@ -63,9 +63,6 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    console.log('image************************ :>> ', image);
-
-    
     return NextResponse.json({ id: image.id }, { status: 201 })
   } catch (error) {
     console.error('Error uploading image:', error)

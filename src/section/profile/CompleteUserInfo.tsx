@@ -20,7 +20,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
 
 
-    const onDrop = async (file: any, field: "cover" | "banner") => {
+    const onDrop = async (file: any) => {
         if (!file) return
 
         const formData = new FormData()
@@ -34,19 +34,40 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
             if (response.ok) {
                 const data = await response.json()
-                console.log('Image uploaded successfully:', data.id)
-                // You can add further logic here, like updating the UI or notifying the user
+                await updateUserImage(data.id)
             } else {
-                debugger
                 console.error('Failed to upload image')
             }
-        } catch (error) {
-            console.error('Error uploading image:', error)
+        } catch (error: any) {
+            toast({
+                description: error.message
+            })
         }
         finally {
             setUploading(false)
 
         }
+
+        async function updateUserImage(newImageUrl: string) {
+            const response = await fetch('/api/profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ newImageUrl }),
+            })
+
+            if (!response.ok) {
+                const error = await response.json()
+                toast({
+                    description: error.message
+                })
+            }
+
+            refresh()
+            return response.json()
+        }
+
     }
 
 
@@ -104,7 +125,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
                     <UploadForm
                         id={"cover"}
-                        onDrop={(e: File[]) => onDrop(e, "cover")}
+                        onDrop={(e: File[]) => onDrop(e)}
                         label={"Profile Image "}
                     />
 

@@ -20,6 +20,7 @@ const Navbar = async () => {
   const session = await getServerSession(authOption);
 
   let user: any
+  let image: any
   if (session) {
 
     user = await prisma.user.findUnique({
@@ -27,6 +28,12 @@ const Navbar = async () => {
         email: session?.user?.email as string,
       },
     });
+    image = await prisma.image.findUnique({
+      where: {
+        id: user?.image as string,
+      },
+    });
+
   }
 
   return (
@@ -53,10 +60,9 @@ const Navbar = async () => {
           {session &&
             <>
               <Avatar className='pl-0 pr-0 rounded-full' >
-                <AvatarImage className='rounded-full' src={user ? user?.image?.toString() : "https://github.com/shadcn.png"} />
+                <AvatarImage className='rounded-full' src={image ? `/api/images/${image.id}` : "https://github.com/shadcn.png"} />
                 <AvatarFallback delayMs={600}>CN</AvatarFallback>
               </Avatar>
-
 
               <HoverCard>
                 <HoverCardTrigger asChild>
