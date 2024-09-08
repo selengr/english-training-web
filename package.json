@@ -15,6 +15,7 @@
     "preinstall": "npx only-allow npm"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@prisma/adapter-pg": "^5.19.1",
     "@prisma/client": "^5.17.0",

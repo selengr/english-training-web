@@ -1,15 +1,61 @@
 'use client'
 
+import * as z from "zod"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { PutBlobResult } from "@vercel/blob";
+import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "@/components/ui/use-toast";
 import UploadForm from "@/components/uploader/page";
+import { Button } from "@/components/ui/button";
+
+
+
+// -----------------------------------------------
+
+const formSchema = z.object({
+    jobTitle: z.string().min(2, {
+        message: "Job title must be at least 2 characters.",
+    }),
+    jobDescription: z.string().min(10, {
+        message: "Job description must be at least 10 characters.",
+    }),
+    expertName: z.string().min(2, {
+        message: "Expert name must be at least 2 characters.",
+    }),
+    expertEmail: z.string().email({
+        message: "Please enter a valid email address.",
+    }),
+    instagramId: z.string().min(1, {
+        message: "Instagram ID is required.",
+    }).regex(/^[\w](?!.*?\.{2})[\w.]{1,28}[\w]$/, {
+        message: "Invalid Instagram ID format.",
+    }),
+    jobCategory: z.string({
+        required_error: "Please select a job category.",
+    }),
+    isUrgent: z.boolean().default(false),
+})
+
+// -----------------------------------------------
 
 const CompleteUserInfo = ({ session }: { session: any }) => {
     const { refresh } = useRouter()
     const [uploading, setUploading] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            jobTitle: "",
+            jobDescription: "",
+            expertName: "",
+            expertEmail: "",
+            instagramId: "",
+            jobCategory: "",
+            isUrgent: false,
+        },
+    })
 
     const {
         handleSubmit,
@@ -109,17 +155,26 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
     //     await updateUserImage(newBlob.url)
     // };
 
-    const onSubmit = async (data: any) => {
-        let body = new FormData();
-        // body.append("cover", coverPicture[0]);
-    };
 
+    function onSubmit(values: z.infer<typeof formSchema>) {
+        setIsSubmitting(true)
+        // Simulate API call
+        setTimeout(() => {
+            setIsSubmitting(false)
+            console.log(values)
+            toast({
+                title: "Form submitted",
+                description: "The admin job form has been successfully submitted.",
+            })
+            form.reset()
+        }, 2000)
+    }
 
 
     return (
         <div className="w-full flex flex-col justify-start items-center px-8">
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <div className="max-w-lg">
 
 
@@ -129,10 +184,17 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                         label={"Profile Image "}
                     />
 
+
+                    {/* <FormLabel>Instagram ID</FormLabel> */}
+
                 </div>
 
+                <Button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? "Submitting..." : "Submit Job"}
+                </Button>
+
             </form>
-        </div>
+        </div >
     );
 }
 
