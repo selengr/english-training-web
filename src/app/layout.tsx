@@ -12,7 +12,7 @@ const vazir = Vazirmatn({ subsets: ['arabic'] });
 export const metadata: Metadata = {
   title: "learning labs",
   description: "learning laboratories",
-  icons: './learning-logo-light.ico',
+  icons: './favicon.ico',
 };
 
 export default function RootLayout({
