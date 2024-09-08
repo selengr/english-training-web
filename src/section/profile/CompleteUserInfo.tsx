@@ -5,10 +5,22 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"
-import { toast } from "@/components/ui/use-toast";
 import UploadForm from "@/components/uploader/page";
-import { Button } from "@/components/ui/button";
 
+
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { toast } from "@/components/ui/use-toast"
 
 
 // -----------------------------------------------
@@ -174,26 +186,143 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
     return (
         <div className="w-full flex flex-col justify-start items-center px-8">
 
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <div className="max-w-lg">
 
 
-                    <UploadForm
-                        id={"cover"}
-                        onDrop={(e: File[]) => onDrop(e)}
-                        label={"Profile Image "}
-                    />
 
 
-                    {/* <FormLabel>Instagram ID</FormLabel> */}
 
-                </div>
 
-                <Button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Submitting..." : "Submit Job"}
-                </Button>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                    <div className="max-w-lg">
 
-            </form>
+                        <UploadForm
+                            id={"cover"}
+                            onDrop={(e: File[]) => onDrop(e)}
+                            label={"Profile Image "}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="fullName"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Full Name</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="John Doe" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="jobTitle"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Job Title</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Senior Developer" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="expertise"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Area of Expertise</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="React, Node.js, etc." {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="instagramId"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Instagram ID</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="@johndoe" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email</FormLabel>
+                                    <FormControl>
+                                        <Input type="email" placeholder="john@example.com" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Password</FormLabel>
+                                    <FormControl>
+                                        <Input type="password" placeholder="********" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="confirmPassword"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Confirm Password</FormLabel>
+                                    <FormControl>
+                                        <Input type="password" placeholder="********" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="terms"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            I agree to the terms and conditions
+                                        </FormLabel>
+                                        <FormDescription>
+                                            You agree to our Terms of Service and Privacy Policy.
+                                        </FormDescription>
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        
+                        <Button type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? "Submitting..." : "Submit Job"}
+                        </Button>
+                    </div>
+                </form>
+            </Form>
         </div >
     );
 }
