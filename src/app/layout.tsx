@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import './globals.css';
+import type { Metadata } from 'next';
 import Navbar from '@/section/nav/navbar';
 import { Vazirmatn } from 'next/font/google';
 import Providers from '@/components/theme/providers'
@@ -10,9 +10,9 @@ import { Toaster } from '@/components/ui/toaster';
 const vazir = Vazirmatn({ subsets: ['arabic'] });
 
 export const metadata: Metadata = {
-  applicationName: "learning labs",
+  title: "learning labs",
   description: "learning laboratories",
-  icons: ['/favicon.ico'],
+  icons: './learning-logo-light.ico',
 };
 
 export default function RootLayout({
