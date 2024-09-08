@@ -26,27 +26,31 @@ import { toast } from "@/components/ui/use-toast"
 // -----------------------------------------------
 
 const formSchema = z.object({
+    fullName: z.string().min(2, {
+        message: "Full name must be at least 2 characters.",
+    }),
     jobTitle: z.string().min(2, {
         message: "Job title must be at least 2 characters.",
     }),
-    jobDescription: z.string().min(10, {
-        message: "Job description must be at least 10 characters.",
+    expertise: z.string().min(2, {
+        message: "Area of expertise must be at least 2 characters.",
     }),
-    expertName: z.string().min(2, {
-        message: "Expert name must be at least 2 characters.",
+    instagramId: z.string().min(2, {
+        message: "Instagram ID must be at least 2 characters.",
     }),
-    expertEmail: z.string().email({
+    email: z.string().email({
         message: "Please enter a valid email address.",
     }),
-    instagramId: z.string().min(1, {
-        message: "Instagram ID is required.",
-    }).regex(/^[\w](?!.*?\.{2})[\w.]{1,28}[\w]$/, {
-        message: "Invalid Instagram ID format.",
+    password: z.string().min(8, {
+        message: "Password must be at least 8 characters.",
     }),
-    jobCategory: z.string({
-        required_error: "Please select a job category.",
+    confirmPassword: z.string(),
+    terms: z.boolean().refine((val) => val === true, {
+        message: "You must agree to the terms and conditions.",
     }),
-    isUrgent: z.boolean().default(false),
+}).refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
 })
 
 // -----------------------------------------------
@@ -59,13 +63,12 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
+            fullName: "",
             jobTitle: "",
-            jobDescription: "",
-            expertName: "",
-            expertEmail: "",
+            expertise: "",
             instagramId: "",
-            jobCategory: "",
-            isUrgent: false,
+            email: "",
+            terms: false,
         },
     })
 
@@ -311,12 +314,11 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                                         <FormDescription>
                                             You agree to our Terms of Service and Privacy Policy.
                                         </FormDescription>
-                                    </FormDescription>
-                                    <FormMessage />
+                                    </div>
                                 </FormItem>
                             )}
                         />
-                        
+
                         <Button type="submit" disabled={isSubmitting}>
                             {isSubmitting ? "Submitting..." : "Submit Job"}
                         </Button>
