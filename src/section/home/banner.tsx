@@ -20,7 +20,7 @@ const Banner = ({ data, title, banner, user, home }: Props) => {
 
       <Image
         // loader={myLoader}
-        src={home ? "/pre/" + banner : banner.toString()}
+        src={home ? "/pre/" + banner : `/api/images/${banner}`}
         alt="Picture of the author"
         width={500}
         height={500}
@@ -33,7 +33,7 @@ const Banner = ({ data, title, banner, user, home }: Props) => {
 
       {!home &&
         <Image
-          src={user?.image}
+          src={`/api/images/${user?.image}`}
           alt="Picture of the author"
           width={100}
           height={100}
