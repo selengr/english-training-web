@@ -61,7 +61,7 @@ export function SheetSide() {
             <AlignJustify />
           </Button>
         </SheetTrigger>
-        <SheetContent side={"left"} className="bg-[#2f3437]">
+        <SheetContent side={"left"} className="bg-[#2f3437] z-[9999999]">
           <SheetHeader>
             <div className="flex h-20 items-center border-b pt-2 pb-6">
               {/* <Link href="/" className="flex items-center gap-2 font-semibold">
