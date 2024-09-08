@@ -1,7 +1,7 @@
 'use client'
 
 import { z } from 'zod'
-import Editor from '@/components/theme/editor'
+import Editor from '@/components/editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
