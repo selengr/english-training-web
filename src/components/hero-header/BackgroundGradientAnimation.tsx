@@ -2,11 +2,8 @@
 
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 
-import styles from "@/section/home/banner.module.css"
 import { useEffect, useRef, useState } from "react";
-import { useTheme } from "next-themes";
 
 export const BackgroundGradientAnimation = ({
     gradientBackgroundStart = "rgb(108, 0, 162)",
@@ -39,7 +36,6 @@ export const BackgroundGradientAnimation = ({
     interactive?: boolean;
     containerClassName?: string;
 }) => {
-    const { theme } = useTheme()
     const interactiveRef = useRef<HTMLDivElement>(null);
 
     const [curX, setCurX] = useState(0);
@@ -186,16 +182,7 @@ export const BackgroundGradientAnimation = ({
                 </div>
 
             </div>
-            <div className={`${styles["landing-div-rounded"]} bg-[#f7f6f3] dark:bg-[#2f3437] `} >
-                <Image
-                    src={`${theme === "dark" ? "/LOGO/learning-logo-light.svg" : "/LOGO/learning-logo-dark.svg"}`}
-                    alt="Picture of the author"
-                    width={90}
-                    height={90}
-                    className={styles["landing-div-rounded-home"]}
-                />
-            </div>
-
+        
         </>
     );
 };

@@ -20,74 +20,74 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
 
 
-    const onDrop = async (file: any, field: "cover" | "banner") => {
-        if (!file) return
+//     const onDrop = async (file: any, field: "cover" | "banner") => {
+//         if (!file) return
 
 
 
 
-        const formData = new FormData()
-        formData.append('image', file)
+//         const formData = new FormData()
+//         formData.append('image', file)
 
-        try {
-            const response = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData,
-            })
-
-            if (response.ok) {
-                debugger
-                const data = await response.json()
-                console.log('Image uploaded successfully:', data.id)
-                // You can add further logic here, like updating the UI or notifying the user
-            } else {
-                debugger
-                console.error('Failed to upload image')
-            }
-        } catch (error) {
-            debugger
-            console.error('Error uploading image:', error)
-        }
-    }
-
-};
-
-
-// const onDrop = async (pictureFiles: any, field: "cover" | "banner") => {
-//     // if (field === "cover") setCoverPicture(pictureFiles);
-
-//     const response = await fetch(
-//         `/api/avatar/upload?filename=${pictureFiles[0].name}`,
-//         {
-//             method: 'POST',
-//             body: pictureFiles[0],
-//         },
-//     );
-
-//     const newBlob = (await response.json()) as PutBlobResult;
-
-
-//     async function updateUserImage(newImageUrl: string) {
-//         const response = await fetch('/api/profile', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({ newImageUrl }),
-//         })
-
-//         if (!response.ok) {
-//             const error = await response.json()
-//             toast({
-//                 description: error.message
+//         try {
+//             const response = await fetch('/api/upload', {
+//                 method: 'POST',
+//                 body: formData,
 //             })
-//         }
 
-//         refresh()
-//         return response.json()
+//             if (response.ok) {
+//                 debugger
+//                 const data = await response.json()
+//                 console.log('Image uploaded successfully:', data.id)
+//                 // You can add further logic here, like updating the UI or notifying the user
+//             } else {
+//                 debugger
+//                 console.error('Failed to upload image')
+//             }
+//         } catch (error) {
+//             debugger
+//             console.error('Error uploading image:', error)
+//         }
 //     }
-//     await updateUserImage(newBlob.url)
+
 // };
+
+
+const onDrop = async (pictureFiles: any, field: "cover" | "banner") => {
+    // if (field === "cover") setCoverPicture(pictureFiles);
+
+    const response = await fetch(
+        `/api/avatar/upload?filename=${pictureFiles[0].name}`,
+        {
+            method: 'POST',
+            body: pictureFiles[0],
+        },
+    );
+
+    const newBlob = (await response.json()) as PutBlobResult;
+
+
+    async function updateUserImage(newImageUrl: string) {
+        const response = await fetch('/api/profile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ newImageUrl }),
+        })
+
+        if (!response.ok) {
+            const error = await response.json()
+            toast({
+                description: error.message
+            })
+        }
+
+        refresh()
+        return response.json()
+    }
+    await updateUserImage(newBlob.url)
+};
 
 const onSubmit = async (data: any) => {
     let body = new FormData();

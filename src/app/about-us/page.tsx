@@ -29,16 +29,15 @@ const AboutUs = async () => {
 
 
 
-                {/* <div className={`${styles["landing-div-rounded"]} bg-[#f7f6f3] dark:bg-[#2f3437] `} >
+                <div className={`${styles["landing-div-rounded"]} bg-[#f7f6f3] `} >
                     <Image
-                        src={`${theme === "dark" ? "/LOGO/learning-logo-dark.svg" : "/LOGO/learning-logo-dark.svg"}`}
+                        src={"/LOGO/learning-logo-dark.svg"}
                         alt="Picture of the author"
                         width={90}
                         height={90}
                         className={styles["landing-div-rounded-home"]}
                     />
-                </div> */}
-
+                </div>
 
                 <h1 className={styles["landing-title"]}>Learning labs</h1>
 
@@ -67,8 +66,7 @@ const AboutUs = async () => {
                         <p data-prefix="👋">In my spare time, I work on products, games, websites, tech demos — I love using my technical skills to build cool & interesting things.</p>
                         <br ></br>
                         <p data-prefix="👋">You can find me on <a className="font-bold" href="mailto:reza1997karbakhsh@gmail.com">Gmail</a> and <a href="https://github.com/selengr" className="font-bold">GitHub</a> and
-                            <a className="font-bold" href="instagram://media?id=rezakarbakhsh76">Instagram</a>
-                            <a className="font-bold" href="https://instagram.com/rezakarbakhsh76">Instagram2</a>
+                            &nbsp; <a className="font-bold" href="https://instagram.com/rezakarbakhsh76">Instagram</a>
                         </p>
                     </div>
 
@@ -139,6 +137,9 @@ const AboutUs = async () => {
 
                     <span className="text-left">Cheers 😊</span>
 
+                    <br />
+
+                    <span className="text-left">Made with 💕 </span>
                     <br />
                     <br />
                     <br />

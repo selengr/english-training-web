@@ -60,7 +60,8 @@
     /* border-radius: 100%; */
     width: 114px;
     height: 114px;
-    padding: 0 6px;
+    padding-left: 7px;
+    padding-right: 5px;
     /* border-radius: 50%; */
     /* box-shadow: 4px 4px 24px 0 rgba(0,0,0,.21); */
     /* margin-top: -62px; */
@@ -77,8 +78,8 @@
         height: 114px;
 }
     .landing-div-rounded-home {
-        width: 114px;
-        height: 114px;
+        width: 104px;
+        height: 104px;
 }
 @media (max-width : 576px) {
     .landing-div-rounded {
@@ -86,8 +87,8 @@
         height: 100px;
 }
     .landing-div-rounded-home {
-        width: 100px;
-        height: 100px;
+        width: 900px;
+        height: 900px;
 }
 }
 }

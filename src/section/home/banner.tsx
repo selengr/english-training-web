@@ -1,8 +1,6 @@
-"use client"
 
 import Image from "next/image";
 import styles from "./banner.module.css"
-import { useTheme } from "next-themes";
 
 
 
@@ -15,7 +13,7 @@ type Props = {
 }
 
 const Banner = ({ data, title, banner, user, home }: Props) => {
-  const { theme } = useTheme()
+
 
   return (
     <div className={styles["landing-main"]}>
@@ -43,9 +41,10 @@ const Banner = ({ data, title, banner, user, home }: Props) => {
         />
       }
       {home &&
-        <div className={`${styles["landing-div-rounded"]} bg-[#f7f6f3] dark:bg-[#2f3437] `} >
+        <div className={`${styles["landing-div-rounded"]} bg-[#f7f6f3]`} >
           <Image
-            src={`${theme === "dark" ? "/LOGO/learning-logo-light.svg" : "/LOGO/learning-logo-dark.svg"}`}
+            // src={`${theme === "dark" ? "/LOGO/learning-logo-light.svg" : "/LOGO/learning-logo-dark.svg"}`}
+            src={"/LOGO/learning-logo-dark.svg"}
             alt="Picture of the author"
             width={90}
             height={90}

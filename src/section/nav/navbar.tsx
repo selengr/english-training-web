@@ -62,7 +62,7 @@ const Navbar = async () => {
                 <HoverCardTrigger asChild>
                   <Button variant="link" className='hidden sm:flex'>{user?.email}</Button>
                 </HoverCardTrigger>
-                <HoverCardContent className="w-80">
+                <HoverCardContent className="w-80 flex justify-start">
                   <div className="flex justify-between space-x-4">
                     <Avatar>
                       <AvatarImage src={user ? user?.image?.toString() : ""} />
