@@ -18,7 +18,7 @@ import { SheetSide } from '@/components/sheet-content/SheetContent';
 
 const Navbar = async () => {
   const session = await getServerSession(authOption);
-
+  
   let user: any
   let image: any
   if (session) {
@@ -28,11 +28,14 @@ const Navbar = async () => {
         email: session?.user?.email as string,
       },
     });
-    image = await prisma.image.findUnique({
-      where: {
-        id: user?.image as string,
-      },
-    });
+
+    if (user?.image) {
+      image = await prisma?.image?.findUnique({
+        where: {
+          id: user?.image as string,
+        },
+      });
+    }
   }
 
   return (

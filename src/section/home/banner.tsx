@@ -10,9 +10,10 @@ type Props = {
   banner: String,
   user: any
   home?: boolean
+  avatar?: boolean
 }
 
-const Banner = ({ data, title, banner, user, home }: Props) => {
+const Banner = ({ data, title, banner, user, home, avatar }: Props) => {
 
 
   return (
@@ -31,7 +32,7 @@ const Banner = ({ data, title, banner, user, home }: Props) => {
 
 
 
-      {!home &&
+      {!home || avatar &&
         <Image
           src={`/api/images/${user?.image}`}
           alt="Picture of the author"
@@ -40,7 +41,7 @@ const Banner = ({ data, title, banner, user, home }: Props) => {
           className={styles["landing-div-rounded"]}
         />
       }
-      {home &&
+      {home || !avatar &&
         <div className={`${styles["landing-div-rounded"]} bg-[#f7f6f3]`} >
           <Image
             // src={`${theme === "dark" ? "/LOGO/learning-logo-light.svg" : "/LOGO/learning-logo-dark.svg"}`}

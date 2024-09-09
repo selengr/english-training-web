@@ -19,10 +19,8 @@ import { IsActiveLink } from "./isActiveLink"
 import { AlignJustify, BadgeCheck, LogOut } from 'lucide-react';
 
 
-
-
-
 export function SheetSide({ session }: { session: any }) {
+
   const mounted = useMounted()
   const { refresh } = useRouter()
   const [userData, setUserData] = useState<string>("")
@@ -105,7 +103,7 @@ export function SheetSide({ session }: { session: any }) {
                     </Link>
                   </>)
                 } else {
-                  if (session?.user?.userId) {
+                  if (session?.user?.email) {
                     return (<>
 
                       <Link

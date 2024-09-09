@@ -27,15 +27,15 @@ const page = async () => {
                     user={user}
                     title={`${user?.name} ${user?.family}`}
                     home
+                    avatar
                 />
 
                 <div className="w-full h-full flex justify-center align-middle">
                     <article className={styles['landing-article']}>
-                        {/* 
-                        <Suspense fallback={<MyBlogPostRequestSkeleton />}>
-                            <MyBlogPost user={user} />
-                        </Suspense> */}
-                        <MyBlogPostRequestSkeleton />
+
+                         <Suspense fallback={<MyBlogPostRequestSkeleton />}>
+                             <MyBlogPost user={user} />
+                         </Suspense>
                     </article>
                 </div>
             </div>
