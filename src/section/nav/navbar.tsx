@@ -59,7 +59,7 @@ const Navbar = async () => {
           {session &&
             <>
               <Avatar className='pl-0 pr-0 rounded-full' >
-                <AvatarImage className='rounded-full' src={image ? `/api/images/${image.id}` : "https://github.com/shadcn.png"} />
+                <AvatarImage className='rounded-full' src={image ? `/api/images/${image?.id}` : "https://github.com/shadcn.png"} />
                 <AvatarFallback delayMs={600}>CN</AvatarFallback>
               </Avatar>
 

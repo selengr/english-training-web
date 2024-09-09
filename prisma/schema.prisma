@@ -31,6 +31,9 @@ model User {
   family         String
   email          String  @unique
   hashedPassword String
+  instagramId    String
+  expertise      String
+  job            String
   image          String?
 
   accounts Account[]

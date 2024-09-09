@@ -269,7 +269,7 @@ const CompleteUserInfo = ({ user }: { user: any }) => {
         }
 
         async function updateUserImage(newImageUrl: string) {
-            const response = await fetch('/api/profile', {
+            const response = await fetch('/api/profile/avatar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -330,19 +330,50 @@ const CompleteUserInfo = ({ user }: { user: any }) => {
     // };
 
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         console.log('values :>> ', values);
-        setIsSubmitting(true)
-        // Simulate API call
-        setTimeout(() => {
-            setIsSubmitting(false)
-            console.log(values)
+        setIsSubmitting(true);
+
+        try {
+            const response = await fetch('/api/profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values), // Removed unnecessary nesting
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                toast({
+                    title: "Error",
+                    description: errorData.message || 'Something went wrong',
+                    variant: "destructive",
+                });
+                throw new Error(errorData.message || 'Something went wrong');
+            }
+
+            const data = await response.json();
+
             toast({
                 title: "Form submitted",
-                description: "The admin job form has been successfully submitted.",
-            })
-            form.reset()
-        }, 2000)
+                description: "Your profile form has been successfully submitted.",
+            });
+
+            refresh();
+            form.reset();
+
+            return data;
+        } catch (error) {
+            console.error('Submission error:', error);
+            toast({
+                title: "Error",
+                description: error instanceof Error ? error.message : "An unexpected error occurred",
+                variant: "destructive",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
 
