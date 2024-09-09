@@ -26,9 +26,6 @@ import { toast } from "@/components/ui/use-toast"
 // -----------------------------------------------
 
 const formSchema = z.object({
-    fullName: z.string().min(2, {
-        message: "Full name must be at least 2 characters.",
-    }),
     jobTitle: z.string().min(2, {
         message: "Job title must be at least 2 characters.",
     }),
@@ -38,19 +35,11 @@ const formSchema = z.object({
     instagramId: z.string().min(2, {
         message: "Instagram ID must be at least 2 characters.",
     }),
-    email: z.string().email({
-        message: "Please enter a valid email address.",
+    terms: z.boolean(),
+    avatar: z.string().min(2, {
+        message: "avatar must be upload.",
     }),
-    password: z.string().min(8, {
-        message: "Password must be at least 8 characters.",
-    }),
-    confirmPassword: z.string(),
-    terms: z.boolean().refine((val) => val === true, {
-        message: "You must agree to the terms and conditions.",
-    }),
-}).refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
+    // linkedinId: z.string().min(2, {
 })
 
 // -----------------------------------------------
@@ -63,17 +52,17 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            fullName: "",
             jobTitle: "",
             expertise: "",
+            avatar: "",
             instagramId: "",
-            email: "",
             terms: false,
         },
     })
 
     const {
         handleSubmit,
+        setValue,
         formState: { errors }
     } = useForm<any>({
         defaultValues: {},
@@ -95,6 +84,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
             if (response.ok) {
                 const data = await response.json()
+                setValue("avatar", data.id)
                 await updateUserImage(data.id)
             } else {
                 console.error('Failed to upload image')
@@ -190,34 +180,21 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
         <div className="w-full flex flex-col justify-start items-center px-8">
 
 
+            <div className="w-full max-w-lg">
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+
+                        <div className="w-52">
+                            <UploadForm
+                                id={"cover"}
+                                onDrop={(e: File[]) => onDrop(e)}
+                                label={"Profile Image "}
+                                borderRadius={"100%"}
+                                className="w-[75%] bg-white text-xs"
+                            />
+                        </div>
 
 
-
-
-
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                    <div className="max-w-lg">
-
-                        <UploadForm
-                            id={"cover"}
-                            onDrop={(e: File[]) => onDrop(e)}
-                            label={"Profile Image "}
-                        />
-
-                        <FormField
-                            control={form.control}
-                            name="fullName"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Full Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="John Doe" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
                         <FormField
                             control={form.control}
                             name="jobTitle"
@@ -257,45 +234,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                                 </FormItem>
                             )}
                         />
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Email</FormLabel>
-                                    <FormControl>
-                                        <Input type="email" placeholder="john@example.com" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="password"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Password</FormLabel>
-                                    <FormControl>
-                                        <Input type="password" placeholder="********" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="confirmPassword"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Confirm Password</FormLabel>
-                                    <FormControl>
-                                        <Input type="password" placeholder="********" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+
                         <FormField
                             control={form.control}
                             name="terms"
@@ -322,9 +261,9 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                         <Button type="submit" disabled={isSubmitting}>
                             {isSubmitting ? "Submitting..." : "Submit Job"}
                         </Button>
-                    </div>
-                </form>
-            </Form>
+                    </form>
+                </Form>
+            </div>
         </div >
     );
 }
