@@ -59,14 +59,17 @@ const AboutUs = async () => {
                     <div className="mockup-code w-full">
                         <p data-prefix="👋">Hey hey 👋</p>
                         <br ></br>
-                        <p data-prefix="👋">My name is Reza Karbakhsh.</p>
+                        <p data-prefix="👋" className={styles["landing-hover-highlight"]} >My name is Reza Karbakhsh.</p>
                         <br ></br>
                         <p data-prefix="👋">I'm a software developer who loves exploring AI by building and learning in public.</p>
                         <br ></br>
                         <p data-prefix="👋">In my spare time, I work on products, games, websites, tech demos — I love using my technical skills to build cool & interesting things.</p>
                         <br ></br>
-                        <p data-prefix="👋">You can find me on <a className="font-bold" href="mailto:reza1997karbakhsh@gmail.com">Gmail</a> and <a href="https://github.com/selengr" className="font-bold">GitHub</a> and
-                            &nbsp; <a className="font-bold" href="https://instagram.com/rezakarbakhsh76">Instagram</a>
+                        <p data-prefix="👋">You can find me on <a className={styles["landing-hover-highlight"]}
+                            href="mailto:reza1997karbakhsh@gmail.com">Gmail</a> and
+                            <a className={styles["landing-hover-highlight"]} href="https://github.com/selengr" > &nbsp;GitHub</a> and
+                            &nbsp;
+                            <a className={styles["landing-hover-highlight"]} href="https://instagram.com/rezakarbakhsh76">Instagram</a>
                         </p>
                     </div>
 
@@ -76,7 +79,10 @@ const AboutUs = async () => {
                     <br ></br>
 
                     <div className="mockup-code w-full">
-                        <pre data-prefix=">" className="text-warning"><code>welecom...</code></pre>
+                        <pre data-prefix=">" className="bg-[hsla(44,6%,50%,.15)] text-yellow-600 dark:text-yellow-500"><code>welecom...</code></pre>
+
+                        <br ></br>
+                        <br ></br>
                         <p data-prefix="👋">Get your edge back and grow more motivated, confident, and productive with us, for self-improvement.
                         </p>
                         <p data-prefix="👋">stay tuned with our famous teachers and coaches to develop your mindset and high-performance habits!
@@ -105,16 +111,16 @@ const AboutUs = async () => {
                     </div>
 
 
-                    <pre data-prefix=">" className="text-warning"><code>+ english</code></pre>
-                    <pre data-prefix=">" className="text-warning"><code>+ how to learn faster </code></pre>
-                    <pre data-prefix=">" className="text-warning"><code>+ daily exclusive high-performance coaching</code></pre>
-                    <pre data-prefix=">" className="text-warning"><code>+ finding purpose</code></pre>
-                    <pre data-prefix=">" className="text-warning"><code>+ self-discipline</code></pre>
-                    <pre data-prefix=">" className="text-warning"><code>+ wealth habits</code></pre>
-                    <pre data-prefix=">" className="text-warning"><code>+ positive mental attitude</code></pre>
-                    <pre data-prefix=">" className="text-warning"><code>+ wellness habits </code></pre>
-                    <pre data-prefix=">" className="text-warning"><code>+ RELATIONSHIPS & FRIENDSHIPS </code></pre>
-                    <pre data-prefix=">" className="text-warning"><code>+ conflict management</code></pre>
+                    <p data-prefix=">" className="text-warning"><code>+ english</code></p>
+                    <p data-prefix=">" className="text-warning"><code>+ how to learn faster </code></p>
+                    <p data-prefix=">" className="text-warning"><code>+ daily exclusive high-performance coaching</code></p>
+                    <p data-prefix=">" className="text-warning"><code>+ finding purpose</code></p>
+                    <p data-prefix=">" className="text-warning"><code>+ self-discipline</code></p>
+                    <p data-prefix=">" className="text-warning"><code>+ wealth habits</code></p>
+                    <p data-prefix=">" className="text-warning"><code>+ positive mental attitude</code></p>
+                    <p data-prefix=">" className="text-warning"><code>+ wellness habits </code></p>
+                    <p data-prefix=">" className="text-warning"><code>+ RELATIONSHIPS & FRIENDSHIPS </code></p>
+                    <p data-prefix=">" className="text-warning"><code>+ conflict management</code></p>
 
 
 

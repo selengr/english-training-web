@@ -13,6 +13,8 @@ type Card = {
   email: string;
   family: string;
   role: string;
+  job: string[];
+  expertise: string;
   content: React.ReactNode;
 };
 
@@ -68,13 +70,14 @@ export const CardStack = ({
 
               <div className="w-full flex justify-center items-center">
                 {card?.image && <Image
-                  src={card?.image}
+                  src={`/api/images/${card?.image}`}
                   alt="Picture of the author"
                   width={120}
                   height={80}
                   className={`${styles["landing-div-rounded"]}`}
                   style={{
-                    marginTop: '12px'
+                    marginTop: '8px',
+                    marginBottom: '8px',
                   }}
                 />
                 }
@@ -82,10 +85,10 @@ export const CardStack = ({
 
               <div>
                 <p className="text-neutral-500 font-medium dark:text-white">
-                  role : {card.role}
+                  job : {card.job}
                 </p>
                 <p className="text-neutral-400 font-normal dark:text-neutral-200">
-                  expert : {card.email}
+                  expertise : {card.expertise}
                 </p>
               </div>
             </motion.div>

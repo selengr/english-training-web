@@ -22,7 +22,7 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       {/* <DropdownMenuTrigger asChild> */}
-      <Button variant='outline' size='icon' onClick={() => theme === "dark" ? setTheme('light') : setTheme('dark')}>
+      <Button variant='outline' size='icon' className='dark:bg-[#2f3437] bg-[#f8f8f8]' onClick={() => theme === "dark" ? setTheme('light') : setTheme('dark')}>
         <Sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
         <Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
         <span className='sr-only'>Toggle theme</span>

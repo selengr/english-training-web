@@ -58,11 +58,11 @@ export function SheetSide({ session }: { session: any }) {
     <div className="pr-4 pl-4 sm:pl-7 cursor-pointer">
       <Sheet modal>
         <SheetTrigger >
-          <Button variant="ghost" size={"icon"} >
+          <Button variant="ghost" size={"icon"}>
             <AlignJustify />
           </Button>
         </SheetTrigger>
-        <SheetContent side={"left"} className="bg-[#2f3437] z-[9999999]">
+        <SheetContent side={"left"} className="bg-[#2f3437] text-white z-[9999999]">
           <SheetHeader>
             <div className="flex h-20 items-center border-b pt-2 pb-6">
               {/* <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -88,7 +88,7 @@ export function SheetSide({ session }: { session: any }) {
                     <Link
                       onClick={() => reNav()}
                       href={"" + item.path}
-                      className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                      className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
                     >
                       <SheetTrigger className="w-full flex flex-row">
                         {item.icon}
@@ -111,7 +111,7 @@ export function SheetSide({ session }: { session: any }) {
                       <Link
                         onClick={() => reNav()}
                         href={"" + item.path}
-                        className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                        className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
                       >
                         <SheetTrigger className="w-full flex flex-row">
                           {item.icon}
@@ -138,7 +138,7 @@ export function SheetSide({ session }: { session: any }) {
                   <Link
                     onClick={() => reNav()}
                     href={"" + item.path}
-                    className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                    className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
                   >
                     <SheetTrigger className="w-full flex flex-row">
                       {item.icon}
@@ -174,7 +174,7 @@ export function SheetSide({ session }: { session: any }) {
                     });
                     reNav()
                   }}
-                  className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground`}
+                  className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-white`}
                 >
 
                   <LogOut />
