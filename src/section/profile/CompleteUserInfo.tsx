@@ -30,46 +30,190 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
+import { MultiSelect } from "@/components/multi-select/multi-select";
 
 
 
 
 
 // -----------------------------------------------
+
 const jobTitles = [
-    "Software Developer",
-    "Senior Developer",
-    "Project Manager",
-    "UI/UX Designer",
-    "Data Scientist",
-    "DevOps Engineer",
-    "Product Manager",
-    "QA Engineer",
-    "System Administrator",
-    "Other",
-] as const
+    {
+        value: "Life Coach",
+        label: "Life Coach"
+    },
+    {
+        value: "Career Coach",
+        label: "Career Coach"
+    },
+    {
+        value: "Executive Coach",
+        label: "Executive Coach"
+    },
+    {
+        value: "English Teacher",
+        label: "English Teacher"
+    },
+    {
+        value: "ESL Instructor",
+        label: "ESL Instructor"
+    },
+    {
+        value: "German Language Teacher",
+        label: "German Language Teacher"
+    },
+    {
+        value: "French Language Teacher",
+        label: "French Language Teacher"
+    },
+    {
+        value: "Spanish Language Teacher",
+        label: "Spanish Language Teacher"
+    },
+    {
+        value: "Science Tutor",
+        label: "Science Tutor"
+    },
+    {
+        value: "Music Instructor",
+        label: "Music Instructor"
+    },
+    {
+        value: "Art Teacher",
+        label: "Art Teacher"
+    },
+    {
+        value: "Physical Education Teacher",
+        label: "Physical Education Teacher"
+    },
+    {
+        value: "Educational Consultant",
+        label: "Educational Consultant"
+    },
+    {
+        value: "Curriculum Developer",
+        label: "Curriculum Developer"
+    },
+    {
+        value: "Academic Advisor",
+        label: "Academic Advisor"
+    },
+    {
+        value: "School Counselor",
+        label: "School Counselor"
+    },
+    {
+        value: "Corporate Trainer",
+        label: "Corporate Trainer"
+    },
+    {
+        value: "Leadership Consultant",
+        label: "Leadership Consultant"
+    },
+    {
+        value: "Business Consultant",
+        label: "Business Consultant"
+    },
+    {
+        value: "Financial Advisor",
+        label: "Financial Advisor"
+    },
+    {
+        value: "Wellness Coach",
+        label: "Wellness Coach"
+    },
+    {
+        value: "Fitness Trainer",
+        label: "Fitness Trainer"
+    },
+    {
+        value: "Nutritionist",
+        label: "Nutritionist"
+    },
+    {
+        value: "Psychologist",
+        label: "Psychologist"
+    },
+    {
+        value: "Therapist",
+        label: "Therapist"
+    },
+    {
+        value: "Social Worker",
+        label: "Social Worker"
+    },
+    {
+        value: "Mentor",
+        label: "Mentor"
+    },
+    {
+        value: "Career Counselor",
+        label: "Career Counselor"
+    },
+    {
+        value: "Software Developer",
+        label: "Software Developer"
+    },
+    {
+        value: "Senior Developer",
+        label: "Senior Developer"
+    },
+    {
+        value: "Project Manager",
+        label: "Project Manager"
+    },
+    {
+        value: "UI/UX Designer",
+        label: "UI/UX Designer"
+    },
+    {
+        value: "Data Scientist",
+        label: "Data Scientist"
+    },
+    {
+        value: "Product Manager",
+        label: "Product Manager"
+    },
+    {
+        value: "QA Engineer",
+        label: "QA Engineer"
+    },
+    {
+        value: "System Administrator",
+        label: "System Administrator"
+    },
+    {
+        value: "Student",
+        label: "Student"
+    },
+    {
+        value: "Other",
+        label: "Other"
+    }
+];
 // -----------------------------------------------
 
 const formSchema = z.object({
-    jobTitle: z.string().min(2, {
-        message: "Job title must be at least 2 characters.",
-    }),
+    // job: z.string().min(2, {
+    //     message: "Job title must be at least 2 characters.",
+    // }),
     expertise: z.string().min(2, {
         message: "Area of expertise must be at least 2 characters.",
     }),
     instagramId: z.string().min(2, {
         message: "Instagram ID must be at least 2 characters.",
     }),
-    // terms: z.boolean(),
-    avatar: z.string().min(2, {
-        message: "avatar must be upload.",
-    }),
+    job: z
+        .array(z.string().min(1))
+        .min(1)
+        .nonempty("Please select at least one Job."),
     // linkedinId: z.string().min(2, {
 })
 
 // -----------------------------------------------
 
-const CompleteUserInfo = ({ session }: { session: any }) => {
+const CompleteUserInfo = ({ user }: { user: any }) => {
     const { refresh } = useRouter()
     const [uploading, setUploading] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -77,10 +221,10 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            jobTitle: "",
+            // job: user || "",
             expertise: "",
-            avatar: "",
             instagramId: "",
+            job: [],
             // terms: false,
         },
     })
@@ -203,44 +347,28 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
 
     return (
-        <div className="w-full flex flex-col justify-start items-center px- pt-10">
+        <div className="w-full flex flex-col justify-start items-center pb-14 pt-10">
 
 
             <div className="w-full max-w-lg">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 
-                        <div className="w-52">
+                        <div className="w-64">
                             <UploadForm
                                 id={"cover"}
                                 onDrop={(e: File[]) => onDrop(e)}
                                 label={"Profile Image "}
-                                borderRadius={"100%"}
-                                className="w-[75%] bg-white text-xs"
+                                className="w-[75%] text-xs"
                             />
                         </div>
-
-
+                        {/* 
                         <FormField
                             control={form.control}
-                            name="jobTitle"
+                            name="job"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Job Title</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Senior Developer" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        <FormField
-                            control={form.control}
-                            name="jobTitle"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Job Title</FormLabel>
+                                    <FormLabel>*Job Title</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>
@@ -258,6 +386,32 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                                     <FormMessage />
                                 </FormItem>
                             )}
+                        /> */}
+
+
+                        <FormField
+                            control={form.control}
+                            name="job"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Job</FormLabel>
+                                    <FormControl>
+                                        <MultiSelect
+                                            options={jobTitles}
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                            placeholder="Select options"
+                                            variant="inverted"
+                                            animation={2}
+                                            maxCount={3}
+                                        />
+                                    </FormControl>
+                                    <FormDescription>
+                                        Choose your Job.
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
                         />
 
 
@@ -267,9 +421,9 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                             name="expertise"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Area of Expertise</FormLabel>
+                                    <FormLabel>*Area of Expertise</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="React, Node.js, etc." {...field} />
+                                        <Input placeholder="expertise" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -280,9 +434,9 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                             name="instagramId"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Instagram ID</FormLabel>
+                                    <FormLabel>*Instagram ID</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="@johndoe" {...field} />
+                                        <Input placeholder="johndoe" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -312,7 +466,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                             )}
                         /> */}
 
-                        <Button type="submit" disabled={isSubmitting}>
+                        <Button type="submit" disabled={isSubmitting} className="w-44">
                             {isSubmitting ? "Submitting..." : "Submit"}
                         </Button>
                     </form>

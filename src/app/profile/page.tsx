@@ -38,7 +38,7 @@ const page = async () => {
                 <h6 className="text-lg  md:text-xl lg:text-2xl pb-4 font-bold text-center text-black dark:text-white font-sans tracking-tight pt-10">
                     please complete your profile👇🏻</h6>
             </BackgroundBeamsWithCollision>
-            <CompleteUserInfo session={session} />
+            <CompleteUserInfo session={session} user={user} />
 
 
 
