@@ -221,11 +221,9 @@ const CompleteUserInfo = ({ user }: { user: any }) => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            // job: user || "",
-            expertise: "",
-            instagramId: "",
-            job: [],
-            // terms: false,
+            expertise: user.expertise || "",
+            instagramId: user.instagramId || "",
+            job: user.job || []
         },
     })
 
