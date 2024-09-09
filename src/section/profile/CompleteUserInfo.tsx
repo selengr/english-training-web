@@ -19,10 +19,35 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 
 
+
+
+
+// -----------------------------------------------
+const jobTitles = [
+    "Software Developer",
+    "Senior Developer",
+    "Project Manager",
+    "UI/UX Designer",
+    "Data Scientist",
+    "DevOps Engineer",
+    "Product Manager",
+    "QA Engineer",
+    "System Administrator",
+    "Other",
+] as const
 // -----------------------------------------------
 
 const formSchema = z.object({
@@ -35,7 +60,7 @@ const formSchema = z.object({
     instagramId: z.string().min(2, {
         message: "Instagram ID must be at least 2 characters.",
     }),
-    terms: z.boolean(),
+    // terms: z.boolean(),
     avatar: z.string().min(2, {
         message: "avatar must be upload.",
     }),
@@ -56,7 +81,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
             expertise: "",
             avatar: "",
             instagramId: "",
-            terms: false,
+            // terms: false,
         },
     })
 
@@ -162,6 +187,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
 
     function onSubmit(values: z.infer<typeof formSchema>) {
+        console.log('values :>> ', values);
         setIsSubmitting(true)
         // Simulate API call
         setTimeout(() => {
@@ -177,7 +203,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
 
 
     return (
-        <div className="w-full flex flex-col justify-start items-center px-8">
+        <div className="w-full flex flex-col justify-start items-center px- pt-10">
 
 
             <div className="w-full max-w-lg">
@@ -208,6 +234,34 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                                 </FormItem>
                             )}
                         />
+
+                        <FormField
+                            control={form.control}
+                            name="jobTitle"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Job Title</FormLabel>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select a job title" />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            {jobTitles.map((title) => (
+                                                <SelectItem key={title} value={title}>
+                                                    {title}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+
+
                         <FormField
                             control={form.control}
                             name="expertise"
@@ -235,7 +289,7 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                             )}
                         />
 
-                        <FormField
+                        {/* <FormField
                             control={form.control}
                             name="terms"
                             render={({ field }) => (
@@ -256,10 +310,10 @@ const CompleteUserInfo = ({ session }: { session: any }) => {
                                     </div>
                                 </FormItem>
                             )}
-                        />
+                        /> */}
 
                         <Button type="submit" disabled={isSubmitting}>
-                            {isSubmitting ? "Submitting..." : "Submit Job"}
+                            {isSubmitting ? "Submitting..." : "Submit"}
                         </Button>
                     </form>
                 </Form>
