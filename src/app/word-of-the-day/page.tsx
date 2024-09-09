@@ -85,20 +85,20 @@ const page = () => {
 
 
             <div className="gap-x-4 gap-y-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 justify-content items-center">
+
                 <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
                     <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
                     <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
                     <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
                     <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
 
-                    <EvervaultCard text="hover" />
+                    <EvervaultCard text="test" />
 
                     <h2 className="dark:text-white text-black mt-4 text-sm font-light">
-                        Hover over this card to reveal an awesome effect. Running out of copy
-                        here.
+                        Do what you like, like what you do.
                     </h2>
                     <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
-                        Watch me hover
+                        coming soon...
                     </p>
                 </div>
                 <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
@@ -107,14 +107,13 @@ const page = () => {
                     <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
                     <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
 
-                    <EvervaultCard text="hover" />
+                    <EvervaultCard text="test" />
 
                     <h2 className="dark:text-white text-black mt-4 text-sm font-light">
-                        Hover over this card to reveal an awesome effect. Running out of copy
-                        here.
+                        Do what you like, like what you do.
                     </h2>
                     <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
-                        Watch me hover
+                        coming soon...
                     </p>
                 </div>
                 <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
@@ -123,96 +122,16 @@ const page = () => {
                     <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
                     <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
 
-                    <EvervaultCard text="hover" />
+                    <EvervaultCard text="test" />
 
                     <h2 className="dark:text-white text-black mt-4 text-sm font-light">
-                        Hover over this card to reveal an awesome effect. Running out of copy
-                        here.
+                        Do what you like, like what you do.
                     </h2>
                     <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
-                        Watch me hover
+                        coming soon...
                     </p>
                 </div>
-                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
-                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
 
-                    <EvervaultCard text="hover" />
-
-                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
-                        Hover over this card to reveal an awesome effect. Running out of copy
-                        here.
-                    </h2>
-                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
-                        Watch me hover
-                    </p>
-                </div>
-                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
-                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
-
-                    <EvervaultCard text="hover" />
-
-                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
-                        Hover over this card to reveal an awesome effect. Running out of copy
-                        here.
-                    </h2>
-                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
-                        Watch me hover
-                    </p>
-                </div>
-                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
-                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
-
-                    <EvervaultCard text="hover" />
-
-                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
-                        Hover over this card to reveal an awesome effect. Running out of copy
-                        here.
-                    </h2>
-                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
-                        Watch me hover
-                    </p>
-                </div>
-                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
-                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
-
-                    <EvervaultCard text="hover" />
-
-                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
-                        Hover over this card to reveal an awesome effect. Running out of copy
-                        here.
-                    </h2>
-                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
-                        Watch me hover
-                    </p>
-                </div>
-                <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem]">
-                    <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
-                    <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
-
-                    <EvervaultCard text="hover" />
-
-                    <h2 className="dark:text-white text-black mt-4 text-sm font-light">
-                        Hover over this card to reveal an awesome effect. Running out of copy
-                        here.
-                    </h2>
-                    <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
-                        Watch me hover
-                    </p>
-                </div>
             </div>
 
 
