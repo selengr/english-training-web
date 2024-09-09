@@ -55,7 +55,7 @@ const Navbar = async () => {
         </div>
 
         <div className="cover-individuals fixed sm:left-2 left-0 flex justify-center align-middle items-center">
-          <SheetSide />
+          <SheetSide session={session}/>
           {session &&
             <>
               <Avatar className='pl-0 pr-0 rounded-full' >

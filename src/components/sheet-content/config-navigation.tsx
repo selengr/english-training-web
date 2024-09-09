@@ -53,7 +53,7 @@ const navConfig = [
           role: Role.ADMIN
      },
      {
-          title: 'word of the day',
+          title: 'coming soon...',
           path: PATH_PAGE.wordOfTheDay,
           icon: ICONS.wordOfTheDay,
           role: Role.USER

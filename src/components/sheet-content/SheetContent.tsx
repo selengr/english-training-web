@@ -6,6 +6,7 @@ import { signOut } from 'next-auth/react';
 import navConfig from "./config-navigation"
 import { useState, useEffect } from 'react'
 import { useRouter } from "next/navigation";
+import useMounted from "@/hooks/use-mounted";
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -16,12 +17,12 @@ import {
 } from "@/components/ui/sheet"
 import { IsActiveLink } from "./isActiveLink"
 import { AlignJustify, BadgeCheck, LogOut } from 'lucide-react';
-import useMounted from "@/hooks/use-mounted";
 
 
 
 
-export function SheetSide() {
+
+export function SheetSide({ session }: { session: any }) {
   const mounted = useMounted()
   const { refresh } = useRouter()
   const [userData, setUserData] = useState<string>("")
@@ -81,27 +82,53 @@ export function SheetSide() {
             {navConfig?.map((item: any) => {
 
               if (item.role === "USER") {
-                return (<>
+                if (item.title !== "profile") {
+                  return (<>
 
-                  <Link
-                    onClick={() => reNav()}
-                    href={"" + item.path}
-                    className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-                  >
-                    <SheetTrigger className="w-full flex flex-row">
-                      {item.icon}
-                      <span className="ml-4">
-                        {item.title}
-                      </span>
+                    <Link
+                      onClick={() => reNav()}
+                      href={"" + item.path}
+                      className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                    >
+                      <SheetTrigger className="w-full flex flex-row">
+                        {item.icon}
+                        <span className="ml-4">
+                          {item.title}
+                        </span>
 
-                      {IsActiveLink(item.path) &&
-                        <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                          6
-                        </BadgeCheck>
-                      }
-                    </SheetTrigger>
-                  </Link>
-                </>)
+                        {IsActiveLink(item.path) &&
+                          <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                            6
+                          </BadgeCheck>
+                        }
+                      </SheetTrigger>
+                    </Link>
+                  </>)
+                } else {
+                  if (session?.user?.userId) {
+                    return (<>
+
+                      <Link
+                        onClick={() => reNav()}
+                        href={"" + item.path}
+                        className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                      >
+                        <SheetTrigger className="w-full flex flex-row">
+                          {item.icon}
+                          <span className="ml-4">
+                            {item.title}
+                          </span>
+
+                          {IsActiveLink(item.path) &&
+                            <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                              6
+                            </BadgeCheck>
+                          }
+                        </SheetTrigger>
+                      </Link>
+                    </>)
+                  }
+                }
               }
 
 
