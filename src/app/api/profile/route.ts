@@ -12,16 +12,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
     }
 
-    const { newImageUrl } = await request.json()
+    const { expertise, job, instagramId } = await request.json()
 
-    if (!newImageUrl) {
+    if (!expertise && !job && !instagramId ) {
       return NextResponse.json({ message: 'New image URL is required' }, { status: 400 })
     }
 
     const updatedUser = await prisma.user.update({
       where: { email: session.user?.email as string },
       data: {
-        image: newImageUrl
+        job, 
+        expertise, 
+        instagramId 
       }
     })
 
@@ -30,9 +32,9 @@ export async function POST(request: NextRequest) {
     }
 
     revalidatePath("/")
-    return NextResponse.json({ message: 'User image updated successfully', user: updatedUser }, { status: 200 })
+    return NextResponse.json({ message: 'User profile updated successfully', user: updatedUser }, { status: 200 })
   } catch (error) {
-    console.error('Error updating user image:', error)
+    console.error('Error updating user profile:', error)
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 })
   }
  

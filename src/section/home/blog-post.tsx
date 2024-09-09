@@ -26,7 +26,7 @@ export default async function BlogPost() {
                   key={it.id}
                 >
                   <Image
-                    src={it.banner.toString()}
+                    src={`/api/images/${it.banner}`}
                     alt="Picture of the author"
                     width={200}
                     height={200}

@@ -452,7 +452,7 @@ const CompleteUserInfo = ({ user }: { user: any }) => {
                             name="expertise"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>*Area of Expertise</FormLabel>
+                                    <FormLabel>*Expertise</FormLabel>
                                     <FormControl>
                                         <Input placeholder="expertise" {...field} />
                                     </FormControl>
