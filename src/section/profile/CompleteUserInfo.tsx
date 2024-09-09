@@ -31,6 +31,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { MultiSelect } from "@/components/multi-select/multi-select";
+import Image from "next/image";
 
 
 
@@ -329,7 +330,6 @@ const CompleteUserInfo = ({ user }: { user: any }) => {
 
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log('values :>> ', values);
         setIsSubmitting(true);
 
         try {
@@ -338,7 +338,7 @@ const CompleteUserInfo = ({ user }: { user: any }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(values), // Removed unnecessary nesting
+                body: JSON.stringify(values)
             });
 
             if (!response.ok) {
@@ -358,8 +358,8 @@ const CompleteUserInfo = ({ user }: { user: any }) => {
                 description: "Your profile form has been successfully submitted.",
             });
 
+            // form.reset();
             refresh();
-            form.reset();
 
             return data;
         } catch (error) {
@@ -383,13 +383,23 @@ const CompleteUserInfo = ({ user }: { user: any }) => {
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 
-                        <div className="w-64">
+                        <div className="w-full flex flex-row items-center justify-start">
                             <UploadForm
-                                id={"cover"}
                                 onDrop={(e: File[]) => onDrop(e)}
-                                label={"Profile Image "}
-                                className="w-[75%] text-xs"
+                                label={`${user.image ? "Update" : "Upload"} avatar`}
+                                className="w-52 text-xs"
                             />
+
+                            {user.image &&
+                                <Image
+                                    src={`/api/images/${user.image}`}
+                                    width={100}
+                                    height={100}
+                                    alt="ee"
+                                    className="mx-10 w-28 h-28 rounded-full mt-8"
+                                />
+                            }
+
                         </div>
                         {/* 
                         <FormField

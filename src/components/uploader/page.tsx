@@ -35,6 +35,7 @@ const UploadForm = ({
           imgExtension={[".jpg", ".jpeg", ".gif", ".png", ".avif"]}
           maxFileSize={5242880}
           withPreview={true}
+          withLabel={false}
           singleImage={true}
           // name={label}
           //   withLabel={true}
