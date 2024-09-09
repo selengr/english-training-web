@@ -31,10 +31,11 @@ const page = async () => {
 
                 <div className="w-full h-full flex justify-center align-middle">
                     <article className={styles['landing-article']}>
-
+                        {/* 
                         <Suspense fallback={<MyBlogPostRequestSkeleton />}>
                             <MyBlogPost user={user} />
-                        </Suspense>
+                        </Suspense> */}
+                        <MyBlogPostRequestSkeleton />
                     </article>
                 </div>
             </div>

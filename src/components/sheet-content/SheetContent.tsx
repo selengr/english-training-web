@@ -82,19 +82,24 @@ export function SheetSide() {
 
               if (item.role === "USER") {
                 return (<>
+
                   <Link
                     onClick={() => reNav()}
                     href={"" + item.path}
                     className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                   >
-                    {item.icon}
-                    {item.title}
+                    <SheetTrigger className="w-full flex flex-row">
+                      {item.icon}
+                      <span className="ml-4">
+                        {item.title}
+                      </span>
 
-                    {IsActiveLink(item.path) &&
-                      <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                        6
-                      </BadgeCheck>
-                    }
+                      {IsActiveLink(item.path) &&
+                        <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                          6
+                        </BadgeCheck>
+                      }
+                    </SheetTrigger>
                   </Link>
                 </>)
               }
@@ -108,14 +113,18 @@ export function SheetSide() {
                     href={"" + item.path}
                     className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                   >
-                    {item.icon}
-                    {item.title}
+                    <SheetTrigger className="w-full flex flex-row">
+                      {item.icon}
+                      <span className="ml-4">
+                        {item.title}
+                      </span>
 
-                    {IsActiveLink(item.path) &&
-                      <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                        6
-                      </BadgeCheck>
-                    }
+                      {IsActiveLink(item.path) &&
+                        <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                          6
+                        </BadgeCheck>
+                      }
+                    </SheetTrigger>
                   </Link>
                 </>)
               }
@@ -130,18 +139,21 @@ export function SheetSide() {
 
           {userData &&
             <SheetFooter className="absolute bottom-8">
-              <div
-                onClick={() => {
-                  signOut({
-                    callbackUrl: '/',
-                  });
-                  reNav()
-                }}
-                className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground`}
-              >
-                <LogOut />
-                logout
-              </div>
+              <SheetTrigger>
+                <div
+                  onClick={() => {
+                    signOut({
+                      callbackUrl: '/',
+                    });
+                    reNav()
+                  }}
+                  className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground`}
+                >
+
+                  <LogOut />
+                  logout
+                </div>
+              </SheetTrigger>
             </SheetFooter>
           }
         </SheetContent>
