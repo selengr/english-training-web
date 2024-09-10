@@ -388,6 +388,7 @@ const CompleteUserInfo = ({ user }: { user: any }) => {
                                 onDrop={(e: File[]) => onDrop(e)}
                                 label={`${user.image ? "Update" : "Upload"} avatar`}
                                 className="w-52 text-xs"
+                                id={user.image}
                             />
 
                             {user.image &&

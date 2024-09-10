@@ -16,8 +16,7 @@ export default async function BlogPost() {
       <aside className={styles["post-blog-card"]}>
         {
           posts?.map((it: any) => {
-            console.log('it.banner ----- :>> ', it.banner);
-            let tag = it.tags
+
             return (
               <>
                 <Link
@@ -75,12 +74,12 @@ const shimmer = `relative overflow-hidden before:absolute before:inset-0 before:
 
 function PostSkeleton() {
   return (
-    <div className="row-span-2 space-y-4 my-8  border-[1px] border-neutral-300 rounded-2xl p-6">
-      <div className={`relative h-[137px] w-full rounded-xl bg-slate-200 ${shimmer}`} />
+    <div className={`${styles["post-blog-each-card"]} h-96 space-y-4 mt-8 border-[1px] border-neutral-300 rounded-2xl p-6`}>
+      <div className={`relative h-[157px] mb-20 rounded-xl bg-slate-200 ${shimmer}`} />
 
-      {/* <div className="h-full w-full rounded-lg bg-slate-200" /> */}
-      {/* <div className="h-4 w-full rounded-lg bg-slate-200" />
-      <div className=" w-[100%] py-3 rounded-lg bg-slate-200" /> */}
+      <div className="h-4 w-full rounded-lg mt-6 bg-slate-200" />
+      <div className="w-full py-3 rounded-lg bg-slate-200" />
+      <div className="w-[100%] py-3 rounded-lg bg-slate-200" />
     </div>
   );
 }

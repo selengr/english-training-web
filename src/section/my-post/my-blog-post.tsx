@@ -160,19 +160,21 @@ const shimmer = `relative overflow-hidden before:absolute before:inset-0 before:
 
 function PostSkeleton() {
   return (
-    <div className={styles["post-blog-card"]}>
-      <div className={`relative h-[137px] w-full rounded-xl bg-slate-200 ${shimmer}`} />
+    <div className={`${styles["post-blog-each-card"]} h-96 space-y-4 mt-8 border-[1px] border-neutral-300 rounded-2xl p-6`}>
+      <div className={`relative h-[157px] mb-20 rounded-xl bg-slate-200 ${shimmer}`} />
 
-      <div className="h-6 w-1/3 rounded-lg bg-slate-200" />
-      <div className="h-4 w-1/3 rounded-lg bg-slate-200" />
-      <div className=" w-1/3 py-3 rounded-lg bg-slate-200" />
+      <div className="h-4 w-full rounded-lg mt-6 bg-slate-200" />
+      <div className="w-full py-3 rounded-lg bg-slate-200" />
+      <div className="w-[100%] py-3 rounded-lg bg-slate-200" />
     </div>
   );
 }
 
-export function MyBlogPostRequestSkeleton() {
+export function BlogPostRequestSkeleton() {
   return (
     <div className={styles["post-blog-card"]}>
+      <PostSkeleton />
+      <PostSkeleton />
       <PostSkeleton />
       <PostSkeleton />
       <PostSkeleton />
