@@ -1,6 +1,7 @@
 'use client'
 
 import * as z from "zod"
+import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -21,7 +22,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { MultiSelect } from "@/components/multi-select/multi-select";
-import Image from "next/image";
+
 
 
 
