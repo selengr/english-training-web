@@ -26,8 +26,6 @@ import { MultiSelect } from "@/components/multi-select/multi-select";
 
 
 
-
-
 // -----------------------------------------------
 
 const jobTitles = [
@@ -286,9 +284,10 @@ const formSchema = z.object({
     // job: z.string().min(2, {
     //     message: "Job title must be at least 2 characters.",
     // }),
-    expertise: z.string().min(2, {
-        message: "Area of expertise must be at least 2 characters.",
-    }),
+    expertise: z.string(),
+    // .min(2, {
+    //     message: "Area of expertise must be at least 2 characters.",
+    // }),
     instagramId: z.string().min(2, {
         message: "Instagram ID must be at least 2 characters.",
     }),
