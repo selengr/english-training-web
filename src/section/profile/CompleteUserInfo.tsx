@@ -9,7 +9,6 @@ import UploadForm from "@/components/uploader/page";
 
 
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
 import {
     Form,
     FormControl,
@@ -19,15 +18,6 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { MultiSelect } from "@/components/multi-select/multi-select";
@@ -187,6 +177,66 @@ const jobTitles = [
     {
         value: "Student",
         label: "Student"
+    },
+    {
+        value: "EFL Tutor",
+        label: "EFL Tutor"
+    },
+    {
+        value: "IELTS Trainer",
+        label: "IELTS Trainer"
+    },
+    {
+        value: "TOEFL Instructor",
+        label: "TOEFL Instructor"
+    },
+    {
+        value: "University Lecturer",
+        label: "University Lecturer"
+    },
+    {
+        value: "Professor",
+        label: "Professor"
+    },
+    {
+        value: "Research Assistant",
+        label: "Research Assistant"
+    },
+    {
+        value: "Teaching Assistant",
+        label: "Teaching Assistant"
+    },
+    {
+        value: "Martial Arts Instructor",
+        label: "Martial Arts Instructor"
+    },
+    {
+        value: "Dance Teacher",
+        label: "Dance Teacher"
+    },
+    {
+        value: "Drama Instructor",
+        label: "Drama Instructor"
+    },
+    {
+        value: "Special Education Teacher",
+        label: "Special Education Teacher"
+    },
+    {
+        value: "Online Course Creator",
+        label: "Online Course Creator"
+    },
+    {
+        value: "Instructional Designer",
+        label: "Instructional Designer"
+    },
+    {
+        value: "E-learning Developer",
+        label: "E-learning Developer"
+    },
+    {
+        value: "Educational Technology Specialist",
+        label: "Educational Technology Specialist"
     },
     {
         value: "Other",
