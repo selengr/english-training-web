@@ -203,6 +203,7 @@ const LoginForm = () => {
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="password"
@@ -213,6 +214,9 @@ const LoginForm = () => {
                     <Input type="password" {...field} />
                   </FormControl>
                   <FormMessage />
+                  <Link href="/auth/forgot-password" className="text-sm text-right underline">
+                    Forgot password?
+                  </Link>
                 </FormItem>
               )}
             />
