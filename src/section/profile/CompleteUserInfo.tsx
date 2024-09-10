@@ -240,9 +240,45 @@ const jobTitles = [
         label: "Educational Technology Specialist"
     },
     {
+        value: "Web Developer",
+        label: "Web Developer"
+    },
+    {
+        value: "Full Stack Developer",
+        label: "Full Stack Developer"
+    },
+    {
+        value: "IT Project Manager",
+        label: "IT Project Manager"
+    },
+    {
+        value: "IT Support Specialist",
+        label: "IT Support Specialist"
+    },
+    {
+        value: "Cybersecurity Specialist",
+        label: "Cybersecurity Specialist"
+    },
+    {
+        value: "IT Consultant",
+        label: "IT Consultant"
+    },
+    {
+        value: "CTO (Chief Technology Officer)",
+        label: "CTO (Chief Technology Officer)"
+    },
+    {
+        value: "CIO (Chief Information Officer)",
+        label: "CIO (Chief Information Officer)"
+    },
+    {
+        value: "Game Developer",
+        label: "Game Developer"
+    },
+    {
         value: "Other",
         label: "Other"
-    }
+    },
 ];
 // -----------------------------------------------
 
