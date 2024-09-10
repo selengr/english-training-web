@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang='fa-Ir' className='scroll-smooth antialiased'
       suppressHydrationWarning>
-      <body className={`${vazir.className} bg-[#f8f8f8] dark:text-[hsla(0,0%,100%,.9)]  text-[#37352f] dark:bg-[#2f3437] `}>
+      <body className={`${vazir.className} bg-[#f8f8f8] dark:text-[hsla(0,0%,100%,.9)]  text-[#37352f] dark:bg-[#2f3437]`}>
         <ThemeProvider
           enableSystem={false}
           attribute='class'

@@ -53,25 +53,25 @@ export const CheckUserEmail = async (formdata: FormData) => {
 
 
 
-export const initiatePasswordReset = async (formData: FormData) => {
-  const email = formData.get('email') as string
+// export const initiatePasswordReset = async (formData: FormData) => {
+//   const email = formData.get('email') as string
 
-  try {
-    const user = await prisma.user.findUnique({
-      where: { email },
-    })
+//   try {
+//     const user = await prisma.user.findUnique({
+//       where: { email },
+//     })
 
-    if (!user) {
-      return { success: false, error: "No account found with this email address." }
-    }
+//     if (!user) {
+//       return { success: false, error: "No account found with this email address." }
+//     }
 
-    const resetToken = await generatePasswordResetToken(user.id)
+//     const resetToken = await generatePasswordResetToken(user.id)
     
-    await sendPasswordResetEmail(user.email, resetToken)
+//     await sendPasswordResetEmail(user.email, resetToken)
 
-    return { success: true, message: "If an account exists with this email, a password reset link has been sent." }
-  } catch (error) {
-    console.error('initiatePasswordReset error:', error)
-    return { success: false, error: "An error occurred while processing your request." }
-  }
-}
+//     return { success: true, message: "If an account exists with this email, a password reset link has been sent." }
+//   } catch (error) {
+//     console.error('initiatePasswordReset error:', error)
+//     return { success: false, error: "An error occurred while processing your request." }
+//   }
+// }

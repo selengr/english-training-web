@@ -10,8 +10,8 @@ const Register = async () => {
   if (session?.user?.userId) redirect('/');
 
   return (
-    <div className='mt-20'>
-        <RegisterForm />
+    <div className='mt-32 mx-6 h-full flex justify-center items-center'>
+      <RegisterForm />
     </div>
   );
 };

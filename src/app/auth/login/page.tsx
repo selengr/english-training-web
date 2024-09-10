@@ -10,7 +10,7 @@ const Login = async () => {
   if (session?.user?.userId) redirect('/');
 
   return (
-    <div className='mt-20'>
+    <div className='mt-32 mx-6 h-full flex justify-center items-center'>
       <LoginForm />
     </div>
   );

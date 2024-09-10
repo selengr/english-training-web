@@ -10,7 +10,7 @@ const SubmitButton = ({ text, ...other }: { text?: string, other?: any }) => {
     <Button
       type='submit'
       disabled={pending}
-      className='rounded-md'
+      className='rounded-md w-full'
       {...other}
     >
       {pending ? 'Submitting...' : text ?? "enter"}
