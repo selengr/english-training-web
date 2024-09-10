@@ -91,7 +91,7 @@ const UpdateBlogPostSchema = z.object({
   id: z.string().uuid("Invalid post ID"),
   title: z.string().min(4, "Title must be 4 characters or more").max(50, "Title must be 20 characters or less"),
   body: z.string().min(40, "Description must be 40 characters or more").max(150, "description must be 150 characters or less"),
-  content: z.string().min(1, "Content is required"),
+  content: z.any(),
   slug: z.string().min(1, "slug is required"),
   banner: z.string().min(1, "banner is required"),
   tag: z.array(z.string()),
