@@ -109,7 +109,7 @@ const AboutUs = async () => {
                         {/* <div className="divider divider-horizontal">These topics will be taught by teachers.</div> */}
                         {/* <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">this web site is for you people</div> */}
                     </div>
-
+                    <br />
 
                     <p data-prefix=">" className="text-warning"><code>+ english</code></p>
                     <p data-prefix=">" className="text-warning"><code>+ how to learn faster </code></p>
