@@ -1,5 +1,5 @@
 
-This is a [Blogging platform](https://learninglabs.ir/) project.
+This is a [Blogging platform](https://learninglabs.ir/).
 
 ## Getting Started
 

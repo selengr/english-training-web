@@ -174,3 +174,20 @@ export async function deletePost(postId: string) {
     await prisma.$disconnect()
   }
 }
+
+export async function togglePostActivation(postId: string, isActive: boolean) {
+  try {
+    const response = await fetch(`/api/posts/${postId}/toggle-activation`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isActive }),
+    })
+    if (!response.ok) throw new Error('Failed to update post status')
+    return { success: true, message: `Post ${isActive ? 'activated' : 'deactivated'} successfully` }
+  } catch (error) {
+    console.error('Error updating post status:', error)
+    return { success: false, message: 'Failed to update post status' }
+  }
+}
