@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import {
   Dialog,
   DialogClose,
@@ -14,15 +15,19 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+// types
+import { IUser } from "@/@types/user";
 
 import { Trash, Pencil } from 'lucide-react';
 import { fToNow } from "@/utils/formatTime";
 import styles from "../home/banner.module.css";
+// components
+import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button";
-import { deletePost } from "../../../actions/blog-action";
 import { toast } from "@/components/ui/use-toast";
-import Link from "next/link";
-import { IUser } from "@/@types/user";
+// actions
+import { deletePost, togglePostActivation } from "../../../actions/blog-action";
+import { IPost } from "@/@types/post";
 
 
 export default async function MyBlogPost({ user }: { user: any }) {
@@ -43,17 +48,17 @@ export default async function MyBlogPost({ user }: { user: any }) {
     }
   };
 
-  // const handleToggleActivation = async (postId: string, currentStatus: boolean) => {
-  //   setIsToggling(true)
-  //   const result = await togglePostActivation(postId, !currentStatus)
-  //   setIsToggling(false)
-  //   if (result.success) {
-  //     router.refresh()
-  //     toast({ description: result.message })
-  //   } else {
-  //     toast({ description: result.message, variant: "destructive" })
-  //   }
-  // }
+  const handleToggleActivation = async (postId: string, currentStatus: boolean) => {
+    setIsToggling(true)
+    const result = await togglePostActivation(postId, !currentStatus)
+    setIsToggling(false)
+    if (result.success) {
+      router.refresh()
+      toast({ description: result.message })
+    } else {
+      toast({ description: result.message, variant: "destructive" })
+    }
+  }
 
 
   return (
@@ -62,7 +67,7 @@ export default async function MyBlogPost({ user }: { user: any }) {
 
       <aside className={styles["post-blog-card"]}>
         {user?.posts?.length > 0 &&
-          user?.posts?.map((it: any) => {
+          user?.posts?.map((it: IPost) => {
             return (
               <>
                 <div
@@ -108,46 +113,54 @@ export default async function MyBlogPost({ user }: { user: any }) {
 
                   </section>
 
-                  <div className="gap-2 h-14 rounded-xl flex justify-end p-1">
-
-
-                    <Link href={`/blog/edit/${it.id}`} className=" dark:bg-[hsla(44,6%,50%,.15)] bg-[hsla(44,6%,50%,.15)] w-14 h-full flex justify-center items-center cursor-pointer rounded-xl">
-                      <Pencil className="" />
-                    </Link>
-
-                    <div className="bg-[#E10C33] w-14 p-1 h-full flex justify-center items-center cursor-pointer rounded-xl">
-
-                      <Dialog>
-                        <DialogTrigger>
-                          <Trash className="text-white" />
-
-                        </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>Are you absolutely sure?</DialogTitle>
-                            <DialogDescription>
-                              Are you sure want to delete <strong> {it.title} </strong> {" "} post
-                            </DialogDescription>
-                          </DialogHeader>
-
-                          <DialogFooter>
-                            <DialogClose asChild>
-                              <Button type="button" variant="secondary">
-                                Close
-                              </Button>
-                            </DialogClose>
-                            <Button
-                              onClick={() => handleDeletePost(it.id)}
-                              disabled={isDeleting}
-                            >
-                              {isDeleting ? 'Deleting...' : 'Delete'}
-                            </Button>
-                          </DialogFooter>
-                        </DialogContent>
-                      </Dialog>
-
-
+                  <div className="gap-2 h-14 rounded-xl flex justify-between items-center p-1">
+                    <div className="flex justify-between items-center">
+                      <span className="pr-2">published:</span>
+                      <Switch
+                        checked={it.published}
+                        onCheckedChange={() => handleToggleActivation(it.id, it.published)}
+                        disabled={isToggling}
+                      />
                     </div>
+
+                    <div className="flex justify-end gap-2 p-1 h-14">
+                      <Link href={`/blog/edit/${it.id}`} className=" dark:bg-[hsla(44,6%,50%,.15)] bg-[hsla(44,6%,50%,.15)] w-14 h-full flex justify-center items-center cursor-pointer rounded-xl">
+                        <Pencil className="" />
+                      </Link>
+
+                      <div className="bg-[#E10C33] w-14 p-1 h-full flex justify-center items-center cursor-pointer rounded-xl">
+
+                        <Dialog>
+                          <DialogTrigger>
+                            <Trash className="text-white" />
+
+                          </DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>Are you absolutely sure?</DialogTitle>
+                              <DialogDescription>
+                                Are you sure want to delete <strong> {it.title} </strong> {" "} post
+                              </DialogDescription>
+                            </DialogHeader>
+
+                            <DialogFooter>
+                              <DialogClose asChild>
+                                <Button type="button" variant="secondary">
+                                  Close
+                                </Button>
+                              </DialogClose>
+                              <Button
+                                onClick={() => handleDeletePost(it.id)}
+                                disabled={isDeleting}
+                              >
+                                {isDeleting ? 'Deleting...' : 'Delete'}
+                              </Button>
+                            </DialogFooter>
+                          </DialogContent>
+                        </Dialog>
+
+
+                      </div></div>
                   </div>
                 </div>
               </>
