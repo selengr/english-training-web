@@ -8,6 +8,9 @@ import { fToNow } from "@/utils/formatTime";
 
 export default async function BlogPost() {
   const posts = await prisma?.post?.findMany({
+    orderBy: {
+      id: 'desc',
+    },
     where: {
       published: true,
     },
