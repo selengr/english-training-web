@@ -7,7 +7,11 @@ import { fToNow } from "@/utils/formatTime";
 
 
 export default async function BlogPost() {
-  const posts = await prisma?.post?.findMany();
+  const posts = await prisma?.post?.findMany({
+    where: {
+      published: true,
+    },
+  });
 
   return (
     <div className={styles["post-header"]}>
@@ -16,54 +20,50 @@ export default async function BlogPost() {
       <aside className={styles["post-blog-card"]}>
         {
           posts?.map((it: any) => {
-            if (it?.published) {
+            return (
+              <>
+                <Link
+                  href={`/blog/${it.id}`}
+                  className={styles["post-blog-each-card"]}
+                  key={it.id}
+                >
+                  <Image
+                    src={`/api/images/${it.banner}`}
+                    alt="Picture of the author"
+                    width={200}
+                    height={200}
+                  />
 
-              return (
-                <>
-                  <Link
-                    href={`/blog/${it.id}`}
-                    className={styles["post-blog-each-card"]}
-                    key={it.id}
-                  >
-                    <Image
-                      src={`/api/images/${it.banner}`}
-                      alt="Picture of the author"
-                      width={200}
-                      height={200}
-                    />
+                  <section className={styles["post-blog-property"]}>
+                    <span className={styles["post-blog-property-title"]}>
 
-                    <section className={styles["post-blog-property"]}>
-                      <span className={styles["post-blog-property-title"]}>
+                      <p className="truncate">
+                        {it.title}
+                      </p>
+                    </span>
+                    <div className={styles["post-blog-property-details"]}>
+                      <span
+                        className={styles["post-blog-property-description"]}
+                      >
 
-                        <p className="truncate">
-                          {it.title}
-                        </p>
+                        {it.body}
+
                       </span>
-                      <div className={styles["post-blog-property-details"]}>
-                        <span
-                          className={styles["post-blog-property-description"]}
-                        >
-
-                          {it.body}
-
-                        </span>
-                        <span className={styles["post-blog-property-date"]}>
-                          {fToNow(it?.createdAt?.toString())}
-                        </span>
-                      </div>
-                      <div className={styles["post-blog-property-map-opt"]}>
-                        {it.tag.map((tag: any) => (
-                          <>
-                            <span>{tag}</span>
-                          </>
-                        ))}
-                      </div>
-                    </section>
-                  </Link>
-                </>
-              );
-
-            }
+                      <span className={styles["post-blog-property-date"]}>
+                        {fToNow(it?.createdAt?.toString())}
+                      </span>
+                    </div>
+                    <div className={styles["post-blog-property-map-opt"]}>
+                      {it.tag.map((tag: any) => (
+                        <>
+                          <span>{tag}</span>
+                        </>
+                      ))}
+                    </div>
+                  </section>
+                </Link>
+              </>
+            );
           })}
       </aside>
     </div>
