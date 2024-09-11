@@ -1,3 +1,4 @@
+import { Separator } from "@/components/ui/separator";
 import styles from "@/section/blog/blog.module.css";
 import { fDate, fToNow } from "@/utils/formatTime";
 
@@ -19,7 +20,7 @@ const Introduction = ({ blog, user }: { blog: any, user: any }) => {
       </span>
       <span className={styles["post-blog-property-name"]}>{user.name} {user.family}</span>
 
-      <hr className={styles["post-blog-propert-underLine"]} />
+      <Separator className={`${styles["post-blog-propert-underLine"]}  bg-[#3a3a3a] opacity-60 dark:bg-[aliceblue]`} />
 
     </div>
   );
