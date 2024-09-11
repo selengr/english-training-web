@@ -22,11 +22,13 @@ import { Button } from "@/components/ui/button";
 import { deletePost } from "../../../actions/blog-action";
 import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
+import { IUser } from "@/@types/user";
 
 
 export default async function MyBlogPost({ user }: { user: any }) {
-  const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [isToggling, setIsToggling] = useState(false)
 
   const handleDeletePost = async (postId: string) => {
     setIsDeleting(true);
@@ -40,6 +42,19 @@ export default async function MyBlogPost({ user }: { user: any }) {
       })
     }
   };
+
+  // const handleToggleActivation = async (postId: string, currentStatus: boolean) => {
+  //   setIsToggling(true)
+  //   const result = await togglePostActivation(postId, !currentStatus)
+  //   setIsToggling(false)
+  //   if (result.success) {
+  //     router.refresh()
+  //     toast({ description: result.message })
+  //   } else {
+  //     toast({ description: result.message, variant: "destructive" })
+  //   }
+  // }
+
 
   return (
     <div className={styles["post-header"]}>

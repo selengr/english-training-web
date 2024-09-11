@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import { authOption } from '@/lib/next-auth';
 import { getServerSession } from 'next-auth';
 import styles from "@/section/home/banner.module.css";
-import MyBlogPost, {  } from "@/section/my-post/my-blog-post";
+import MyBlogPost, { } from "@/section/my-post/my-blog-post";
 import { BlogPostRequestSkeleton } from "@/section/home/blog-post";
 
 
