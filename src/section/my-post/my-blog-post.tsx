@@ -115,7 +115,7 @@ export default async function MyBlogPost({ user }: { user: any }) {
 
                   <div className="gap-2 h-14 rounded-xl flex justify-between items-center p-1">
                     <div className="flex justify-between items-center">
-                      <span className="pr-2">published:</span>
+                      <span className="pr-2">published:{it.published ? "yes" : "no"}</span>
                       <Switch
                         checked={it.published}
                         onCheckedChange={() => handleToggleActivation(it.id, it.published)}
