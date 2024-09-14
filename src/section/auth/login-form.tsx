@@ -76,7 +76,7 @@ const LoginForm = () => {
       signIn('credentials', {
         email: data.email,
         password: data.password,
-        callbackUrl: '/',
+        callbackUrl: process.env.NEXT_PUBLIC_NEXTAUTH_URL,
       })
     }
   }
