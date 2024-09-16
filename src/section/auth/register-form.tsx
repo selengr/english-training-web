@@ -3,6 +3,7 @@
 
 import * as z from "zod"
 import Link from "next/link"
+import { useState } from "react";
 import { Eye, EyeOff } from 'lucide-react'
 import { useForm } from "react-hook-form"
 import { signIn } from 'next-auth/react';
@@ -29,8 +30,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { toast } from '@/components/ui/use-toast';
-import SubmitButton from "../ui/ submit-button";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 
 const registerSchema = z.object({
@@ -43,6 +44,8 @@ const registerSchema = z.object({
 type RegisterFormValues = z.infer<typeof registerSchema>
 
 const RegisterForm = () => {
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
   const form = useForm<RegisterFormValues>({
@@ -56,24 +59,48 @@ const RegisterForm = () => {
   })
 
   async function onSubmit(data: RegisterFormValues) {
+    setIsLoading(true)
     const formData = new FormData()
     formData.append('name', data.firstName)
     formData.append('family', data.lastName)
     formData.append('email', data.email)
     formData.append('password', data.password)
 
-    const res: any = await CreateUserAction(formData)
-    if (res?.success) {
-      await signIn('credentials', {
-        email: data.email,
-        password: data.password,
-        callbackUrl: "/",
-      });
-    } else {
+    try {
+      const res = await CreateUserAction(formData)
+      if (res.success) {
+        const signInResult = await signIn('credentials', {
+          email: data.email,
+          password: data.password,
+          redirect: false,
+        });
+
+        if (signInResult?.error) {
+          toast({
+            variant: "destructive",
+            description: "Failed to sign in after registration. Please try logging in manually.",
+          })
+        } else {
+          toast({
+            description: "Registration successful! Redirecting to home page...",
+          })
+          router.push('/')
+          router.refresh()
+        }
+      } else {
+        toast({
+          variant: "destructive",
+          description: res.error || "An error occurred during registration.",
+        })
+      }
+    } catch (error) {
+      console.error('Registration error:', error)
       toast({
         variant: "destructive",
-        description: res?.error || "An error occurred during registration.",
+        description: "An unexpected error occurred. Please try again.",
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -161,10 +188,9 @@ const RegisterForm = () => {
                 </FormItem>
               )}
             />
-            <SubmitButton text='Create an account' />
-            {/* <Button type="button" variant="outline" className="w-full" onClick={() => signIn('github')}>
-              Sign up with GitHub
-            </Button> */}
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Creating account..." : "Create an account"}
+            </Button>
           </form>
         </Form>
         <div className="mt-4 text-center text-sm">

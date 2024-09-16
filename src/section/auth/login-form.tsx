@@ -31,9 +31,7 @@ import {
 } from "@/components/ui/form"
 
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { toast } from '@/components/ui/use-toast';
-import SubmitButton from '../ui/ submit-button';
 import { Button } from "@/components/ui/button";
 
 
@@ -51,7 +49,8 @@ type LoginFormValues = z.infer<typeof loginSchema>
 
 
 const LoginForm = () => {
-  const { refresh } = useRouter()
+  const { refresh, push } = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
 
@@ -66,23 +65,43 @@ const LoginForm = () => {
 
 
   async function onSubmit(data: LoginFormValues) {
+    setIsLoading(true)
     const formData = new FormData()
     formData.append('email', data.email)
     formData.append('password', data.password)
 
-    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000/reza';
+    try {
+      const res = await CheckUserEmail(formData)
+      if (!res?.success) {
+        toast({
+          variant: "destructive",
+          description: res?.error || "An error occurred during login.",
+        })
+      } else {
+        const result = await signIn('credentials', {
+          email: data.email,
+          password: data.password,
+          redirect: false,
+        })
 
-    const res = await CheckUserEmail(formData)
-    if (!res?.success) {
+        if (result?.error) {
+          toast({
+            variant: "destructive",
+            description: "Failed to sign in. Please try again.",
+          })
+        } else {
+          push('/')
+          refresh()
+        }
+      }
+    } catch (error) {
+      console.error('Login error:', error)
       toast({
-        description: res?.error,
+        variant: "destructive",
+        description: "An unexpected error occurred. Please try again.",
       })
-    } else {
-      signIn('credentials', {
-        email: data.email,
-        password: data.password,
-        callbackUrl: '/',
-      })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -148,10 +167,9 @@ const LoginForm = () => {
               )}
             />
 
-            <SubmitButton text='Login' />
-            {/* <Button variant="outline" className="w-full">
-              Login with Google
-            </Button> */}
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Logging in..." : "Login"}
+            </Button>
 
           </form>
         </Form>

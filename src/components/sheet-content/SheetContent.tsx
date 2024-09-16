@@ -17,12 +17,13 @@ import {
 } from "@/components/ui/sheet"
 import { IsActiveLink } from "./isActiveLink"
 import { AlignJustify, BadgeCheck, LogOut } from 'lucide-react';
+import { toast } from "../ui/use-toast";
 
 
 export function SheetSide({ session }: { session: any }) {
 
   const mounted = useMounted()
-  const { refresh } = useRouter()
+  const { refresh, push } = useRouter()
   const [userData, setUserData] = useState<string>("")
 
 
@@ -46,6 +47,29 @@ export function SheetSide({ session }: { session: any }) {
 
   const reNav = async () => {
     refresh()
+  }
+
+  const router = useRouter()
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true)
+    try {
+      await signOut({ redirect: false })
+      toast({
+        description: "You have been successfully logged out.",
+      })
+      router.push('/')
+      router.refresh()
+    } catch (error) {
+      console.error('Logout error:', error)
+      toast({
+        variant: "destructive",
+        description: "An error occurred while logging out. Please try again.",
+      })
+    } finally {
+      setIsLoggingOut(false)
+    }
   }
 
   if (!mounted) {
@@ -165,18 +189,15 @@ export function SheetSide({ session }: { session: any }) {
           {userData &&
             <SheetFooter className="absolute bottom-8">
               <SheetTrigger>
-                <div
-                  onClick={() => {
-                    signOut({ redirect: false });
-                    window.location.href = '/'
-                    reNav()
-                  }}
-                  className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-white`}
+                <Button
+                  onClick={handleLogout}
+                  disabled={isLoggingOut}
+                  className={`mx-[-0.65rem] bg-transparent  hover:bg-transparent  cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-white`}
                 >
 
                   <LogOut />
                   logout
-                </div>
+                </Button>
               </SheetTrigger>
             </SheetFooter>
           }
