@@ -167,9 +167,8 @@ export function SheetSide({ session }: { session: any }) {
               <SheetTrigger>
                 <div
                   onClick={() => {
-                    signOut({
-                      callbackUrl: '/',
-                    });
+                    signOut({ redirect: false });
+                    window.location.href = '/'
                     reNav()
                   }}
                   className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-white`}

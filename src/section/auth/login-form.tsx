@@ -4,9 +4,11 @@
 
 import * as z from "zod"
 import Link from "next/link"
+import { useState } from "react";
 import { Eye, EyeOff } from 'lucide-react'
 import { useForm } from "react-hook-form"
-import { signIn } from 'next-auth/react';
+import { signIn, redirect } from 'next-auth/react';
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { CheckUserEmail } from '../../../actions/auth-action';
 
@@ -33,7 +35,7 @@ import { Label } from "@/components/ui/label"
 import { toast } from '@/components/ui/use-toast';
 import SubmitButton from '../ui/ submit-button';
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+
 
 
 // ----------------------------------------------------------------
@@ -49,6 +51,7 @@ type LoginFormValues = z.infer<typeof loginSchema>
 
 
 const LoginForm = () => {
+  const { refresh } = useRouter()
   const [showPassword, setShowPassword] = useState(false)
 
 
@@ -67,6 +70,8 @@ const LoginForm = () => {
     formData.append('email', data.email)
     formData.append('password', data.password)
 
+    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000/reza';
+
     const res = await CheckUserEmail(formData)
     if (!res?.success) {
       toast({
@@ -76,7 +81,7 @@ const LoginForm = () => {
       signIn('credentials', {
         email: data.email,
         password: data.password,
-        callbackUrl: process.env.NEXT_PUBLIC_NEXTAUTH_URL,
+        callbackUrl: '/',
       })
     }
   }
