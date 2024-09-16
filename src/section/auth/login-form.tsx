@@ -7,7 +7,7 @@ import Link from "next/link"
 import { useState } from "react";
 import { Eye, EyeOff } from 'lucide-react'
 import { useForm } from "react-hook-form"
-import { signIn, redirect } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { CheckUserEmail } from '../../../actions/auth-action';
