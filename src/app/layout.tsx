@@ -6,6 +6,8 @@ import Providers from '@/components/theme/providers'
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 
 const vazir = Vazirmatn({ subsets: ['arabic'] });
 
@@ -38,6 +40,7 @@ export default function RootLayout({
 
           <Toaster />
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-TJBNZDERVR" />
       </body>
     </html>
   );
