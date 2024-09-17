@@ -2,7 +2,8 @@
 
 import { sendGAEvent } from '@next/third-parties/google'
 
-export function EventButton() {
+const page = () => {
+
   return (
     <button
       onClick={() => sendGAEvent({ event: 'buttonClicked', value: 'myButton' })}
@@ -11,3 +12,6 @@ export function EventButton() {
     </button>
   )
 }
+
+export default page;
+
