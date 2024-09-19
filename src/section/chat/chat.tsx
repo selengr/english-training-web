@@ -7,23 +7,23 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import CopyToClipboard from './copy-to-clipboard'
-import SubscriptionDialog from '@/components/subscription-dialog'
+// import SubscriptionDialog from '@/components/subscription-dialog'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 import { SendHorizontalIcon, Zap } from 'lucide-react'
-import { useClerk, useUser } from '@clerk/nextjs'
+// import { useClerk, useUser } from '@clerk/nextjs'
 import { toast } from 'sonner'
-import { AddFreeCredits } from '@/lib/actions'
+// import { AddFreeCredits } from '@/lib/actions'
 
 export default function Chat() {
   const [subscriptionDialogOpen, setSubscriptionDialogOpen] = useState(false)
 
-  const { isLoaded, isSignedIn, user } = useUser()
-  const { openSignIn, session } = useClerk()
+//   const { isLoaded, isSignedIn, user } = useUser()
+//   const { openSignIn, session } = useClerk()
 
-  const credits = user?.publicMetadata?.credits
-  const newUser = typeof credits === 'undefined'
-  const paidUser = user?.publicMetadata?.stripeCustomerId
+//   const credits = user?.publicMetadata?.credits
+//   const newUser = typeof credits === 'undefined'
+//   const paidUser = user?.publicMetadata?.stripeCustomerId
 
   const ref = useRef<HTMLDivElement>(null)
   const { messages, input, handleInputChange, handleSubmit, isLoading, error } =
@@ -41,7 +41,7 @@ export default function Chat() {
 
           switch (status) {
             case 401:
-              openSignIn()
+            //   openSignIn()
               break
             case 402:
               toast.error('You have no credits left.', {
@@ -56,7 +56,7 @@ export default function Chat() {
               break
           }
         }
-        session?.reload()
+        // session?.reload()
       }
     })
 
@@ -67,23 +67,23 @@ export default function Chat() {
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    if (isSignedIn) {
+    // if (isSignedIn) {
       handleSubmit(e)
-    } else {
-      openSignIn()
-    }
+    // } else {
+    //   openSignIn()
+    // }
   }
 
   async function handleClick() {
-    const { success, error } = await AddFreeCredits()
+    // const { success, error } = await AddFreeCredits()
 
     if (error) {
-      toast.error(error)
+    //   toast.error(error)
       return
     }
 
     toast.success('10 credits added successfully.')
-    session?.reload()
+    // session?.reload()
   }
 
   return (
@@ -93,7 +93,7 @@ export default function Chat() {
         <div className='mx-auto flex max-w-lg items-center justify-between px-1'>
           <h1 className='font-serif text-2xl font-medium'>AI Chatbot</h1>
 
-          <div>
+          {/* <div>
             {isSignedIn && newUser && (
               <Button
                 size='sm'
@@ -111,8 +111,8 @@ export default function Chat() {
                 <span className='font-medium'>{credits}</span>
               </div>
             )}
-          </div>
-
+          </div> */}
+{/* 
           {isSignedIn && !paidUser && !newUser && (
             <Button
               size='sm'
@@ -121,7 +121,7 @@ export default function Chat() {
             >
               Get more credits
             </Button>
-          )}
+          )} */}
         </div>
 
         {/* Chat area */}
@@ -175,8 +175,8 @@ export default function Chat() {
               name='message'
               value={input}
               onChange={handleInputChange}
-              placeholder={
-                isSignedIn ? 'Ask me anything...' : 'Sign in to start...'
+              placeholder={'Ask me anything...'
+                // isSignedIn ? 'Ask me anything...' : 'Sign in to start...'
               }
               className='pr-12 placeholder:italic placeholder:text-zinc-600/75 focus-visible:ring-zinc-500'
             />
@@ -184,7 +184,8 @@ export default function Chat() {
               size='icon'
               type='submit'
               variant='secondary'
-              disabled={isLoading || !isLoaded}
+            //   disabled={isLoading || !isLoaded}
+              disabled={isLoading}
               className='absolute right-1 top-1 h-8 w-10'
             >
               <SendHorizontalIcon className='h-5 w-5 text-emerald-500' />
@@ -193,10 +194,10 @@ export default function Chat() {
         </div>
 
         {/* Subscription dialog */}
-        <SubscriptionDialog
+        {/* <SubscriptionDialog
           open={subscriptionDialogOpen}
           onOpenChange={setSubscriptionDialogOpen}
-        />
+        /> */}
       </div>
     </section>
   )
