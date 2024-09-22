@@ -1,7 +1,7 @@
 // routes
 import React from 'react';
 import { PATH_PAGE } from '@/routes/paths';
-import { CalendarClock, Signpost, UserCog, FilePlus2, Home, ShoppingCart, Users } from 'lucide-react';
+import { CalendarClock, Signpost, UserCog, FilePlus2, Home,ChartNoAxesGantt, Users } from 'lucide-react';
 
 
 
@@ -18,9 +18,8 @@ const ICONS = {
      blogCreate: <FilePlus2 className="h-6 w-6" />,
      profile: <UserCog className="h-6 w-6" />,
      myPost: <Signpost className="h-6 w-6" />,
-     wordOfTheDay: <CalendarClock className="h-6 w-6" />
-
-
+     wordOfTheDay: <CalendarClock className="h-6 w-6" />,
+     EnglishLearningRoadmap: <ChartNoAxesGantt className="h-6 w-6" />
 };
 
 const navConfig = [
@@ -53,11 +52,18 @@ const navConfig = [
           role: Role.ADMIN
      },
      {
+          title: 'english learning roadmap',
+          path: PATH_PAGE.EnglishLearningRoadmap,
+          icon: ICONS.EnglishLearningRoadmap,
+          role: Role.USER
+     },
+     {
           title: 'coming soon...',
           path: PATH_PAGE.wordOfTheDay,
           icon: ICONS.wordOfTheDay,
           role: Role.USER
      },
+
 
 ];
 
