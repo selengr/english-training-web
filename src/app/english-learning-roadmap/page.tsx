@@ -99,7 +99,7 @@ const content = [
 export default function StickyScrollReveal() {
     return (
         <div className="pt-10">
-            {/* <StickyScroll content={content} /> */}
+            <StickyScroll content={content} />
         </div>
     );
 }
