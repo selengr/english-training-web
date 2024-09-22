@@ -51,7 +51,7 @@ const AboutUs = async () => {
 
 
 
-                <div className="flex justify-center items-start flex-col max-w-[60%] m-auto">
+                <div className="flex justify-center items-start flex-col max-w-[80%] md:max-w-[60%] m-auto">
 
                     <br ></br>
                     <br ></br>
@@ -95,7 +95,7 @@ const AboutUs = async () => {
 
                     {/* <CanvasRevealEffect /> */}
                     <div className="flex w-full items-center justify-center place-items-center">
-                        <CardStack items={user} />
+                        {user && <CardStack items={user} />}
                     </div>
 
 
