@@ -1,3 +1,5 @@
+"use client"
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
@@ -32,7 +34,8 @@ const stages = [
   },
 ]
 
-export default function Start() {
+const page = () => {
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <header className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -41,11 +44,11 @@ export default function Start() {
           <code className="font-mono font-bold">today</code>
         </p>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
+          <div
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            // href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            // target="_blank"
+            // rel="noopener noreferrer"
           >
             By{' '}
             <Image
@@ -56,7 +59,7 @@ export default function Start() {
               height={24}
               priority
             />
-          </a>
+          </div>
         </div>
       </header>
 
@@ -67,7 +70,7 @@ export default function Start() {
         <p className="text-2xl mb-8">
           Embark on a structured path from beginner to advanced proficiency
         </p>
-        <Button asChild>
+        <Button >
           <Link href="#roadmap">Start Learning</Link>
         </Button>
       </main>
@@ -95,11 +98,11 @@ export default function Start() {
       </section>
 
       <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
+        <div
           className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        //   href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+        //   target="_blank"
+        //   rel="noopener noreferrer"
         >
           Powered by{' '}
           <Image
@@ -110,8 +113,11 @@ export default function Start() {
             height={24}
             priority
           />
-        </a>
+        </div>
       </footer>
     </div>
   )
 }
+
+export default page;
+
