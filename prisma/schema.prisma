@@ -10,9 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://root:U4IVbwfd5mGaDd9SyV18XbWW@fuji.liara.cloud:30165/postgres" // uses connection pooling
-  // url      = env("DATABASE_URL") // uses a direct connection
-  // directUrl = env("POSTGRES_PRISMA_URL") // uses a direct connection
+     url   =  "postgresql://root:Z7fJOhFnfnZY6MriUznljUS2@matterhorn.liara.cloud:32215/postgres" 
 }
 
 enum Role {

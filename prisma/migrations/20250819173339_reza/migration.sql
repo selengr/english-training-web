@@ -11,6 +11,9 @@ CREATE TABLE "User" (
     "family" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "hashedPassword" TEXT NOT NULL,
+    "instagramId" TEXT,
+    "expertise" TEXT,
+    "job" TEXT[],
     "image" TEXT,
     "role" "Role" NOT NULL DEFAULT 'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -23,12 +26,12 @@ CREATE TABLE "User" (
 CREATE TABLE "Account" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
-    "type" TEXT NOT NULL,
-    "provider" TEXT NOT NULL,
-    "providerAccountId" TEXT NOT NULL,
+    "type" TEXT,
+    "provider" TEXT,
+    "providerAccountId" TEXT,
     "refresh_token" TEXT,
     "access_token" TEXT,
-    "expires_at" INTEGER,
+    "expires_at" TEXT,
     "token_type" TEXT,
     "scope" TEXT,
     "id_token" TEXT,
@@ -49,11 +52,22 @@ CREATE TABLE "Post" (
     "status" "PostStatus" NOT NULL DEFAULT 'DRAFT',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "published" BOOLEAN NOT NULL DEFAULT false,
+    "published" BOOLEAN NOT NULL DEFAULT true,
     "viewCount" INTEGER NOT NULL DEFAULT 0,
     "authorId" INTEGER NOT NULL,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Image" (
+    "id" TEXT NOT NULL,
+    "filename" TEXT NOT NULL,
+    "mimetype" TEXT NOT NULL,
+    "data" BYTEA NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Image_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
