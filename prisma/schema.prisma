@@ -10,9 +10,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-     url   =  "postgresql://root:Z7fJOhFnfnZY6MriUznljUS2@matterhorn.liara.cloud:32215/postgres" 
+     url   = env("DATABASE_URL")
 }
-
+  
 enum Role {
   USER
   ADMIN
