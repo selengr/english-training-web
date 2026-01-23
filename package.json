@@ -65,8 +65,8 @@
     "prettierrc": "^0.0.0-5",
     "raf": "^3.4.1",
     "random": "^4.1.0",
-    "react": "^19.0.0-rc-8269d55d-20240802",
-    "react-dom": "^19.0.0-rc-8269d55d-20240802",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-fluid-animation": "^1.0.1",
     "react-hook-form": "^7.53.0",
     "react-images-upload": "^1.2.8",
@@ -78,6 +78,10 @@
     "uuid": "^10.0.0",
     "yup": "^1.4.0",
     "zod": "^3.23.8"
+  },
+  "overrides": {
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
