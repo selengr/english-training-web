@@ -7,12 +7,12 @@ import { User } from '@prisma/client';
 
 export const authOption: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
-  secret: process.env.NEXTAUTH_KEY,
+  secret: process.env.NEXTAUTH_SECRET || process.env.NEXTAUTH_KEY,
   session: {
     strategy: 'jwt',
   },
   pages: {
-    signIn: '/login',
+    signIn: '/auth/login',
   },
   providers: [
     Credentials({

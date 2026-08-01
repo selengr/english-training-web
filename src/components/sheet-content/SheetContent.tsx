@@ -4,7 +4,7 @@
 import Link from "next/link"
 import { signOut } from 'next-auth/react';
 import navConfig from "./config-navigation"
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from "next/navigation";
 import useMounted from "@/hooks/use-mounted";
 import { Button } from "@/components/ui/button"
@@ -23,34 +23,13 @@ import { toast } from "../ui/use-toast";
 export function SheetSide({ session }: { session: any }) {
 
   const mounted = useMounted()
-  const { refresh, push } = useRouter()
-  const [userData, setUserData] = useState<string>("")
-
-
-  useEffect(() => {
-    fetchUserData()
-  }, [])
-
-  const fetchUserData = async () => {
-    try {
-      const response = await fetch('/api/user/role')
-      const data = await response.json()
-      setUserData(data.user?.role)
-    } catch (error: any) {
-      // if ("message" in error) {
-      //   toast({
-      //     description: error?.message as string
-      //   })
-      // }
-    }
-  }
+  const router = useRouter()
+  const userRole = session?.user?.userRole as string | undefined
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
 
   const reNav = async () => {
-    refresh()
+    router.refresh()
   }
-
-  const router = useRouter()
-  const [isLoggingOut, setIsLoggingOut] = useState(false)
 
   const handleLogout = async () => {
     setIsLoggingOut(true)
@@ -146,7 +125,7 @@ export function SheetSide({ session }: { session: any }) {
                 }
               }
 
-              if (item.role === "ADMIN" && userData === "ADMIN") {
+              if (item.role === "ADMIN" && userRole === "ADMIN") {
                 return (
                   <Link
                     key={item.path}
@@ -174,7 +153,7 @@ export function SheetSide({ session }: { session: any }) {
 
           </nav>
 
-          {userData &&
+          {session?.user &&
             <SheetFooter className="absolute bottom-8">
               <SheetTrigger>
                 <Button
