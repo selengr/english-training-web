@@ -8,7 +8,12 @@ import { BackgroundGradientAnimation } from "@/components/hero-header/Background
 
 
 const AboutUs = async () => {
-    const user = await prisma?.user?.findMany();
+    let user: Awaited<ReturnType<typeof prisma.user.findMany>> = [];
+    try {
+        user = await prisma.user.findMany();
+    } catch {
+        user = [];
+    }
 
     return (
         <>
