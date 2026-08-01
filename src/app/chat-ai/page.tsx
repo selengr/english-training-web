@@ -1,17 +1,5 @@
-// import Chat from "@/section/chat/chat"
+import { redirect } from 'next/navigation';
 
-
-// // export const runtime = 'edge'
-
-// export default function ChatPage() {
-//   return <Chat />
-// }
-
-
-export default function Page() {
-  return (
-      <div className="pt-10">
-          sss
-      </div>
-  );
+export default function ChatAiPage() {
+  redirect('/');
 }

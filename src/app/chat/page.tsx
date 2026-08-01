@@ -1,8 +1,5 @@
-export default function Page() {
-    return (
-        <div className="pt-10">
-            sss
-        </div>
-    );
-  }
-  
+import { redirect } from 'next/navigation';
+
+export default function ChatPage() {
+  redirect('/');
+}

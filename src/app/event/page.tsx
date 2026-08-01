@@ -1,18 +1,5 @@
-'use client'
+import { redirect } from 'next/navigation';
 
-import { sendGAEvent } from '@next/third-parties/google'
-
-const page = () => {
-
-    return (
-        <button
-            className='mt-56'
-            onClick={() => sendGAEvent({ event: 'buttonClicked', value: 'myButton' })}
-        >
-            Click me!
-        </button>
-    )
+export default function EventPage() {
+  redirect('/');
 }
-
-export default page;
-

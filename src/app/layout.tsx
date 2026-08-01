@@ -12,8 +12,9 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 const vazir = Vazirmatn({ subsets: ['arabic'] });
 
 export const metadata: Metadata = {
-  title: "learning labs",
-  description: "learning laboratories",
+  title: "Learning Labs",
+  description:
+    "Notes, ideas, and English learning guides from Learning Labs.",
   icons: './favicon.ico',
 };
 

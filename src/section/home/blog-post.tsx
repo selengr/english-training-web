@@ -16,59 +16,60 @@ export default async function BlogPost() {
     },
   });
 
+  const hasPosts = posts && posts.length > 0;
+
   return (
     <div className={styles["post-header"]}>
       <h2>Blog Posts</h2>
 
-      <aside className={styles["post-blog-card"]}>
-        {
-          posts?.map((it: any) => {
-            return (
-              <>
-                <Link
-                  href={`/blog/${it.id}`}
-                  className={styles["post-blog-each-card"]}
-                  key={it.id}
-                >
-                  <Image
-                    src={`/api/images/${it.banner}`}
-                    alt="Picture of the author"
-                    width={200}
-                    height={200}
-                  />
+      {!hasPosts ? (
+        <p className="mt-6 text-muted-foreground">
+          No published posts yet. Check back soon — or explore the{' '}
+          <Link
+            href="/english-learning-roadmap"
+            className={styles["landing-hover-highlight"]}
+          >
+            English roadmap
+          </Link>
+          .
+        </p>
+      ) : (
+        <aside className={styles["post-blog-card"]}>
+          {posts.map((it: any) => (
+            <Link
+              href={`/blog/${it.id}`}
+              className={styles["post-blog-each-card"]}
+              key={it.id}
+            >
+              <Image
+                src={`/api/images/${it.banner}`}
+                alt={it.title || "Blog post"}
+                width={200}
+                height={200}
+              />
 
-                  <section className={styles["post-blog-property"]}>
-                    <span className={styles["post-blog-property-title"]}>
-
-                      <p className="truncate">
-                        {it.title}
-                      </p>
-                    </span>
-                    <div className={styles["post-blog-property-details"]}>
-                      <span
-                        className={styles["post-blog-property-description"]}
-                      >
-
-                        {it.body}
-
-                      </span>
-                      <span className={styles["post-blog-property-date"]}>
-                        {fToNow(it?.createdAt?.toString())}
-                      </span>
-                    </div>
-                    <div className={styles["post-blog-property-map-opt"]}>
-                      {it.tag.map((tag: any) => (
-                        <>
-                          <span>{tag}</span>
-                        </>
-                      ))}
-                    </div>
-                  </section>
-                </Link>
-              </>
-            );
-          })}
-      </aside>
+              <section className={styles["post-blog-property"]}>
+                <span className={styles["post-blog-property-title"]}>
+                  <p className="truncate">{it.title}</p>
+                </span>
+                <div className={styles["post-blog-property-details"]}>
+                  <span className={styles["post-blog-property-description"]}>
+                    {it.body}
+                  </span>
+                  <span className={styles["post-blog-property-date"]}>
+                    {fToNow(it?.createdAt?.toString())}
+                  </span>
+                </div>
+                <div className={styles["post-blog-property-map-opt"]}>
+                  {it.tag?.map((tag: any) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+              </section>
+            </Link>
+          ))}
+        </aside>
+      )}
     </div>
   );
 }

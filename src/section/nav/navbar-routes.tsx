@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Session } from 'next-auth';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { PATH_PAGE } from '@/routes/paths';
 
 type NavbarRoutesProps = {
   session: Session | null;
@@ -12,16 +13,20 @@ type NavbarRoutesProps = {
 
 const routes = [
   {
-    label: 'خانه',
-    path: '/',
+    label: 'Home',
+    path: PATH_PAGE.root,
   },
   {
-    label: 'بلاگ',
-    path: '/blog',
+    label: 'About',
+    path: PATH_PAGE.about,
+  },
+  {
+    label: 'Roadmap',
+    path: PATH_PAGE.EnglishLearningRoadmap,
   },
 ];
 
-const NavbarRoutes = ({ session, vertical = false }: NavbarRoutesProps) => {
+const NavbarRoutes = ({ vertical = false }: NavbarRoutesProps) => {
   const pathname = usePathname();
 
   return (
@@ -34,23 +39,13 @@ const NavbarRoutes = ({ session, vertical = false }: NavbarRoutesProps) => {
         <Link
           href={path}
           key={label}
-          className={cn('flex w-14 items-center justify-center py-1 text-lg', {
+          className={cn('flex items-center justify-center px-3 py-1 text-lg', {
             'rounded-md bg-black text-white': pathname === path,
           })}
         >
           {label}
         </Link>
       ))}
-      {session?.user.userRole === 'ADMIN' && (
-        <Link
-          href='/admin'
-          className={cn('flex w-14 items-center justify-center py-1 text-lg', {
-            'rounded-md bg-black text-white': pathname === '/admin',
-          })}
-        >
-          ادمین
-        </Link>
-      )}
     </div>
   );
 };
