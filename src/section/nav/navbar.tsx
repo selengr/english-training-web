@@ -21,18 +21,23 @@ const Navbar = async () => {
   let user: any;
   let image: any;
   if (session) {
-    user = await prisma.user.findUnique({
-      where: {
-        email: session?.user?.email as string,
-      },
-    });
-
-    if (user?.image) {
-      image = await prisma?.image?.findUnique({
+    try {
+      user = await prisma.user.findUnique({
         where: {
-          id: user?.image as string,
+          email: session?.user?.email as string,
         },
       });
+
+      if (user?.image) {
+        image = await prisma.image.findUnique({
+          where: {
+            id: user?.image as string,
+          },
+        });
+      }
+    } catch {
+      user = null;
+      image = null;
     }
   }
 

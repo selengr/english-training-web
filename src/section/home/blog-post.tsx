@@ -7,16 +7,23 @@ import { fToNow } from "@/utils/formatTime";
 
 
 export default async function BlogPost() {
-  const posts = await prisma?.post?.findMany({
-    orderBy: {
-      id: 'desc',
-    },
-    where: {
-      published: true,
-    },
-  });
+  let posts: Awaited<ReturnType<typeof prisma.post.findMany>> = [];
+  let dbUnavailable = false;
 
-  const hasPosts = posts && posts.length > 0;
+  try {
+    posts = await prisma.post.findMany({
+      orderBy: {
+        id: 'desc',
+      },
+      where: {
+        published: true,
+      },
+    });
+  } catch {
+    dbUnavailable = true;
+  }
+
+  const hasPosts = posts.length > 0;
 
   return (
     <div className={styles["post-header"]}>
@@ -24,7 +31,10 @@ export default async function BlogPost() {
 
       {!hasPosts ? (
         <p className="mt-6 text-muted-foreground">
-          No published posts yet. Check back soon — or explore the{' '}
+          {dbUnavailable
+            ? 'Blog is temporarily unavailable (database offline). '
+            : 'No published posts yet. '}
+          Explore the{' '}
           <Link
             href="/english-learning-roadmap"
             className={styles["landing-hover-highlight"]}
