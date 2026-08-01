@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import styles from './header.module.css';
-import { getServerSession } from 'next-auth';
-import { authOption } from '@/lib/next-auth';
+import { getServerSession } from '@/lib/auth-session';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
 import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Avatar } from '@radix-ui/react-avatar';
@@ -17,7 +16,7 @@ import { SheetSide } from '@/components/sheet-content/SheetContent';
 import { PATH_AUTH, PATH_PAGE } from '@/routes/paths';
 
 const Navbar = async () => {
-  const session = await getServerSession(authOption);
+  const session = await getServerSession();
 
   let user: any;
   let image: any;

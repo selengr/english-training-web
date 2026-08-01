@@ -1,15 +1,14 @@
 import Image from "next/image";
 import { Suspense } from "react";
 import prisma from "@/lib/prisma";
-import { authOption } from '@/lib/next-auth';
-import { getServerSession } from 'next-auth';
+import { getServerSession } from '@/lib/auth-session';
 import styles from "@/section/home/banner.module.css";
 import MyBlogPost, { } from "@/section/my-post/my-blog-post";
 import { BlogPostRequestSkeleton } from "@/section/home/blog-post";
 
 
 const page = async () => {
-    const session = await getServerSession(authOption);
+    const session = await getServerSession();
     const user = await prisma.user.findUnique({
         where: {
             email: session?.user?.email as string,

@@ -2,14 +2,13 @@
 import prisma from "@/lib/prisma";
 
 import { notFound } from "next/navigation";
-import { authOption } from '@/lib/next-auth';
-import { getServerSession } from 'next-auth';
+import { getServerSession } from '@/lib/auth-session';
 import CompleteUserInfo from "@/section/profile/CompleteUserInfo";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
 const page = async () => {
 
-    const session = await getServerSession(authOption);
+    const session = await getServerSession();
     const user = await prisma.user.findUnique({
         where: {
             email: session?.user?.email as string,

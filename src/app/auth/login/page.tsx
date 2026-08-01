@@ -1,11 +1,10 @@
 
 import { redirect } from 'next/navigation';
-import { authOption } from '@/lib/next-auth';
-import { getServerSession } from 'next-auth';
+import { getServerSession } from '@/lib/auth-session';
 import LoginForm from '@/section/auth/login-form';
 
 const Login = async () => {
-  const session = await getServerSession(authOption);
+  const session = await getServerSession();
 
   if (session?.user?.userId) redirect('/');
 
