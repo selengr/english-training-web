@@ -102,7 +102,9 @@ export function SheetSide({ session }: { session: any }) {
                   onClick={reNav}
                   className="flex items-center gap-2 font-semibold text-white"
                 >
-                  <span>Learning Labs</span>
+                  <SheetTitle className="text-base font-semibold text-white">
+                    Learning Labs
+                  </SheetTitle>
                 </Link>
               </SheetClose>
             </div>
