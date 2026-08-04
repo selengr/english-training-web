@@ -3,15 +3,11 @@ import styles from "@/section/blog/blog.module.css";
 import { fDate, fToNow } from "@/utils/formatTime";
 
 const Introduction = ({ blog, user }: { blog: any, user: any }) => {
-  console.log('blog0000 :>> ', blog.createdAt);
   return (
-
     <div className={styles["post-blog"]}>
       <div className={styles["post-blog-property-map-opt"]}>
-        {blog?.tag?.map((it: any) => (
-          <>
-            <span>{it}</span>
-          </>
+        {blog?.tag?.map((it: string) => (
+          <span key={it}>{it}</span>
         ))}
       </div>
 
