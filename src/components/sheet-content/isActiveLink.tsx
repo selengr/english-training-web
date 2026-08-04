@@ -1,9 +1,3 @@
-'use client'
-
-import { usePathname } from 'next/navigation';
-
-export function IsActiveLink(href: string) {
-  const pathname = usePathname();
-  const currentPath = pathname;
-  return currentPath === href;
+export function isActiveLink(pathname: string | null, href: string) {
+  return pathname === href;
 }
