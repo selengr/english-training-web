@@ -1,12 +1,11 @@
-
 "use client"
 
 import Link from "next/link"
-import { signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react'
 import navConfig from "./config-navigation"
 import { useState } from 'react'
-import { useRouter } from "next/navigation";
-import useMounted from "@/hooks/use-mounted";
+import { usePathname, useRouter } from "next/navigation"
+import useMounted from "@/hooks/use-mounted"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -15,15 +14,15 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { IsActiveLink } from "./isActiveLink"
-import { AlignJustify, BadgeCheck, LogOut } from 'lucide-react';
-import { toast } from "../ui/use-toast";
+import { isActiveLink } from "./isActiveLink"
+import { AlignJustify, BadgeCheck, LogOut } from 'lucide-react'
+import { toast } from "../ui/use-toast"
 
 
 export function SheetSide({ session }: { session: any }) {
-
   const mounted = useMounted()
   const router = useRouter()
+  const pathname = usePathname()
   const userRole = session?.user?.userRole as string | undefined
   const [isLoggingOut, setIsLoggingOut] = useState(false)
 
@@ -77,8 +76,9 @@ export function SheetSide({ session }: { session: any }) {
           </SheetHeader>
 
           <nav className="grid gap-2 text-lg font-medium">
-
             {navConfig?.map((item: any) => {
+              const active = isActiveLink(pathname, item.path)
+
               if (item.role === "USER") {
                 if (item.title !== "Profile") {
                   return (
@@ -86,7 +86,7 @@ export function SheetSide({ session }: { session: any }) {
                       key={item.path}
                       onClick={() => reNav()}
                       href={"" + item.path}
-                      className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
+                      className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${active ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
                     >
                       <SheetTrigger className="w-full flex flex-row">
                         {item.icon}
@@ -94,7 +94,7 @@ export function SheetSide({ session }: { session: any }) {
                           {item.title}
                         </span>
 
-                        {IsActiveLink(item.path) &&
+                        {active &&
                           <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full" />
                         }
                       </SheetTrigger>
@@ -108,7 +108,7 @@ export function SheetSide({ session }: { session: any }) {
                       key={item.path}
                       onClick={() => reNav()}
                       href={"" + item.path}
-                      className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
+                      className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${active ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
                     >
                       <SheetTrigger className="w-full flex flex-row">
                         {item.icon}
@@ -116,7 +116,7 @@ export function SheetSide({ session }: { session: any }) {
                           {item.title}
                         </span>
 
-                        {IsActiveLink(item.path) &&
+                        {active &&
                           <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full" />
                         }
                       </SheetTrigger>
@@ -131,7 +131,7 @@ export function SheetSide({ session }: { session: any }) {
                     key={item.path}
                     onClick={() => reNav()}
                     href={"" + item.path}
-                    className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${IsActiveLink(item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
+                    className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${active ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
                   >
                     <SheetTrigger className="w-full flex flex-row">
                       {item.icon}
@@ -139,7 +139,7 @@ export function SheetSide({ session }: { session: any }) {
                         {item.title}
                       </span>
 
-                      {IsActiveLink(item.path) &&
+                      {active &&
                         <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full" />
                       }
                     </SheetTrigger>
@@ -149,8 +149,6 @@ export function SheetSide({ session }: { session: any }) {
 
               return null
             })}
-
-
           </nav>
 
           {session?.user &&
@@ -161,7 +159,6 @@ export function SheetSide({ session }: { session: any }) {
                   disabled={isLoggingOut}
                   className={`mx-[-0.65rem] bg-transparent  hover:bg-transparent  cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-white`}
                 >
-
                   <LogOut />
                   logout
                 </Button>
@@ -171,5 +168,5 @@ export function SheetSide({ session }: { session: any }) {
         </SheetContent>
       </Sheet>
     </div >
-  );
+  )
 }
