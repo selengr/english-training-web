@@ -9,6 +9,7 @@ import useMounted from "@/hooks/use-mounted"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
@@ -18,6 +19,35 @@ import { isActiveLink } from "./isActiveLink"
 import { AlignJustify, BadgeCheck, LogOut } from 'lucide-react'
 import { toast } from "../ui/use-toast"
 
+function NavItem({
+  href,
+  title,
+  icon,
+  active,
+  onNavigate,
+}: {
+  href: string
+  title: string
+  icon: React.ReactNode
+  active: boolean
+  onNavigate: () => void
+}) {
+  return (
+    <SheetClose asChild>
+      <Link
+        href={href}
+        onClick={onNavigate}
+        className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${active ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
+      >
+        {icon}
+        <span className="ml-4">{title}</span>
+        {active && (
+          <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full" />
+        )}
+      </Link>
+    </SheetClose>
+  )
+}
 
 export function SheetSide({ session }: { session: any }) {
   const mounted = useMounted()
@@ -26,7 +56,7 @@ export function SheetSide({ session }: { session: any }) {
   const userRole = session?.user?.userRole as string | undefined
   const [isLoggingOut, setIsLoggingOut] = useState(false)
 
-  const reNav = async () => {
+  const reNav = () => {
     router.refresh()
   }
 
@@ -57,21 +87,23 @@ export function SheetSide({ session }: { session: any }) {
   return (
     <div className="pr-4 pl-4 sm:pl-7 cursor-pointer">
       <Sheet modal>
-        <SheetTrigger >
-          <Button variant="ghost" size={"icon"}>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon" aria-label="Open menu">
             <AlignJustify />
           </Button>
         </SheetTrigger>
-        <SheetContent side={"left"} className="bg-[#2f3437] text-white z-[9999999]">
+        <SheetContent side="left" className="bg-[#2f3437] text-white z-[9999999]">
           <SheetHeader>
             <div className="flex h-20 items-center border-b pt-2 pb-6">
-              <Link
-                href="/"
-                onClick={() => reNav()}
-                className="flex items-center gap-2 font-semibold text-white"
-              >
-                <span>Learning Labs</span>
-              </Link>
+              <SheetClose asChild>
+                <Link
+                  href="/"
+                  onClick={reNav}
+                  className="flex items-center gap-2 font-semibold text-white"
+                >
+                  <span>Learning Labs</span>
+                </Link>
+              </SheetClose>
             </div>
           </SheetHeader>
 
@@ -82,68 +114,41 @@ export function SheetSide({ session }: { session: any }) {
               if (item.role === "USER") {
                 if (item.title !== "Profile") {
                   return (
-                    <Link
+                    <NavItem
                       key={item.path}
-                      onClick={() => reNav()}
                       href={"" + item.path}
-                      className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${active ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
-                    >
-                      <SheetTrigger className="w-full flex flex-row">
-                        {item.icon}
-                        <span className="ml-4">
-                          {item.title}
-                        </span>
-
-                        {active &&
-                          <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full" />
-                        }
-                      </SheetTrigger>
-                    </Link>
+                      title={item.title}
+                      icon={item.icon}
+                      active={active}
+                      onNavigate={reNav}
+                    />
                   )
                 }
 
                 if (session?.user?.email) {
                   return (
-                    <Link
+                    <NavItem
                       key={item.path}
-                      onClick={() => reNav()}
                       href={"" + item.path}
-                      className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${active ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
-                    >
-                      <SheetTrigger className="w-full flex flex-row">
-                        {item.icon}
-                        <span className="ml-4">
-                          {item.title}
-                        </span>
-
-                        {active &&
-                          <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full" />
-                        }
-                      </SheetTrigger>
-                    </Link>
+                      title={item.title}
+                      icon={item.icon}
+                      active={active}
+                      onNavigate={reNav}
+                    />
                   )
                 }
               }
 
               if (item.role === "ADMIN" && userRole === "ADMIN") {
                 return (
-                  <Link
+                  <NavItem
                     key={item.path}
-                    onClick={() => reNav()}
                     href={"" + item.path}
-                    className={`mx-[-0.65rem] cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 ${active ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-white'}`}
-                  >
-                    <SheetTrigger className="w-full flex flex-row">
-                      {item.icon}
-                      <span className="ml-4">
-                        {item.title}
-                      </span>
-
-                      {active &&
-                        <BadgeCheck className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full" />
-                      }
-                    </SheetTrigger>
-                  </Link>
+                    title={item.title}
+                    icon={item.icon}
+                    active={active}
+                    onNavigate={reNav}
+                  />
                 )
               }
 
@@ -151,22 +156,22 @@ export function SheetSide({ session }: { session: any }) {
             })}
           </nav>
 
-          {session?.user &&
+          {session?.user && (
             <SheetFooter className="absolute bottom-8">
-              <SheetTrigger>
+              <SheetClose asChild>
                 <Button
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className={`mx-[-0.65rem] bg-transparent  hover:bg-transparent  cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-white`}
+                  className="mx-[-0.65rem] bg-transparent hover:bg-transparent cursor-pointer flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-white"
                 >
                   <LogOut />
                   logout
                 </Button>
-              </SheetTrigger>
+              </SheetClose>
             </SheetFooter>
-          }
+          )}
         </SheetContent>
       </Sheet>
-    </div >
+    </div>
   )
 }
