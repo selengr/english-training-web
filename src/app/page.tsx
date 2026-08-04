@@ -6,8 +6,6 @@ import BlogPost from '@/section/home/blog-post';
 import styles from '@/section/home/banner.module.css';
 import { BlogPostRequestSkeleton } from '@/section/home/blog-post';
 
-
-
 const HomePage = () => {
      return (
           <div className='h-full pb-14'>
